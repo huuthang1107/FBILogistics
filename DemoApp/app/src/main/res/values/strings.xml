@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">DemoApp</string>
+    <string name="welcome">Welcome To FBI</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_fcl">Phòng FCL</string>
+    <string name="nav_lcl">Phòng LCL</string>
+    <string name="nav_dom">Phòng DOM</string>
+    <string name="nav_export">Phòng EXPORT</string>
+    <string name="nav_import">Phòng IMPORT</string>
+    <string name="nav_log">Phòng LOG</string>
+    <string name="nav_hq">Phòng Hải Quan</string>
+    <string name="nav_bh">Phòng Bảo Hiểm</string>
+    <string name="nav_os">Phòng Oversea</string>
+    <string name="nav_nvocc">Phòng NVOCC</string>
+    <string name="nav_depot">Phòng DEPOT</string>
+    <string name="nav_wh">Phòng Warehouse</string>
+
+    <string name="tru_so_chinh">TRỤ SỞ CHÍNH: 19F Đường 28, Khu phố 7, Phường Linh Đông, Thành phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</string>
+    <string name="giay_phep">Giấy phép ĐKKD: 0316508978</string>
+    <string name="phone">Điện thoại: +84 28 3535 7878</string>
+    <string name="email">Email: Info@fbilogistics.vn</string>
+    <string name="hotline">HOTLINE 24/7: +84 772 50 10 20</string>
+
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
+
+    <string name="selectMonth">Chọn Bảng Giá</string>
+
+</resources>

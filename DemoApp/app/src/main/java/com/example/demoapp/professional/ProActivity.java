@@ -33,7 +33,6 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professional_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("FBI Logistics");
         setSupportActionBar(toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,mDrawerLayout,

@@ -22,6 +22,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
+                app:title="@string/company_name"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/purple_700"
                 app:popupTheme="@style/Theme.AppCompat.Light" />

@@ -41,7 +41,6 @@ public class FCLFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 if (item.equals("Tháng 1")) {
-                   // Toast.makeText(view.getContext(), item, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(view.getContext(), ActivityPriceList.class);
                     startActivity(intent);
                 }

@@ -1,4 +1,6 @@
 <resources>
+
+    <!--    Menu-->
     <string name="app_name">DemoApp</string>
     <string name="welcome">Welcome To FBI</string>
     <string name="nav_home">Home</string>
@@ -15,6 +17,7 @@
     <string name="nav_depot">Phòng DEPOT</string>
     <string name="nav_wh">Phòng Warehouse</string>
 
+    <!--    About Us-->
     <string name="tru_so_chinh">TRỤ SỞ CHÍNH: 19F Đường 28, Khu phố 7, Phường Linh Đông, Thành phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</string>
     <string name="giay_phep">Giấy phép ĐKKD: 0316508978</string>
     <string name="phone">Điện thoại: +84 28 3535 7878</string>
@@ -23,7 +26,72 @@
 
     <string name="navigation_drawer_open">Open navigation</string>
     <string name="navigation_drawer_close">Close navigation</string>
-
+    <string name="company_name">FBI Logistics</string>
+<!-- hint of dropdown menu-->
     <string name="selectMonth">Chọn Bảng Giá</string>
+    <string name="typeof_container">Chọn Loại Container</string>
+    <!--    price list table-->
+    <string name="stt">STT</string>
+    <string name="pol">POL</string>
+    <string name="pod">POD</string>
+    <string name="lines">LINES</string>
+    <string name="notes">NOTES</string>
+    <string name="valid">VALID</string>
+    <string name="notes2">NOTES</string>
 
+    <!--Continents -->
+    <string name="asia">Asia</string>
+    <string name="america">America</string>
+    <string name="Europe">Europe</string>
+
+    <!--    type of price list-->
+    <string name="gp">GP</string>
+    <string name="fr">FR</string>
+    <string name="rf">RF</string>
+    <string name="ot">OT</string>
+    <string name="hc">HC</string>
+
+    <!--Table columns name -->
+    <string name="col1">STT</string>
+    <string name="col2">POL</string>
+    <string name="col3">POD</string>
+
+
+    <string name="col_of2">O/F 20</string>
+    <string name="col_of4">O/F 40</string>
+    <string name="col_su2">SURCHARGE 20</string>
+    <string name="col_su4">SURCHARGE 40</string>
+
+
+    <string name="col8">LINES</string>
+    <string name="col9">NOTES</string>
+    <string name="col10">VALID</string>
+    <string name="col11">NOTES</string>
+
+    <!--     Buttons name-->
+    <string name="btn_add_txt">ADD</string>
+    <string name="btn_cancel_txt">CANCEL</string>
+    <string name="btn_del">XÓA</string>
+    <string name="btn_edit">SỬA</string>
+
+<!--    custom dialog-->
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+
+    <string name="app_namesale">SaleLogistics</string>
+
+    <string name="nav_homesale">Home</string>
+    <string name="nav_duongbiem">Đường Biển Quốc Tế</string>
+    <string name="nav_hangkhong">Đường Hàng Không Quốc Tế</string>
+    <string name="nav_dươngboxbg">Đường Bộ Xuyên Biên Giới</string>
+    <string name="nav_noidia">Nội Địa</string>
+    <string name="nav_oversea">Oversea</string>
+    <string name="nav_container">Loại Container</string>
+    <string name="nav_luukho">Lưu Kho</string>
+    <string name="nav_baohiem">Bảo Hiểm</string>
+    <string name="nav_nameInfoSale">FBILogistics</string>
+    <string name="nav_linkInfoSale">www.fbi.amoris.vn</string>
+
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
 </resources>

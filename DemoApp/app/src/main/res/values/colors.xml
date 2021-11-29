@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lienHe">#004887</color>
     <color name="cardView_infor">#296d8a</color>
+    <color name="table_price_background">#f1f1f1</color>
+
+    <color name="btn_color">#194f85</color>
 </resources>

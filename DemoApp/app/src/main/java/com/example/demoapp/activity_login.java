@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.example.demoapp.fragment_sale.activity_sale;
+import com.example.demoapp.sale.activity_sale;
 import com.example.demoapp.professional.ProActivity;
 import com.google.android.material.button.MaterialButton;
 

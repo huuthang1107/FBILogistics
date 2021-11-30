@@ -1,4 +1,4 @@
-package com.example.demoapp.fragment_sale;
+package com.example.demoapp.sale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;

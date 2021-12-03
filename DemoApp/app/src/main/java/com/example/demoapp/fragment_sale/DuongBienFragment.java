@@ -19,8 +19,8 @@ import com.example.demoapp.fragment_pro.FCLFragment;
 import com.example.demoapp.sale.TablePriceContainer;
 
 public class DuongBienFragment extends Fragment implements  View.OnClickListener {
-    private CardView cvContainer;
-    private ImageView iv_ContainerNK;
+    private CardView cvContainerXK;
+    private ImageView iv_ContainerXK;
     private  View view;
 
 
@@ -30,12 +30,12 @@ public class DuongBienFragment extends Fragment implements  View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          view = inflater.inflate(R.layout.fragment_duongbien,container,false);
 
-        cvContainer = view.findViewById(R.id.cv_contaierNK);
-        iv_ContainerNK = view.findViewById(R.id.imv_containerNK);
+        cvContainerXK = view.findViewById(R.id.cv_containerXK);
+        iv_ContainerXK = view.findViewById(R.id.iv_containerXK);
 
 
-        cvContainer.setOnClickListener(this);
-        iv_ContainerNK.setOnClickListener(this);
+        cvContainerXK.setOnClickListener(this);
+        iv_ContainerXK.setOnClickListener(this);
 
 
         return  view;

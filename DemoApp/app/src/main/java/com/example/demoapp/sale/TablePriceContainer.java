@@ -34,7 +34,7 @@ public class TablePriceContainer extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 if (item.equals("Tháng 1")) {
-                    Intent intent = new Intent(view.getContext(), ActivityPriceList.class);
+                    Intent intent = new Intent(view.getContext(), PriceListContainerSaleActivity.class);
                     startActivity(intent);
                 }
             }

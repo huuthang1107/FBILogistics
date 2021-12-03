@@ -5,13 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DemoApp">
+        android:theme="@style/Theme.DemoApp"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".sale.PriceListContainerSaleActivity"
+            android:exported="false" />
         <activity
             android:name=".professional.ActivityPriceList"
             android:exported="false" />
@@ -21,10 +24,11 @@
         <activity
             android:name=".sale.TablePriceContainer"
             android:exported="false" />
-        <activity android:name=".sale.activity_sale"
-            android:exported="false"/>
         <activity
             android:name=".activity_login"
+            android:exported="false" />
+        <activity
+            android:name=".sale.activity_sale"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

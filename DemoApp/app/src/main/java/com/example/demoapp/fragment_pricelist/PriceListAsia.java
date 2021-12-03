@@ -70,7 +70,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
         //Recycler View
 
         rcvPriceAsia = view.findViewById(R.id.price_list_asia_rcv);
-       // setRecyclerView();
+        // setRecyclerView();
 
         // listener click add
         btnAdd = view.findViewById(R.id.btn_add_row);
@@ -110,32 +110,32 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.radio_all:
                 changeTableName("");
-                listPriceList =  new ArrayList<>();
+                listPriceList = new ArrayList<>();
                 process();
                 break;
             case R.id.radio_gp:
                 changeTableName("GP");
-                listPriceList =  new ArrayList<>();
+                listPriceList = new ArrayList<>();
                 processGp();
                 break;
             case R.id.radio_fr:
                 changeTableName("FR");
-                listPriceList =  new ArrayList<>();
+                listPriceList = new ArrayList<>();
                 processFr();
                 break;
             case R.id.radio_rf:
                 changeTableName("RF");
-                listPriceList =  new ArrayList<>();
+                listPriceList = new ArrayList<>();
                 processRf();
                 break;
             case R.id.radio_ot:
                 changeTableName("OT");
-                listPriceList =  new ArrayList<>();
+                listPriceList = new ArrayList<>();
                 processOt();
                 break;
             case R.id.radio_hc:
                 changeTableName("HC");
-                listPriceList =  new ArrayList<>();
+                listPriceList = new ArrayList<>();
                 processHc();
                 break;
             case R.id.btn_add_row:
@@ -144,7 +144,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
         }
     }
 
-    // Get data from db to show into table
+    // Get all data from db to show into table
     public void process() {
 
         // Using retrofit library
@@ -177,14 +177,16 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
                 priceListAdapter = new PriceListAdapter(getContext(), listPriceList);
                 rcvPriceAsia.setAdapter(priceListAdapter);
             }
+
             @Override
             public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
 
             }
         });
     }
-    public void processGp() {
 
+    // Get data of GP type to show into table
+    public void processGp() {
         // Using retrofit library
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(GetAPI.BASE_URL)
@@ -203,7 +205,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<List<DetailsPojo>> call, @NonNull Response<List<DetailsPojo>> response) {
                 List<DetailsPojo> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
-                    if("gp".equalsIgnoreCase(priceListData.get(i).getType())){
+                    if ("gp".equalsIgnoreCase(priceListData.get(i).getType())) {
                         listPriceList.add(new PriceListModel(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
                                 priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
                                 priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
@@ -217,12 +219,15 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
                 priceListAdapter = new PriceListAdapter(getContext(), listPriceList);
                 rcvPriceAsia.setAdapter(priceListAdapter);
             }
+
             @Override
             public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
 
             }
         });
     }
+
+    // Get data of FR type to show into table
     public void processFr() {
 
         // Using retrofit library
@@ -243,7 +248,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<List<DetailsPojo>> call, @NonNull Response<List<DetailsPojo>> response) {
                 List<DetailsPojo> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
-                    if("fr".equalsIgnoreCase(priceListData.get(i).getType())){
+                    if ("fr".equalsIgnoreCase(priceListData.get(i).getType())) {
                         listPriceList.add(new PriceListModel(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
                                 priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
                                 priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
@@ -257,12 +262,15 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
                 priceListAdapter = new PriceListAdapter(getContext(), listPriceList);
                 rcvPriceAsia.setAdapter(priceListAdapter);
             }
+
             @Override
             public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
 
             }
         });
     }
+
+    // Get data of RF type to show into table
     public void processRf() {
 
         // Using retrofit library
@@ -283,7 +291,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<List<DetailsPojo>> call, @NonNull Response<List<DetailsPojo>> response) {
                 List<DetailsPojo> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
-                    if("rf".equalsIgnoreCase(priceListData.get(i).getType())){
+                    if ("rf".equalsIgnoreCase(priceListData.get(i).getType())) {
                         listPriceList.add(new PriceListModel(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
                                 priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
                                 priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
@@ -297,12 +305,15 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
                 priceListAdapter = new PriceListAdapter(getContext(), listPriceList);
                 rcvPriceAsia.setAdapter(priceListAdapter);
             }
+
             @Override
             public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
 
             }
         });
     }
+
+    // Get data of OT type to show into table
     public void processOt() {
 
         // Using retrofit library
@@ -323,7 +334,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<List<DetailsPojo>> call, @NonNull Response<List<DetailsPojo>> response) {
                 List<DetailsPojo> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
-                    if("ot".equalsIgnoreCase(priceListData.get(i).getType())){
+                    if ("ot".equalsIgnoreCase(priceListData.get(i).getType())) {
                         listPriceList.add(new PriceListModel(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
                                 priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
                                 priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
@@ -337,12 +348,15 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
                 priceListAdapter = new PriceListAdapter(getContext(), listPriceList);
                 rcvPriceAsia.setAdapter(priceListAdapter);
             }
+
             @Override
             public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
 
             }
         });
     }
+
+    // Get data of HC type to show into table
     public void processHc() {
 
         // Using retrofit library
@@ -363,7 +377,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
             public void onResponse(@NonNull Call<List<DetailsPojo>> call, @NonNull Response<List<DetailsPojo>> response) {
                 List<DetailsPojo> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
-                    if("hc".equalsIgnoreCase(priceListData.get(i).getType())){
+                    if ("hc".equalsIgnoreCase(priceListData.get(i).getType())) {
                         listPriceList.add(new PriceListModel(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
                                 priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
                                 priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
@@ -377,6 +391,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
                 priceListAdapter = new PriceListAdapter(getContext(), listPriceList);
                 rcvPriceAsia.setAdapter(priceListAdapter);
             }
+
             @Override
             public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
 

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApp">
         <activity
-            android:name=".professional.ActivityPriceList"
+            android:name=".activity_login"
             android:exported="false" />
         <activity
             android:name=".professional.ProActivity"
@@ -24,7 +24,7 @@
         <activity android:name=".sale.activity_sale"
             android:exported="false"/>
         <activity
-            android:name=".activity_login"
+            android:name=".professional.ActivityPriceList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

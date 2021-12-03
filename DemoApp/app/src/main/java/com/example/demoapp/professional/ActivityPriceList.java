@@ -26,6 +26,7 @@ public class ActivityPriceList extends AppCompatActivity {
 
         mPriceListViewAdapter = new PriceListViewAdapter(this);
         viewPager.setAdapter(mPriceListViewAdapter);
+        viewPager.setUserInputEnabled(false);
 
          new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
              switch (position){

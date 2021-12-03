@@ -1,11 +1,11 @@
 package com.example.demoapp.table_function;
 
-public class Model {
+public class PriceListModel {
     String stt, pol, pod, of20, of40, su20, su40, lines, notes1, valid, notes2, month, type;
 
-    public Model(String stt, String pol, String pod, String of20, String of40, String su20,
-                 String su40, String lines, String notes1, String valid, String notes2,
-                 String month, String type) {
+    public PriceListModel(String stt, String pol, String pod, String of20, String of40, String su20,
+                          String su40, String lines, String notes1, String valid, String notes2,
+                          String month, String type) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
@@ -19,6 +19,20 @@ public class Model {
         this.notes2 = notes2;
         this.month = month;
         this.type = type;
+    }
+
+    public PriceListModel(String stt, String pol, String pod, String of20, String of40, String su20, String su40, String lines, String notes1, String valid, String notes2) {
+        this.stt = stt;
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.su20 = su20;
+        this.su40 = su40;
+        this.lines = lines;
+        this.notes1 = notes1;
+        this.valid = valid;
+        this.notes2 = notes2;
     }
 
     public String getStt() {

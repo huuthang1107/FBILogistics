@@ -1,7 +1,5 @@
 package com.example.demoapp.table_function;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.professional.ActivityPriceList;
+import com.example.demoapp.fragment_pricelist.PriceListAsia;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
@@ -41,7 +38,7 @@ public class FragmentDialogInsert extends DialogFragment implements View.OnClick
     private Button btnAdd, btnCancel;
 
     // Edittext
-    private TextInputLayout et_stt, et_pol, et_pod, et_of20, et_of40, et_su20, et_su40,
+    private TextInputLayout et_pol, et_pod, et_of20, et_of40, et_su20, et_su40,
             et_lines, et_notes1, et_valid, et_notes2;
 
     // URL server
@@ -74,7 +71,6 @@ public class FragmentDialogInsert extends DialogFragment implements View.OnClick
         btnCancel = view.findViewById(R.id.btn_function_cancel);
 
         // Edit text
-        et_stt = view.findViewById(R.id.tf_stt);
         et_pol = view.findViewById(R.id.tf_pol);
         et_pod = view.findViewById(R.id.tf_pod);
         et_of20 = view.findViewById(R.id.tf_of20);
@@ -96,21 +92,13 @@ public class FragmentDialogInsert extends DialogFragment implements View.OnClick
         return view;
     }
 
-    // add a row to table
-    public void insertData(String stt, String pol, String pod, String of20, String of40,
-                           String su20, String su40, String lines, String notes1, String valid,
-                           String notes2, String month
-            , String type) {
-
-
-    }
-
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
-                resetEditText();
+                //resetEditText();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -119,7 +107,6 @@ public class FragmentDialogInsert extends DialogFragment implements View.OnClick
     }
 
     public void process() {
-        String strStt = String.valueOf(Objects.requireNonNull(et_stt.getEditText()).getText());
         String strPol = String.valueOf(Objects.requireNonNull(et_pol.getEditText()).getText());
         String strPod = String.valueOf(Objects.requireNonNull(et_pod.getEditText()).getText());
         String strOf20 = String.valueOf(Objects.requireNonNull(et_of20.getEditText()).getText());
@@ -140,24 +127,23 @@ public class FragmentDialogInsert extends DialogFragment implements View.OnClick
 
         MyAPI myAPI = retrofit.create(MyAPI.class);
 
-        Call<Model> call = myAPI.addData(strStt, strPol, strPod, strOf20, strOf40, strSu20, strSu40,
+        Call<PriceListModel> call = myAPI.addData(strPol, strPod, strOf20, strOf40, strSu20, strSu40,
                 strLines, strNotes, strValid, strNotes2, strMonth, strType);
 
-        call.enqueue(new Callback<Model>() {
+        call.enqueue(new Callback<PriceListModel>() {
             @Override
-            public void onResponse(@NonNull Call<Model> call, @NonNull Response<Model> response) {
+            public void onResponse(@NonNull Call<PriceListModel> call, @NonNull Response<PriceListModel> response) {
                 Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(@NonNull Call<Model> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
+            public void onFailure(@NonNull Call<PriceListModel> call, @NonNull Throwable t) {
+                Toast.makeText(getContext(), "Successful!", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     public void resetEditText(){
-        Objects.requireNonNull(et_stt.getEditText()).setText("");
         Objects.requireNonNull(et_pol.getEditText()).setText("");
         Objects.requireNonNull(et_pod.getEditText()).setText("");
         Objects.requireNonNull(et_of20.getEditText()).setText("");

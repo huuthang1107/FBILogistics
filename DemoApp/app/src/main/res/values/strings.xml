@@ -50,6 +50,7 @@
     <string name="rf">RF</string>
     <string name="ot">OT</string>
     <string name="hc">HC</string>
+    <string name="all">ALL</string>
 
     <!--Table columns name -->
     <string name="col1">STT</string>

@@ -48,6 +48,24 @@ public class DetailsPojo {
     @Expose
     private String notes2;
 
+    @SerializedName("type")
+    @Expose
+    private String type;
+
+    public DetailsPojo(String stt, String pol, String pod, String of20, String of40, String su20, String su40, String linelist, String notes, String valid, String notes2) {
+        this.stt = stt;
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.su20 = su20;
+        this.su40 = su40;
+        this.linelist = linelist;
+        this.notes = notes;
+        this.valid = valid;
+        this.notes2 = notes2;
+    }
+
     public String getStt() {
         return stt;
     }
@@ -134,5 +152,9 @@ public class DetailsPojo {
 
     public void setNotes2(String notes2) {
         this.notes2 = notes2;
+    }
+
+    public String getType() {
+        return type;
     }
 }

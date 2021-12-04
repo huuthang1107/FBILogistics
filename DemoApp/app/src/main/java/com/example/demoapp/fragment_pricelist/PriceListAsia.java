@@ -50,7 +50,7 @@ public class PriceListAsia extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pricelist_asia, container, false);
-        process();
+        
         radioGP = view.findViewById(R.id.radio_gp);
         radioFR = view.findViewById(R.id.radio_fr);
         radioRF = view.findViewById(R.id.radio_rf);

@@ -1,4 +1,4 @@
-package com.example.demoapp.table_function;
+package com.example.demoapp.db;
 
 import java.util.List;
 

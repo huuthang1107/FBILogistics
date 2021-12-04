@@ -70,7 +70,7 @@
     <string name="col11">NOTES</string>
 
     <!--     Buttons name-->
-    <string name="btn_add_txt">ADD</string>
+    <string name="btn_add_txt">INSERT</string>
     <string name="btn_cancel_txt">CANCEL</string>
     <string name="btn_del">XÓA</string>
     <string name="btn_edit">SỬA</string>

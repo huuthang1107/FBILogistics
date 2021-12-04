@@ -1,4 +1,4 @@
-package com.example.demoapp.table_function.recyclerview;
+package com.example.demoapp.db.recyclerview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.table_function.PriceListModel;
+import com.example.demoapp.db.PriceListModel;
 
 import java.util.List;
 

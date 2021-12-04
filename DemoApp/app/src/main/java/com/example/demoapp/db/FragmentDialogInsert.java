@@ -1,4 +1,4 @@
-package com.example.demoapp.table_function;
+package com.example.demoapp.db;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.fragment_pricelist.PriceListAsia;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;

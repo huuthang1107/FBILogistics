@@ -1,16 +1,12 @@
 package com.example.demoapp.fragment_pricelist;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -22,15 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.table_function.DetailsPojo;
-import com.example.demoapp.table_function.FragmentDialogInsert;
-import com.example.demoapp.table_function.GetAPI;
-import com.example.demoapp.table_function.PriceListModel;
-import com.example.demoapp.table_function.recyclerview.PriceListAdapter;
+import com.example.demoapp.db.DetailsPojo;
+import com.example.demoapp.db.FragmentDialogInsert;
+import com.example.demoapp.db.GetAPI;
+import com.example.demoapp.db.PriceListModel;
+import com.example.demoapp.db.recyclerview.PriceListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

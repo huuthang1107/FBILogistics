@@ -1,4 +1,4 @@
-package com.example.demoapp.table_function;
+package com.example.demoapp.db;
 
 public class PriceListModel {
     String stt, pol, pod, of20, of40, su20, su40, lines, notes1, valid, notes2, month, type;

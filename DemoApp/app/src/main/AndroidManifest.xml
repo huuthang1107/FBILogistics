@@ -16,7 +16,7 @@
             android:name=".professional.ActivityPriceList"
             android:exported="false" />
         <activity
-            android:name=".professional.ProActivity"
+            android:name=".activity_login"
             android:exported="false" />
         <activity
             android:name=".sale.TablePriceContainer"
@@ -24,7 +24,7 @@
         <activity android:name=".sale.activity_sale"
             android:exported="false"/>
         <activity
-            android:name=".activity_login"
+            android:name=".professional.ProActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

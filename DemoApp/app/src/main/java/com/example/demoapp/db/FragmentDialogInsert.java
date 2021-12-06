@@ -41,7 +41,7 @@ public class FragmentDialogInsert extends DialogFragment implements View.OnClick
             et_lines, et_notes1, et_valid, et_notes2;
 
     // URL server
-    String ServerURL = "http://192.168.1.3/database/";
+    String ServerURL = "http://192.168.1.6/database/";
 
     public static FragmentDialogInsert insertDialog() {
         return new FragmentDialogInsert();

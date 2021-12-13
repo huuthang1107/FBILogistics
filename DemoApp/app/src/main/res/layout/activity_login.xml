@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".activity_login"
+    tools:context=".view.activity.LoginActivity"
     android:id="@+id/main_professional">
     <ImageView
         android:layout_marginTop="10dp"

@@ -13,18 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApp">
         <activity
-            android:name=".professional.ActivityPriceList"
+            android:name=".view.activity.ProActivity"
             android:exported="false" />
         <activity
-            android:name=".professional.ProActivity"
-            android:exported="false" />
-        <activity
-            android:name=".sale.TablePriceContainer"
-            android:exported="false" />
-        <activity android:name=".sale.activity_sale"
-            android:exported="false"/>
-        <activity
-            android:name=".activity_login"
+            android:name=".view.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

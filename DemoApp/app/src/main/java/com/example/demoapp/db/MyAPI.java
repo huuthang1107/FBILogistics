@@ -1,6 +1,8 @@
 package com.example.demoapp.db;
 
 
+import com.example.demoapp.model.PriceListAIR;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -16,5 +18,16 @@ public interface MyAPI {
                                  @Field("notes") String notes, @Field("valid") String valid,
                                  @Field("notes2") String notes2, @Field("month") String month,
                                  @Field("type") String type);
+
+     @POST("InsertDataAIR.php")
+    Call<PriceListAIR> addAIR(@Field("aol") String aol, @Field("aod") String aod,
+                              @Field("dim") String dim, @Field("grossweight") String grossweight,
+                              @Field("typeofcargo") String typeofcargo,
+                              @Field("airfreight") String airfreight,
+                              @Field("surcharge") String surcharge,
+                              @Field("airlines") String airlines,
+                              @Field("schedule") String schedule,
+                              @Field("transittime") String transittime, @Field("valid") String valid,
+                              @Field("note") String note, @Field("month") String month);
 
 }

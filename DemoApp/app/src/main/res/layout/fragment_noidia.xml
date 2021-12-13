@@ -114,7 +114,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/iv_cargoXK"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
@@ -122,10 +122,10 @@
                         app:srcCompat="@drawable/container" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/tv_cargoXK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView10"
+                        android:layout_below="@id/iv_cargoXK"
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
@@ -149,7 +149,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView11"
+                        android:id="@+id/imv_containerXK"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
@@ -157,10 +157,10 @@
                         app:srcCompat="@drawable/taulua" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/tv_containerXK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView11"
+                        android:layout_below="@id/imv_containerXK"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/aclonica"
@@ -193,7 +193,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView14"
+                        android:id="@+id/iv_cargoNK"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
@@ -201,10 +201,10 @@
                         app:srcCompat="@drawable/kethop" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/tv_cargoNK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView14"
+                        android:layout_below="@id/iv_cargoNK"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/aclonica"
@@ -226,17 +226,17 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView15"
+                        android:id="@+id/iv_expressNK"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:layout_marginTop="10dp"
                         app:srcCompat="@drawable/plan" />
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/tv_expressNK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView15"
+                        android:layout_below="@id/iv_expressNK"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/aclonica"

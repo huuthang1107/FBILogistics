@@ -8,31 +8,18 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.ViewFlipper;
 
 import com.example.demoapp.R;
 import com.example.demoapp.fragment_sale.DuongBienFragment;
 import com.example.demoapp.fragment_sale.DuongBoFragment;
-import com.example.demoapp.fragment_sale.DuongHangKhongFragment;
 import com.example.demoapp.fragment_sale.HomeSaleFragment;
 import com.example.demoapp.fragment_sale.NoiDiaFragment;
-import com.example.demoapp.slide_image.Photo;
-import com.example.demoapp.slide_image.PhotoViewPager2Adapter;
 import com.google.android.material.navigation.NavigationView;
+import com.example.demoapp.fragment_sale.DuongHangKhongFragment;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import me.relex.circleindicator.CircleIndicator3;
 
 public class activity_sale extends AppCompatActivity implements OnNavigationItemSelectedListener {
     private  static  final int FRAGMENT_HOME =0;

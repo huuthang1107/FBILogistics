@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.demoapp.R;
 
 public class DuongBoFragment extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

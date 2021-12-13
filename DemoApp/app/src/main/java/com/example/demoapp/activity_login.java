@@ -50,7 +50,7 @@ public class activity_login extends AppCompatActivity  {
                             String[] data = new String[2];
                             data[0] = username;
                             data[1] = password;
-                            PutData putData = new PutData("http://192.168.1.3/login/login.php", "POST", field, data);
+                            PutData putData = new PutData("http://192.168.1.199/login/login.php", "POST", field, data);
                             if(putData.startPut()){
                                 if(putData.onComplete()){
                                     String result = putData.getResult();

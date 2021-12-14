@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApp">
         <activity
-            android:name=".view.activity.ProActivity"
+            android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.ProActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

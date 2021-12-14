@@ -18,7 +18,7 @@ public interface MyAPI {
                       @Field("su40") String su40, @Field("linelist") String linelist,
                       @Field("notes") String notes, @Field("valid") String valid,
                       @Field("notes2") String notes2, @Field("month") String month,
-                      @Field("type") String type);
+                      @Field("type") String type, @Field("continent") String continent) ;
 
      @POST("InsertDataAIR.php")
      Call<Air> addAIR(@Field("aol") String aol, @Field("aod") String aod,

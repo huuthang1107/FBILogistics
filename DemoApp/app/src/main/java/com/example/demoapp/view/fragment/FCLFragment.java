@@ -13,34 +13,38 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.demoapp.R;
+import com.example.demoapp.databinding.FragmentFclBinding;
 
 public class FCLFragment extends Fragment {
 
-    String[] items = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
+    private FragmentFclBinding binding;
+
+    private String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
             "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
 
-    AutoCompleteTextView autoCompleteTextView;
+    private String [] itemsContinent = {"Asia", "Europe", "America","Africa","Australia"};
 
 
-    ArrayAdapter<String> adapterItems;
+    private ArrayAdapter<String> adapterItemsMonth, adapterItemsContinent;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fcl, container, false);
-        autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
+       binding = FragmentFclBinding.inflate(inflater, container, false);
+       View view = binding.getRoot();
 
-        adapterItems = new ArrayAdapter<String>(view.getContext(), R.layout.dropdown_item, items);
+        setAdapterItems();
 
-        autoCompleteTextView.setAdapter(adapterItems);
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-
-            }
-        });
         return view;
+    }
+
+    public void setAdapterItems(){
+        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
+        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item,itemsContinent);
+
+        binding.autoCompleteMonth.setAdapter(adapterItemsMonth);
+        binding.autoCompleteContinent.setAdapter(adapterItemsContinent);
+        
     }
 }

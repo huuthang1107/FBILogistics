@@ -28,7 +28,8 @@
     <string name="navigation_drawer_close">Close navigation</string>
     <string name="company_name">FBI Logistics</string>
     <!-- hint of dropdown menu-->
-    <string name="selectMonth">Chọn Bảng Giá</string>
+    <string name="select_month">Chọn Bảng Giá</string>
+    <string name="select_continent">Chọn Châu Lục</string>
     <string name="typeof_container">Chọn Loại Container</string>
     <!--    price list table-->
     <string name="stt">STT</string>

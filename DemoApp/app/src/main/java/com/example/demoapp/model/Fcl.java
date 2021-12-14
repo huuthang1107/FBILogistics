@@ -1,11 +1,11 @@
 package com.example.demoapp.model;
 
 public class Fcl {
-    String stt, pol, pod, of20, of40, su20, su40, lines, notes1, valid, notes2, month, type;
+    String stt, pol, pod, of20, of40, su20, su40, lines, notes1, valid, notes2, month, type, continent;
 
     public Fcl(String stt, String pol, String pod, String of20, String of40, String su20,
                String su40, String lines, String notes1, String valid, String notes2,
-               String month, String type) {
+               String month, String type, String continent) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
@@ -19,9 +19,11 @@ public class Fcl {
         this.notes2 = notes2;
         this.month = month;
         this.type = type;
+        this.continent = continent;
     }
 
-    public Fcl(String stt, String pol, String pod, String of20, String of40, String su20, String su40, String lines, String notes1, String valid, String notes2) {
+    public Fcl(String stt, String pol, String pod, String of20, String of40,
+               String su20, String su40, String lines, String notes1, String valid, String notes2) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
@@ -137,5 +139,13 @@ public class Fcl {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 }

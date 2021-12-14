@@ -14,16 +14,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.databinding.FragmentDialogInsertBinding;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.api.MyAPI;
+import com.example.demoapp.databinding.FragmentDialogInsertBinding;
+import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
+import com.example.demoapp.model.Fcl;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class InsertFclDialog extends DialogFragment implements View.OnClickListener {
+public class InsertImportDialog extends DialogFragment implements View.OnClickListener {
 
     private final String[] itemsType = {"GP", "FR", "RF", "OT", "HC"};
 
@@ -34,22 +36,22 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     private final String[] listStr = new String[3];
 
-    FragmentDialogInsertBinding binding;
+    FragmentDialogInsertImportBinding binding;
 
     private ArrayAdapter<String> adapterItemsType, adapterItemsMonth, adapterItemsContinent;
 
     // URL server
     String ServerURL = "http://192.168.1.199/database/";
 
-    public static InsertFclDialog insertDialog() {
-        return new InsertFclDialog();
+    public static InsertImportDialog insertDialog() {
+        return new InsertImportDialog();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentDialogInsertBinding.inflate(inflater, container, false);
+        binding = FragmentDialogInsertImportBinding.inflate(inflater, container, false);
 
         View view = binding.getRoot();
 

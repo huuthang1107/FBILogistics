@@ -7,28 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.api.GetAPI;
 import com.example.demoapp.databinding.FragmentFclBinding;
+import com.example.demoapp.databinding.FragmentImportBinding;
 import com.example.demoapp.model.DetailsPojo;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.view.dialog.InsertFclDialog;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,10 +32,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FCLFragment extends Fragment implements View.OnClickListener {
+public class ImportFragment extends Fragment implements View.OnClickListener {
 
-    private FragmentFclBinding binding;
-
+    FragmentImportBinding binding;
     private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
             "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
 
@@ -66,7 +61,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentFclBinding.inflate(inflater, container, false);
+        binding = FragmentImportBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
         setAdapterItems();

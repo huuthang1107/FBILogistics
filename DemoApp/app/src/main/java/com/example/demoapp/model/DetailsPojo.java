@@ -52,7 +52,16 @@ public class DetailsPojo {
     @Expose
     private String type;
 
-    public DetailsPojo(String stt, String pol, String pod, String of20, String of40, String su20, String su40, String linelist, String notes, String valid, String notes2) {
+    @SerializedName("month")
+    @Expose
+    private String month;
+
+    @SerializedName("continent")
+    @Expose
+    private String continent;
+
+    public DetailsPojo(String stt, String pol, String pod, String of20, String of40, String su20,
+                       String su40, String linelist, String notes, String valid, String notes2) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
@@ -64,6 +73,44 @@ public class DetailsPojo {
         this.notes = notes;
         this.valid = valid;
         this.notes2 = notes2;
+    }
+
+    public DetailsPojo(String stt, String pol, String pod, String of20, String of40, String su20,
+                       String su40, String linelist, String notes, String valid, String notes2, String type, String month, String continent) {
+        this.stt = stt;
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.su20 = su20;
+        this.su40 = su40;
+        this.linelist = linelist;
+        this.notes = notes;
+        this.valid = valid;
+        this.notes2 = notes2;
+        this.type = type;
+        this.month = month;
+        this.continent = continent;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 
     public String getStt() {

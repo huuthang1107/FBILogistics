@@ -22,6 +22,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
     private final static int FRAGMENT_HOME = 0;
     private final static int FRAGMENT_FCL = 1;
     private final static int FRAGMENT_LCL = 2;
+    private final static int FRAGMENT_IMPORT = 3;
 
     // check currently fragment
     private int mCurrentFragment = FRAGMENT_HOME;
@@ -70,6 +71,12 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
             if(mCurrentFragment != FRAGMENT_LCL){
                 replaceFragment(new LCLFragment());
                 mCurrentFragment = FRAGMENT_LCL;
+            }
+        }
+        else if (id == R.id.nav_import){
+            if(mCurrentFragment != FRAGMENT_IMPORT){
+                replaceFragment(new ImportFragment());
+                mCurrentFragment = FRAGMENT_IMPORT;
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

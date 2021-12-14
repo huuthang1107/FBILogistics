@@ -1,16 +1,16 @@
 package com.example.demoapp.model;
 
 public class PriceListAIR {
-    private String stt, pol, pod, dim, gross, typeOfCargo, oceanFreight, localCharge, carrier,
+    private String stt, aol, aod, dim, gross, typeOfCargo, oceanFreight, localCharge, carrier,
             schedule, transitTime, valid, note, month;
 
-    public PriceListAIR(String stt, String pol, String pod, String dim, String gross,
+    public PriceListAIR(String stt, String aol, String aod, String dim, String gross,
                         String typeOfCargo, String oceanFreight, String localCharge, String carrier,
                         String schedule, String transitTime, String valid, String note,
                         String month) {
         this.stt = stt;
-        this.pol = pol;
-        this.pod = pod;
+        this.aol = aol;
+        this.aod = aod;
         this.dim = dim;
         this.gross = gross;
         this.typeOfCargo = typeOfCargo;
@@ -22,6 +22,24 @@ public class PriceListAIR {
         this.valid = valid;
         this.note = note;
         this.month = month;
+    }
+
+    public PriceListAIR(String stt, String aol, String aod, String dim, String gross,
+                        String typeOfCargo, String oceanFreight, String localCharge, String carrier,
+                        String schedule, String transitTime, String valid, String note) {
+        this.stt = stt;
+        this.aol = aol;
+        this.aod = aod;
+        this.dim = dim;
+        this.gross = gross;
+        this.typeOfCargo = typeOfCargo;
+        this.oceanFreight = oceanFreight;
+        this.localCharge = localCharge;
+        this.carrier = carrier;
+        this.schedule = schedule;
+        this.transitTime = transitTime;
+        this.valid = valid;
+        this.note = note;
     }
 
     public String getMonth() {
@@ -40,20 +58,20 @@ public class PriceListAIR {
         this.stt = stt;
     }
 
-    public String getPol() {
-        return pol;
+    public String getAol() {
+        return aol;
     }
 
-    public void setPol(String pol) {
-        this.pol = pol;
+    public void setAol(String pol) {
+        this.aol = pol;
     }
 
-    public String getPod() {
-        return pod;
+    public String getAod() {
+        return aod;
     }
 
     public void setPod(String pod) {
-        this.pod = pod;
+        this.aod = pod;
     }
 
     public String getDim() {

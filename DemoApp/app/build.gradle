@@ -22,9 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures {
-        viewBinding true
-    }
+//    buildFeatures {
+//        viewBinding true
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -51,6 +51,15 @@ dependencies {
     implementation 'me.relex:circleindicator:2.1.6'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:25.2.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:25.2.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:25.2.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:25.2.0'
 
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 

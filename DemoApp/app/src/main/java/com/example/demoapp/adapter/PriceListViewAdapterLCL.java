@@ -32,6 +32,7 @@ public class PriceListViewAdapterLCL extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
+
         return 3;
     }
 }

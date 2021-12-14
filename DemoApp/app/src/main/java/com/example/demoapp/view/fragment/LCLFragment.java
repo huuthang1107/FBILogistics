@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.demoapp.R;
+import com.example.demoapp.databinding.FragmentLclBinding;
 
 public class LCLFragment extends Fragment {
 
@@ -24,12 +25,21 @@ public class LCLFragment extends Fragment {
 
     ArrayAdapter<String> adapterItems;
 
+    public FragmentLclBinding lclBinding;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lcl,container,false);
 
-        autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        autoCompleteTextView = view.findViewById(R.id.auto_complete_month);
 
         adapterItems = new ArrayAdapter<String>(view.getContext(), R.layout.dropdown_item, items);
 
@@ -41,6 +51,6 @@ public class LCLFragment extends Fragment {
 
             }
         });
-        return view;
     }
+    
 }

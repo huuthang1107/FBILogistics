@@ -23,6 +23,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_aol_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/col2" />
@@ -38,6 +39,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_aod_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/col3" />
@@ -53,6 +55,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_dim_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col4" />
@@ -68,6 +71,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_gross_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col5" />
@@ -83,6 +87,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_type_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col6" />
@@ -98,6 +103,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_freight_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col7" />
@@ -113,6 +119,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_surcharge_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col8" />
@@ -128,6 +135,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_lines_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col9" />
@@ -143,6 +151,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_schedule_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col10" />
@@ -159,6 +168,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_tranmittime_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col11" />
@@ -173,6 +183,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_valid_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col12" />
@@ -189,6 +200,7 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_note_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/col11" />

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.api.MyAPI;
+import com.example.demoapp.databinding.FragmentDialogInsertAirBinding;
 import com.example.demoapp.model.Air;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -29,9 +30,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class InsertAirDialog extends DialogFragment implements  View.OnClickListener {
 
     private String selectItem;
-    private Button btnAdd, btnCancel;
-    private TextInputLayout et_pol, et_pod, et_dim, et_gross, et_type, et_airFreight,et_surcharge,
-          et_airlines, et_schedule, et_transit, et_valid, et_note;
+//    private Button btnAdd, btnCancel;
+//    private TextInputLayout et_pol, et_pod, et_dim, et_gross, et_type, et_airFreight,et_surcharge,
+//          et_airlines, et_schedule, et_transit, et_valid, et_note;
+    private FragmentDialogInsertAirBinding binding;
 
     private String linkURL = "http://192.168.1.90:80/database/";
     public static InsertAirDialog insertDiaLogAIR(){
@@ -45,28 +47,32 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dialog_insert_air, container, false);
 
-        et_pol = view.findViewById(R.id.tf_pol);
-        et_pod = view.findViewById(R.id.tf_pod);
-        et_dim = view.findViewById(R.id.tf_dim);
-        et_gross = view.findViewById(R.id.tf_gross);
-        et_type = view.findViewById(R.id.tf_typeofcargo);
-        et_airFreight = view.findViewById(R.id.tf_airfreight);
-        et_surcharge = view.findViewById(R.id.tf_surcharge);
-        et_airlines = view.findViewById(R.id.tf_airlines);
-        et_schedule = view.findViewById(R.id.tf_schedule);
-        et_transit = view.findViewById(R.id.tf_tf_transit_time);
-        et_valid = view.findViewById(R.id.tf_valid);
-        et_note = view.findViewById(R.id.tf_notes);
-
-        btnAdd = view.findViewById(R.id.btn_function_add);
-        btnCancel = view.findViewById(R.id.btn_function_cancel);
-        
-        btnAdd.setOnClickListener(this);
-        btnCancel.setOnClickListener(this);
-        
-        setCancelable(false);
-
         return  view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//        et_pol = view.findViewById(R.id.tf_pol);
+//        et_pod = view.findViewById(R.id.tf_pod);
+//        et_dim = view.findViewById(R.id.tf_dim);
+//        et_gross = view.findViewById(R.id.tf_gross);
+//        et_type = view.findViewById(R.id.tf_typeofcargo);
+//        et_airFreight = view.findViewById(R.id.tf_airfreight);
+//        et_surcharge = view.findViewById(R.id.tf_surcharge);
+//        et_airlines = view.findViewById(R.id.tf_airlines);
+//        et_schedule = view.findViewById(R.id.tf_schedule);
+//        et_transit = view.findViewById(R.id.tf_tf_transit_time);
+//        et_valid = view.findViewById(R.id.tf_valid);
+//        et_note = view.findViewById(R.id.tf_notes);
+//
+//        btnAdd = view.findViewById(R.id.btn_function_add);
+//        btnCancel = view.findViewById(R.id.btn_function_cancel);
+
+        binding.btnFunctionAdd.setOnClickListener(this);
+        binding.btnFunctionCancel.setOnClickListener(this);
+
+        setCancelable(false);
     }
 
     @Override
@@ -83,18 +89,18 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
     }
 
     private void insertAIR() {
-        String strAol = String.valueOf(Objects.requireNonNull(et_pol.getEditText()).getText());
-        String strAod = String.valueOf(Objects.requireNonNull(et_pod.getEditText()).getText());
-        String strDim = String.valueOf(Objects.requireNonNull(et_dim.getEditText()).getText());
-        String strGross = String.valueOf(Objects.requireNonNull(et_gross.getEditText()).getText());
-        String strType = String.valueOf(Objects.requireNonNull(et_type.getEditText()).getText());
-        String strAIRFreight = String.valueOf(Objects.requireNonNull(et_airFreight.getEditText()).getText());
-        String strSurcharge = String.valueOf(Objects.requireNonNull(et_surcharge.getEditText()).getText());
-        String strAIRLines = String.valueOf(Objects.requireNonNull(et_airlines.getEditText()).getText());
-        String strSchedule = String.valueOf(Objects.requireNonNull(et_schedule.getEditText()).getText());
-        String strTransit = String.valueOf(Objects.requireNonNull(et_transit.getEditText()).getText());
-        String strValid = String.valueOf(Objects.requireNonNull(et_valid.getEditText()).getText());
-        String strNote = String.valueOf(Objects.requireNonNull(et_note.getEditText()).getText());
+        String strAol = String.valueOf(Objects.requireNonNull(binding.etAolDialog).getText());
+        String strAod = String.valueOf(Objects.requireNonNull(binding.etAodDialog).getText());
+        String strDim = String.valueOf(Objects.requireNonNull(binding.etDimDialog).getText());
+        String strGross = String.valueOf(Objects.requireNonNull(binding.etGrossDialog).getText());
+        String strType = String.valueOf(Objects.requireNonNull(binding.etTypeDialog).getText());
+        String strAIRFreight = String.valueOf(Objects.requireNonNull(binding.etFreightDialog).getText());
+        String strSurcharge = String.valueOf(Objects.requireNonNull(binding.etSurchargeDialog).getText());
+        String strAIRLines = String.valueOf(Objects.requireNonNull(binding.etLinesDialog).getText());
+        String strSchedule = String.valueOf(Objects.requireNonNull(binding.etScheduleDialog).getText());
+        String strTransit = String.valueOf(Objects.requireNonNull(binding.etTranmittimeDialog).getText());
+        String strValid = String.valueOf(Objects.requireNonNull(binding.etValidDialog).getText());
+        String strNote = String.valueOf(Objects.requireNonNull(binding.etNoteDialog).getText());
         String strMonth = "1";
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -120,18 +126,18 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
     }
 
     public void resetEditText(){
-        Objects.requireNonNull(et_pod.getEditText()).setText("");
-        Objects.requireNonNull(et_pod.getEditText()).setText("");
-        Objects.requireNonNull(et_dim.getEditText()).setText("");
-        Objects.requireNonNull(et_gross.getEditText()).setText("");
-        Objects.requireNonNull(et_type.getEditText()).setText("");
-        Objects.requireNonNull(et_airFreight.getEditText()).setText("");
-        Objects.requireNonNull(et_surcharge.getEditText()).setText("");
-        Objects.requireNonNull(et_airlines.getEditText()).setText("");
-        Objects.requireNonNull(et_schedule.getEditText()).setText("");
-        Objects.requireNonNull(et_transit.getEditText()).setText("");
-        Objects.requireNonNull(et_valid.getEditText()).setText("");
-        Objects.requireNonNull(et_note.getEditText()).setText("");
+        Objects.requireNonNull(binding.etAolDialog).setText("");
+        Objects.requireNonNull(binding.etAodDialog).setText("");
+        Objects.requireNonNull(binding.etDimDialog).setText("");
+        Objects.requireNonNull(binding.etGrossDialog).setText("");
+        Objects.requireNonNull(binding.etTypeDialog).setText("");
+        Objects.requireNonNull(binding.etFreightDialog).setText("");
+        Objects.requireNonNull(binding.etFreightDialog).setText("");
+        Objects.requireNonNull(binding.etLinesDialog).setText("");
+        Objects.requireNonNull(binding.etScheduleDialog).setText("");
+        Objects.requireNonNull(binding.etTranmittimeDialog).setText("");
+        Objects.requireNonNull(binding.etValidDialog).setText("");
+        Objects.requireNonNull(binding.etNoteDialog).setText("");
 
 
     }

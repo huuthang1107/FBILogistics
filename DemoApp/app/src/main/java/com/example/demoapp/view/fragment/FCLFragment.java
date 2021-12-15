@@ -7,28 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.api.GetAPI;
 import com.example.demoapp.databinding.FragmentFclBinding;
-import com.example.demoapp.model.DetailsPojo;
+import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.view.dialog.InsertFclDialog;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -164,14 +159,14 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         GetAPI getAPI = retrofit.create(GetAPI.class);
 
         // Fetching the values into Pojo File
-        Call<List<DetailsPojo>> call = getAPI.getStatus();
+        Call<List<DetailsPojoFcl>> call = getAPI.getStatusFcl();
 
         // call
-        call.enqueue(new Callback<List<DetailsPojo>>() {
+        call.enqueue(new Callback<List<DetailsPojoFcl>>() {
             @Override
-            public void onResponse(@NonNull Call<List<DetailsPojo>> call,
-                                   @NonNull Response<List<DetailsPojo>> response) {
-                List<DetailsPojo> priceListData = response.body();
+            public void onResponse(@NonNull Call<List<DetailsPojoFcl>> call,
+                                   @NonNull Response<List<DetailsPojoFcl>> response) {
+                List<DetailsPojoFcl> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
                     listPriceList.add(new Fcl(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
                             priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
@@ -184,7 +179,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<DetailsPojoFcl>> call, @NonNull Throwable t) {
 
             }
         });

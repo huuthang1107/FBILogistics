@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.demoapp.R;
 import com.example.demoapp.view.fragment.FCLFragment;
 import com.example.demoapp.view.fragment.HomeFragment;
+import com.example.demoapp.view.fragment.ImportFragment;
 import com.example.demoapp.view.fragment.LCLFragment;
 import com.google.android.material.navigation.NavigationView;
 

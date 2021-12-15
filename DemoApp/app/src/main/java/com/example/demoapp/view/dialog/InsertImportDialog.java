@@ -14,10 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.api.MyAPI;
-import com.example.demoapp.databinding.FragmentDialogInsertBinding;
+import com.example.demoapp.api.InsertImport;
 import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
-import com.example.demoapp.model.Fcl;
+import com.example.demoapp.model.Import;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -124,31 +123,33 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         String pod = binding.tfPod.getEditText().getText().toString();
         String of20 = binding.tfOf20.getEditText().getText().toString();
         String of40 = binding.tfOf40.getEditText().getText().toString();
-        String su20 = binding.tfSu20.getEditText().getText().toString();
-        String su40 = binding.tfSu40.getEditText().getText().toString();
-        String line = binding.tfLines.getEditText().getText().toString();
-        String notes = binding.tfNotes.getEditText().getText().toString();
+        String surcharge = binding.tfSurcharge.getEditText().getText().toString();
+        String totalFreight = binding.tfTotalFreight.getEditText().getText().toString();
+        String carrier = binding.tfCarrier.getEditText().getText().toString();
+        String schedule = binding.tfSchedule.getEditText().getText().toString();
+        String transit = binding.tfTransitTime.getEditText().getText().toString();
+        String free = binding.tfFreeTime.getEditText().getText().toString();
         String valid = binding.tfValid.getEditText().getText().toString();
-        String note2 = binding.tfNotes2.getEditText().getText().toString();
+        String note = binding.tfNote.getEditText().getText().toString();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ServerURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MyAPI myAPI = retrofit.create(MyAPI.class);
+        InsertImport insertIMP = retrofit.create(InsertImport.class);
 
-        Call<Fcl> call = myAPI.addData(pol, pod, of20, of40, su20, su40, line, notes,
-                valid, note2, listStr[1], listStr[0], listStr[2]);
+        Call<Import> call = insertIMP.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note,listStr[0],
+                listStr[1], listStr[2]);
 
-        call.enqueue(new Callback<Fcl>() {
+        call.enqueue(new Callback<Import>() {
             @Override
-            public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
+            public void onResponse(@NonNull Call<Import> call, @NonNull Response<Import> response) {
                 Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(@NonNull Call<Fcl> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Import> call, @NonNull Throwable t) {
                 Toast.makeText(getContext(), "Successful!", Toast.LENGTH_LONG).show();
             }
         });

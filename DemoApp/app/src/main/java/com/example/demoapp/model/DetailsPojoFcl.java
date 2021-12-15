@@ -3,7 +3,7 @@ package com.example.demoapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DetailsPojo {
+public class DetailsPojoFcl {
     @SerializedName("stt")
     @Expose
     private String stt;
@@ -60,8 +60,8 @@ public class DetailsPojo {
     @Expose
     private String continent;
 
-    public DetailsPojo(String stt, String pol, String pod, String of20, String of40, String su20,
-                       String su40, String linelist, String notes, String valid, String notes2) {
+    public DetailsPojoFcl(String stt, String pol, String pod, String of20, String of40, String su20,
+                          String su40, String linelist, String notes, String valid, String notes2) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
@@ -75,8 +75,8 @@ public class DetailsPojo {
         this.notes2 = notes2;
     }
 
-    public DetailsPojo(String stt, String pol, String pod, String of20, String of40, String su20,
-                       String su40, String linelist, String notes, String valid, String notes2, String type, String month, String continent) {
+    public DetailsPojoFcl(String stt, String pol, String pod, String of20, String of40, String su20,
+                          String su40, String linelist, String notes, String valid, String notes2, String type, String month, String continent) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;

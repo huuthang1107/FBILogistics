@@ -9,7 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
-public interface MyAPI {
+public interface InsertFCL {
     @FormUrlEncoded
     @POST("InsertData.php")
     Call<Fcl> addData(@Field("pol") String pol,
@@ -19,16 +19,5 @@ public interface MyAPI {
                       @Field("notes") String notes, @Field("valid") String valid,
                       @Field("notes2") String notes2, @Field("month") String month,
                       @Field("type") String type, @Field("continent") String continent) ;
-
-     @POST("InsertDataAIR.php")
-     Call<Air> addAIR(@Field("aol") String aol, @Field("aod") String aod,
-                      @Field("dim") String dim, @Field("grossweight") String grossweight,
-                      @Field("typeofcargo") String typeofcargo,
-                      @Field("airfreight") String airfreight,
-                      @Field("surcharge") String surcharge,
-                      @Field("airlines") String airlines,
-                      @Field("schedule") String schedule,
-                      @Field("transittime") String transittime, @Field("valid") String valid,
-                      @Field("note") String note, @Field("month") String month);
 
 }

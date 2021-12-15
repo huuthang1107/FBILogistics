@@ -1,6 +1,7 @@
 package com.example.demoapp.api;
 
-import com.example.demoapp.model.DetailsPojo;
+import com.example.demoapp.model.DetailsPojoFcl;
+import com.example.demoapp.model.DetailsPojoImport;
 
 import java.util.List;
 
@@ -11,5 +12,8 @@ public interface GetAPI {
     String BASE_URL = "http://192.168.1.199/database/";
 
     @GET("GetData.php")
-    Call<List<DetailsPojo>> getStatus();
+    Call<List<DetailsPojoFcl>> getStatusFcl();
+
+    @GET("GetDataImport.php")
+    Call<List<DetailsPojoImport>> getStatusImport();
 }

@@ -45,7 +45,7 @@
     <string name="america">America</string>
     <string name="Europe">Europe</string>
 
-    <!--    type of price list-->
+    <!-- Type of price list-->
     <string name="gp">GP</string>
     <string name="fr">FR</string>
     <string name="rf">RF</string>
@@ -63,13 +63,19 @@
     <string name="col_of4">O/F 40</string>
     <string name="col_su2">SURCHARGE 20</string>
     <string name="col_su4">SURCHARGE 40</string>
-
-
     <string name="col8">LINES</string>
     <string name="col9">NOTES</string>
     <string name="col10">VALID</string>
     <string name="col11">NOTES</string>
 
+    <!-- Table name of Import -->
+    <string name="surcharge">SURCHARGE</string>
+    <string name="total_freight">TOTAL FREIGHT</string>
+    <string name="carrier">CARRIER</string>
+    <string name="schedule">SCHEDULE</string>
+    <string name="transit_time">TRANSIT TIME</string>
+    <string name="free_time">FREE TIME</string>
+    <string name="note">NOTE</string>
     <!--     Buttons name-->
     <string name="btn_add_txt">INSERT</string>
     <string name="btn_cancel_txt">CANCEL</string>

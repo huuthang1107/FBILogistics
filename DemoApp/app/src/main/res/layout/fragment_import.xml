@@ -212,7 +212,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:text="@string/col_su2"
+                        android:text="@string/surcharge"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -223,7 +223,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:text="@string/col_su4"
+                        android:text="@string/total_freight"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -234,7 +234,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:text="@string/col8"
+                        android:text="@string/carrier"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -245,7 +245,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:text="@string/col9"
+                        android:text="@string/schedule"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -256,7 +256,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:text="@string/col10"
+                        android:text="@string/transit_time"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -267,7 +267,29 @@
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
-                        android:text="@string/col11"
+                        android:text="@string/free_time"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/valid"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/note"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
                 </TableRow>

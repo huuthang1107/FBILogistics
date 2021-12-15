@@ -16,12 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
+import com.example.demoapp.adapter.PriceListImportAdapter;
 import com.example.demoapp.api.GetAPI;
-import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.databinding.FragmentImportBinding;
-import com.example.demoapp.model.DetailsPojo;
-import com.example.demoapp.model.Fcl;
-import com.example.demoapp.view.dialog.InsertFclDialog;
+import com.example.demoapp.model.DetailsPojoFcl;
+import com.example.demoapp.model.DetailsPojoImport;
+import com.example.demoapp.model.Import;
+import com.example.demoapp.view.dialog.InsertImportDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,8 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     private String continent = "";
     private String radioItem = "All";
 
-    List<Fcl> listPriceList = new ArrayList<>();
-    PriceListAdapter priceListAdapter;
+    List<Import> listPriceList = new ArrayList<>();
+    PriceListImportAdapter priceListAdapter;
 
     /**
      * this method will create a view (fragment)
@@ -99,7 +100,6 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
 
     }
 
-
     /**
      * this method will set data for recycler view
      *
@@ -113,7 +113,7 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
 
             binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-            priceListAdapter = new PriceListAdapter(getContext(), prepareDataForRecyclerView(m, c, r));
+            priceListAdapter = new PriceListImportAdapter(getContext(), prepareDataForRecyclerView(m, c, r));
 
             binding.priceListRcv.setAdapter(priceListAdapter);
         }
@@ -126,19 +126,19 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
      * @param c continent
      * @return get list by month and continent
      */
-    public List<Fcl> prepareDataForRecyclerView(String m, String c, String r) {
+    public List<Import> prepareDataForRecyclerView(String m, String c, String r) {
         // reset a list when user choose different
-        List<Fcl> list = new ArrayList<>();
+        List<Import> list = new ArrayList<>();
 
-        for (Fcl f : listPriceList) {
+        for (Import imp : listPriceList) {
             if (r.equalsIgnoreCase("all")) {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
-                    list.add(f);
+                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
+                    list.add(imp);
                 }
             } else {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
-                        && f.getType().equalsIgnoreCase(r)) {
-                    list.add(f);
+                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)
+                        && imp.getType().equalsIgnoreCase(r)) {
+                    list.add(imp);
                 }
             }
         }
@@ -159,27 +159,29 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
         GetAPI getAPI = retrofit.create(GetAPI.class);
 
         // Fetching the values into Pojo File
-        Call<List<DetailsPojo>> call = getAPI.getStatus();
+        Call<List<DetailsPojoImport>> call = getAPI.getStatusImport();
 
         // call
-        call.enqueue(new Callback<List<DetailsPojo>>() {
+        call.enqueue(new Callback<List<DetailsPojoImport>>() {
             @Override
-            public void onResponse(@NonNull Call<List<DetailsPojo>> call,
-                                   @NonNull Response<List<DetailsPojo>> response) {
-                List<DetailsPojo> priceListData = response.body();
+            public void onResponse(@NonNull Call<List<DetailsPojoImport>> call,
+                                   @NonNull Response<List<DetailsPojoImport>> response) {
+                List<DetailsPojoImport> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
-                    listPriceList.add(new Fcl(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
-                            priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
-                            priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
-                            priceListData.get(i).getSu40(), priceListData.get(i).getLinelist(),
-                            priceListData.get(i).getNotes(), priceListData.get(i).getValid(),
-                            priceListData.get(i).getNotes2(), priceListData.get(i).getMonth(),
-                            priceListData.get(i).getType(), priceListData.get(i).getContinent()));
+                    listPriceList.add(new Import(priceListData.get(i).getStt(),
+                            priceListData.get(i).getPol(),priceListData.get(i).getPod(),
+                            priceListData.get(i).getOf20(),priceListData.get(i).getOf40(),
+                            priceListData.get(i).getSurcharge(),priceListData.get(i).getTotalFreight(),
+                            priceListData.get(i).getCarrier(),priceListData.get(i).getSchedule(),
+                            priceListData.get(i).getTransitTime(),priceListData.get(i).getFreeTime(),
+                            priceListData.get(i).getValid(),priceListData.get(i).getNote(),
+                            priceListData.get(i).getType(),priceListData.get(i).getMonth(),
+                            priceListData.get(i).getContinent()));
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<DetailsPojo>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<DetailsPojoImport>> call, @NonNull Throwable t) {
 
             }
         });
@@ -216,7 +218,7 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fragment_fcl_fab:
-                DialogFragment dialogFragment = InsertFclDialog.insertDialog();
+                DialogFragment dialogFragment = InsertImportDialog.insertDialog();
                 dialogFragment.show(getParentFragmentManager(), "Insert Dialog");
                 break;
             case R.id.radio_all:

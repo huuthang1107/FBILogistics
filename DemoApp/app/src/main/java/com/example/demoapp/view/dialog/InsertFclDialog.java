@@ -16,7 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDialogInsertBinding;
 import com.example.demoapp.model.Fcl;
-import com.example.demoapp.api.MyAPI;
+import com.example.demoapp.api.InsertFCL;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -134,9 +134,9 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MyAPI myAPI = retrofit.create(MyAPI.class);
+        InsertFCL insertFCL = retrofit.create(InsertFCL.class);
 
-        Call<Fcl> call = myAPI.addData(pol, pod, of20, of40, su20, su40, line, notes,
+        Call<Fcl> call = insertFCL.addData(pol, pod, of20, of40, su20, su40, line, notes,
                 valid, note2, listStr[1], listStr[0], listStr[2]);
 
         call.enqueue(new Callback<Fcl>() {

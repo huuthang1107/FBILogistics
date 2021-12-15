@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.demoapp.R;
-import com.example.demoapp.api.MyAPI;
+import com.example.demoapp.api.InsertFCL;
 import com.example.demoapp.model.Air;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -80,43 +80,6 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
                 dismiss();
                 break;
         }
-    }
-
-    private void insertAIR() {
-        String strAol = String.valueOf(Objects.requireNonNull(et_pol.getEditText()).getText());
-        String strAod = String.valueOf(Objects.requireNonNull(et_pod.getEditText()).getText());
-        String strDim = String.valueOf(Objects.requireNonNull(et_dim.getEditText()).getText());
-        String strGross = String.valueOf(Objects.requireNonNull(et_gross.getEditText()).getText());
-        String strType = String.valueOf(Objects.requireNonNull(et_type.getEditText()).getText());
-        String strAIRFreight = String.valueOf(Objects.requireNonNull(et_airFreight.getEditText()).getText());
-        String strSurcharge = String.valueOf(Objects.requireNonNull(et_surcharge.getEditText()).getText());
-        String strAIRLines = String.valueOf(Objects.requireNonNull(et_airlines.getEditText()).getText());
-        String strSchedule = String.valueOf(Objects.requireNonNull(et_schedule.getEditText()).getText());
-        String strTransit = String.valueOf(Objects.requireNonNull(et_transit.getEditText()).getText());
-        String strValid = String.valueOf(Objects.requireNonNull(et_valid.getEditText()).getText());
-        String strNote = String.valueOf(Objects.requireNonNull(et_note.getEditText()).getText());
-        String strMonth = "1";
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(linkURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        MyAPI api = retrofit.create(MyAPI.class);
-        Call<Air> call = api.addAIR(strAol, strAol, strDim, strGross, strType,
-                strAIRFreight, strSurcharge, strAIRLines, strSchedule, strTransit, strValid, strNote
-                ,strMonth);
-        call.enqueue(new Callback<Air>() {
-            @Override
-            public void onResponse(Call<Air> call, Response<Air> response) {
-                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<Air> call, Throwable t) {
-                Toast.makeText(getContext(),"Insert AIR failure", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     public void resetEditText(){

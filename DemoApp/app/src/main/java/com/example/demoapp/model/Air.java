@@ -1,35 +1,27 @@
 package com.example.demoapp.model;
 
 public class Air {
-    private String stt, pol, pod, dim, gross, typeOfCargo, oceanFreight, localCharge, carrier,
-            schedule, transitTime, valid, note, month;
+    private String stt, aol, aod, dim, gross, typeOfCargo, airFreight, surcharge , airLines,
+            schedule, transitTime, valid, note, month, continent;
 
-    public Air(String stt, String pol, String pod, String dim, String gross,
-               String typeOfCargo, String oceanFreight, String localCharge, String carrier,
-               String schedule, String transitTime, String valid, String note,
-               String month) {
+    public Air(String stt, String aol, String aod, String dim, String gross, String typeOfCargo,
+               String airFreight, String surcharge, String airLines, String schedule,
+               String transitTime, String valid, String note, String month, String continent) {
         this.stt = stt;
-        this.pol = pol;
-        this.pod = pod;
+        this.aol = aol;
+        this.aod = aod;
         this.dim = dim;
         this.gross = gross;
         this.typeOfCargo = typeOfCargo;
-        this.oceanFreight = oceanFreight;
-        this.localCharge = localCharge;
-        this.carrier = carrier;
+        this.airFreight = airFreight;
+        this.surcharge = surcharge;
+        this.airLines = airLines;
         this.schedule = schedule;
         this.transitTime = transitTime;
         this.valid = valid;
         this.note = note;
         this.month = month;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
+        this.continent = continent;
     }
 
     public String getStt() {
@@ -40,20 +32,20 @@ public class Air {
         this.stt = stt;
     }
 
-    public String getPol() {
-        return pol;
+    public String getAol() {
+        return aol;
     }
 
-    public void setPol(String pol) {
-        this.pol = pol;
+    public void setAol(String aol) {
+        this.aol = aol;
     }
 
-    public String getPod() {
-        return pod;
+    public String getAod() {
+        return aod;
     }
 
-    public void setPod(String pod) {
-        this.pod = pod;
+    public void setAod(String aod) {
+        this.aod = aod;
     }
 
     public String getDim() {
@@ -80,28 +72,28 @@ public class Air {
         this.typeOfCargo = typeOfCargo;
     }
 
-    public String getOceanFreight() {
-        return oceanFreight;
+    public String getAirFreight() {
+        return airFreight;
     }
 
-    public void setOceanFreight(String oceanFreight) {
-        this.oceanFreight = oceanFreight;
+    public void setAirFreight(String airFreight) {
+        this.airFreight = airFreight;
     }
 
-    public String getLocalCharge() {
-        return localCharge;
+    public String getSurcharge() {
+        return surcharge;
     }
 
-    public void setLocalCharge(String localCharge) {
-        this.localCharge = localCharge;
+    public void setSurcharge(String surcharge) {
+        this.surcharge = surcharge;
     }
 
-    public String getCarrier() {
-        return carrier;
+    public String getAirLines() {
+        return airLines;
     }
 
-    public void setCarrier(String carrier) {
-        this.carrier = carrier;
+    public void setAirLines(String airLines) {
+        this.airLines = airLines;
     }
 
     public String getSchedule() {
@@ -134,5 +126,21 @@ public class Air {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 }

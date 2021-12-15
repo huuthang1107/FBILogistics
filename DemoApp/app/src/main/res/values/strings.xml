@@ -5,7 +5,7 @@
     <string name="welcome">Welcome To FBI</string>
     <string name="nav_home">Home</string>
     <string name="nav_fcl">Phòng FCL</string>
-    <string name="nav_lcl">Phòng LCL</string>
+    <string name="nav_lcl">Phòng AIR</string>
     <string name="nav_dom">Phòng DOM</string>
     <string name="nav_export">Phòng EXPORT</string>
     <string name="nav_import">Phòng IMPORT</string>
@@ -52,6 +52,9 @@
     <string name="ot">OT</string>
     <string name="hc">HC</string>
     <string name="all">ALL</string>
+    <string name="hq">HQ</string>
+    <string name="tk">TK</string>
+
 
     <!--Table columns name -->
     <string name="col1">STT</string>

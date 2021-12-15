@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.demoapp.R;
 import com.example.demoapp.view.fragment.FCLFragment;
+import com.example.demoapp.view.fragment.FragmentDOM;
 import com.example.demoapp.view.fragment.HomeFragment;
 import com.example.demoapp.view.fragment.ImportFragment;
 import com.example.demoapp.view.fragment.LCLFragment;
@@ -24,6 +25,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
     private final static int FRAGMENT_FCL = 1;
     private final static int FRAGMENT_LCL = 2;
     private final static int FRAGMENT_IMPORT = 3;
+    private final static int FRAGMENT_DOM = 4;
 
     // check currently fragment
     private int mCurrentFragment = FRAGMENT_HOME;
@@ -78,6 +80,12 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
             if(mCurrentFragment != FRAGMENT_IMPORT){
                 replaceFragment(new ImportFragment());
                 mCurrentFragment = FRAGMENT_IMPORT;
+            }
+        }
+        else if (id == R.id.nav_dom){
+            if(mCurrentFragment != FRAGMENT_DOM){
+                replaceFragment(new FragmentDOM());
+                mCurrentFragment = FRAGMENT_DOM;
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

@@ -169,13 +169,13 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
                 List<DetailsPojoImport> priceListData = response.body();
                 for (int i = 0; i < priceListData.size(); i++) {
                     listPriceList.add(new Import(priceListData.get(i).getStt(),
-                            priceListData.get(i).getPol(),priceListData.get(i).getPod(),
-                            priceListData.get(i).getOf20(),priceListData.get(i).getOf40(),
-                            priceListData.get(i).getSurcharge(),priceListData.get(i).getTotalFreight(),
-                            priceListData.get(i).getCarrier(),priceListData.get(i).getSchedule(),
-                            priceListData.get(i).getTransitTime(),priceListData.get(i).getFreeTime(),
-                            priceListData.get(i).getValid(),priceListData.get(i).getNote(),
-                            priceListData.get(i).getType(),priceListData.get(i).getMonth(),
+                            priceListData.get(i).getPol(), priceListData.get(i).getPod(),
+                            priceListData.get(i).getOf20(), priceListData.get(i).getOf40(),
+                            priceListData.get(i).getSurcharge(), priceListData.get(i).getTotalFreight(),
+                            priceListData.get(i).getCarrier(), priceListData.get(i).getSchedule(),
+                            priceListData.get(i).getTransitTime(), priceListData.get(i).getFreeTime(),
+                            priceListData.get(i).getValid(), priceListData.get(i).getNote(),
+                            priceListData.get(i).getType(), priceListData.get(i).getMonth(),
                             priceListData.get(i).getContinent()));
                 }
             }
@@ -203,9 +203,11 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
 
         binding.radioRf.setOnClickListener(this);
 
-        binding.radioHc.setOnClickListener(this);
+        binding.radioHq.setOnClickListener(this);
 
         binding.radioOt.setOnClickListener(this);
+
+        binding.radioTk.setOnClickListener(this);
     }
 
     /**
@@ -241,13 +243,17 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
 
-            case R.id.radio_hc:
-                radioItem = binding.radioHc.getText().toString();
+            case R.id.radio_hq:
+                radioItem = binding.radioHq.getText().toString();
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
 
             case R.id.radio_ot:
                 radioItem = binding.radioOt.getText().toString();
+                setDataForRecyclerView(month, continent, radioItem);
+                break;
+            case R.id.radio_tk:
+                radioItem = binding.radioTk.getText().toString();
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
         }

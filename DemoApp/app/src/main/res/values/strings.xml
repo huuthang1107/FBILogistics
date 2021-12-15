@@ -120,6 +120,12 @@
     <string name="colAIR_col10">SCHEDULE</string>
     <string name="colAIR_col11">TRANSIT TIME</string>
     <string name="colAIR_col12">VALID</string>
+    <!--    dom-->
+    <string name="dom_type1">Trucking hàng containers</string>
+    <string name="dom_type2">Trucking xe tải</string>
+    <string name="dom_type3">Vận chuyển đường biển</string>
 
+    <string name="bottom_imp">Nhập khẩu</string>
+    <string name="bottom_ex">Xuất khẩu</string>
 
 </resources>

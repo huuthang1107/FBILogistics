@@ -31,12 +31,13 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
     private int mCurrentFragment = FRAGMENT_HOME;
 
     private DrawerLayout mDrawerLayout;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professional_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar  = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,mDrawerLayout,
@@ -50,6 +51,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
 
         // vao app la open fragment home
         replaceFragment(new HomeFragment());
+        toolbar.setTitle("FBI Logistics");
 
         // checked fragment home
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
@@ -63,11 +65,13 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
             if(mCurrentFragment != FRAGMENT_HOME){
                 replaceFragment(new HomeFragment());
                 mCurrentFragment = FRAGMENT_HOME;
+                toolbar.setTitle("FBI Logistics");
             }
         }else if(id == R.id.nav_fcl){
             if(mCurrentFragment != FRAGMENT_FCL){
                 replaceFragment(new FCLFragment());
                 mCurrentFragment = FRAGMENT_FCL;
+                toolbar.setTitle("FCL PAGE");
             }
 
         }else if (id == R.id.nav_lcl){
@@ -79,13 +83,15 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         else if (id == R.id.nav_import){
             if(mCurrentFragment != FRAGMENT_IMPORT){
                 replaceFragment(new ImportFragment());
-                mCurrentFragment = FRAGMENT_IMPORT;
+
+                toolbar.setTitle("IMPORT PAGE");
             }
         }
         else if (id == R.id.nav_dom){
             if(mCurrentFragment != FRAGMENT_DOM){
                 replaceFragment(new FragmentDOM());
                 mCurrentFragment = FRAGMENT_DOM;
+                toolbar.setTitle("DOM PAGE");
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

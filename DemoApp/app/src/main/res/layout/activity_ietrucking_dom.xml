@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_container_dom"
+    tools:context=".view.activity.IETruckingDomActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_dom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemIconSize="30dp"
+        android:background="@drawable/rounded_corner"
+        app:itemIconTint="@drawable/item_selector"
+        app:menu="@menu/menu_bottom"
+        app:labelVisibilityMode="labeled"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

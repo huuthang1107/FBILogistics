@@ -1,14 +1,12 @@
 package com.example.demoapp.view.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapterAIR;
 import com.example.demoapp.api.GetAIR;
-import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.databinding.FragmentLclBinding;
 import com.example.demoapp.model.Air;
 import com.example.demoapp.view.dialog.InsertAirDialog;
-import com.example.demoapp.view.dialog.InsertFclDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +87,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
 
 
     public void setUpButtons() {
+
         lclBinding.fragmentLclFab.setOnClickListener(this);
     }
 

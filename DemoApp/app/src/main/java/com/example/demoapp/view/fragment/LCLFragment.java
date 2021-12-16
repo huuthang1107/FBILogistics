@@ -15,10 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.adapter.PriceListAdapterAIR;
 import com.example.demoapp.api.GetAIR;
 import com.example.demoapp.databinding.FragmentLclBinding;
 import com.example.demoapp.model.Air;
+import com.example.demoapp.model.DetailsAIR;
+import com.example.demoapp.model.Fcl;
 import com.example.demoapp.view.dialog.InsertAirDialog;
 
 import java.util.ArrayList;
@@ -42,10 +45,10 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
 
 
     private ArrayAdapter<String> adapterItemsMonth, adapterItemsContinent;
-    private List<Air> list = new ArrayList<>();
+    private List<Air> listAIR = new ArrayList<>();
 
-    private String month, continent;
-
+    private String month = "";
+    private String continent = "";
 
     @Nullable
     @Override
@@ -57,7 +60,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
         setAdapterItems();
         setUpButtons();
 
-
+        process();
         return view;
     }
 
@@ -72,6 +75,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 month = adapterView.getItemAtPosition(i).toString();
+                setDataForRecyclerView(month,continent);
             }
         });
 
@@ -79,6 +83,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 continent = adapterView.getItemAtPosition(i).toString();
+                setDataForRecyclerView(month, continent);
             }
         });
 
@@ -100,7 +105,6 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
                 dialogFragment.show(getParentFragmentManager(), "Insert Dialog");
                 break;
 
-
         }
     }
     public void process() {
@@ -116,32 +120,48 @@ public class LCLFragment extends Fragment implements View.OnClickListener{
         GetAIR getAPI = retrofit.create(GetAIR.class);
 
         // Fetching the values into Pojo File
-        Call<List<Air>> call = getAPI.getpricelistAIR();
+        Call<List<DetailsAIR>> call = getAPI.getpricelistAIR();
 
-        call.enqueue(new Callback<List<Air>>() {
+        call.enqueue(new Callback<List<DetailsAIR>>() {
             @Override
-            public void onResponse(Call<List<Air>> call, Response<List<Air>> response) {
-                List<Air> airList = response.body();
-                for(int i=0 ; i<airList.size(); i++){
-                    list.add(new Air(airList.get(i).getStt(), airList.get(i).getAol(),
+            public void onResponse(Call<List<DetailsAIR>> call, Response<List<DetailsAIR>> response) {
+                List<DetailsAIR> airList = response.body();
+                for(int i = 0 ; i<airList.size(); i++){
+                    listAIR.add(new Air(airList.get(i).getStt(), airList.get(i).getAol(),
                             airList.get(i).getAod(), airList.get(i).getDim(),
-                            airList.get(i).getGross(),airList.get(i).getTypeOfCargo(),
-                            airList.get(i).getAirFreight(), airList.get(i).getSurcharge(),
-                            airList.get(i).getAirLines(), airList.get(i).getSchedule(),
-                            airList.get(i).getTransitTime(), airList.get(i).getValid(),
+                            airList.get(i).getGrossweight(),airList.get(i).getTypeofcargo(),
+                            airList.get(i).getAirfreight(), airList.get(i).getSurcharge(),
+                            airList.get(i).getAirlines(), airList.get(i).getSchedule(),
+                            airList.get(i).getTransittime(), airList.get(i).getValid(),
                             airList.get(i).getNote(),airList.get(i).getMonth(), airList.get(i).getContinent()));
                 }
-                lclBinding.priceListAsiaRcv.setHasFixedSize(true);
-                lclBinding.priceListAsiaRcv.setLayoutManager(new LinearLayoutManager(getContext()));
-                priceListAdapterAIR = new PriceListAdapterAIR(getContext(),list);
-                lclBinding.priceListAsiaRcv.setAdapter(priceListAdapterAIR);
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Air>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<DetailsAIR>> call, @NonNull Throwable t) {
 
             }
         });
 
+    }
+    public List<Air> prepareDataForRecyclerView(String m, String c) {
+        List<Air> listMC = new ArrayList<>();
+        for (Air a : listAIR) {
+            if (a.getMonth().equalsIgnoreCase(m) && a.getContinent().equalsIgnoreCase(c)) {
+                listMC.add(a);
+            }
+        }
+        return listMC;
+    }
+    public void setDataForRecyclerView(String m, String c) {
+        if (!m.isEmpty() && !c.isEmpty()) {
+            lclBinding.priceListAsiaRcv.setHasFixedSize(true);
+
+            lclBinding.priceListAsiaRcv.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            priceListAdapterAIR = new PriceListAdapterAIR(getContext(), prepareDataForRecyclerView(m, c));
+
+            lclBinding.priceListAsiaRcv.setAdapter(priceListAdapterAIR);
+        }
     }
 }

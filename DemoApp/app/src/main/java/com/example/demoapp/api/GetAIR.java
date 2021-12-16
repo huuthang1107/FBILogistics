@@ -1,6 +1,7 @@
 package com.example.demoapp.api;
 
 import com.example.demoapp.model.Air;
+import com.example.demoapp.model.DetailsAIR;
 import com.example.demoapp.model.DetailsPojo;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface GetAIR {
     String BASE_URL = "http://192.168.1.180/dataAIR/";
 
     @GET("GetDataAIR.php")
-    Call<List<Air>> getpricelistAIR();
+    Call<List<DetailsAIR>> getpricelistAIR();
 }

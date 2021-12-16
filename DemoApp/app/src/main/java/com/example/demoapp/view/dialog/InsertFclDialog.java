@@ -48,6 +48,13 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         return new InsertFclDialog();
     }
 
+    /**
+     * This method will set a view for insert dialog
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState save
+     * @return view of this fragment dialog
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -61,6 +68,9 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         return view;
     }
 
+    /**
+     * this method will init for all views and get a item of auto complete textview
+     */
     public void initView() {
 
         // auto complete textview
@@ -104,6 +114,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     }
 
+    /**
+     * This method set event for and and cancel buttons
+     * @param v view
+     */
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
@@ -119,7 +133,9 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         }
     }
 
-
+    /**
+     * This method used to get data user typing and insert them into database
+     */
     public void process() {
 
         String pol = binding.tfPol.getEditText().getText().toString();

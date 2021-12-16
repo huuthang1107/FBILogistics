@@ -87,6 +87,24 @@ public class DetailsPojoImport {
         this.continent = continent;
     }
 
+    public DetailsPojoImport( String pol, String pod, String of20, String of40, String surcharge, String totalFreight, String carrier, String schedule, String transitTime, String freeTime, String valid, String note, String type, String month, String continent) {
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.surcharge = surcharge;
+        this.totalFreight = totalFreight;
+        this.carrier = carrier;
+        this.schedule = schedule;
+        this.transitTime = transitTime;
+        this.freeTime = freeTime;
+        this.valid = valid;
+        this.note = note;
+        this.type = type;
+        this.month = month;
+        this.continent = continent;
+    }
+
     public String getStt() {
         return stt;
     }

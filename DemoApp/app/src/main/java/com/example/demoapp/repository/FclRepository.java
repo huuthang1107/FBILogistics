@@ -18,14 +18,18 @@ import retrofit2.Response;
 public class FclRepository {
     private MutableLiveData<List<DetailsPojoFcl>> mFclList;
     private FCLService mFclService;
-    private MutableLiveData<Fcl> mFcl;
-    private boolean mIsSuccess;
 
+    /**
+     * This method used as constructor for FCL Repository
+     * @param baseURL Url to API
+     */
     public FclRepository(String baseURL) {
         mFclService = APIClient.getClient(baseURL).create(FCLService.class);
-        mIsSuccess = false;
     }
 
+    /**
+     * This method will upload all data of fcl table on database
+     */
     public void upLoadAllFcl() {
         Call<List<DetailsPojoFcl>> call = mFclService.getStatusFcl();
         call.enqueue(new Callback<List<DetailsPojoFcl>>() {
@@ -42,6 +46,11 @@ public class FclRepository {
             }
         });
     }
+
+    /**
+     * This method will store data which get from fcl table
+     * @return list of Fcl table
+     */
 
     public LiveData<List<DetailsPojoFcl>> getAllFcl() {
         if (mFclList == null) {

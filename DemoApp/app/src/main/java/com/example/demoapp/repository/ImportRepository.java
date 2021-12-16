@@ -21,10 +21,17 @@ public class ImportRepository {
     private MutableLiveData<List<DetailsPojoImport>> mImportList;
     private ImportService mImportService;
 
+    /**
+     * This method used as constructor of Import Repository
+     * @param baseURL Url of API
+     */
     public ImportRepository(String baseURL) {
         mImportService = APIClient.getClient(baseURL).create(ImportService.class);
     }
 
+    /**
+     * This method will upload all data of Import table on database
+     */
     public void upLoadAllImport() {
         Call<List<DetailsPojoImport>> call = mImportService.getStatusImport();
         call.enqueue(new Callback<List<DetailsPojoImport>>() {
@@ -41,6 +48,11 @@ public class ImportRepository {
             }
         });
     }
+
+    /**
+     * This method will store all data which get from Import Table
+     * @return list of Import
+     */
 
     public LiveData<List<DetailsPojoImport>> getAllImport() {
         if (mImportList == null) {

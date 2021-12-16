@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
+import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
 
 import java.util.List;
@@ -17,12 +19,14 @@ import java.util.List;
 public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.ViewHolder> {
 
     private Context context;
-    private List<Fcl> listPriceList;
+    private List<DetailsPojoFcl> mListDetailFcl;
 
-    public PriceListAdapter(Context context, List<Fcl> listPriceList) {
+    public PriceListAdapter(Context context, List<DetailsPojoFcl> mListDetailFcl) {
         this.context = context;
-        this.listPriceList = listPriceList;
+        this.mListDetailFcl = mListDetailFcl;
     }
+
+
 
     @NonNull
     @Override
@@ -34,8 +38,9 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull PriceListAdapter.ViewHolder holder, int position) {
-        if (listPriceList != null && listPriceList.size() > 0) {
-            Fcl priceListModel = listPriceList.get(position);
+
+        if (mListDetailFcl != null && mListDetailFcl.size() > 0) {
+            DetailsPojoFcl priceListModel = mListDetailFcl.get(position);
 
             holder.stt.setText(priceListModel.getStt());
             holder.pol.setText(priceListModel.getPol());
@@ -44,8 +49,8 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
             holder.of40.setText(priceListModel.getOf40());
             holder.su20.setText(priceListModel.getSu20());
             holder.su40.setText(priceListModel.getSu40());
-            holder.line.setText(priceListModel.getLines());
-            holder.notes1.setText(priceListModel.getNotes1());
+            holder.line.setText(priceListModel.getLinelist());
+            holder.notes1.setText(priceListModel.getNotes());
             holder.valid.setText(priceListModel.getValid());
             holder.notes2.setText(priceListModel.getNotes2());
         } else {
@@ -55,10 +60,15 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
 
     @Override
     public int getItemCount() {
-        if (listPriceList != null) {
-            return listPriceList.size();
+        if (mListDetailFcl != null) {
+            return mListDetailFcl.size();
         }
         return 0;
+    }
+
+    public void setDataFcl(List<DetailsPojoFcl> mListDetailFcl) {
+        this.mListDetailFcl = mListDetailFcl;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -79,7 +89,6 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
             notes1 = itemView.findViewById(R.id.tv_row_price_asia_notes1);
             valid = itemView.findViewById(R.id.tv_row_price_asia_valid);
             notes2 = itemView.findViewById(R.id.tv_row_price_asia_notes2);
-
 
         }
     }

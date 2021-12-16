@@ -1,11 +1,8 @@
 package com.example.demoapp.services;
 
 import com.example.demoapp.model.DetailsPojoFcl;
-import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Fcl;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -14,7 +11,6 @@ import retrofit2.http.POST;
 
 public interface FCLService {
     String BASE_URL = "http://192.168.1.199/database/";
-
 
     @GET("GetData.php")
     Call<List<DetailsPojoFcl>> getStatusFcl();

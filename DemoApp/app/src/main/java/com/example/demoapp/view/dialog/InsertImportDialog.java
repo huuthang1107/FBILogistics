@@ -17,13 +17,12 @@ import com.example.demoapp.R;
 import com.example.demoapp.services.ImportService;
 import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
 import com.example.demoapp.model.Import;
-import com.example.demoapp.utilities.Contants;
+import com.example.demoapp.utilities.APIClient;
+import com.example.demoapp.utilities.Constants;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InsertImportDialog extends DialogFragment implements View.OnClickListener {
 
@@ -37,12 +36,6 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
     private final String[] listStr = new String[3];
 
     FragmentDialogInsertImportBinding binding;
-
-    private ArrayAdapter<String> adapterItemsType, adapterItemsMonth, adapterItemsContinent;
-
-    public static InsertImportDialog insertDialog() {
-        return new InsertImportDialog();
-    }
 
     @Nullable
     @Override
@@ -60,9 +53,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
     public void initView() {
 
         // auto complete textview
-        adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
-        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
 
         binding.insertAutoContainer.setAdapter(adapterItemsType);
         binding.insertAutoMonth.setAdapter(adapterItemsMonth);
@@ -114,6 +107,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         }
     }
 
+    public static InsertImportDialog insertDialog() {
+        return new InsertImportDialog();
+    }
 
     public void process() {
 
@@ -130,14 +126,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         String valid = binding.tfValid.getEditText().getText().toString();
         String note = binding.tfNote.getEditText().getText().toString();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Contants.URL_API)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        ImportService importService = APIClient.getClient(Constants.URL_API).create(ImportService.class);
 
-        ImportService importService = retrofit.create(ImportService.class);
-
-        Call<Import> call = importService.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note,listStr[0],
+        Call<Import> call = importService.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note, listStr[0],
                 listStr[1], listStr[2]);
 
         call.enqueue(new Callback<Import>() {

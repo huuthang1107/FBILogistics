@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
@@ -20,7 +23,10 @@ import com.example.demoapp.services.FCLService;
 import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.APIClient;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.InsertFclDialog;
+import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +34,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FCLFragment extends Fragment implements View.OnClickListener {
 
@@ -46,8 +50,10 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     private String continent = "";
     private String radioItem = "All";
 
-    List<Fcl> listPriceList = new ArrayList<>();
+    List<DetailsPojoFcl> listPriceList = new ArrayList<>();
     PriceListAdapter priceListAdapter;
+
+    FclViewModel mFclViewModel;
 
     /**
      * this method will create a view (fragment)
@@ -64,11 +70,16 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         binding = FragmentFclBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         setAdapterItems();
         setUpButtons();
         getAllData();
 
-        return view;
+        super.onViewCreated(view, savedInstanceState);
     }
 
     /**
@@ -126,64 +137,33 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      * @param c continent
      * @return get list by month and continent
      */
-    public List<Fcl> prepareDataForRecyclerView(String m, String c, String r) {
+    public List<DetailsPojoFcl> prepareDataForRecyclerView(String m, String c, String r) {
         // reset a list when user choose different
-        List<Fcl> list = new ArrayList<>();
+        List<DetailsPojoFcl> subList = new ArrayList<>();
 
-        for (Fcl f : listPriceList) {
+        for (DetailsPojoFcl f : listPriceList) {
             if (r.equalsIgnoreCase("all")) {
                 if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
-                    list.add(f);
+                    subList.add(f);
                 }
             } else {
                 if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
                         && f.getType().equalsIgnoreCase(r)) {
-                    list.add(f);
+                    subList.add(f);
                 }
             }
         }
-        return list;
+        return subList;
     }
 
     /**
      * this method will get all data from database
      */
     public void getAllData() {
-        // Using retrofit library
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(FCLService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        //initialize api class
-        FCLService FCLService = retrofit.create(FCLService.class);
-
-        // Fetching the values into Pojo File
-        Call<List<DetailsPojoFcl>> call = FCLService.getStatusFcl();
-
-        // call
-        call.enqueue(new Callback<List<DetailsPojoFcl>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<DetailsPojoFcl>> call,
-                                   @NonNull Response<List<DetailsPojoFcl>> response) {
-                List<DetailsPojoFcl> priceListData = response.body();
-                for (int i = 0; i < priceListData.size(); i++) {
-                    listPriceList.add(new Fcl(priceListData.get(i).getStt(), priceListData.get(i).getPol(),
-                            priceListData.get(i).getPod(), priceListData.get(i).getOf20(),
-                            priceListData.get(i).getOf40(), priceListData.get(i).getSu20(),
-                            priceListData.get(i).getSu40(), priceListData.get(i).getLinelist(),
-                            priceListData.get(i).getNotes(), priceListData.get(i).getValid(),
-                            priceListData.get(i).getNotes2(), priceListData.get(i).getMonth(),
-                            priceListData.get(i).getType(), priceListData.get(i).getContinent()));
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<List<DetailsPojoFcl>> call, @NonNull Throwable t) {
-
-            }
+        mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
+            this.listPriceList = detailsPojoFcl;
         });
-
     }
 
     /**

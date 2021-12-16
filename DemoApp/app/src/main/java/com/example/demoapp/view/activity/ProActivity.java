@@ -83,7 +83,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         else if (id == R.id.nav_import){
             if(mCurrentFragment != FRAGMENT_IMPORT){
                 replaceFragment(new ImportFragment());
-
+                mCurrentFragment = FRAGMENT_IMPORT;
                 toolbar.setTitle("IMPORT PAGE");
             }
         }

@@ -13,17 +13,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.demoapp.R;
-import com.example.demoapp.api.InsertFCL;
-import com.example.demoapp.model.Air;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class InsertAirDialog extends DialogFragment implements  View.OnClickListener {
@@ -33,7 +25,6 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
     private TextInputLayout et_pol, et_pod, et_dim, et_gross, et_type, et_airFreight,et_surcharge,
           et_airlines, et_schedule, et_transit, et_valid, et_note;
 
-    private String linkURL = "http://192.168.1.90:80/database/";
     public static InsertAirDialog insertDiaLogAIR(){
         return new InsertAirDialog();
     }

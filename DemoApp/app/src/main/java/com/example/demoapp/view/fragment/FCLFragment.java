@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
-import com.example.demoapp.api.GetAPI;
+import com.example.demoapp.services.FCLService;
 import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
@@ -151,15 +151,15 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     public void getAllData() {
         // Using retrofit library
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(GetAPI.BASE_URL)
+                .baseUrl(FCLService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         //initialize api class
-        GetAPI getAPI = retrofit.create(GetAPI.class);
+        FCLService FCLService = retrofit.create(FCLService.class);
 
         // Fetching the values into Pojo File
-        Call<List<DetailsPojoFcl>> call = getAPI.getStatusFcl();
+        Call<List<DetailsPojoFcl>> call = FCLService.getStatusFcl();
 
         // call
         call.enqueue(new Callback<List<DetailsPojoFcl>>() {

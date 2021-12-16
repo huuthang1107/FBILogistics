@@ -1,14 +1,20 @@
-package com.example.demoapp.api;
+package com.example.demoapp.services;
 
-import com.example.demoapp.model.Fcl;
+import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Import;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface InsertImport {
+public interface ImportService  {
+    @GET("GetDataImport.php")
+    Call<List<DetailsPojoImport>> getStatusImport();
+
     @FormUrlEncoded
     @POST("InsertImport.php")
     Call<Import> addData(@Field("pol") String pol,

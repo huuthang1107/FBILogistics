@@ -4,12 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.RowPricelistImportBinding;
 import com.example.demoapp.model.Import;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
 
     private Context context;
     private List<Import> listPriceList;
+    RowPricelistImportBinding binding;
 
 
     public PriceListImportAdapter(Context context, List<Import> listPriceList) {
@@ -40,19 +45,19 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
         if (listPriceList != null && listPriceList.size() > 0) {
             Import priceListModel = listPriceList.get(position);
 
-            holder.binding.tvRowPriceImportStt.setText(priceListModel.getStt());
-            holder.binding.tvRowPriceImportPol.setText(priceListModel.getPol());
-            holder.binding.tvRowPriceImportPod.setText(priceListModel.getPod());
-            holder.binding.tvRowPriceImportOf20.setText(priceListModel.getOf20());
-            holder.binding.tvRowPriceImportOf40.setText(priceListModel.getOf40());
-            holder.binding.tvRowPriceImportSurcharge.setText(priceListModel.getSurcharge());
-            holder.binding.tvRowPriceImportTotal.setText(priceListModel.getTotalFreight());
-            holder.binding.tvRowPriceImportCarrier.setText(priceListModel.getCarrier());
-            holder.binding.tvRowPriceImportSchedule.setText(priceListModel.getSchedule());
-            holder.binding.tvRowPriceImportTransit.setText(priceListModel.getTransitTime());
-            holder.binding.tvRowPriceImportFree.setText(priceListModel.getFreeTime());
-            holder.binding.tvRowPriceImportValid.setText(priceListModel.getValid());
-            holder.binding.tvRowPriceImportNote.setText(priceListModel.getNote());
+            holder.stt.setText(priceListModel.getPol());
+            holder.pol.setText(priceListModel.getPol());
+            holder.pod.setText(priceListModel.getPod());
+            holder.of20.setText(priceListModel.getOf20());
+            holder.of40.setText(priceListModel.getOf40());
+            holder.surcharge.setText(priceListModel.getSurcharge());
+            holder.total.setText(priceListModel.getTotalFreight());
+            holder.carrier.setText(priceListModel.getCarrier());
+            holder.schedule.setText(priceListModel.getSchedule());
+            holder.transit.setText(priceListModel.getTransitTime());
+            holder.free.setText(priceListModel.getFreeTime());
+            holder.valid.setText(priceListModel.getValid());
+            holder.note.setText(priceListModel.getNote());
 
         } else {
             return;
@@ -69,10 +74,24 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        RowPricelistImportBinding binding;
+        TextView stt, pol, pod, of20, of40, surcharge,total, carrier, schedule, transit, free, valid, note;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            stt = itemView.findViewById(R.id.tv_row_price_import_stt);
+            pol = itemView.findViewById(R.id.tv_row_price_import_pol);
+            pod = itemView.findViewById(R.id.tv_row_price_import_pod);
+            of20 = itemView.findViewById(R.id.tv_row_price_import_of20);
+            of40 = itemView.findViewById(R.id.tv_row_price_import_of40);
+            surcharge = itemView.findViewById(R.id.tv_row_price_import_surcharge);
+            total = itemView.findViewById(R.id.tv_row_price_import_total);
+            carrier = itemView.findViewById(R.id.tv_row_price_import_carrier);
+            schedule = itemView.findViewById(R.id.tv_row_price_import_schedule);
+            transit = itemView.findViewById(R.id.tv_row_price_import_transit);
+            free = itemView.findViewById(R.id.tv_row_price_import_free);
+            valid = itemView.findViewById(R.id.tv_row_price_import_valid);
+            note = itemView.findViewById(R.id.tv_row_price_import_note);
 
         }
     }

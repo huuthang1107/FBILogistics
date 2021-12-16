@@ -25,6 +25,13 @@ public class IETruckingDomActivity extends AppCompatActivity {
         View view = binding.getRoot();
 
         setContentView(view);
+        setChangeFragment();
+    }
+
+    /**
+     * This method will set change fragments
+     */
+    public void setChangeFragment(){
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container_dom, new DomExportFragment()).commit();
 

@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
 
 import java.util.List;
@@ -19,13 +17,11 @@ import java.util.List;
 public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.ViewHolder> {
 
     private Context context;
-    private List<DetailsPojoFcl> mListDetailFcl;
+    private List<Fcl> mListDetailFcl;
 
-    public PriceListAdapter(Context context, List<DetailsPojoFcl> mListDetailFcl) {
+    public PriceListAdapter(Context context) {
         this.context = context;
-        this.mListDetailFcl = mListDetailFcl;
     }
-
 
 
     @NonNull
@@ -40,7 +36,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
     public void onBindViewHolder(@NonNull PriceListAdapter.ViewHolder holder, int position) {
 
         if (mListDetailFcl != null && mListDetailFcl.size() > 0) {
-            DetailsPojoFcl priceListModel = mListDetailFcl.get(position);
+            Fcl priceListModel = mListDetailFcl.get(position);
 
             holder.stt.setText(priceListModel.getStt());
             holder.pol.setText(priceListModel.getPol());
@@ -66,7 +62,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
         return 0;
     }
 
-    public void setDataFcl(List<DetailsPojoFcl> mListDetailFcl) {
+    public void setDataFcl(List<Fcl> mListDetailFcl) {
         this.mListDetailFcl = mListDetailFcl;
         notifyDataSetChanged();
     }

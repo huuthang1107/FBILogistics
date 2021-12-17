@@ -18,22 +18,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListImportAdapter;
 import com.example.demoapp.databinding.FragmentImportBinding;
-import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Import;
-import com.example.demoapp.repository.ImportRepository;
-import com.example.demoapp.services.ImportService;
-import com.example.demoapp.utilities.APIClient;
-import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.InsertImportDialog;
-import com.example.demoapp.viewmodel.FclViewModel;
 import com.example.demoapp.viewmodel.ImportViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ImportFragment extends Fragment implements View.OnClickListener {
 
@@ -49,7 +39,7 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     private String continent = "";
     private String radioItem = "All";
 
-    List<DetailsPojoImport> listPriceList = new ArrayList<>();
+    List<Import> listPriceList = new ArrayList<>();
     PriceListImportAdapter priceListAdapter;
     ImportViewModel mImportViewModel;
 
@@ -129,11 +119,11 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
      * @param c continent
      * @return get list by month and continent
      */
-    public List<DetailsPojoImport> prepareDataForRecyclerView(String m, String c, String r) {
+    public List<Import> prepareDataForRecyclerView(String m, String c, String r) {
         // reset a list when user choose different
-        List<DetailsPojoImport> list = new ArrayList<>();
+        List<Import> list = new ArrayList<>();
 
-        for (DetailsPojoImport imp : listPriceList) {
+        for (Import imp : listPriceList) {
             if (r.equalsIgnoreCase("all")) {
                 if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
                     list.add(imp);

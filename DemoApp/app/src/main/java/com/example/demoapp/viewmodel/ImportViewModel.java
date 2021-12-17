@@ -5,16 +5,14 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.demoapp.model.DetailsPojoFcl;
-import com.example.demoapp.model.DetailsPojoImport;
-import com.example.demoapp.repository.FclRepository;
+import com.example.demoapp.model.Import;
 import com.example.demoapp.repository.ImportRepository;
 import com.example.demoapp.utilities.Constants;
 
 import java.util.List;
 
 public class ImportViewModel extends AndroidViewModel {
-    private LiveData<List<DetailsPojoImport>> mImportList;
+    private LiveData<List<Import>> mImportList;
     private ImportRepository mImportRepository;
 
     public ImportViewModel(Application application) {
@@ -31,7 +29,7 @@ public class ImportViewModel extends AndroidViewModel {
         mImportList = mImportRepository.getAllImport();
     }
 
-    public LiveData<List<DetailsPojoImport>> getImportList() {
+    public LiveData<List<Import>> getImportList() {
         loadAllImport();
         return mImportList;
     }

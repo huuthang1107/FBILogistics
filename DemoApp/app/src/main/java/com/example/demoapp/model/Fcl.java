@@ -1,11 +1,82 @@
 package com.example.demoapp.model;
 
-public class Fcl {
-    String stt, pol, pod, of20, of40, su20, su40, lines, notes1, valid, notes2, month, type, continent;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+public class Fcl {
+    @SerializedName("stt")
+    @Expose
+    private String stt;
+
+    @SerializedName("pol")
+    @Expose
+    private String pol;
+
+    @SerializedName("pod")
+    @Expose
+    private String pod;
+
+    @SerializedName("of20")
+    @Expose
+    private String of20;
+
+    @SerializedName("of40")
+    @Expose
+    private String of40;
+
+    @SerializedName("su20")
+    @Expose
+    private String su20;
+
+    @SerializedName("su40")
+    @Expose
+    private String su40;
+
+    @SerializedName("linelist")
+    @Expose
+    private String linelist;
+
+    @SerializedName("notes")
+    @Expose
+    private String notes;
+
+    @SerializedName("valid")
+    @Expose
+    private String valid;
+
+    @SerializedName("notes2")
+    @Expose
+    private String notes2;
+
+    @SerializedName("type")
+    @Expose
+    private String type;
+
+    @SerializedName("month")
+    @Expose
+    private String month;
+
+    @SerializedName("continent")
+    @Expose
+    private String continent;
+
+    /**
+     * Constructor
+     *
+     * @param stt      stt
+     * @param pol      pol
+     * @param pod      pod
+     * @param of20     ocean freight 20
+     * @param of40     ocean freight 40
+     * @param su20     surcharge 20
+     * @param su40     surcharge 40
+     * @param linelist linelist
+     * @param notes    notes 1
+     * @param valid    valid
+     * @param notes2   notes2
+     */
     public Fcl(String stt, String pol, String pod, String of20, String of40, String su20,
-               String su40, String lines, String notes1, String valid, String notes2,
-               String month, String type, String continent) {
+               String su40, String linelist, String notes, String valid, String notes2) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
@@ -13,28 +84,81 @@ public class Fcl {
         this.of40 = of40;
         this.su20 = su20;
         this.su40 = su40;
-        this.lines = lines;
-        this.notes1 = notes1;
+        this.linelist = linelist;
+        this.notes = notes;
         this.valid = valid;
         this.notes2 = notes2;
-        this.month = month;
+    }
+
+    public Fcl( String pol, String pod, String of20, String of40, String su20,
+               String su40, String linelist, String notes, String valid, String notes2) {
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.su20 = su20;
+        this.su40 = su40;
+        this.linelist = linelist;
+        this.notes = notes;
+        this.valid = valid;
+        this.notes2 = notes2;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param pol      pol
+     * @param pod      pod
+     * @param of20     ocean freight 20
+     * @param of40     ocean freight 40
+     * @param su20     surcharge 20
+     * @param su40     surcharge 40
+     * @param linelist linelist
+     * @param notes    notes 1
+     * @param valid    valid
+     * @param notes2   notes2
+     * @param type type of container
+     * @param month month
+     * @param continent continent
+     */
+    public Fcl(String pol, String pod, String of20, String of40,
+               String su20, String su40, String linelist, String notes, String valid,
+               String notes2, String type, String month, String continent) {
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.su20 = su20;
+        this.su40 = su40;
+        this.linelist = linelist;
+        this.notes = notes;
+        this.valid = valid;
+        this.notes2 = notes2;
         this.type = type;
+        this.month = month;
         this.continent = continent;
     }
 
-    public Fcl(String stt, String pol, String pod, String of20, String of40,
-               String su20, String su40, String lines, String notes1, String valid, String notes2) {
-        this.stt = stt;
-        this.pol = pol;
-        this.pod = pod;
-        this.of20 = of20;
-        this.of40 = of40;
-        this.su20 = su20;
-        this.su40 = su40;
-        this.lines = lines;
-        this.notes1 = notes1;
-        this.valid = valid;
-        this.notes2 = notes2;
+
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 
     public String getStt() {
@@ -93,20 +217,20 @@ public class Fcl {
         this.su40 = su40;
     }
 
-    public String getLines() {
-        return lines;
+    public String getLinelist() {
+        return linelist;
     }
 
-    public void setLines(String lines) {
-        this.lines = lines;
+    public void setLinelist(String linelist) {
+        this.linelist = linelist;
     }
 
-    public String getNotes1() {
-        return notes1;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setNotes1(String notes1) {
-        this.notes1 = notes1;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public String getValid() {
@@ -125,27 +249,7 @@ public class Fcl {
         this.notes2 = notes2;
     }
 
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getContinent() {
-        return continent;
-    }
-
-    public void setContinent(String continent) {
-        this.continent = continent;
     }
 }

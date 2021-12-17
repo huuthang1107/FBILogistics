@@ -10,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Import;
+
 import java.util.List;
 
 
 public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImportAdapter.ViewHolder> {
 
     private Context context;
-    private List<DetailsPojoImport> listPriceList;
+    private List<Import> listPriceList;
 
-    public PriceListImportAdapter(Context context, List<DetailsPojoImport> listPriceList) {
+    public PriceListImportAdapter(Context context, List<Import> listPriceList) {
         this.context = context;
         this.listPriceList = listPriceList;
     }
@@ -36,7 +36,7 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
     @Override
     public void onBindViewHolder(@NonNull PriceListImportAdapter.ViewHolder holder, int position) {
         if (listPriceList != null && listPriceList.size() > 0) {
-            DetailsPojoImport priceListModel = listPriceList.get(position);
+            Import priceListModel = listPriceList.get(position);
 
             holder.stt.setText(priceListModel.getStt());
             holder.pol.setText(priceListModel.getPol());

@@ -1,6 +1,5 @@
 package com.example.demoapp.services;
 
-import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Import;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import retrofit2.http.POST;
 
 public interface ImportService  {
     @GET("GetDataImport.php")
-    Call<List<DetailsPojoImport>> getStatusImport();
+    Call<List<Import>> getStatusImport();
 
     @FormUrlEncoded
     @POST("InsertImport.php")

@@ -12,20 +12,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.databinding.FragmentDialogInsertBinding;
-import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.services.FCLService;
 import com.example.demoapp.utilities.APIClient;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.FclViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,14 +43,18 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     private FragmentDialogInsertBinding binding;
 
+    private FclViewModel mFclViewModel;
+    private PriceListAdapter mPriceListAdapter;
+
     public static InsertFclDialog insertDialog() {
         return new InsertFclDialog();
     }
 
     /**
      * This method will set a view for insert dialog
-     * @param inflater inflater
-     * @param container container
+     *
+     * @param inflater           inflater
+     * @param container          container
      * @param savedInstanceState save
      * @return view of this fragment dialog
      */
@@ -62,6 +65,8 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         binding = FragmentDialogInsertBinding.inflate(inflater, container, false);
 
         View view = binding.getRoot();
+
+        mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
 
         initView();
 
@@ -116,6 +121,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     /**
      * This method set event for and and cancel buttons
+     *
      * @param v view
      */
     @SuppressLint("NonConstantResourceId")
@@ -125,7 +131,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
-                dismiss();
+
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -138,32 +144,29 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
      */
     public void process() {
 
-        String pol = binding.tfPol.getEditText().getText().toString();
-        String pod = binding.tfPod.getEditText().getText().toString();
-        String of20 = binding.tfOf20.getEditText().getText().toString();
-        String of40 = binding.tfOf40.getEditText().getText().toString();
-        String su20 = binding.tfSu20.getEditText().getText().toString();
-        String su40 = binding.tfSu40.getEditText().getText().toString();
-        String line = binding.tfLines.getEditText().getText().toString();
-        String notes = binding.tfNotes.getEditText().getText().toString();
-        String valid = binding.tfValid.getEditText().getText().toString();
-        String note2 = binding.tfNotes2.getEditText().getText().toString();
+        String pol = Objects.requireNonNull(binding.tfPol.getEditText()).getText().toString();
+        String pod = Objects.requireNonNull(binding.tfPod.getEditText()).getText().toString();
+        String of20 = Objects.requireNonNull(binding.tfOf20.getEditText()).getText().toString();
+        String of40 = Objects.requireNonNull(binding.tfOf40.getEditText()).getText().toString();
+        String su20 = Objects.requireNonNull(binding.tfSu20.getEditText()).getText().toString();
+        String su40 = Objects.requireNonNull(binding.tfSu40.getEditText()).getText().toString();
+        String line = Objects.requireNonNull(binding.tfLines.getEditText()).getText().toString();
+        String notes = Objects.requireNonNull(binding.tfNotes.getEditText()).getText().toString();
+        String valid = Objects.requireNonNull(binding.tfValid.getEditText()).getText().toString();
+        String note2 = Objects.requireNonNull(binding.tfNotes2.getEditText()).getText().toString();
 
-
-        FCLService fclService = APIClient.getClient(Constants.URL_API).create(FCLService.class);
-
-        Call<Fcl> call = fclService.addData(pol, pod, of20, of40, su20, su40, line, notes,
-                valid, note2, listStr[1], listStr[0], listStr[2]);
-
+        Call<Fcl> call = mFclViewModel.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2]);
         call.enqueue(new Callback<Fcl>() {
             @Override
-            public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
-                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<Fcl> call, Response<Fcl> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Successful!", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<Fcl> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), "Successful!", Toast.LENGTH_LONG).show();
+            public void onFailure(Call<Fcl> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

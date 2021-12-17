@@ -1,13 +1,132 @@
 package com.example.demoapp.model;
 
-public class Import {
-    private String stt, pol, pod, of20, of40, surcharge,
-            totalFreight, carrier,schedule, transitTime, freeTime, valid, note, type, month, continent;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Import(String stt, String pol, String pod, String of20, String of40, String surcharge,
+public class Import {
+    @SerializedName("stt")
+    @Expose
+    private String stt;
+
+    @SerializedName("pol")
+    @Expose
+    private String pol;
+
+    @SerializedName("pod")
+    @Expose
+    private String pod;
+
+    @SerializedName("of20")
+    @Expose
+    private String of20;
+
+    @SerializedName("of40")
+    @Expose
+    private String of40;
+
+    @SerializedName("surcharge")
+    @Expose
+    private String surcharge;
+
+    @SerializedName("total_freight")
+    @Expose
+    private String totalFreight;
+
+    @SerializedName("carrier")
+    @Expose
+    private String carrier;
+
+    @SerializedName("schedule")
+    @Expose
+    private String schedule;
+
+    @SerializedName("transit_time")
+    @Expose
+    private String transitTime;
+
+    @SerializedName("free_time")
+    @Expose
+    private String freeTime;
+
+    @SerializedName("valid")
+    @Expose
+    private String valid;
+
+    @SerializedName("note")
+    @Expose
+    private String note;
+
+    @SerializedName("type")
+    @Expose
+    private String type;
+
+    @SerializedName("month")
+    @Expose
+    private String month;
+
+    @SerializedName("continent")
+    @Expose
+    private String continent;
+
+    /**
+     *
+     * @param stt stt
+     * @param pol pol
+     * @param pod pod
+     * @param of20 ocean freight 20
+     * @param of40 ocean freight 40
+     * @param surcharge surcharge
+     * @param totalFreight total freight
+     * @param carrier carrier
+     * @param schedule schedule
+     * @param transitTime transit time
+     * @param freeTime free time
+     * @param valid valid
+     * @param note note
+     * @param type type
+     * @param month month
+     * @param continent continent
+     */
+    public Import(String stt, String pol, String pod, String of20, String of40, String surcharge, String totalFreight, String carrier, String schedule, String transitTime, String freeTime, String valid, String note, String type, String month, String continent) {
+        this.stt = stt;
+        this.pol = pol;
+        this.pod = pod;
+        this.of20 = of20;
+        this.of40 = of40;
+        this.surcharge = surcharge;
+        this.totalFreight = totalFreight;
+        this.carrier = carrier;
+        this.schedule = schedule;
+        this.transitTime = transitTime;
+        this.freeTime = freeTime;
+        this.valid = valid;
+        this.note = note;
+        this.type = type;
+        this.month = month;
+        this.continent = continent;
+    }
+
+    /**
+     * Constructor
+     * @param pol pol
+     * @param pod pod
+     * @param of20 ocean freight 20
+     * @param of40 ocean freight 40
+     * @param surcharge surcharge
+     * @param totalFreight total freight
+     * @param carrier carrier
+     * @param schedule schedule
+     * @param transitTime transit
+     * @param freeTime free time
+     * @param valid valid
+     * @param note note
+     * @param type type
+     * @param month month
+     * @param continent continent
+     */
+    public Import(String pol, String pod, String of20, String of40, String surcharge,
                   String totalFreight, String carrier, String schedule, String transitTime,
                   String freeTime, String valid, String note, String type, String month, String continent) {
-        this.stt = stt;
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
@@ -89,6 +208,14 @@ public class Import {
         this.carrier = carrier;
     }
 
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
     public String getTransitTime() {
         return transitTime;
     }
@@ -143,13 +270,5 @@ public class Import {
 
     public void setContinent(String continent) {
         this.continent = continent;
-    }
-
-    public String getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(String schedule) {
-        this.schedule = schedule;
     }
 }

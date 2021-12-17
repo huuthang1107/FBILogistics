@@ -7,33 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
-import com.example.demoapp.services.FCLService;
 import com.example.demoapp.databinding.FragmentFclBinding;
-import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
-import com.example.demoapp.utilities.APIClient;
-import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.InsertFclDialog;
 import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FCLFragment extends Fragment implements View.OnClickListener {
 
@@ -50,10 +41,10 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     private String continent = "";
     private String radioItem = "All";
 
-    List<DetailsPojoFcl> listPriceList = new ArrayList<>();
-    PriceListAdapter priceListAdapter;
+    private List<Fcl> listPriceList;
+    private PriceListAdapter priceListAdapter;
 
-    FclViewModel mFclViewModel;
+    private FclViewModel mFclViewModel;
 
     /**
      * this method will create a view (fragment)
@@ -70,17 +61,18 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         binding = FragmentFclBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         setAdapterItems();
         setUpButtons();
         getAllData();
 
-        super.onViewCreated(view, savedInstanceState);
+        return view;
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Toast.makeText(getContext(), "Resume", Toast.LENGTH_LONG).show();
+//    }
 
     /**
      * this method will listen a event of auto complete (month, continent)
@@ -110,7 +102,6 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
     }
 
-
     /**
      * this method will set data for recycler view
      *
@@ -120,14 +111,23 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      */
     public void setDataForRecyclerView(String m, String c, String r) {
         if (!m.isEmpty() && !c.isEmpty()) {
-            binding.priceListRcv.setHasFixedSize(true);
-
-            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
-
-            priceListAdapter = new PriceListAdapter(getContext(), prepareDataForRecyclerView(m, c, r));
-
+            mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+            priceListAdapter = new PriceListAdapter(getContext());
+            priceListAdapter.setDataFcl(prepareDataForRecyclerView(m, c, r));
             binding.priceListRcv.setAdapter(priceListAdapter);
+            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(), "Resume", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     /**
@@ -137,11 +137,10 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      * @param c continent
      * @return get list by month and continent
      */
-    public List<DetailsPojoFcl> prepareDataForRecyclerView(String m, String c, String r) {
+    public List<Fcl> prepareDataForRecyclerView(String m, String c, String r) {
         // reset a list when user choose different
-        List<DetailsPojoFcl> subList = new ArrayList<>();
-
-        for (DetailsPojoFcl f : listPriceList) {
+        List<Fcl> subList = new ArrayList<>();
+        for (Fcl f : listPriceList) {
             if (r.equalsIgnoreCase("all")) {
                 if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
                     subList.add(f);
@@ -160,7 +159,8 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      * this method will get all data from database
      */
     public void getAllData() {
-        mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+        this.listPriceList = new ArrayList<>();
+
         mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
             this.listPriceList = detailsPojoFcl;
         });

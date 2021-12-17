@@ -14,10 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.model.DetailsPojoImport;
+import com.example.demoapp.model.Import;
 import com.example.demoapp.services.ImportService;
 import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
-import com.example.demoapp.model.Import;
 import com.example.demoapp.utilities.APIClient;
 import com.example.demoapp.utilities.Constants;
 

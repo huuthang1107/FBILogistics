@@ -15,13 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.adapter.PriceListImportAdapter;
-import com.example.demoapp.api.GetAPI;
+import com.example.demoapp.services.FCLService;
 import com.example.demoapp.databinding.FragmentImportBinding;
-import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Import;
+import com.example.demoapp.services.ImportService;
 import com.example.demoapp.view.dialog.InsertImportDialog;
 
 import java.util.ArrayList;
@@ -151,15 +150,15 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     public void getAllData() {
         // Using retrofit library
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(GetAPI.BASE_URL)
+                .baseUrl(FCLService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         //initialize api class
-        GetAPI getAPI = retrofit.create(GetAPI.class);
+        ImportService importService = retrofit.create(ImportService.class);
 
         // Fetching the values into Pojo File
-        Call<List<DetailsPojoImport>> call = getAPI.getStatusImport();
+        Call<List<DetailsPojoImport>> call = importService.getStatusImport();
 
         // call
         call.enqueue(new Callback<List<DetailsPojoImport>>() {

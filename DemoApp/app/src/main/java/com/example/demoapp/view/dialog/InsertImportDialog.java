@@ -14,9 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.api.InsertImport;
+import com.example.demoapp.services.ImportService;
 import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
 import com.example.demoapp.model.Import;
+import com.example.demoapp.utilities.Contants;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,9 +39,6 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
     FragmentDialogInsertImportBinding binding;
 
     private ArrayAdapter<String> adapterItemsType, adapterItemsMonth, adapterItemsContinent;
-
-    // URL server
-    String ServerURL = "http://192.168.1.199/database/";
 
     public static InsertImportDialog insertDialog() {
         return new InsertImportDialog();
@@ -133,13 +131,13 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         String note = binding.tfNote.getEditText().getText().toString();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ServerURL)
+                .baseUrl(Contants.URL_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        InsertImport insertIMP = retrofit.create(InsertImport.class);
+        ImportService importService = retrofit.create(ImportService.class);
 
-        Call<Import> call = insertIMP.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note,listStr[0],
+        Call<Import> call = importService.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note,listStr[0],
                 listStr[1], listStr[2]);
 
         call.enqueue(new Callback<Import>() {

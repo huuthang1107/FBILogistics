@@ -109,17 +109,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="colAIR_col2">POL</string>
-    <string name="colAIR_col3">POD</string>
+    <string name="colAIR_col2">AOL</string>
+    <string name="colAIR_col3">AOD</string>
     <string name="colAIR_col4">DIM (LxHxW cm)</string>
     <string name="colAIR_col5">GROSS WEIGHT</string>
-    <string name="colAIR_col6">TYPR OF CARGO</string>
+    <string name="colAIR_col6">TYPE OF CARGO</string>
     <string name="colAIR_col7">AIR FREIGHT</string>
     <string name="colAIR_col8">SURCHARGE</string>
     <string name="colAIR_col9">AIRLINES</string>
     <string name="colAIR_col10">SCHEDULE</string>
     <string name="colAIR_col11">TRANSIT TIME</string>
     <string name="colAIR_col12">VALID</string>
+    <!--    dom-->
+    <string name="dom_type1">Trucking hàng containers</string>
+    <string name="dom_type2">Trucking xe tải</string>
+    <string name="dom_type3">Vận chuyển đường biển</string>
 
+    <string name="bottom_imp">Hàng nhập</string>
+    <string name="bottom_ex">Hàng xuất</string>
 
 </resources>

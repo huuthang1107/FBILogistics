@@ -22,6 +22,8 @@ import com.example.demoapp.model.Fcl;
 import com.example.demoapp.services.FCLService;
 import com.example.demoapp.utilities.APIClient;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.fragment.FCLFragment;
+import com.example.demoapp.view.fragment.FragmentDOM;
 import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.Objects;
@@ -131,10 +133,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
-
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
+
                 break;
         }
     }

@@ -20,6 +20,7 @@ import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.AppExecutors;
 import com.example.demoapp.view.dialog.InsertFclDialog;
 import com.example.demoapp.viewmodel.FclViewModel;
 
@@ -54,6 +55,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      * @param savedInstanceState save
      * @return view
      */
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -61,18 +63,28 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         binding = FragmentFclBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+        priceListAdapter = new PriceListAdapter(getContext());
+
         setAdapterItems();
         setUpButtons();
-        getAllData();
+        // getAllData();
+
+        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), fcl -> {
+            priceListAdapter.setDataFcl(fcl);
+        });
+        binding.priceListRcv.setAdapter(priceListAdapter);
+        binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        Toast.makeText(getContext(), "Resume", Toast.LENGTH_LONG).show();
-//    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
 
     /**
      * this method will listen a event of auto complete (month, continent)
@@ -84,50 +96,63 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         binding.autoCompleteMonth.setAdapter(adapterItemsMonth);
         binding.autoCompleteContinent.setAdapter(adapterItemsContinent);
 
-        binding.autoCompleteMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                month = adapterView.getItemAtPosition(i).toString();
-                setDataForRecyclerView(month, continent, radioItem);
-            }
-        });
-
-        binding.autoCompleteContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                continent = adapterView.getItemAtPosition(i).toString();
-                setDataForRecyclerView(month, continent, radioItem);
-            }
-        });
+//        binding.autoCompleteMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                month = adapterView.getItemAtPosition(i).toString();
+//                setDataForRecyclerView(month, continent, radioItem);
+//            }
+//        });
+//
+//        binding.autoCompleteContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                continent = adapterView.getItemAtPosition(i).toString();
+//                setDataForRecyclerView(month, continent, radioItem);
+//            }
+//        });
 
     }
 
-    /**
-     * this method will set data for recycler view
-     *
-     * @param m month
-     * @param c continent
-     * @param r radio
-     */
-    public void setDataForRecyclerView(String m, String c, String r) {
-        if (!m.isEmpty() && !c.isEmpty()) {
-            mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
-            priceListAdapter = new PriceListAdapter(getContext());
-            priceListAdapter.setDataFcl(prepareDataForRecyclerView(m, c, r));
-            binding.priceListRcv.setAdapter(priceListAdapter);
-            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
-        }
-    }
+//    /**
+//     * this method will set data for recycler view
+//     *
+//     * @param m month
+//     * @param c continent
+//     * @param r radio
+//     */
+//    public void setDataForRecyclerView(String m, String c, String r) {
+//        if (!m.isEmpty() && !c.isEmpty()) {
+//
+//            priceListAdapter.setDataFcl(prepareDataForRecyclerView(m, c, r));
+//            binding.priceListRcv.setAdapter(priceListAdapter);
+//            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
+//        }
+//    }
 
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(), "Resume", Toast.LENGTH_LONG).show();
+        retrieveFcl();
+        Toast.makeText(getContext(), "FCL Fragment Resume", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Toast.makeText(getContext(), "FCL Fragment Pause", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getContext(), "FCL Fragment Stop", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Toast.makeText(getContext(), "FCL Fragment Destroy", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -137,34 +162,34 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      * @param c continent
      * @return get list by month and continent
      */
-    public List<Fcl> prepareDataForRecyclerView(String m, String c, String r) {
-        // reset a list when user choose different
-        List<Fcl> subList = new ArrayList<>();
-        for (Fcl f : listPriceList) {
-            if (r.equalsIgnoreCase("all")) {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
-                    subList.add(f);
-                }
-            } else {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
-                        && f.getType().equalsIgnoreCase(r)) {
-                    subList.add(f);
-                }
-            }
-        }
-        return subList;
-    }
+//    public List<Fcl> prepareDataForRecyclerView(String m, String c, String r) {
+//        // reset a list when user choose different
+//        List<Fcl> subList = new ArrayList<>();
+//        for (Fcl f : listPriceList) {
+//            if (r.equalsIgnoreCase("all")) {
+//                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
+//                    subList.add(f);
+//                }
+//            } else {
+//                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
+//                        && f.getType().equalsIgnoreCase(r)) {
+//                    subList.add(f);
+//                }
+//            }
+//        }
+//        return subList;
+//    }
 
     /**
      * this method will get all data from database
      */
-    public void getAllData() {
-        this.listPriceList = new ArrayList<>();
-
-        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
-            this.listPriceList = detailsPojoFcl;
-        });
-    }
+//    public void getAllData() {
+//        this.listPriceList = new ArrayList<>();
+//
+//        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
+//            this.listPriceList = detailsPojoFcl;
+//        });
+//    }
 
     /**
      * this method will set listen for buttons
@@ -186,6 +211,23 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         binding.radioOt.setOnClickListener(this);
     }
 
+    public void retrieveFcl() {
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                requireActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), fcls -> {
+                            priceListAdapter.setDataFcl(fcls);
+                        });
+                        Toast.makeText(getContext(), "FCL Fragment Resume", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+    }
+
     /**
      * this method used to set event for button click
      *
@@ -201,32 +243,32 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.radio_all:
                 radioItem = binding.radioAll.getText().toString();
-                setDataForRecyclerView(month, continent, radioItem);
+                //setDataForRecyclerView(month, continent, radioItem);
                 break;
 
             case R.id.radio_gp:
                 radioItem = binding.radioGp.getText().toString();
-                setDataForRecyclerView(month, continent, radioItem);
+                //setDataForRecyclerView(month, continent, radioItem);
                 break;
 
             case R.id.radio_fr:
                 radioItem = binding.radioFr.getText().toString();
-                setDataForRecyclerView(month, continent, radioItem);
+                // setDataForRecyclerView(month, continent, radioItem);
                 break;
 
             case R.id.radio_rf:
                 radioItem = binding.radioRf.getText().toString();
-                setDataForRecyclerView(month, continent, radioItem);
+                // setDataForRecyclerView(month, continent, radioItem);
                 break;
 
             case R.id.radio_hc:
                 radioItem = binding.radioHc.getText().toString();
-                setDataForRecyclerView(month, continent, radioItem);
+                //setDataForRecyclerView(month, continent, radioItem);
                 break;
 
             case R.id.radio_ot:
                 radioItem = binding.radioOt.getText().toString();
-                setDataForRecyclerView(month, continent, radioItem);
+                //setDataForRecyclerView(month, continent, radioItem);
                 break;
         }
     }

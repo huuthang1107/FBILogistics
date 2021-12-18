@@ -1,5 +1,6 @@
 package com.example.demoapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,6 +63,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
         return 0;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setDataFcl(List<Fcl> mListDetailFcl) {
         this.mListDetailFcl = mListDetailFcl;
         notifyDataSetChanged();

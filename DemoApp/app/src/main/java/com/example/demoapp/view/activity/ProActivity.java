@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.view.fragment.FCLFragment;
@@ -58,6 +59,25 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getApplicationContext(), "Pro Activity Resume", Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(getApplicationContext(), "Pro Activity Pause", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(getApplicationContext(), "Pro Activity Stop", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
@@ -72,6 +92,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
                 replaceFragment(new FCLFragment());
                 mCurrentFragment = FRAGMENT_FCL;
                 toolbar.setTitle("FCL PAGE");
+
             }
 
         }else if (id == R.id.nav_lcl){
@@ -111,5 +132,6 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame,fragment);
         transaction.commit();
+
     }
 }

@@ -14,19 +14,22 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
-import com.example.demoapp.api.InsertImport;
+import com.example.demoapp.model.DetailsPojoImport;
+import com.example.demoapp.services.ImportService;
 import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
 import com.example.demoapp.model.Import;
+import com.example.demoapp.utilities.APIClient;
+import com.example.demoapp.utilities.Constants;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InsertImportDialog extends DialogFragment implements View.OnClickListener {
 
-    private final String[] itemsType = {"GP", "FR", "RF", "OT", "HC"};
+    private final String[] itemsType = {"GP", "FR", "RF", "OT", "HQ", "TK"};
 
     private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
             "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
@@ -37,14 +40,13 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
 
     FragmentDialogInsertImportBinding binding;
 
-    private ArrayAdapter<String> adapterItemsType, adapterItemsMonth, adapterItemsContinent;
-
-    // URL server
-    String ServerURL = "http://192.168.1.199/database/";
-
-    public static InsertImportDialog insertDialog() {
-        return new InsertImportDialog();
-    }
+    /**
+     * This method will set up view for insert dialog
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState save
+     * @return view of Import insert dialog
+     */
 
     @Nullable
     @Override
@@ -59,12 +61,15 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         return view;
     }
 
+    /**
+     * This method will init for views and get item from auto complete text view
+     */
     public void initView() {
 
         // auto complete textview
-        adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
-        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
 
         binding.insertAutoContainer.setAdapter(adapterItemsType);
         binding.insertAutoMonth.setAdapter(adapterItemsMonth);
@@ -116,30 +121,32 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         }
     }
 
+    public static InsertImportDialog insertDialog() {
+        return new InsertImportDialog();
+    }
+
+    /**
+     * This method will get information user typing and insert them into database
+     */
 
     public void process() {
 
-        String pol = binding.tfPol.getEditText().getText().toString();
-        String pod = binding.tfPod.getEditText().getText().toString();
-        String of20 = binding.tfOf20.getEditText().getText().toString();
-        String of40 = binding.tfOf40.getEditText().getText().toString();
-        String surcharge = binding.tfSurcharge.getEditText().getText().toString();
-        String totalFreight = binding.tfTotalFreight.getEditText().getText().toString();
-        String carrier = binding.tfCarrier.getEditText().getText().toString();
-        String schedule = binding.tfSchedule.getEditText().getText().toString();
-        String transit = binding.tfTransitTime.getEditText().getText().toString();
-        String free = binding.tfFreeTime.getEditText().getText().toString();
-        String valid = binding.tfValid.getEditText().getText().toString();
-        String note = binding.tfNote.getEditText().getText().toString();
+        String pol = Objects.requireNonNull(binding.tfPol.getEditText()).getText().toString();
+        String pod = Objects.requireNonNull(binding.tfPod.getEditText()).getText().toString();
+        String of20 = Objects.requireNonNull(binding.tfOf20.getEditText()).getText().toString();
+        String of40 = Objects.requireNonNull(binding.tfOf40.getEditText()).getText().toString();
+        String surcharge = Objects.requireNonNull(binding.tfSurcharge.getEditText()).getText().toString();
+        String totalFreight = Objects.requireNonNull(binding.tfTotalFreight.getEditText()).getText().toString();
+        String carrier = Objects.requireNonNull(binding.tfCarrier.getEditText()).getText().toString();
+        String schedule = Objects.requireNonNull(binding.tfSchedule.getEditText()).getText().toString();
+        String transit = Objects.requireNonNull(binding.tfTransitTime.getEditText()).getText().toString();
+        String free = Objects.requireNonNull(binding.tfFreeTime.getEditText()).getText().toString();
+        String valid = Objects.requireNonNull(binding.tfValid.getEditText()).getText().toString();
+        String note = Objects.requireNonNull(binding.tfNote.getEditText()).getText().toString();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ServerURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        ImportService importService = APIClient.getClient(Constants.URL_API).create(ImportService.class);
 
-        InsertImport insertIMP = retrofit.create(InsertImport.class);
-
-        Call<Import> call = insertIMP.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note,listStr[0],
+        Call<Import> call = importService.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note, listStr[0],
                 listStr[1], listStr[2]);
 
         call.enqueue(new Callback<Import>() {
@@ -155,16 +162,4 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         });
     }
 
-//    public void resetEditText() {
-//        Objects.requireNonNull(et_pol.getEditText()).setText("");
-//        Objects.requireNonNull(et_pod.getEditText()).setText("");
-//        Objects.requireNonNull(et_of20.getEditText()).setText("");
-//        Objects.requireNonNull(et_of40.getEditText()).setText("");
-//        Objects.requireNonNull(et_su20.getEditText()).setText("");
-//        Objects.requireNonNull(et_su40.getEditText()).setText("");
-//        Objects.requireNonNull(et_lines.getEditText()).setText("");
-//        Objects.requireNonNull(et_notes1.getEditText()).setText("");
-//        Objects.requireNonNull(et_valid.getEditText()).setText("");
-//        Objects.requireNonNull(et_notes2.getEditText()).setText("");
-//    }
 }

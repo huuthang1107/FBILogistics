@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_export_bottom"
+        android:icon="@drawable/ic_baseline_import_export_24"
+        android:title="@string/bottom_ex" />
+
+    <item
+        android:id="@+id/nav_imp_bottom"
+        android:icon="@drawable/ic_baseline_import_export_24"
+        android:title="@string/bottom_imp" />
+
+</menu>

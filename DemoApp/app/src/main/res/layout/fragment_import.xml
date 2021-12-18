@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:buttonTint="@color/btn_color"
-            android:text="@string/hq" />
+            android:text="@string/tk" />
     </RadioGroup>
 
     <LinearLayout

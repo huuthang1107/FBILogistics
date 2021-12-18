@@ -1,12 +1,59 @@
 package com.example.demoapp.model;
 
-public class Air {
-    private String stt, aol, aod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
-            schedule, transittime, valid, note, month, continent;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Air(String stt, String aol, String aod, String dim, String grossweight, String typeofcargo,
-               String airfreight, String surcharge, String airlines, String schedule,
-               String transittime, String valid, String note, String month, String continent) {
+public class DetailsAIR {
+    @SerializedName("stt")
+    @Expose
+    private String stt;
+    @SerializedName("aol")
+    @Expose
+    private String aol;
+    @SerializedName("aod")
+    @Expose
+    private String aod;
+    @SerializedName("dim")
+    @Expose
+    private String dim;
+    @SerializedName("grossweight")
+    @Expose
+    private String grossweight;
+    @SerializedName("typeofcargo")
+    @Expose
+    private String typeofcargo;
+    @SerializedName("airfreight")
+    @Expose
+    private String airfreight;
+    @SerializedName("surcharge")
+    @Expose
+    private String surcharge;
+    @SerializedName("airlines")
+    @Expose
+    private String airlines;
+    @SerializedName("schedule")
+    @Expose
+    private String schedule;
+    @SerializedName("transittime")
+    @Expose
+    private String transittime;
+    @SerializedName("valid")
+    @Expose
+    private String valid;
+    @SerializedName("note")
+    @Expose
+    private String note;
+    @SerializedName("month")
+    @Expose
+    private  String month;
+    @SerializedName("continents")
+    @Expose
+    private  String continent;
+
+    public DetailsAIR(String stt, String aol, String aod, String dim, String grossweight,
+                      String typeofcargo, String airfreight, String surcharge, String airlines,
+                      String schedule, String transittime, String valid, String note, String month,
+                      String continent) {
         this.stt = stt;
         this.aol = aol;
         this.aod = aod;

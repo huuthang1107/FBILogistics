@@ -12,17 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.adapter.PriceListImportAdapter;
-import com.example.demoapp.api.GetAPI;
 import com.example.demoapp.databinding.FragmentImportBinding;
-import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.DetailsPojoImport;
 import com.example.demoapp.model.Import;
+import com.example.demoapp.repository.ImportRepository;
+import com.example.demoapp.services.ImportService;
+import com.example.demoapp.utilities.APIClient;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.InsertImportDialog;
+import com.example.demoapp.viewmodel.FclViewModel;
+import com.example.demoapp.viewmodel.ImportViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +34,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ImportFragment extends Fragment implements View.OnClickListener {
 
@@ -47,8 +49,9 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     private String continent = "";
     private String radioItem = "All";
 
-    List<Import> listPriceList = new ArrayList<>();
+    List<DetailsPojoImport> listPriceList = new ArrayList<>();
     PriceListImportAdapter priceListAdapter;
+    ImportViewModel mImportViewModel;
 
     /**
      * this method will create a view (fragment)
@@ -126,11 +129,11 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
      * @param c continent
      * @return get list by month and continent
      */
-    public List<Import> prepareDataForRecyclerView(String m, String c, String r) {
+    public List<DetailsPojoImport> prepareDataForRecyclerView(String m, String c, String r) {
         // reset a list when user choose different
-        List<Import> list = new ArrayList<>();
+        List<DetailsPojoImport> list = new ArrayList<>();
 
-        for (Import imp : listPriceList) {
+        for (DetailsPojoImport imp : listPriceList) {
             if (r.equalsIgnoreCase("all")) {
                 if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
                     list.add(imp);
@@ -149,43 +152,10 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
      * this method will get all data from database
      */
     public void getAllData() {
-        // Using retrofit library
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(GetAPI.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        //initialize api class
-        GetAPI getAPI = retrofit.create(GetAPI.class);
-
-        // Fetching the values into Pojo File
-        Call<List<DetailsPojoImport>> call = getAPI.getStatusImport();
-
-        // call
-        call.enqueue(new Callback<List<DetailsPojoImport>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<DetailsPojoImport>> call,
-                                   @NonNull Response<List<DetailsPojoImport>> response) {
-                List<DetailsPojoImport> priceListData = response.body();
-                for (int i = 0; i < priceListData.size(); i++) {
-                    listPriceList.add(new Import(priceListData.get(i).getStt(),
-                            priceListData.get(i).getPol(), priceListData.get(i).getPod(),
-                            priceListData.get(i).getOf20(), priceListData.get(i).getOf40(),
-                            priceListData.get(i).getSurcharge(), priceListData.get(i).getTotalFreight(),
-                            priceListData.get(i).getCarrier(), priceListData.get(i).getSchedule(),
-                            priceListData.get(i).getTransitTime(), priceListData.get(i).getFreeTime(),
-                            priceListData.get(i).getValid(), priceListData.get(i).getNote(),
-                            priceListData.get(i).getType(), priceListData.get(i).getMonth(),
-                            priceListData.get(i).getContinent()));
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<List<DetailsPojoImport>> call, @NonNull Throwable t) {
-
-            }
+        mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
+        mImportViewModel.getImportList().observe(getViewLifecycleOwner(), detailsPojoImports -> {
+            this.listPriceList = detailsPojoImports;
         });
-
     }
 
     /**

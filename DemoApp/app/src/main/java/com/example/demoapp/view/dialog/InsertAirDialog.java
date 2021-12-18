@@ -5,16 +5,23 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.demoapp.R;
-import com.example.demoapp.api.InsertFCL;
-import com.example.demoapp.model.Air;
+import com.example.demoapp.databinding.FragmentDialogInsertAirBinding;
+import com.example.demoapp.model.DetailsAIR;
+import com.example.demoapp.services.AIRService;
+import com.example.demoapp.utilities.APIClient;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.viewmodel.AIRViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
@@ -25,77 +32,129 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+    public class InsertAirDialog extends DialogFragment implements  View.OnClickListener {
 
-public class InsertAirDialog extends DialogFragment implements  View.OnClickListener {
+        private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
+                "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
 
-    private String selectItem;
-    private Button btnAdd, btnCancel;
-    private TextInputLayout et_pol, et_pod, et_dim, et_gross, et_type, et_airFreight,et_surcharge,
-          et_airlines, et_schedule, et_transit, et_valid, et_note;
+        private final String[] itemsContinent = {"Asia", "Europe", "America", "Africa", "Australia"};
 
-    private String linkURL = "http://192.168.1.90:80/database/";
-    public static InsertAirDialog insertDiaLogAIR(){
-        return new InsertAirDialog();
-    }
+        private final String[] listStr = new String[2];
+        private FragmentDialogInsertAirBinding insertAirBinding;
+        private ArrayAdapter<String> adapterItemsMonth, adapterItemsContinent;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_dialog_insert_air, container, false);
+        private AIRViewModel airViewModel;
 
-        et_pol = view.findViewById(R.id.tf_pol);
-        et_pod = view.findViewById(R.id.tf_pod);
-        et_dim = view.findViewById(R.id.tf_dim);
-        et_gross = view.findViewById(R.id.tf_gross);
-        et_type = view.findViewById(R.id.tf_typeofcargo);
-        et_airFreight = view.findViewById(R.id.tf_airfreight);
-        et_surcharge = view.findViewById(R.id.tf_surcharge);
-        et_airlines = view.findViewById(R.id.tf_airlines);
-        et_schedule = view.findViewById(R.id.tf_schedule);
-        et_transit = view.findViewById(R.id.tf_tf_transit_time);
-        et_valid = view.findViewById(R.id.tf_valid);
-        et_note = view.findViewById(R.id.tf_notes);
-
-        btnAdd = view.findViewById(R.id.btn_function_add);
-        btnCancel = view.findViewById(R.id.btn_function_cancel);
-        
-        btnAdd.setOnClickListener(this);
-        btnCancel.setOnClickListener(this);
-        
-        setCancelable(false);
-
-        return  view;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_function_add:
-//                insertAIR();
-                Toast.makeText(getContext(),"Insert AIR failure", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_function_cancel:
-                dismiss();
-                break;
+        public static com.example.demoapp.view.dialog.InsertAirDialog insertDiaLogAIR(){
+            return new com.example.demoapp.view.dialog.InsertAirDialog();
         }
-    }
 
-    public void resetEditText(){
-        Objects.requireNonNull(et_pod.getEditText()).setText("");
-        Objects.requireNonNull(et_pod.getEditText()).setText("");
-        Objects.requireNonNull(et_dim.getEditText()).setText("");
-        Objects.requireNonNull(et_gross.getEditText()).setText("");
-        Objects.requireNonNull(et_type.getEditText()).setText("");
-        Objects.requireNonNull(et_airFreight.getEditText()).setText("");
-        Objects.requireNonNull(et_surcharge.getEditText()).setText("");
-        Objects.requireNonNull(et_airlines.getEditText()).setText("");
-        Objects.requireNonNull(et_schedule.getEditText()).setText("");
-        Objects.requireNonNull(et_transit.getEditText()).setText("");
-        Objects.requireNonNull(et_valid.getEditText()).setText("");
-        Objects.requireNonNull(et_note.getEditText()).setText("");
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            // Inflate the layout for this fragment
+            insertAirBinding = FragmentDialogInsertAirBinding.inflate(inflater, container, false);
+
+            View view = insertAirBinding.getRoot();
+
+            initView();
+
+            return view;
+
+        }
+
+        private void initView() {
+            adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
+            adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+
+            insertAirBinding.insertAutoMonth.setAdapter(adapterItemsMonth);
+            insertAirBinding.insertAutoContinent.setAdapter(adapterItemsContinent);
+
+            insertAirBinding.btnFunctionAdd.setOnClickListener(this);
+            insertAirBinding.btnFunctionCancel.setOnClickListener(this);
+
+            insertAirBinding.insertAutoMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    listStr[0] = adapterView.getItemAtPosition(i).toString();
+                    Toast.makeText(getContext(), listStr[0], Toast.LENGTH_LONG).show();
+                }
+            });
+
+            insertAirBinding.insertAutoContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    listStr[1] = adapterView.getItemAtPosition(i).toString();
+                    Toast.makeText(getContext(), listStr[1], Toast.LENGTH_LONG).show();
+                }
+            });
+
+            setCancelable(false);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_function_add:
+                    insertAIR();
+
+                    break;
+                case R.id.btn_function_cancel:
+                    dismiss();
+                    break;
+            }
+        }
+
+        private void insertAIR() {
+            String stAol = insertAirBinding.tfPol.getEditText().getText().toString();
+            String stAod = insertAirBinding.tfPod.getEditText().getText().toString();
+            String stDim = insertAirBinding.tfDim.getEditText().getText().toString();
+            String stGross = insertAirBinding.tfGross.getEditText().getText().toString();
+            String stType = insertAirBinding.tfTypeofcargo.getEditText().getText().toString();
+            String stFreight = insertAirBinding.tfAirfreight.getEditText().getText().toString();
+            String stSurcharge = insertAirBinding.tfSurcharge.getEditText().getText().toString();
+            String stLines = insertAirBinding.tfAirlines.getEditText().getText().toString();
+            String stSchedule = insertAirBinding.tfSchedule.getEditText().getText().toString();
+            String stTransittime = insertAirBinding.tfTfTransitTime.getEditText().getText().toString();
+            String stValid = insertAirBinding.tfValid.getEditText().getText().toString();
+            String stNote = insertAirBinding.tfNotes.getEditText().getText().toString();
+
+//            AIRService airService = APIClient.getClient(Constants.URL_API).create(AIRService.class);
+            airViewModel = new ViewModelProvider(this).get(AIRViewModel.class);
+
+            Call<DetailsAIR> call = airViewModel.addData(stAol,stAod, stDim, stGross, stType, stFreight,
+                    stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1]);
+            call.enqueue(new Callback<DetailsAIR>() {
+                @Override
+                public void onResponse(Call<DetailsAIR> call, Response<DetailsAIR> response) {
+                    Toast.makeText(getContext(),response.toString(),Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(Call<DetailsAIR> call, Throwable t) {
+                    Toast.makeText(getContext(),"Insert AIR Sucessfull", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            resetEditText();
+        }
+
+        public void resetEditText(){
+            Objects.requireNonNull(insertAirBinding.tfPol.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfPod.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfDim.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfGross.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfTypeofcargo.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfAirfreight.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfSurcharge.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfAirlines.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfSchedule.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfTfTransitTime.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfValid.getEditText()).setText("");
+            Objects.requireNonNull(insertAirBinding.tfNotes.getEditText()).setText("");
 
 
-    }
+        }
 }

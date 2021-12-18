@@ -12,16 +12,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.databinding.FragmentDialogInsertBinding;
+import com.example.demoapp.model.DetailsPojoFcl;
 import com.example.demoapp.model.Fcl;
-import com.example.demoapp.api.InsertFCL;
+import com.example.demoapp.services.FCLService;
+import com.example.demoapp.utilities.APIClient;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.viewmodel.FclViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InsertFclDialog extends DialogFragment implements View.OnClickListener {
 
@@ -34,17 +42,19 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     private final String[] listStr = new String[3];
 
-    FragmentDialogInsertBinding binding;
-
-    private ArrayAdapter<String> adapterItemsType, adapterItemsMonth, adapterItemsContinent;
-
-    // URL server
-    String ServerURL = "http://192.168.1.199/database/";
+    private FragmentDialogInsertBinding binding;
 
     public static InsertFclDialog insertDialog() {
         return new InsertFclDialog();
     }
 
+    /**
+     * This method will set a view for insert dialog
+     * @param inflater inflater
+     * @param container container
+     * @param savedInstanceState save
+     * @return view of this fragment dialog
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -58,12 +68,15 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         return view;
     }
 
+    /**
+     * this method will init for all views and get a item of auto complete textview
+     */
     public void initView() {
 
         // auto complete textview
-        adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
-        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
 
         binding.insertAutoContainer.setAdapter(adapterItemsType);
         binding.insertAutoMonth.setAdapter(adapterItemsMonth);
@@ -101,6 +114,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     }
 
+    /**
+     * This method set event for and and cancel buttons
+     * @param v view
+     */
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
@@ -108,6 +125,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
+                dismiss();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -115,7 +133,9 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         }
     }
 
-
+    /**
+     * This method used to get data user typing and insert them into database
+     */
     public void process() {
 
         String pol = binding.tfPol.getEditText().getText().toString();
@@ -129,14 +149,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         String valid = binding.tfValid.getEditText().getText().toString();
         String note2 = binding.tfNotes2.getEditText().getText().toString();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ServerURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        InsertFCL insertFCL = retrofit.create(InsertFCL.class);
+        FCLService fclService = APIClient.getClient(Constants.URL_API).create(FCLService.class);
 
-        Call<Fcl> call = insertFCL.addData(pol, pod, of20, of40, su20, su40, line, notes,
+        Call<Fcl> call = fclService.addData(pol, pod, of20, of40, su20, su40, line, notes,
                 valid, note2, listStr[1], listStr[0], listStr[2]);
 
         call.enqueue(new Callback<Fcl>() {
@@ -152,16 +168,4 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         });
     }
 
-//    public void resetEditText() {
-//        Objects.requireNonNull(et_pol.getEditText()).setText("");
-//        Objects.requireNonNull(et_pod.getEditText()).setText("");
-//        Objects.requireNonNull(et_of20.getEditText()).setText("");
-//        Objects.requireNonNull(et_of40.getEditText()).setText("");
-//        Objects.requireNonNull(et_su20.getEditText()).setText("");
-//        Objects.requireNonNull(et_su40.getEditText()).setText("");
-//        Objects.requireNonNull(et_lines.getEditText()).setText("");
-//        Objects.requireNonNull(et_notes1.getEditText()).setText("");
-//        Objects.requireNonNull(et_valid.getEditText()).setText("");
-//        Objects.requireNonNull(et_notes2.getEditText()).setText("");
-//    }
 }

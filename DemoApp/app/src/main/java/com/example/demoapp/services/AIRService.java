@@ -1,8 +1,6 @@
 package com.example.demoapp.services;
 
-import com.example.demoapp.model.DetailsAIR;
-import com.example.demoapp.model.DetailsPojoFcl;
-import com.example.demoapp.model.Fcl;
+import com.example.demoapp.model.Air;
 
 import java.util.List;
 
@@ -14,8 +12,8 @@ import retrofit2.http.POST;
 
 public interface AIRService {
     @FormUrlEncoded
-    @POST("InsertData.php")
-    Call<DetailsAIR> addData(@Field("aol") String aol,
+    @POST("InsertAIR.php")
+    Call<Air> addData(@Field("aol") String aol,
                       @Field("aod") String aod, @Field("dim") String dim,
                       @Field("grossweight") String grossweight, @Field("typeofcargo") String typeofcargo,
                       @Field("airfreight") String airfreight, @Field("surcharge") String surcharge,
@@ -24,9 +22,6 @@ public interface AIRService {
                       @Field("note") String note, @Field("month") String month,
                       @Field("continent") String continent) ;
 
-    String BASE_URL = "http://localhost:80/dataAIR/";
-
-
     @GET("GetDataAIR.php")
-    Call<List<DetailsAIR>> getpriceAIR();
+    Call<List<Air>> getpriceAIR();
 }

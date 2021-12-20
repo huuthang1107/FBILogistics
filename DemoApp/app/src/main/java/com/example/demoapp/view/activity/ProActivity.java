@@ -78,6 +78,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
             if(mCurrentFragment != FRAGMENT_LCL){
                 replaceFragment(new LCLFragment());
                 mCurrentFragment = FRAGMENT_LCL;
+                toolbar.setTitle("AIR PAGE");
             }
         }
         else if (id == R.id.nav_import){

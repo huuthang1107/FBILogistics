@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.model.Air;
+import com.example.demoapp.model.Fcl;
 
 import java.util.List;
 
@@ -18,9 +19,8 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
     private Context context;
     private List<Air>listAIRS;
 
-    public PriceListAIRAdapter(Context context, List<Air> listAIRS) {
+    public PriceListAIRAdapter(Context context) {
         this.context = context;
-        this.listAIRS = listAIRS;
     }
 
     @NonNull
@@ -62,6 +62,10 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         return 0;
     }
 
+    public void setDataAir(List<Air> mListDetailAir) {
+        this.listAIRS = mListDetailAir;
+        notifyDataSetChanged();
+    }
 
     public  class  PriceAirViewHolder extends RecyclerView.ViewHolder {
         TextView tvstt, tvaol, tvaod, tvdim, tvgross, tvtype, tvairfreight, tvsurcharge, tvairlines

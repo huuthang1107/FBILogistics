@@ -5,21 +5,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDialogInsertAirBinding;
-import com.example.demoapp.databinding.FragmentDialogInsertBinding;
-import com.example.demoapp.model.DetailsAIR;
+import com.example.demoapp.model.Air;
 import com.example.demoapp.services.AIRService;
-import com.google.android.material.textfield.TextInputLayout;
+import com.example.demoapp.utilities.Contants;
+import com.example.demoapp.viewmodel.AirViewModel;
 
 import java.util.Objects;
 
@@ -41,6 +41,8 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
     private FragmentDialogInsertAirBinding insertAirBinding;
     private ArrayAdapter<String>  adapterItemsMonth, adapterItemsContinent;
 
+    private AirViewModel mAirViewModel;
+
     public static InsertAirDialog insertDiaLogAIR(){
         return new InsertAirDialog();
     }
@@ -53,6 +55,8 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
         insertAirBinding = FragmentDialogInsertAirBinding.inflate(inflater, container, false);
 
         View view = insertAirBinding.getRoot();
+
+        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
 
         initView();
 
@@ -117,21 +121,21 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
         String stValid = insertAirBinding.tfValid.getEditText().getText().toString();
         String stNote = insertAirBinding.tfNotes.getEditText().getText().toString();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AIRService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        AIRService airService = retrofit.create(AIRService.class);
-        Call<DetailsAIR> call = airService.addData(stAol,stAod, stDim, stGross, stType, stFreight,
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Contants.URL_API)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        AIRService airService = retrofit.create(AIRService.class);
+        Call<Air> call = mAirViewModel.insertAir(stAol,stAod, stDim, stGross, stType, stFreight,
                 stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1]);
-        call.enqueue(new Callback<DetailsAIR>() {
+        call.enqueue(new Callback<Air>() {
             @Override
-            public void onResponse(Call<DetailsAIR> call, Response<DetailsAIR> response) {
+            public void onResponse(Call<Air> call, Response<Air> response) {
                 Toast.makeText(getContext(),response.toString(),Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onFailure(Call<DetailsAIR> call, Throwable t) {
+            public void onFailure(Call<Air> call, Throwable t) {
                 Toast.makeText(getContext(),"Insert AIR Sucessfull", Toast.LENGTH_SHORT).show();
 
             }

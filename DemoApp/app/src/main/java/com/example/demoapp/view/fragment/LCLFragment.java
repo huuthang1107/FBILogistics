@@ -1,32 +1,28 @@
 package com.example.demoapp.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAIRAdapter;
-import com.example.demoapp.adapter.PriceListAdapter;
-import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.databinding.FragmentLclBinding;
 import com.example.demoapp.model.Air;
-import com.example.demoapp.model.DetailsAIR;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.services.AIRService;
+import com.example.demoapp.utilities.Contants;
 import com.example.demoapp.view.dialog.InsertAirDialog;
-import com.example.demoapp.view.dialog.InsertFclDialog;
+import com.example.demoapp.viewmodel.AirViewModel;
+import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +44,9 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
     private String month = "";
     private String continent = "";
     PriceListAIRAdapter priceListAdapter;
+
+    private AirViewModel mAirViewModel;
+
     private  List<Air> airList = new ArrayList<>();
     @Nullable
     @Override
@@ -55,43 +54,52 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
         lclBinding = FragmentLclBinding.inflate(inflater, container, false);
         View view = lclBinding.getRoot();
 
+        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
+        priceListAdapter = new PriceListAIRAdapter(getContext());
+
+        mAirViewModel.getFclList().observe(getViewLifecycleOwner(), air -> {
+            priceListAdapter.setDataAir(air);
+        });
+
+        getDataAIR();
         setAdapterItems();
         setUpButtons();
-        getDataAIR();
+
 
         return view;
     }
 
     private void getDataAIR() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AIRService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        AIRService airService = retrofit.create(AIRService.class);
-        Call<List<DetailsAIR>> call = airService.getpriceAIR();
-
-        call.enqueue(new Callback<List<DetailsAIR>>() {
-            @Override
-            public void onResponse(Call<List<DetailsAIR>> call, Response<List<DetailsAIR>> response) {
-                List<DetailsAIR> list = response.body();
-
-                for(int i=0; i<list.size(); i++){
-                    airList.add(new Air(list.get(i).getStt(), list.get(i).getAol(), list.get(i).getAod(),
-                            list.get(i).getDim(), list.get(i).getGrossweight(),list.get(i).getTypeofcargo(),
-                            list.get(i).getAirfreight(), list.get(i).getSurcharge(),
-                            list.get(i).getAirlines(),list.get(i).getSchedule(), list.get(i).getTransittime(),
-                            list.get(i).getValid(), list.get(i).getNote(), list.get(i).getMonth(), list.get(i).getContinent()));
-                }
-
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<DetailsAIR>> call, Throwable t) {
-
-            }
+        airList = new ArrayList<>();
+        mAirViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
+            this.airList = detailsPojoAir;
         });
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Contants.URL_API)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        AIRService airService = retrofit.create(AIRService.class);
+//        Call<List<Air>> call = airService.getpriceAIR();
+//
+//        call.enqueue(new Callback<List<Air>>() {
+//            @Override
+//            public void onResponse(Call<List<Air>> call, Response<List<Air>> response) {
+//                List<Air> list = response.body();
+//
+//                for(int i=0; i<list.size(); i++){
+//                    airList.add(new Air(list.get(i).getStt(), list.get(i).getAol(), list.get(i).getAod(),
+//                            list.get(i).getDim(), list.get(i).getGrossweight(),list.get(i).getTypeofcargo(),
+//                            list.get(i).getAirfreight(), list.get(i).getSurcharge(),
+//                            list.get(i).getAirlines(),list.get(i).getSchedule(), list.get(i).getTransittime(),
+//                            list.get(i).getValid(), list.get(i).getNote(), list.get(i).getMonth(), list.get(i).getContinent()));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Air>> call, Throwable t) {
+//
+//            }
+//        });
 
     }
 
@@ -138,7 +146,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
 
             lclBinding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-            priceListAdapter = new PriceListAIRAdapter(getContext(),prepareDataForRecyclerView(m,c));
+            priceListAdapter.setDataAir(prepareDataForRecyclerView(m,c));
 
             lclBinding.priceListRcv.setAdapter(priceListAdapter);
         }
@@ -151,7 +159,6 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
                 if (a.getMonth().equalsIgnoreCase(m) && a.getContinent().equalsIgnoreCase(c)) {
                     list.add(a);
                 }
-
         }
         return list;
     }

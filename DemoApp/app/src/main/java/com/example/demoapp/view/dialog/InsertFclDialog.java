@@ -145,6 +145,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         }
     }
 
+    /**
+     *
+     * @param fragment a fragment resumed
+     */
     public void resumeFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);

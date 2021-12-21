@@ -1,5 +1,5 @@
 package com.example.demoapp.repository;
-
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 public class FclRepository {
     private MutableLiveData<List<Fcl>> mFclList;
-    private FCLService mFclService;
+    private final FCLService mFclService;
 
     /**
      * This method used as constructor for FCL Repository
@@ -33,14 +33,14 @@ public class FclRepository {
         Call<List<Fcl>> call = mFclService.getStatusFcl();
         call.enqueue(new Callback<List<Fcl>>() {
             @Override
-            public void onResponse(Call<List<Fcl>> call, Response<List<Fcl>> response) {
+            public void onResponse(@NonNull Call<List<Fcl>> call, @NonNull Response<List<Fcl>> response) {
                 if (response.body() != null) {
                     mFclList.postValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Fcl>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Fcl>> call, @NonNull Throwable t) {
                 mFclList.postValue(null);
             }
         });

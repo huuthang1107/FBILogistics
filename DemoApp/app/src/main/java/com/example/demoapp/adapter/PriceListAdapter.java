@@ -36,7 +36,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull PriceListAdapter.ViewHolder holder, int position) {
 
-        if (mListDetailFcl != null && mListDetailFcl.size() > 0) {
+        if (mListDetailFcl.size() > 0) {
             Fcl priceListModel = mListDetailFcl.get(position);
 
             holder.stt.setText(priceListModel.getStt());
@@ -58,18 +58,18 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
     @Override
     public int getItemCount() {
         if (mListDetailFcl != null) {
-            return mListDetailFcl.size();
+                return mListDetailFcl.size();
         }
         return 0;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setDataFcl(List<Fcl> mListDetailFcl) {
-        this.mListDetailFcl = mListDetailFcl;
-        notifyDataSetChanged();
+    public void setDataFcl(List<Fcl> list) {
+        this.mListDetailFcl = list;
+       notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView stt, pol, pod, of20, of40, su20, su40, line, notes1, valid, notes2;
 

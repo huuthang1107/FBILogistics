@@ -163,19 +163,18 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         String valid = Objects.requireNonNull(binding.tfValid.getEditText()).getText().toString();
         String note2 = Objects.requireNonNull(binding.tfNotes2.getEditText()).getText().toString();
 
+        mCommunicateViewModel.makeChange();
         Call<Fcl> call = mFclViewModel.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2]);
         
         call.enqueue(new Callback<Fcl>() {
             @Override
             public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
-                    Log.d("TestInsert", "InsertSuccessful");
-                    Toast.makeText(getContext(), "Insert Successful!!!", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
             public void onFailure(@NonNull Call<Fcl> call, @NonNull Throwable t) {
-                Log.d("TestInsert", "InsertFailure");
-                Toast.makeText(getContext(), "Insert Failed!!!", Toast.LENGTH_LONG).show();
+
             }
         });
     }

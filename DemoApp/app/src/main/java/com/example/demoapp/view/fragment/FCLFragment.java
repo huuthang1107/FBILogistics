@@ -2,20 +2,17 @@ package com.example.demoapp.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -23,17 +20,12 @@ import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.model.Fcl;
-import com.example.demoapp.utilities.AppExecutors;
 import com.example.demoapp.view.dialog.InsertFclDialog;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FCLFragment extends Fragment implements View.OnClickListener {
 
@@ -54,6 +46,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     private PriceListAdapter priceListAdapter;
 
     private FclViewModel mFclViewModel;
+    private CommunicateViewModel mCommunicateViewModel;
 
     /**
      * this method will create a view (fragment)
@@ -73,10 +66,18 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
         priceListAdapter = new PriceListAdapter(getContext());
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+        mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
 
         getAllData();
         setAdapterItems();
         setUpButtons();
+
+        mCommunicateViewModel.needReloading().observe(getViewLifecycleOwner(), needReloading ->{
+            Log.d("RESUME", needReloading.toString());
+            if(needReloading)   {
+                onResume();
+            }
+        });
 
         return view;
     }

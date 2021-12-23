@@ -25,7 +25,7 @@ public class FclRepository {
     public FclRepository(String baseURL) {
         mFclService = APIClient.getClient(baseURL).create(FCLService.class);
     }
-
+    
     /**
      * This method will upload all data of fcl table on database
      */

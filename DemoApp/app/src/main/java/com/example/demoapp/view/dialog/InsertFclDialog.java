@@ -2,6 +2,7 @@ package com.example.demoapp.view.dialog;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.example.demoapp.utilities.APIClient;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.fragment.FCLFragment;
 import com.example.demoapp.view.fragment.FragmentDOM;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.List;
@@ -49,8 +51,8 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
     private FragmentDialogInsertBinding binding;
 
     private FclViewModel mFclViewModel;
-    private PriceListAdapter mPriceListAdapter;
-    private List<Fcl> mListFcl;
+    private CommunicateViewModel mCommunicateViewModel;
+
 
     public static InsertFclDialog insertDialog() {
         return new InsertFclDialog();
@@ -73,6 +75,8 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         View view = binding.getRoot();
 
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+        mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
+
         initView();
 
         return view;
@@ -135,8 +139,6 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
-                Fragment fragment = new FCLFragment();
-                resumeFragment(fragment);
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -145,15 +147,6 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         }
     }
 
-    /**
-     *
-     * @param fragment a fragment resumed
-     */
-    public void resumeFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, fragment);
-        fragmentTransaction.commit();
-    }
     /**
      * This method used to get data user typing and insert them into database
      */
@@ -171,18 +164,18 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         String note2 = Objects.requireNonNull(binding.tfNotes2.getEditText()).getText().toString();
 
         Call<Fcl> call = mFclViewModel.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2]);
-
+        
         call.enqueue(new Callback<Fcl>() {
             @Override
             public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Successful!", Toast.LENGTH_LONG).show();
-                }
+                    Log.d("TestInsert", "InsertSuccessful");
+                    Toast.makeText(getContext(), "Insert Successful!!!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(@NonNull Call<Fcl> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d("TestInsert", "InsertFailure");
+                Toast.makeText(getContext(), "Insert Failed!!!", Toast.LENGTH_LONG).show();
             }
         });
     }

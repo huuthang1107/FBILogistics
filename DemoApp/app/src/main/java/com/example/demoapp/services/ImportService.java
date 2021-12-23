@@ -24,4 +24,6 @@ public interface ImportService  {
                          @Field("free_time") String freeTime, @Field("valid") String valid,
                          @Field("note") String note, @Field("type") String type, @Field("month") String month,
                          @Field("continent") String continent);
+
+
 }

@@ -28,7 +28,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
     @NonNull
     @Override
     public PriceListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.row_pricelist_fcl, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.row_pricelist_fcl2, parent, false);
 
         return new ViewHolder(view);
     }

@@ -1,17 +1,15 @@
 package com.example.demoapp.view.detail;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.demoapp.Constant.Constant;
+import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.DialogFclDetailBinding;
 import com.example.demoapp.model.Fcl;
 

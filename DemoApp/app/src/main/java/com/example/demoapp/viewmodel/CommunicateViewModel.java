@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class CommunicateViewModel extends ViewModel {
-    private final MutableLiveData<Boolean> _needReloading = new MutableLiveData<>();
-    private final LiveData<Boolean> needReloading = _needReloading;
+    private MutableLiveData<Boolean> _needReloading = new MutableLiveData<>();
+    public LiveData<Boolean> needReloading = _needReloading;
 
     public CommunicateViewModel() {
         this._needReloading.postValue(false);
@@ -20,7 +20,7 @@ public class CommunicateViewModel extends ViewModel {
         _needReloading.postValue(false);
     }
 
-    public void makeChange() {
+    public void makeChanges() {
         _needReloading.postValue(true);
     }
 }

@@ -12,13 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.model.Import;
-import com.example.demoapp.services.ImportService;
 import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
-import com.example.demoapp.utilities.APIClient;
-import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.ImportViewModel;
 
 import java.util.Objects;
 
@@ -37,8 +37,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
 
     private final String[] listStr = new String[3];
 
-    FragmentDialogInsertImportBinding binding;
-
+    private FragmentDialogInsertImportBinding binding;
+    private CommunicateViewModel mCommunicateViewModel;
+    private ImportViewModel mImportViewModel;
     /**
      * This method will set up view for insert dialog
      * @param inflater inflater
@@ -54,6 +55,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         binding = FragmentDialogInsertImportBinding.inflate(inflater, container, false);
 
         View view = binding.getRoot();
+
+        mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
+        mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
         initView();
 
@@ -113,6 +117,7 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
+                dismiss();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -143,9 +148,8 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         String valid = Objects.requireNonNull(binding.tfValid.getEditText()).getText().toString();
         String note = Objects.requireNonNull(binding.tfNote.getEditText()).getText().toString();
 
-        ImportService importService = APIClient.getClient(Constants.URL_API).create(ImportService.class);
-
-        Call<Import> call = importService.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note, listStr[0],
+        mCommunicateViewModel.makeChanges();
+        Call<Import> call = mImportViewModel.insertImport(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transit, free, valid, note, listStr[0],
                 listStr[1], listStr[2]);
 
         call.enqueue(new Callback<Import>() {

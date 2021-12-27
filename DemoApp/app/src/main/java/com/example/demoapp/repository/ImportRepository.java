@@ -3,6 +3,7 @@ package com.example.demoapp.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.demoapp.model.Fcl;
 import com.example.demoapp.model.Import;
 import com.example.demoapp.services.ImportService;
 import com.example.demoapp.utilities.APIClient;
@@ -56,5 +57,11 @@ public class ImportRepository {
         }
         upLoadAllImport();
         return mImportList;
+    }
+
+    public Call<Import> insertImport(String pol, String pod, String of20, String of40, String surcharge, String totalFreight,
+                               String carrier, String schedule, String transitTime, String freeTime, String valid, String note,
+                               String type, String month, String continent) {
+        return mImportService.addData(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transitTime, freeTime, valid, note, type, month, continent);
     }
 }

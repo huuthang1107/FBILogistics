@@ -16,10 +16,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.adapter.PriceListImportAdapter;
 import com.example.demoapp.databinding.FragmentImportBinding;
+import com.example.demoapp.model.Fcl;
 import com.example.demoapp.model.Import;
 import com.example.demoapp.view.dialog.InsertImportDialog;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.FclViewModel;
 import com.example.demoapp.viewmodel.ImportViewModel;
 
 import java.util.ArrayList;
@@ -40,8 +44,8 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     private String radioItem = "All";
 
     List<Import> listPriceList = new ArrayList<>();
-    PriceListImportAdapter priceListAdapter;
-    ImportViewModel mImportViewModel;
+    private PriceListImportAdapter priceListAdapter;
+    private ImportViewModel mImportViewModel;
 
     /**
      * this method will create a view (fragment)
@@ -57,6 +61,17 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentImportBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        priceListAdapter = new PriceListImportAdapter(getContext());
+        mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
+
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading ->{
+            if(needLoading){
+                onResume();
+            }
+        });
 
         setAdapterItems();
         setUpButtons();
@@ -102,12 +117,8 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
      */
     public void setDataForRecyclerView(String m, String c, String r) {
         if (!m.isEmpty() && !c.isEmpty()) {
-            binding.priceListRcv.setHasFixedSize(true);
-
+            priceListAdapter.setImports(prepareDataForRecyclerView(month,continent,radioItem));
             binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
-
-            priceListAdapter = new PriceListImportAdapter(getContext(), prepareDataForRecyclerView(m, c, r));
-
             binding.priceListRcv.setAdapter(priceListAdapter);
         }
     }
@@ -137,15 +148,44 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
         }
         return list;
     }
+    public List<Import> prepareDataForResume(String m, String c, String r, List<Import> list) {
+        // reset a list when user choose different
+        List<Import> subList = new ArrayList<>();
+        for (Import imp : list) {
+            if (r.equalsIgnoreCase("all")) {
+                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(imp);
+                }
+            } else {
+                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)
+                        && imp.getType().equalsIgnoreCase(r)) {
+                    subList.add(imp);
+                }
+            }
+        }
+        return subList;
+    }
+
 
     /**
      * this method will get all data from database
      */
     public void getAllData() {
-        mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
+
         mImportViewModel.getImportList().observe(getViewLifecycleOwner(), detailsPojoImports -> {
             this.listPriceList = detailsPojoImports;
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        priceListAdapter = new PriceListImportAdapter(getContext());
+        mImportViewModel.getImportList().observe(getViewLifecycleOwner(), imp -> {
+            priceListAdapter.setImports( prepareDataForResume(month, continent, radioItem, imp));
+        });
+
+        binding.priceListRcv.setAdapter(priceListAdapter);
     }
 
     /**

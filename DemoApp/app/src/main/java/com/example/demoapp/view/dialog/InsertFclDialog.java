@@ -2,7 +2,6 @@ package com.example.demoapp.view.dialog;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +12,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.databinding.FragmentDialogInsertBinding;
 import com.example.demoapp.model.Fcl;
-import com.example.demoapp.services.FCLService;
-import com.example.demoapp.utilities.APIClient;
-import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.fragment.FCLFragment;
-import com.example.demoapp.view.fragment.FragmentDOM;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
 
-import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -75,7 +64,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         View view = binding.getRoot();
 
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
-        mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
+        mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
         initView();
 
@@ -139,10 +128,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_function_add:
                 process();
+                dismiss();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
-
                 break;
         }
     }
@@ -163,13 +152,15 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         String valid = Objects.requireNonNull(binding.tfValid.getEditText()).getText().toString();
         String note2 = Objects.requireNonNull(binding.tfNotes2.getEditText()).getText().toString();
 
-        mCommunicateViewModel.makeChange();
+        mCommunicateViewModel.makeChanges();
         Call<Fcl> call = mFclViewModel.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2]);
         
         call.enqueue(new Callback<Fcl>() {
             @Override
             public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
-
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(), "Created Successful!!", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

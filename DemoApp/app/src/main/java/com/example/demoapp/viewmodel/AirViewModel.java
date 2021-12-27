@@ -42,7 +42,7 @@ public class AirViewModel extends AndroidViewModel {
         mAirList = mAirRepository.getAllAir();
     }
 
-    public LiveData<List<Air>> getFclList() {
+    public LiveData<List<Air>> getLclList() {
         loadAllAir();
         return mAirList;
     }

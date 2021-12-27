@@ -38,6 +38,7 @@ public class AirRepository {
 
             @Override
             public void onFailure(Call<List<Air>> call, Throwable t) {
+
                 mAirList.postValue(null);
             }
         });

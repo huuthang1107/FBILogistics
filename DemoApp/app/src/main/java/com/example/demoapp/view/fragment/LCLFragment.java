@@ -2,6 +2,8 @@ package com.example.demoapp.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -57,7 +59,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
         mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
         priceListAdapter = new PriceListAIRAdapter(getContext());
 
-        mAirViewModel.getFclList().observe(getViewLifecycleOwner(), air -> {
+        mAirViewModel.getLclList().observe(getViewLifecycleOwner(), air -> {
             priceListAdapter.setDataAir(air);
         });
 
@@ -71,7 +73,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
 
     private void getDataAIR() {
         airList = new ArrayList<>();
-        mAirViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
+        mAirViewModel.getLclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
             this.airList = detailsPojoAir;
         });
 //        Retrofit retrofit = new Retrofit.Builder()
@@ -173,4 +175,5 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
 }

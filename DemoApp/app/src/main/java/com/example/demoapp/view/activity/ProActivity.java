@@ -3,21 +3,28 @@ package com.example.demoapp.view.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.PriceListAIRAdapter;
 import com.example.demoapp.view.fragment.FCLFragment;
 import com.example.demoapp.view.fragment.FragmentDOM;
 import com.example.demoapp.view.fragment.HomeFragment;
 import com.example.demoapp.view.fragment.ImportFragment;
 import com.example.demoapp.view.fragment.LCLFragment;
+import com.example.demoapp.view.fragment.LogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class ProActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,22 +33,25 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
     private final static int FRAGMENT_LCL = 2;
     private final static int FRAGMENT_IMPORT = 3;
     private final static int FRAGMENT_DOM = 4;
+    private final static int FRAGMENT_LOG = 5;
 
     // check currently fragment
     private int mCurrentFragment = FRAGMENT_HOME;
 
     private DrawerLayout mDrawerLayout;
     Toolbar toolbar;
+    private SearchView searchView;
+    PriceListAIRAdapter priceListAIRAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professional_main);
-        toolbar  = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,mDrawerLayout,
-                toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -55,62 +65,71 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
 
         // checked fragment home
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+
+        priceListAIRAdapter = new PriceListAIRAdapter(this);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.nav_home){
-            if(mCurrentFragment != FRAGMENT_HOME){
+        if (id == R.id.nav_home) {
+            if (mCurrentFragment != FRAGMENT_HOME) {
                 replaceFragment(new HomeFragment());
                 mCurrentFragment = FRAGMENT_HOME;
                 toolbar.setTitle("FBI Logistics");
             }
-        }else if(id == R.id.nav_fcl){
-            if(mCurrentFragment != FRAGMENT_FCL){
+        } else if (id == R.id.nav_fcl) {
+            if (mCurrentFragment != FRAGMENT_FCL) {
                 replaceFragment(new FCLFragment());
                 mCurrentFragment = FRAGMENT_FCL;
                 toolbar.setTitle("FCL PAGE");
             }
 
-        }else if (id == R.id.nav_lcl){
-            if(mCurrentFragment != FRAGMENT_LCL){
+        } else if (id == R.id.nav_lcl) {
+            if (mCurrentFragment != FRAGMENT_LCL) {
                 replaceFragment(new LCLFragment());
                 mCurrentFragment = FRAGMENT_LCL;
                 toolbar.setTitle("AIR PAGE");
             }
-        }
-        else if (id == R.id.nav_import){
-            if(mCurrentFragment != FRAGMENT_IMPORT){
+        } else if (id == R.id.nav_import) {
+            if (mCurrentFragment != FRAGMENT_IMPORT) {
                 replaceFragment(new ImportFragment());
 
                 toolbar.setTitle("IMPORT PAGE");
             }
-        }
-        else if (id == R.id.nav_dom){
-            if(mCurrentFragment != FRAGMENT_DOM){
+        } else if (id == R.id.nav_dom) {
+            if (mCurrentFragment != FRAGMENT_DOM) {
                 replaceFragment(new FragmentDOM());
                 mCurrentFragment = FRAGMENT_DOM;
                 toolbar.setTitle("DOM PAGE");
+            }
+        }else if( id == R.id.nav_log){
+            if(mCurrentFragment != FRAGMENT_LOG){
+                replaceFragment(new LogFragment());
+                mCurrentFragment = FRAGMENT_LOG;
+                toolbar.setTitle("LOG PAGE");
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     // khi nhan back khong thoat app
     @Override
     public void onBackPressed() {
-        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame,fragment);
+        transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
     }
+
+
 }

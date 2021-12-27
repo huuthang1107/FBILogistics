@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,13 +15,17 @@ import com.example.demoapp.R;
 import com.example.demoapp.model.Air;
 import com.example.demoapp.model.Fcl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder> {
     private Context context;
     private List<Air>listAIRS;
+    private List<Air> mListAirsOld;
 
     public PriceListAIRAdapter(Context context) {
+
         this.context = context;
     }
 
@@ -50,6 +56,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
             holder.tvvalid.setText(air.getValid());
             holder.tvnote.setText(air.getNote());
 
+
         }
         return;
     }
@@ -64,8 +71,11 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
 
     public void setDataAir(List<Air> mListDetailAir) {
         this.listAIRS = mListDetailAir;
+        this.mListAirsOld = mListDetailAir;
         notifyDataSetChanged();
     }
+
+
 
     public  class  PriceAirViewHolder extends RecyclerView.ViewHolder {
         TextView tvstt, tvaol, tvaod, tvdim, tvgross, tvtype, tvairfreight, tvsurcharge, tvairlines
@@ -87,10 +97,6 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
             tvvalid = itemView.findViewById(R.id.tv_row_price_asia_air_valid);
             tvnote = itemView.findViewById(R.id.tv_row_price_asia_air_note);
         }
-
-
-
-
 
     }
 }

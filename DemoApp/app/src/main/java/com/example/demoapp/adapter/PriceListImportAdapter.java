@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,11 +20,13 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 
-public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImportAdapter.ViewHolder> {
+public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImportAdapter.ViewHolder>
+        implements Filterable {
 
     private Context context;
     private List<Import> listPriceList;
     RowPricelistImportBinding binding;
+
 
 
     public PriceListImportAdapter(Context context, List<Import> listPriceList) {
@@ -70,6 +74,25 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
             return listPriceList.size();
         }
         return 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String strSearch = constraint.toString();
+                if(strSearch.isEmpty()){
+
+                }
+                return null;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -30,6 +30,7 @@
     <!-- hint of dropdown menu-->
     <string name="select_month">Chọn Tháng</string>
     <string name="select_continent">Chọn Châu Lục</string>
+    <string name="select_ExportAndImport">Loại Vận Chuyển</string>
     <string name="typeof_container">Chọn Loại Container</string>
     <!--    price list table-->
     <string name="stt">STT</string>
@@ -96,6 +97,7 @@
     <string name="nav_duongbiem">Đường Biển Quốc Tế</string>
     <string name="nav_hangkhong">Đường Hàng Không Quốc Tế</string>
     <string name="nav_noidia">Nội Địa</string>
+    <string name="nav_duongbo">Đường Bộ Xuyên Biên Giới</string>
     <string name="nav_oversea">Oversea</string>
     <string name="nav_container">Loại Container</string>
     <string name="nav_luukho">Lưu Kho</string>
@@ -127,5 +129,22 @@
 
     <string name="bottom_imp">Hàng nhập</string>
     <string name="bottom_ex">Hàng xuất</string>
+
+    //seach
+
+    <string name="action_search">Search</string>
+    // log
+    <string name="collog_1">Tên hàng</string>
+    <string name="collog_2">H/S code</string>
+    <string name="collog_3">Công dụng</string>
+    <string name="collog_4">Hình ảnh</string>
+    <string name="collog_5">Cảng đi</string>
+    <string name="collog_6">Cảng đến</string>
+    <string name="collog_7">Loại hàng (Air, FCL, LCL(Thông tin số kiện))</string>
+    <string name="collog_8">Số lượng cụ thể</string>
+    <string name="collog_9">Yêu cầu đặc biệt(nếu có)</string>
+    <string name="collog_10">Valid</string>
+    <string name="btn_dinhkem">Đính kèm ảnh</string>
+
 
 </resources>

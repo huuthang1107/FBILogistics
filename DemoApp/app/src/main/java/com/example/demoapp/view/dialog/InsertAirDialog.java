@@ -21,6 +21,8 @@ import com.example.demoapp.services.AIRService;
 import com.example.demoapp.utilities.Contants;
 import com.example.demoapp.viewmodel.AirViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -42,6 +44,7 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
     private ArrayAdapter<String>  adapterItemsMonth, adapterItemsContinent;
 
     private AirViewModel mAirViewModel;
+    private List<Air> airList = new ArrayList<>();
 
     public static InsertAirDialog insertDiaLogAIR(){
         return new InsertAirDialog();

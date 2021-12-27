@@ -2,16 +2,27 @@ package com.example.demoapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.demoapp.Constant.Constant;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.view.detail.FragmentFclDetail;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -35,9 +46,8 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull PriceListAdapter.ViewHolder holder, int position) {
-
+        Fcl priceListModel = mListDetailFcl.get(position);
         if (mListDetailFcl.size() > 0) {
-            Fcl priceListModel = mListDetailFcl.get(position);
 
             holder.stt.setText(priceListModel.getStt());
             holder.pol.setText(priceListModel.getPol());
@@ -53,6 +63,28 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
         } else {
             return;
         }
+        holder.fclCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               goToDetail(priceListModel);
+            }
+        });
+    }
+
+    /**
+     * Start detail dialog
+     * @param fcl model
+     */
+    public void goToDetail(Fcl fcl){
+        FragmentActivity activity = (FragmentActivity) context;
+        FragmentManager fm = activity.getSupportFragmentManager();
+        DialogFragment dialogFragment = FragmentFclDetail.getInstance();
+
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable(Constant.FCL_OBJECT, fcl);
+        dialogFragment.setArguments(bundle);
+        dialogFragment.show( fm,"DetailFcl");
     }
 
     @Override
@@ -72,10 +104,10 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView stt, pol, pod, of20, of40, su20, su40, line, notes1, valid, notes2;
-
+        ConstraintLayout fclCardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            fclCardView = itemView.findViewById(R.id.row_cv_fcl);
             stt = itemView.findViewById(R.id.tv_row_price_asia_stt);
             pol = itemView.findViewById(R.id.tv_row_price_asia_pol);
             pod = itemView.findViewById(R.id.tv_row_price_asia_pod);

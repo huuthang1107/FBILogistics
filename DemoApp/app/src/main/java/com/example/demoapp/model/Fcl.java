@@ -3,7 +3,9 @@ package com.example.demoapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Fcl {
+import java.io.Serializable;
+
+public class Fcl implements Serializable {
     @SerializedName("stt")
     @Expose
     private String stt;

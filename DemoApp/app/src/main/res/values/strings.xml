@@ -80,8 +80,9 @@
     <string name="free_time">FREE TIME</string>
     <string name="note">NOTE</string>
     <!--     Buttons name-->
-    <string name="btn_add_txt">INSERT</string>
-    <string name="btn_cancel_txt">CANCEL</string>
+    <string name="btn_add_txt">Insert</string>
+    <string name="btn_update_txt">Update</string>
+    <string name="btn_cancel_txt">Cancel</string>
     <string name="btn_del">XÓA</string>
     <string name="btn_edit">SỬA</string>
     <string name="des_fab_add">Add new row</string>
@@ -127,5 +128,7 @@
 
     <string name="bottom_imp">Hàng nhập</string>
     <string name="bottom_ex">Hàng xuất</string>
+    <string name="created_date">CREATED DATE</string>
+    <string name="btn_update">Update</string>
 
 </resources>

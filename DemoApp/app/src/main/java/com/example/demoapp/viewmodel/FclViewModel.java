@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.repository.FclRepository;
 import com.example.demoapp.utilities.Constants;
@@ -31,10 +32,10 @@ public class FclViewModel extends AndroidViewModel {
 
     public Call<Fcl> insertFcl(String pol, String pod, String of20, String of40, String su20, String su40,
                                String line, String notes, String valid, String notes2, String month, String type,
-                               String continent) {
+                               String continent, String createdDate) {
 
 
-        return mFclRepository.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, notes2, month, type, continent);
+        return mFclRepository.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, notes2, month, type, continent, createdDate);
     }
 
     public void loadAllFcl() {
@@ -46,4 +47,9 @@ public class FclViewModel extends AndroidViewModel {
         return mFclList;
     }
 
+    public Call<Fcl> updateFcl(String stt, String pol, String pod, String of20, String of40, String su20, String su40,
+                               String line, String notes, String valid, String notes2, String month, String type,
+                               String continent) {
+        return mFclRepository.updateFcl(stt, pol, pod, of20, of40, su20, su40, line, notes, valid, notes2, month, type, continent);
+    }
 }

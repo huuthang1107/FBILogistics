@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.databinding.FragmentFclBinding;
@@ -65,8 +66,8 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
-        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading ->{
-            if(needLoading){
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
+            if (needLoading) {
                 onResume();
             }
         });
@@ -113,6 +114,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
     /**
      * This method will set data by r,c,m
+     *
      * @param m month
      * @param c continent
      * @param r radio
@@ -135,37 +137,48 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     public List<Fcl> prepareDataForRecyclerView(String m, String c, String r) {
         // reset a list when user choose different
         List<Fcl> subList = new ArrayList<>();
-        for (Fcl f : listPriceList) {
-            if (r.equalsIgnoreCase("all")) {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
-                    subList.add(f);
-                }
-            } else {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
-                        && f.getType().equalsIgnoreCase(r)) {
-                    subList.add(f);
+        try {
+            for (Fcl f : listPriceList) {
+                if (r.equalsIgnoreCase("all")) {
+                    if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
+                        subList.add(f);
+                    }
+                } else {
+                    if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
+                            && f.getType().equalsIgnoreCase(r)) {
+                        subList.add(f);
+                    }
                 }
             }
+        }catch (NullPointerException nullPointerException){
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
         return subList;
     }
 
-    public List<Fcl> prepareDataForResume(String m, String c, String r,List<Fcl> list) {
+    public List<Fcl> prepareDataForResume(String m, String c, String r, List<Fcl> list) {
         // reset a list when user choose different
         List<Fcl> subList = new ArrayList<>();
-        for (Fcl f : list) {
-            if (r.equalsIgnoreCase("all")) {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
-                    subList.add(f);
-                }
-            } else {
-                if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
-                        && f.getType().equalsIgnoreCase(r)) {
-                    subList.add(f);
+        try {
+            for (Fcl f : list) {
+                if (r.equalsIgnoreCase("all")) {
+                    if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)) {
+                        subList.add(f);
+                    }
+                } else {
+                    if (f.getMonth().equalsIgnoreCase(m) && f.getContinent().equalsIgnoreCase(c)
+                            && f.getType().equalsIgnoreCase(r)) {
+                        subList.add(f);
+                    }
                 }
             }
+
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
+
         return subList;
+
     }
 
     /**
@@ -206,7 +219,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
         priceListAdapter = new PriceListAdapter(getContext());
         mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
-           priceListAdapter.setDataFcl( prepareDataForResume(month, continent, radioItem, detailsPojoFcl));
+            priceListAdapter.setDataFcl(prepareDataForResume(month, continent, radioItem, detailsPojoFcl));
         });
 
         binding.priceListRcv.setAdapter(priceListAdapter);

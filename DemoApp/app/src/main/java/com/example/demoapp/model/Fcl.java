@@ -62,6 +62,10 @@ public class Fcl implements Serializable {
     @Expose
     private String continent;
 
+    @SerializedName("created_date")
+    @Expose
+    private String createdDate;
+
     /**
      * Constructor
      *
@@ -92,8 +96,9 @@ public class Fcl implements Serializable {
         this.notes2 = notes2;
     }
 
-    public Fcl( String pol, String pod, String of20, String of40, String su20,
-               String su40, String linelist, String notes, String valid, String notes2) {
+    public Fcl(String pol, String pod, String of20, String of40, String su20, String su40,
+               String linelist, String notes, String valid, String notes2, String type,
+               String month, String continent, String createdDate) {
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
@@ -104,23 +109,27 @@ public class Fcl implements Serializable {
         this.notes = notes;
         this.valid = valid;
         this.notes2 = notes2;
+        this.type = type;
+        this.month = month;
+        this.continent = continent;
+        this.createdDate = createdDate;
     }
 
     /**
      * Constructor
      *
-     * @param pol      pol
-     * @param pod      pod
-     * @param of20     ocean freight 20
-     * @param of40     ocean freight 40
-     * @param su20     surcharge 20
-     * @param su40     surcharge 40
-     * @param linelist linelist
-     * @param notes    notes 1
-     * @param valid    valid
-     * @param notes2   notes2
-     * @param type type of container
-     * @param month month
+     * @param pol       pol
+     * @param pod       pod
+     * @param of20      ocean freight 20
+     * @param of40      ocean freight 40
+     * @param su20      surcharge 20
+     * @param su40      surcharge 40
+     * @param linelist  linelist
+     * @param notes     notes 1
+     * @param valid     valid
+     * @param notes2    notes2
+     * @param type      type of container
+     * @param month     month
      * @param continent continent
      */
     public Fcl(String pol, String pod, String of20, String of40,
@@ -141,7 +150,13 @@ public class Fcl implements Serializable {
         this.continent = continent;
     }
 
+    public String getCreatedDate() {
+        return createdDate;
+    }
 
+    public void setCreatedDate(String created_date) {
+        this.createdDate = created_date;
+    }
 
     public void setType(String type) {
         this.type = type;

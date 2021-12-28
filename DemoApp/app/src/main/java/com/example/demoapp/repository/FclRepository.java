@@ -1,4 +1,5 @@
 package com.example.demoapp.repository;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -25,7 +26,7 @@ public class FclRepository {
     public FclRepository(String baseURL) {
         mFclService = APIClient.getClient(baseURL).create(FCLService.class);
     }
-    
+
     /**
      * This method will upload all data of fcl table on database
      */
@@ -62,7 +63,14 @@ public class FclRepository {
 
     public Call<Fcl> insertFcl(String pol, String pod, String of20, String of40, String su20, String su40,
                                String line, String notes, String valid, String notes2, String month, String type,
-                               String continent) {
-        return mFclService.addData(pol, pod, of20, of40, su20, su40, line, notes, valid, notes2, month, type, continent);
+                               String continent, String createdDate) {
+        return mFclService.addData(pol, pod, of20, of40, su20, su40, line, notes, valid, notes2, month, type, continent, createdDate);
     }
+
+    public Call<Fcl> updateFcl(String stt, String pol, String pod, String of20, String of40, String su20, String su40,
+                               String line, String notes, String valid, String notes2, String month, String type,
+                               String continent) {
+        return mFclService.updateData(stt, pol, pod, of20, of40, su20, su40, line, notes, valid, notes2, month, type, continent);
+    }
+
 }

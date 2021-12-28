@@ -8,7 +8,7 @@
     <TableRow>
         <TextView
             android:layout_width="100dp"
-            android:id="@+id/tv_row_price_asia_air_stt"
+            android:id="@+id/tv_row_price_log_stt"
             android:layout_marginStart="2dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -19,7 +19,7 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_aol"
+            android:id="@+id/tv_row_price_log_tenhang"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -29,17 +29,16 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_aod"
+            android:id="@+id/tv_row_price_log_hscode"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
             android:textStyle="bold" />
-
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_dim"
+            android:id="@+id/tv_row_price_log_congdung"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -50,7 +49,19 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_grossweight"
+            android:id="@+id/tv_row_price_log_hinhanh"
+            android:layout_marginStart="1dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textStyle="bold">
+        </TextView>
+
+
+        <TextView
+            android:layout_width="200dp"
+            android:id="@+id/tv_row_price_log_cangdi"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -60,7 +71,7 @@
 
         <TextView
             android:layout_width="250dp"
-            android:id="@+id/tv_row_price_asia_air_typeofcargo"
+            android:id="@+id/tv_row_price_log_cangden"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -70,7 +81,7 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_freight"
+            android:id="@+id/tv_row_price_log_loaihang"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -80,7 +91,7 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_surcharge"
+            android:id="@+id/tv_row_price_log_soluongcuthe"
             android:layout_marginStart="1dp"
             android:gravity="center"
             android:textColor="@color/black"
@@ -90,7 +101,7 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_airlines"
+            android:id="@+id/tv_row_price_log_yeucaudacbiet"
             android:layout_marginStart="1dp"
             android:textColor="@color/black"
             android:gravity="center"
@@ -100,42 +111,14 @@
 
         <TextView
             android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_schedule"
+            android:id="@+id/tv_row_price_log_valid"
             android:layout_marginStart="1dp"
-            android:gravity="center"
             android:textColor="@color/black"
+            android:gravity="center"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_transittime"
-            android:layout_marginStart="1dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="10dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_valid"
-            android:layout_marginStart="1dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="10dp"
-            android:textStyle="bold" />
-        <TextView
-            android:layout_width="200dp"
-            android:id="@+id/tv_row_price_asia_air_note"
-            android:layout_marginStart="1dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="10dp"
-            android:textStyle="bold" />
     </TableRow>
 
 </TableLayout>

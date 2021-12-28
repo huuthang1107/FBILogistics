@@ -19,6 +19,7 @@ import com.example.demoapp.view.fragment.FragmentDOM;
 import com.example.demoapp.view.fragment.HomeFragment;
 import com.example.demoapp.view.fragment.ImportFragment;
 import com.example.demoapp.view.fragment.LCLFragment;
+import com.example.demoapp.view.fragment.LogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class ProActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +28,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
     private final static int FRAGMENT_LCL = 2;
     private final static int FRAGMENT_IMPORT = 3;
     private final static int FRAGMENT_DOM = 4;
+    private final static int FRAGMENT_LOG = 5;
 
     // check currently fragment
     private int mCurrentFragment = FRAGMENT_HOME;
@@ -95,10 +97,11 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
 
             }
 
-        }else if (id == R.id.nav_lcl){
-            if(mCurrentFragment != FRAGMENT_LCL){
+        }else if (id == R.id.nav_lcl) {
+            if (mCurrentFragment != FRAGMENT_LCL) {
                 replaceFragment(new LCLFragment());
                 mCurrentFragment = FRAGMENT_LCL;
+                toolbar.setTitle("AIR PAGE");
             }
         }
         else if (id == R.id.nav_import){
@@ -113,6 +116,12 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
                 replaceFragment(new FragmentDOM());
                 mCurrentFragment = FRAGMENT_DOM;
                 toolbar.setTitle("DOM PAGE");
+            }
+        }else if( id == R.id.nav_log) {
+            if (mCurrentFragment != FRAGMENT_LOG) {
+                replaceFragment(new LogFragment());
+                mCurrentFragment = FRAGMENT_LOG;
+                toolbar.setTitle("LOG PAGE");
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

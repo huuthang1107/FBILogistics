@@ -18,9 +18,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.model.Air;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.detail.FragmentAirDetail;
 import com.example.demoapp.view.detail.FragmentLogDetail;
 
@@ -85,7 +85,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
 //        DialogFragment dialogFragment = FragmentAirDetail.getInstance();
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.AIR_OBJECT, air);
+        bundle.putSerializable(Constants.AIR_OBJECT, air);
 //        dialogFragment.setArguments(bundle);
 //        dialogFragment.show( fm,"DetailAir");
     }

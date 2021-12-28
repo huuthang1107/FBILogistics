@@ -80,8 +80,8 @@ public class DomExportFragment extends Fragment {
     }
 
     public void setAutoComplete(){
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsMonth);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsContinent);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.autoDomMonth.setAdapter(adapterItemsMonth);
         binding.autoDomContinent.setAdapter(adapterItemsContinent);

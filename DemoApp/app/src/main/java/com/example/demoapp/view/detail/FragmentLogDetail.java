@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.FragmentLogDetailBinding;
 import com.example.demoapp.model.Log;
+import com.example.demoapp.utilities.Constants;
 
 
 public class FragmentLogDetail extends DialogFragment {
@@ -25,7 +25,7 @@ public class FragmentLogDetail extends DialogFragment {
         View view = mDetailBinding.getRoot();
         bundle = getArguments();
         if(bundle != null){
-            Log log = (Log) bundle.getSerializable(Constant.LOG_OBJECT);
+            Log log = (Log) bundle.getSerializable(Constants.LOG_OBJECT);
             mDetailBinding.tvRowPriceLogStt.setText(log.getStt());
             mDetailBinding.tvRowPriceLogTenhang.setText(log.getTenhang());
             mDetailBinding.tvRowPriceLogHscode.setText(log.getHscode());

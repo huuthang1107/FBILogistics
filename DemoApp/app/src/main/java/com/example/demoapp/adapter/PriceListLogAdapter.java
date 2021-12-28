@@ -16,13 +16,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.constant.Constant;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.model.Log;
-import com.example.demoapp.view.detail.FragmentFclDetail;
+
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.detail.FragmentLogDetail;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class PriceListLogAdapter extends RecyclerView.Adapter<PriceListLogAdapter.LogViewHolder> {
@@ -75,7 +73,7 @@ public class PriceListLogAdapter extends RecyclerView.Adapter<PriceListLogAdapte
         DialogFragment dialogFragment = FragmentLogDetail.getInstance();
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.LOG_OBJECT, log1);
+        bundle.putSerializable(Constants.LOG_OBJECT, log1);
         dialogFragment.setArguments(bundle);
         dialogFragment.show( fm,"DetailLog");
     }

@@ -21,26 +21,26 @@ import com.example.demoapp.view.detail.FragmentFclDetail;
 
 import java.util.List;
 
-public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.ViewHolder> {
+public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapter.ViewHolder> {
 
     private Context context;
     private List<Fcl> mListDetailFcl;
 
-    public PriceListAdapter(Context context) {
+    public PriceListFclAdapter(Context context) {
         this.context = context;
     }
 
 
     @NonNull
     @Override
-    public PriceListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PriceListFclAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.row_pricelist_fcl, parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PriceListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PriceListFclAdapter.ViewHolder holder, int position) {
         Fcl priceListModel = mListDetailFcl.get(position);
         if (mListDetailFcl.size() > 0) {
 

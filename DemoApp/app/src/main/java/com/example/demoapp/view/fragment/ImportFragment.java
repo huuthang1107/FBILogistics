@@ -16,14 +16,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListAdapter;
 import com.example.demoapp.adapter.PriceListImportAdapter;
 import com.example.demoapp.databinding.FragmentImportBinding;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.model.Import;
 import com.example.demoapp.view.dialog.InsertImportDialog;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
-import com.example.demoapp.viewmodel.FclViewModel;
 import com.example.demoapp.viewmodel.ImportViewModel;
 
 import java.util.ArrayList;

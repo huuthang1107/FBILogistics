@@ -98,6 +98,7 @@
     <string name="nav_homesale">Home</string>
     <string name="nav_duongbiem">Đường Biển Quốc Tế</string>
     <string name="nav_hangkhong">Đường Hàng Không Quốc Tế</string>
+    <string name="nav_duongbo">Đường Bộ Xuyên Biên Giới</string>
     <string name="nav_noidia">Nội Địa</string>
     <string name="nav_oversea">Oversea</string>
     <string name="nav_container">Loại Container</string>
@@ -112,8 +113,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="colAIR_col2">POL</string>
-    <string name="colAIR_col3">POD</string>
+    <string name="colAIR_col2">AOL</string>
+    <string name="colAIR_col3">AOD</string>
     <string name="colAIR_col4">DIM (LxHxW cm)</string>
     <string name="colAIR_col5">GROSS WEIGHT</string>
     <string name="colAIR_col6">TYPR OF CARGO</string>
@@ -146,5 +147,20 @@
     <string name="length">Chiều dài</string>
     <string name="width">Chiều rộng</string>
     <string name="height">Chiều cao</string>
+
+    // log
+    <string name="collog_1">Tên hàng</string>
+    <string name="collog_2">H/S code</string>
+    <string name="collog_3">Công dụng</string>
+    <string name="collog_4">Hình ảnh</string>
+    <string name="collog_5">Cảng đi</string>
+    <string name="collog_6">Cảng đến</string>
+    <string name="collog_7">Loại hàng</string>
+    <string name="collog_8">Số lượng cụ thể</string>
+    <string name="collog_9">Yêu cầu đặc biệt</string>
+    <string name="collog_9a">Yêu cầu đặc biệt</string>
+    <string name="collog_10">Valid</string>
+    <string name="btn_dinhkem">Đính kèm ảnh</string>
+    <string name="select_ExportAndImport">Loại Vận Chuyển</string>
 
 </resources>

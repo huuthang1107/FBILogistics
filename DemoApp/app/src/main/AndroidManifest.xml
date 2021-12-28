@@ -24,6 +24,10 @@
         <activity
             android:name=".view.activity.LoginActivity"
             android:exported="false" />
+        <activity android:name=".view.activity.SaleActivity"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".view.activity.ProActivity"
             android:exported="true">

@@ -13,6 +13,9 @@
             <item android:id="@+id/nav_hangkhong"
                 android:title="@string/nav_hangkhong"
                 android:icon="@drawable/ic_baseline_airplanemode_blane_24"/>
+            <item android:id="@+id/nav_duongbo"
+                android:title="@string/nav_duongbo"
+                android:icon="@drawable/ic_baseline_local_play_24"/>
             <item android:id="@+id/nav_noidia"
                 android:title="@string/nav_noidia"
                 android:icon="@drawable/ic_baseline_local_play_24"/>

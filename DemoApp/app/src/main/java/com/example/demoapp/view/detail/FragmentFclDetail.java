@@ -1,21 +1,17 @@
 package com.example.demoapp.view.detail;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
 import com.example.demoapp.R;
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.DialogFclDetailBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.view.dialog.UpdateFclDialog;
-import com.example.demoapp.databinding.DialogFclDetailBinding;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 
 public class FragmentFclDetail extends DialogFragment implements View.OnClickListener{
@@ -31,8 +27,8 @@ public class FragmentFclDetail extends DialogFragment implements View.OnClickLis
 
         bundle = getArguments();
         if(bundle != null){
-            Fcl fcl = (Fcl) bundle.getSerializable(Constant.FCL_OBJECT);
-            bundle.putSerializable(Constant.FCL_UPDATE, fcl);
+            Fcl fcl = (Fcl) bundle.getSerializable(Constants.FCL_OBJECT);
+            bundle.putSerializable(Constants.FCL_UPDATE, fcl);
             setData(fcl);
         }
         binding.btnUpdateFcl.setOnClickListener(this);
@@ -59,6 +55,7 @@ public class FragmentFclDetail extends DialogFragment implements View.OnClickLis
         return new FragmentFclDetail();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()){

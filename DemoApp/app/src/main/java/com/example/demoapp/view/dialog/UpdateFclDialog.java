@@ -16,31 +16,21 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.FragmentDialogUpdateFclBinding;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UpdateFclDialog extends DialogFragment implements View.OnClickListener {
 
-    private final String[] itemsType = {"GP", "FR", "RF", "OT", "HC"};
-
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
-            "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
-
-    private final String[] itemsContinent = {"Asia", "Europe", "America", "Africa", "Australia"};
-
     private final String[] listStr = new String[3];
-    Fcl fcl;
+
+    private Fcl fcl;
 
     private FragmentDialogUpdateFclBinding binding;
 
@@ -84,7 +74,7 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
     public void setInfo(){
 
            if(bundle != null){
-               fcl = (Fcl) bundle.getSerializable(Constant.FCL_UPDATE);
+               fcl = (Fcl) bundle.getSerializable(Constants.FCL_UPDATE);
 
                binding.updateAutoMonth.setText(fcl.getMonth());
                binding.updateAutoContainer.setText(fcl.getType());
@@ -111,9 +101,9 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
     public void initView() {
 
         // auto complete textview
-        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsTypeFcl);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsMonth);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsContinent);
 
         binding.updateAutoContainer.setAdapter(adapterItemsType);
         binding.updateAutoMonth.setAdapter(adapterItemsMonth);

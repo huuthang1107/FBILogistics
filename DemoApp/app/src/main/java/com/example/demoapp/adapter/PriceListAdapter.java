@@ -77,7 +77,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
 
         Bundle bundle = new Bundle();
 
-        bundle.putSerializable(Constant.FCL_OBJECT, fcl);
+        bundle.putSerializable(Constants.FCL_OBJECT, fcl);
 
         bundle.putSerializable(Constants.FCL_OBJECT, fcl);
         dialogFragment.setArguments(bundle);

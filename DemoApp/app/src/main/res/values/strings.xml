@@ -54,6 +54,8 @@
     <string name="all">ALL</string>
     <string name="hq">HQ</string>
     <string name="tk">TK</string>
+    <string name="ft">FT</string>
+    <string name="iso">ISO</string>
 
 
     <!--Table columns name -->
@@ -130,5 +132,19 @@
     <string name="bottom_ex">Hàng xuất</string>
     <string name="created_date">CREATED DATE</string>
     <string name="btn_update">Update</string>
+    <string name="favorite">Favorite</string>
+    <string name="content_description_favorite">Nothing</string>
+    <string name="search">Search</string>
+    <string name="content_description_search">search_des</string>
+
+    <string name="truck_ie">Trucking Hàng Container</string>
+    <string name="product_name">Tên Hàng</string>
+    <string name="tv_dom_export_weight">Trọng Lượng</string>
+    <string name="temp">Nhiệt Độ</string>
+    <string name="address">Địa Chỉ</string>
+    <string name="seaport">Cảng Hạ Bãi Chờ Xuất</string>
+    <string name="length">Chiều dài</string>
+    <string name="width">Chiều rộng</string>
+    <string name="height">Chiều cao</string>
 
 </resources>

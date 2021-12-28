@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDomBinding;
-import com.example.demoapp.view.activity.IETruckingDomActivity;
+import com.example.demoapp.view.activity.IEDomActivity;
 
 public class FragmentDOM extends Fragment implements View.OnClickListener {
     FragmentDomBinding binding;
@@ -33,7 +33,7 @@ public class FragmentDOM extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fragment_dom_btn_type1:
-                Intent intent = new Intent(getActivity(), IETruckingDomActivity.class);
+                Intent intent = new Intent(getActivity(), IEDomActivity.class);
                 startActivity(intent);
                 break;
         }

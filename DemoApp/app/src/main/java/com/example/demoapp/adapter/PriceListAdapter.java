@@ -14,10 +14,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.detail.FragmentFclDetail;
 
 import java.util.List;
@@ -80,6 +79,7 @@ public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.View
 
         bundle.putSerializable(Constant.FCL_OBJECT, fcl);
 
+        bundle.putSerializable(Constants.FCL_OBJECT, fcl);
         dialogFragment.setArguments(bundle);
         dialogFragment.show( fm,"DetailFcl");
     }

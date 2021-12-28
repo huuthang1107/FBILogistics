@@ -14,6 +14,9 @@ import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.DialogFclDetailBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.view.dialog.UpdateFclDialog;
+import com.example.demoapp.databinding.DialogFclDetailBinding;
+import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.Constants;
 
 public class FragmentFclDetail extends DialogFragment implements View.OnClickListener{
     private DialogFclDetailBinding binding;

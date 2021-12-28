@@ -13,7 +13,13 @@
         android:theme="@style/Theme.DemoApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.activity.IETruckingDomActivity"
+            android:name=".view.activity.SeaDomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.TruckDomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.IEDomActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.LoginActivity"

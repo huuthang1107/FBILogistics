@@ -15,10 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.constant.Constant;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.model.Import;
-import com.example.demoapp.view.detail.FragmentFclDetail;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.detail.FragmentImportDetail;
 
 import java.util.List;
@@ -83,7 +81,7 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
 
         Bundle bundle = new Bundle();
 
-        bundle.putSerializable(Constant.IMPORT_OBJECT, imp);
+        bundle.putSerializable(Constants.IMPORT_OBJECT, imp);
         dialogFragment.setArguments(bundle);
         dialogFragment.show( fm,"DetailImport");
     }

@@ -19,7 +19,7 @@ import com.example.demoapp.R;
 import com.example.demoapp.model.Log;
 
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.detail.FragmentLogDetail;
+import com.example.demoapp.view.dialog.log.FragmentLogDetail;
 
 import java.util.List;
 

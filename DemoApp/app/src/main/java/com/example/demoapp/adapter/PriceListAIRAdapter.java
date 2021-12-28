@@ -1,34 +1,23 @@
 package com.example.demoapp.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.model.Air;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.detail.FragmentAirDetail;
-import com.example.demoapp.view.detail.FragmentLogDetail;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import retrofit2.http.PUT;
 
 public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder> {
     private Context context;

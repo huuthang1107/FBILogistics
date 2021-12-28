@@ -5,7 +5,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.IEDomActivity">
+    tools:context=".view.activity.dom.IEDomActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"

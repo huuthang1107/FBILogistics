@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Import;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.detail.FragmentImportDetail;
+import com.example.demoapp.view.dialog.imp.FragmentImportDetail;
 
 import java.util.List;
 

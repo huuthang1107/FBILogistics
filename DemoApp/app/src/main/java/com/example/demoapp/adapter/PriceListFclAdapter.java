@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.detail.FragmentFclDetail;
+import com.example.demoapp.view.dialog.fcl.FragmentFclDetail;
 
 import java.util.List;
 

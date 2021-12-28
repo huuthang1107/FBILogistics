@@ -10,18 +10,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.demoapp.R;
-import com.example.demoapp.databinding.ActivityIetruckingDomBinding;
+
+import com.example.demoapp.databinding.ActivityIeDomBinding;
 import com.example.demoapp.view.fragment.DomExportFragment;
 import com.example.demoapp.view.fragment.DomImportFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class IETruckingDomActivity extends AppCompatActivity {
-    private ActivityIetruckingDomBinding binding;
+public class IEDomActivity extends AppCompatActivity {
+    private ActivityIeDomBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityIetruckingDomBinding.inflate(getLayoutInflater());
+        binding = ActivityIeDomBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
         setContentView(view);

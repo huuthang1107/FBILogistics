@@ -7,8 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import com.example.demoapp.R;
+import com.example.demoapp.databinding.FragmentDomExportBinding;
+import com.example.demoapp.utilities.Constants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +20,12 @@ import com.example.demoapp.R;
  * create an instance of this fragment.
  */
 public class DomExportFragment extends Fragment {
+
+    private FragmentDomExportBinding binding;
+
+    private String month = "";
+    private String continent = "";
+    private String radioItem = "All";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +71,35 @@ public class DomExportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dom_export, container, false);
+       binding = FragmentDomExportBinding.inflate(inflater, container, false);
+       View view = binding.getRoot();
+
+       setAutoComplete();
+
+       return view;
+    }
+
+    public void setAutoComplete(){
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsMonth);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.itemsContinent);
+
+        binding.autoDomMonth.setAdapter(adapterItemsMonth);
+        binding.autoDomContinent.setAdapter(adapterItemsContinent);
+
+        binding.autoDomMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                month = adapterView.getItemAtPosition(i).toString();
+               // setDataForRecyclerView(month, continent, radioItem);
+            }
+        });
+
+        binding.autoDomContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                continent = adapterView.getItemAtPosition(i).toString();
+               // setDataForRecyclerView(month, continent, radioItem);
+            }
+        });
     }
 }

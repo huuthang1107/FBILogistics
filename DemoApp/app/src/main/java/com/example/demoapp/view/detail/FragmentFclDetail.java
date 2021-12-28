@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.DialogFclDetailBinding;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.Constants;
 
 public class FragmentFclDetail extends DialogFragment {
     private DialogFclDetailBinding binding;
@@ -25,7 +25,7 @@ public class FragmentFclDetail extends DialogFragment {
 
         bundle = getArguments();
         if(bundle != null){
-            Fcl fcl = (Fcl) bundle.getSerializable(Constant.FCL_OBJECT);
+            Fcl fcl = (Fcl) bundle.getSerializable(Constants.FCL_OBJECT);
             binding.tvRowPriceAsiaStt.setText(fcl.getStt());
             binding.tvRowPriceAsiaPol.setText(fcl.getPol());
             binding.tvRowPriceAsiaPod.setText(fcl.getPod());

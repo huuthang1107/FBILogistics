@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.demoapp.constant.Constant;
 import com.example.demoapp.databinding.DialogImportDetailBinding;
 import com.example.demoapp.model.Import;
+import com.example.demoapp.utilities.Constants;
 
 public class FragmentImportDetail extends DialogFragment {
     private DialogImportDetailBinding binding;
@@ -24,7 +24,7 @@ public class FragmentImportDetail extends DialogFragment {
 
         bundle = getArguments();
         if(bundle != null){
-            Import imp = (Import) bundle.getSerializable(Constant.IMPORT_OBJECT);
+            Import imp = (Import) bundle.getSerializable(Constants.IMPORT_OBJECT);
             binding.tvRowPriceImportStt.setText(imp.getStt());
             binding.tvRowPriceImportPol.setText(imp.getPol());
             binding.tvRowPriceImportPod.setText(imp.getPod());

@@ -52,6 +52,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
 
         mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
             if (needLoading) {
+                Log.d("onresume", String.valueOf(needLoading.toString()));
                 onResume();
             }
         });
@@ -155,12 +156,9 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
-        priceListAdapter = new PriceListAIRAdapter(getContext());
-        mAirViewModel.getLclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
-            priceListAdapter.setDataAir(prepareDataForResume(month, continent, detailsPojoAir));
-            Log.d("test", String.valueOf(detailsPojoAir.size()));
+        mAirViewModel.getLclList().observe(getViewLifecycleOwner(), airs -> {
+            priceListAdapter.setDataAir(prepareDataForResume(month, continent, airs));
         });
-
         lclBinding.priceListRcv.setAdapter(priceListAdapter);
     }
 

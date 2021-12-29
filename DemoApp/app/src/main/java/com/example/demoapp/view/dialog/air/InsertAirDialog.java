@@ -76,7 +76,6 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[0] = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), listStr[0], Toast.LENGTH_LONG).show();
             }
         });
 
@@ -84,7 +83,6 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[1] = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), listStr[1], Toast.LENGTH_LONG).show();
             }
         });
 

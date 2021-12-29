@@ -16,6 +16,7 @@ import com.example.demoapp.databinding.ActivityTablePriceAirBinding;
 import com.example.demoapp.model.Air;
 import com.example.demoapp.view.dialog.air.InsertAirDialog;
 import com.example.demoapp.viewmodel.AirViewModel;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +45,20 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
         View view = tablePriceAirBinding.getRoot();
         setContentView(view);
 
-        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
-        priceListAdapter = new PriceListAIRAdapter(getApplicationContext());
 
-        mAirViewModel.getLclList().observe(this, air -> {
-            priceListAdapter.setDataAir(air);
+        priceListAdapter = new PriceListAIRAdapter(getApplicationContext());
+        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
+
+//        mAirViewModel.getLclList().observe(this, air -> {
+//            priceListAdapter.setDataAir(air);
+//        });
+
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(this, needLoading -> {
+            if (needLoading) {
+                onResume();
+            }
         });
 
         getDataAIR();

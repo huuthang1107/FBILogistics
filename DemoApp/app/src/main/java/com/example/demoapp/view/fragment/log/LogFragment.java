@@ -141,11 +141,10 @@ public class LogFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        mListLogAdapter = new PriceListLogAdapter(getContext());
-        mLogViewModel.getLogList().observe(getViewLifecycleOwner(), detailsPojoLog -> {
-            mListLogAdapter.setDataLog( prepareDataForResume(month, importAndExport, detailsPojoLog));
-        });
 
+        mLogViewModel.getLogList().observe(getViewLifecycleOwner(), airs -> {
+            mListLogAdapter.setDataLog( prepareDataForResume(month, importAndExport, airs));
+        });
         logBinding.priceListRcv.setAdapter(mListLogAdapter);
     }
 

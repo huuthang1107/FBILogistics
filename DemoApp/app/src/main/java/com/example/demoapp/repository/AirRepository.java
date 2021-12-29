@@ -36,7 +36,6 @@ public class AirRepository {
 
             @Override
             public void onFailure(Call<List<Air>> call, Throwable t) {
-
                 mAirList.postValue(null);
             }
         });
@@ -45,7 +44,7 @@ public class AirRepository {
     /**
      * This method will store data which get from fcl table
      *
-     * @return list of Fcl table
+     * @return list of Air table
      */
 
     public LiveData<List<Air>> getAllAir() {

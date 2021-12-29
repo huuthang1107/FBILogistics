@@ -1,4 +1,4 @@
-package com.example.demoapp.view.fragment.sales;
+package com.example.demoapp.view.fragment.log;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +18,7 @@ import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListLogAdapter;
 import com.example.demoapp.databinding.FragmentLogBinding;
 import com.example.demoapp.model.Log;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.log.InsertLogFragment;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.LogViewModel;
@@ -30,10 +31,6 @@ public class LogFragment extends Fragment implements View.OnClickListener {
 
     private FragmentLogBinding logBinding;
 
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
-            "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
-
-    private final String[] itemsImportAndExport = {"Nhập Khẩu", "Xuất Khẩu"};
 
     private ArrayAdapter<String> adapterItemsMonth, adapterItemsImportAndExport;
     private String month = "";
@@ -41,7 +38,7 @@ public class LogFragment extends Fragment implements View.OnClickListener {
 
     private PriceListLogAdapter mListLogAdapter;
     private LogViewModel mLogViewModel;
-    private CommunicateViewModel mCommunicateViewModel;
+
     private List<Log> mlistLog = new ArrayList<>();
 
     @Override
@@ -52,10 +49,9 @@ public class LogFragment extends Fragment implements View.OnClickListener {
 
         mListLogAdapter = new PriceListLogAdapter(getContext());
         mLogViewModel = new ViewModelProvider(this).get(LogViewModel.class);
-        mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
-//        mLogViewModel.getLogList().observe(getViewLifecycleOwner(), log -> {
-//            mListLogAdapter.setDataLog(log);
-//        });
+        // Xử lý cập nhập insert
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+
         mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading ->{
             if(needLoading){
                 onResume();
@@ -74,8 +70,8 @@ public class LogFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setAdapterItems() {
-        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsImportAndExport= new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsImportAndExport);
+        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        adapterItemsImportAndExport= new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_IMPORTANDEXPORT);
 
         logBinding.autoCompleteMonthLog.setAdapter(adapterItemsMonth);
         logBinding.autoCompleteContinentLog.setAdapter(adapterItemsImportAndExport);
@@ -146,8 +142,8 @@ public class LogFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         mListLogAdapter = new PriceListLogAdapter(getContext());
-        mLogViewModel.getLogList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
-            mListLogAdapter.setDataLog( prepareDataForResume(month, importAndExport, detailsPojoAir));
+        mLogViewModel.getLogList().observe(getViewLifecycleOwner(), detailsPojoLog -> {
+            mListLogAdapter.setDataLog( prepareDataForResume(month, importAndExport, detailsPojoLog));
         });
 
         logBinding.priceListRcv.setAdapter(mListLogAdapter);

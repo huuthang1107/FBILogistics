@@ -1,6 +1,7 @@
 package com.example.demoapp.view.fragment.air;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAIRAdapter;
@@ -43,10 +45,11 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
         lclBinding = FragmentLclBinding.inflate(inflater, container, false);
         View view = lclBinding.getRoot();
 
-        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
         priceListAdapter = new PriceListAIRAdapter(getContext());
+        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
 
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+
         mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
             if (needLoading) {
                 onResume();
@@ -105,8 +108,10 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
      */
     public void setDataForRecyclerView(String m, String c) {
         if (!m.isEmpty() && !c.isEmpty()) {
+
             priceListAdapter.setDataAir(prepareDataForRecyclerView(m, c));
             lclBinding.priceListRcv.setAdapter(priceListAdapter);
+            lclBinding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         }
     }
@@ -128,20 +133,32 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
     public List<Air> prepareDataForResume(String m, String c, List<Air> list) {
         // reset a list when user choose different
         List<Air> subList = new ArrayList<>();
-        for (Air air : list) {
-            if (air.getMonth().equalsIgnoreCase(m) && air.getContinent().equalsIgnoreCase(c)) {
-                subList.add(air);
+        try {
+            for (Air air : list) {
+                if (air.getMonth().equalsIgnoreCase(m) && air.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(air);
+                }
             }
+        }catch (NullPointerException nullPointerException){
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
+
         return subList;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         priceListAdapter = new PriceListAIRAdapter(getContext());
         mAirViewModel.getLclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
             priceListAdapter.setDataAir(prepareDataForResume(month, continent, detailsPojoAir));
+            Log.d("test", String.valueOf(detailsPojoAir.size()));
         });
 
         lclBinding.priceListRcv.setAdapter(priceListAdapter);

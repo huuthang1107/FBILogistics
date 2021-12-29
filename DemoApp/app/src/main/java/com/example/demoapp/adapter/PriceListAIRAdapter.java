@@ -1,5 +1,6 @@
 package com.example.demoapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Air;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.air.FragmentAirDetail;
 
 import java.util.List;
 
@@ -37,23 +40,22 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PriceAirViewHolder holder, int position) {
-            Air air = listAIRS.get(position);
-        if (listAIRS != null && listAIRS.size() > 0) {
+            Air priceAir = listAIRS.get(position);
+        if ( listAIRS.size() > 0) {
 
-
-            holder.tvstt.setText(air.getStt());
-            holder.tvaol.setText(air.getAol());
-            holder.tvaod.setText(air.getAod());
-            holder.tvdim.setText(air.getDim());
-            holder.tvgross.setText(air.getGrossweight());
-            holder.tvtype.setText(air.getTypeofcargo());
-            holder.tvairfreight.setText(air.getAirfreight());
-            holder.tvsurcharge.setText(air.getSurcharge());
-            holder.tvairlines.setText(air.getAirlines());
-            holder.tvschedule.setText(air.getSchedule());
-            holder.tvtransittime.setText(air.getTransittime());
-            holder.tvvalid.setText(air.getValid());
-            holder.tvnote.setText(air.getNote());
+            holder.tvstt.setText(priceAir.getStt());
+            holder.tvaol.setText(priceAir.getAol());
+            holder.tvaod.setText(priceAir.getAod());
+            holder.tvdim.setText(priceAir.getDim());
+            holder.tvgross.setText(priceAir.getGrossweight());
+            holder.tvtype.setText(priceAir.getTypeofcargo());
+            holder.tvairfreight.setText(priceAir.getAirfreight());
+            holder.tvsurcharge.setText(priceAir.getSurcharge());
+            holder.tvairlines.setText(priceAir.getAirlines());
+            holder.tvschedule.setText(priceAir.getSchedule());
+            holder.tvtransittime.setText(priceAir.getTransittime());
+            holder.tvvalid.setText(priceAir.getValid());
+            holder.tvnote.setText(priceAir.getNote());
 
 
         }else{
@@ -63,7 +65,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         @Override
         public void onClick(View v) {
 
-            goToDetail(air);
+            goToDetail(priceAir);
         }
     });
     }
@@ -71,12 +73,12 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
     private void goToDetail(Air air) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
-//        DialogFragment dialogFragment = FragmentAirDetail.getInstance();
+        DialogFragment dialogFragment = FragmentAirDetail.getInstance();
 
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.AIR_OBJECT, air);
-//        dialogFragment.setArguments(bundle);
-//        dialogFragment.show( fm,"DetailAir");
+        dialogFragment.setArguments(bundle);
+        dialogFragment.show( fm,"DetailAir");
     }
 
     @Override
@@ -87,6 +89,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         return 0;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setDataAir(List<Air> mListDetailAir) {
         this.listAIRS = mListDetailAir;
         notifyDataSetChanged();

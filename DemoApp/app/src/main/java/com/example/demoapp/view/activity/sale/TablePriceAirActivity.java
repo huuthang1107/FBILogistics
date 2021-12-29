@@ -1,21 +1,30 @@
 package com.example.demoapp.view.activity.sale;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAIRAdapter;
 import com.example.demoapp.databinding.ActivityTablePriceAirBinding;
 import com.example.demoapp.model.Air;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.air.InsertAirDialog;
 import com.example.demoapp.viewmodel.AirViewModel;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +32,13 @@ import java.util.List;
 public class TablePriceAirActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityTablePriceAirBinding tablePriceAirBinding;
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
-            "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
-
-    private final String[] itemsContinent = {"Asia", "Europe", "America", "Africa", "Australia"};
-
-    private ArrayAdapter<String> adapterItemsMonth, adapterItemsContinent;
     private String month = "";
     private String continent = "";
     PriceListAIRAdapter priceListAdapter;
 
     private AirViewModel mAirViewModel;
+
+    private LinearLayoutManager linearLayoutManager;
 
     private List<Air> airList = new ArrayList<>();
 
@@ -42,33 +47,42 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         tablePriceAirBinding = ActivityTablePriceAirBinding.inflate(getLayoutInflater());
         View view = tablePriceAirBinding.getRoot();
-        setContentView(view);
 
+        priceListAdapter = new PriceListAIRAdapter(this);
         mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
-        priceListAdapter = new PriceListAIRAdapter(getApplicationContext());
+        linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
 
-        mAirViewModel.getLclList().observe(this, air -> {
-            priceListAdapter.setDataAir(air);
+        mCommunicateViewModel.needReloading.observe(this, needLoading -> {
+            if (needLoading) {
+                Log.d("onresume", String.valueOf(needLoading.toString()));
+                onResume();
+            }
         });
 
         getDataAIR();
         setAdapterItems();
         setUpButtons();
-        search();
+        setContentView(view);
+
+
+
 
     }
 
-    private void search() {
-
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
     }
 
     private void setUpButtons() {
-        tablePriceAirBinding.fragmentFclFab.setOnClickListener(this);
+        tablePriceAirBinding.fragmentAirFabActivity.setOnClickListener(this);
     }
 
     private void setAdapterItems() {
-        adapterItemsMonth = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         tablePriceAirBinding.autoCompleteMonth.setAdapter(adapterItemsMonth);
         tablePriceAirBinding.autoCompleteContinent.setAdapter(adapterItemsContinent);
@@ -99,31 +113,60 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
     }
     public void setDataForRecyclerView(String m, String c) {
         if (!m.isEmpty() && !c.isEmpty()) {
-            tablePriceAirBinding.priceListRcv.setHasFixedSize(true);
 
-            tablePriceAirBinding.priceListRcv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            priceListAdapter.setDataAir(prepareDataForRecyclerView(m, c));
+            tablePriceAirBinding.priceListRcvSaleAir.setAdapter(priceListAdapter);
+            tablePriceAirBinding.priceListRcvSaleAir.setLayoutManager(linearLayoutManager);
 
-            priceListAdapter.setDataAir(prepareDataForRecyclerView(m,c));
 
-            tablePriceAirBinding.priceListRcv.setAdapter(priceListAdapter);
         }
+
     }
 
     private List<Air> prepareDataForRecyclerView(String m, String c) {
         List<Air> list = new ArrayList<>();
-
-        for (Air a : airList) {
-            if (a.getMonth().equalsIgnoreCase(m) && a.getContinent().equalsIgnoreCase(c)) {
-                list.add(a);
+        try {
+            for (Air a : airList) {
+                if (a.getMonth().equalsIgnoreCase(m) && a.getContinent().equalsIgnoreCase(c)) {
+                    list.add(a);
+                }
             }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getApplicationContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
         return list;
+    }
+
+    public List<Air> prepareDataForResume(String m, String c, List<Air> list) {
+        // reset a list when user choose different
+        List<Air> subList = new ArrayList<>();
+        try {
+            for (Air air : list) {
+                if (air.getMonth().equalsIgnoreCase(m) && air.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(air);
+                }
+            }
+        }catch (NullPointerException nullPointerException){
+            Toast.makeText(getApplicationContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        return subList;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mAirViewModel.getLclList().observe(this, airs -> {
+            priceListAdapter.setDataAir(prepareDataForResume(month, continent, airs));
+        });
+        tablePriceAirBinding.priceListRcvSaleAir.setAdapter(priceListAdapter);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fragment_fcl_fab:
+            case R.id.fragment_air_fab_activity:
                 DialogFragment dialogFragment = InsertAirDialog.insertDiaLogAIR();
                 dialogFragment.show(getSupportFragmentManager(), "Insert Dialog");
 

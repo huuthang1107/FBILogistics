@@ -12,6 +12,8 @@ public class Constants {
 
     public  final static String[] ITEMS_CONTINENT = {"Asia", "Europe", "America", "Africa", "Australia"};
 
+    public final static  String[] ITEMS_IMPORTANDEXPORT = {"Nhập Khẩu", "Xuất Khẩu"};
+
     public  final static String[] ITEMS_FCL = {"GP", "FR", "RF", "OT", "HC"};
 
     public  final static String[] ITEMS_DOM = {"FT", "RF", "OT", "FR", "ISO"};

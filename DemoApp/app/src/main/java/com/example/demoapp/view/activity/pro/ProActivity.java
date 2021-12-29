@@ -19,7 +19,7 @@ import com.example.demoapp.view.fragment.dom.FragmentDOM;
 import com.example.demoapp.view.fragment.home.HomeFragment;
 import com.example.demoapp.view.fragment.imp.ImportFragment;
 import com.example.demoapp.view.fragment.air.LCLFragment;
-import com.example.demoapp.view.fragment.sales.LogFragment;
+import com.example.demoapp.view.fragment.log.LogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class ProActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDialogInsertAirBinding;
 import com.example.demoapp.model.Air;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.AirViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 
@@ -30,11 +31,6 @@ import retrofit2.Response;
 
 
 public class InsertAirDialog extends DialogFragment implements  View.OnClickListener {
-
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
-            "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
-
-    private final String[] itemsContinent = {"Asia", "Europe", "America", "Africa", "Australia"};
 
     private final String[] listStr = new String[2];
     private FragmentDialogInsertAirBinding insertAirBinding;
@@ -67,8 +63,8 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
     }
 
     private void initView() {
-        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         insertAirBinding.insertAutoMonth.setAdapter(adapterItemsMonth);
         insertAirBinding.insertAutoContinent.setAdapter(adapterItemsContinent);
@@ -80,7 +76,6 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[0] = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), listStr[0], Toast.LENGTH_LONG).show();
             }
         });
 
@@ -88,7 +83,6 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[1] = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), listStr[1], Toast.LENGTH_LONG).show();
             }
         });
 
@@ -101,7 +95,7 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
         switch (v.getId()){
             case R.id.btn_function_add:
                 insertAIR();
-
+                dismiss();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -123,27 +117,24 @@ public class InsertAirDialog extends DialogFragment implements  View.OnClickList
         String stValid = insertAirBinding.tfValid.getEditText().getText().toString();
         String stNote = insertAirBinding.tfNotes.getEditText().getText().toString();
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(Contants.URL_API)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        AIRService airService = retrofit.create(AIRService.class);
+
         mCommunicateViewModel.makeChanges();
         Call<Air> call = mAirViewModel.insertAir(stAol,stAod, stDim, stGross, stType, stFreight,
                 stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1]);
         call.enqueue(new Callback<Air>() {
             @Override
             public void onResponse(Call<Air> call, Response<Air> response) {
-                Toast.makeText(getContext(),response.toString(),Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(), "Created Successful!!", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<Air> call, Throwable t) {
-                Toast.makeText(getContext(),"Insert AIR Sucessfull", Toast.LENGTH_SHORT).show();
 
             }
         });
-        resetEditText();
+
     }
 
     public void resetEditText(){

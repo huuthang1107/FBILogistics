@@ -99,6 +99,7 @@
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/drawable/selector_button.xml" value="0.10092592592592593" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_airactivity.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_ietrucking_dom.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_import.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_price_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_price_list_air.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_sale.xml" value="0.152" />
@@ -114,6 +115,7 @@
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_fcl.xml" value="0.2359375" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_home_sale.xml" value="0.1" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_homesale.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_import.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_insert_log.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_lcl.xml" value="0.264" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_log.xml" value="0.25416666666666665" />
@@ -122,6 +124,7 @@
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_price_list_europe.xml" value="0.11197916666666667" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_pricelist_asia.xml" value="0.11197916666666667" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_pricelist_table.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_road.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_seaway.xml" value="0.264" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragmet_hangkhong.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HuuThang/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/item_photo.xml" value="0.11197916666666667" />

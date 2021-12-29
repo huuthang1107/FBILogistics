@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentInsertLogBinding;
 import com.example.demoapp.model.Log;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.LogViewModel;
 import java.io.ByteArrayOutputStream;
@@ -41,8 +42,6 @@ import retrofit2.Response;
 public class InsertLogFragment extends DialogFragment implements View.OnClickListener{
 
     private static final int MY_REQUEST_CODE = 10;
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
-            "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
 
     private final String[] itemsImportOrExport = {"Nhập Khẩu", "Xuất Khẩu"};
 
@@ -52,7 +51,7 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
         return new InsertLogFragment();
 
     }
-    private ArrayAdapter<String> adapterItemsMonth, adapterItemsContinent;
+    private ArrayAdapter<String> adapterItemsMonth, adapterItemsImportAndExport;
 
     private FragmentInsertLogBinding logBinding;
 
@@ -85,9 +84,6 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
                 }
             });
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,11 +97,11 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
     }
 
     private void initView() {
-        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsImportOrExport);
+        adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        adapterItemsImportAndExport = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsImportOrExport);
 
         logBinding.insertAutoMonth.setAdapter(adapterItemsMonth);
-        logBinding.insertAutoContinent.setAdapter(adapterItemsContinent);
+        logBinding.insertAutoContinent.setAdapter(adapterItemsImportAndExport);
 
         logBinding.btnFunctionAdd.setOnClickListener(this);
         logBinding.btnFunctionCancel.setOnClickListener(this);
@@ -115,7 +111,6 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[0] = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), listStr[0], Toast.LENGTH_LONG).show();
             }
         });
 
@@ -123,7 +118,6 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[1] = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), listStr[1], Toast.LENGTH_LONG).show();
             }
         });
 
@@ -157,23 +151,7 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
             String [] permission = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
             requestPermissions(permission, MY_REQUEST_CODE);
         }
-//        Permissio
-//        nListener permissionlistener = new PermissionListener() {
-//            @Override
-//            public void onPermissionGranted() {
-//                openImagePicker();
-//            }
-//
-//            @Override
-//            public void onPermissionDenied(List<String> deniedPermissions) {
-//                Toast.makeText(getContext(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        };
-//        TedPermission.create()
-//                .setPermissionListener(permissionlistener)
-//                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-//                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-//                .check();
+
     }
 
     @Override
@@ -194,14 +172,6 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
         mActivityResultLauncher.launch(Intent.createChooser(intent,"Select Picture"));
     }
 
-//    private void openImagePicker() {
-//        TedBottomPicker.OnImageSelectedListener listener = new TedBottomPicker.OnImageSelectedListener() {
-//            @Override
-//            public void onImageSelected(Uri uri) {
-////                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContent(),uri);
-//            }
-//        };
-//    }
 
     private void insertLog() {
         String strTenHang = logBinding.tfTenhang.getEditText().getText().toString();

@@ -3,7 +3,7 @@ package com.example.demoapp.utilities;
 public class Constants {
 
     public static final String FCL_UPDATE = "update_fcl";
-    public static String URL_API = "http://192.168.1.204/database/";
+    public static String URL_API = "http://192.168.1.6/database/";
     public static String FCL_OBJECT = "object_fcl";
     public static String IMPORT_OBJECT = "object_imp";
 
@@ -14,9 +14,9 @@ public class Constants {
 
     public  final static String[] ITEMS_FCL = {"GP", "FR", "RF", "OT", "HC"};
 
+    public  final static String[] ITEMS_DOM = {"FT", "RF", "OT", "FR", "ISO"};
+
     public static String LOG_OBJECT = "object_log";
     public static String AIR_OBJECT = "object_air";
-
-
 
 }

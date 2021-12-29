@@ -69,6 +69,10 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    public static HomeFragment getInstance(){
+        return new HomeFragment();
+    }
+
     private List<Photo> getListPhoto() {
         List<Photo> list = new ArrayList<>();
 

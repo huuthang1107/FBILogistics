@@ -162,5 +162,14 @@
     <string name="collog_10">Valid</string>
     <string name="btn_dinhkem">Đính kèm ảnh</string>
     <string name="select_ExportAndImport">Loại Vận Chuyển</string>
+    <string name="txt_dom_name">Tên Hàng</string>
+    <string name="txt_dom_weight">Trọng Lượng</string>
+    <string name="txt_dom_quantity">Số Lượng Cont</string>
+    <string name="txt_dom_temp">Nhiệt Độ</string>
+    <string name="txt_dom_address">Địa Chỉ</string>
+    <string name="txt_dom_port">Cảng Chờ Xuất</string>
+    <string name="txt_dom_length">Chiều Dài</string>
+    <string name="txt_dom_height">Chiều Cao</string>
+    <string name="txt_dom_width">Chiều Rộng</string>
 
 </resources>

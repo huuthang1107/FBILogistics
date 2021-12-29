@@ -155,12 +155,12 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         call.enqueue(new Callback<Import>() {
             @Override
             public void onResponse(@NonNull Call<Import> call, @NonNull Response<Import> response) {
-                Toast.makeText(getContext(), "InsertSuccessful", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "InsertSuccessful", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(@NonNull Call<Import> call, @NonNull Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

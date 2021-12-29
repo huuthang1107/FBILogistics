@@ -2,6 +2,7 @@ package com.example.demoapp.view.fragment.dom;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,13 +14,10 @@ import android.widget.ArrayAdapter;
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDomExportBinding;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.DialogInsertDomExport;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DomExportFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DomExportFragment extends Fragment {
+
+public class DomExportFragment extends Fragment implements View.OnClickListener {
 
     private FragmentDomExportBinding binding;
 
@@ -75,6 +73,7 @@ public class DomExportFragment extends Fragment {
        View view = binding.getRoot();
 
        setAutoComplete();
+       setButton();
 
        return view;
     }
@@ -101,5 +100,19 @@ public class DomExportFragment extends Fragment {
                // setDataForRecyclerView(month, continent, radioItem);
             }
         });
+    }
+
+    public void setButton(){
+        binding.domExportFab.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id){
+            case R.id.dom_export_fab:
+                DialogFragment dialogFragment = DialogInsertDomExport.getInstance();
+                dialogFragment.show(getChildFragmentManager(), "ExportDom");
+        }
     }
 }

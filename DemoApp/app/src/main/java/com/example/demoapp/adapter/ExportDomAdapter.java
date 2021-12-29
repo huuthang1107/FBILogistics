@@ -26,7 +26,6 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
 
     public class ExportViewHolder extends RecyclerView.ViewHolder{
 
-
         public ExportViewHolder(@NonNull View itemView) {
             super(itemView);
         }

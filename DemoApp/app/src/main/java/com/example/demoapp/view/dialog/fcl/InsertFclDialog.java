@@ -1,6 +1,7 @@
 package com.example.demoapp.view.dialog.fcl;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDialogInsertBinding;
 import com.example.demoapp.model.Fcl;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
 
@@ -29,13 +31,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class InsertFclDialog extends DialogFragment implements View.OnClickListener {
-
-    private final String[] itemsType = {"GP", "FR", "RF", "OT", "HC"};
-
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
-            "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
-
-    private final String[] itemsContinent = {"Asia", "Europe", "America", "Africa", "Australia"};
 
     private final String[] listStr = new String[3];
 
@@ -79,9 +74,9 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
     public void initView() {
 
         // auto complete textview
-        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsType);
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsMonth);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_FCL);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.insertAutoContainer.setAdapter(adapterItemsType);
         binding.insertAutoMonth.setAdapter(adapterItemsMonth);

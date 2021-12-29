@@ -141,6 +141,5 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame,fragment);
         transaction.commit();
-
     }
 }

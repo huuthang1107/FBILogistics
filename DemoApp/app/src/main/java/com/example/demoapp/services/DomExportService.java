@@ -1,0 +1,17 @@
+package com.example.demoapp.services;
+
+import com.example.demoapp.model.DomExport;
+import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
+
+public interface DomExportService {
+
+    @FormUrlEncoded
+    @POST("InsertDataDomExport.php")
+    Call<DomExport> insertData(@Field("name") String name, @Field("weight") String weight, @Field("quantity") String quantity,
+                               @Field("temp") String temp, @Field("address") String address, @Field("port_export") String portExport,
+                               @Field("length") String length, @Field("height") String height, @Field("width") String width,
+                               @Field("type") String type, @Field("month") String month, @Field("continent") String continent);
+}

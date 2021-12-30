@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.demoapp.services.PutData;
 import com.example.demoapp.R;
 import com.example.demoapp.view.activity.pro.ProActivity;
+import com.example.demoapp.view.activity.sale.SaleActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class LoginActivity extends AppCompatActivity  {
@@ -51,21 +52,20 @@ public class LoginActivity extends AppCompatActivity  {
                             String[] data = new String[2];
                             data[0] = username;
                             data[1] = password;
-                            PutData putData = new PutData("http://192.168.1.199/login/login.php", "POST", field, data);
+                            PutData putData = new PutData("http://192.168.1.6/login/login.php", "POST", field, data);
                             if(putData.startPut()){
                                 if(putData.onComplete()){
                                     String result = putData.getResult();
                                     if(result.equals("Professional")){
-
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), ProActivity.class);
                                         startActivity(intent);
                                         finish();
                                     }else if ( result.equals("Sale")) {
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-                                        //Intent intent = new Intent(getApplicationContext(), SaleActivity.class);
-                                        //startActivity(intent);
-                                        //finish();
+                                        Intent intent = new Intent(getApplicationContext(), SaleActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     } else{
                                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                                     }

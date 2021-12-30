@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentSeawayBinding;
 import com.example.demoapp.view.activity.sale.ContainerActivity;
+import com.example.demoapp.view.activity.sale.ImportActivity;
 
 
 public class SeawayFragment extends Fragment implements View.OnClickListener{
@@ -28,13 +29,28 @@ public class SeawayFragment extends Fragment implements View.OnClickListener{
     }
 
     private void event() {
+
         mSeawayBinding.cvContainerXK.setOnClickListener(this);
+        mSeawayBinding.cvContaierNK.setOnClickListener(this);
+        mSeawayBinding.cvHangleNK.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getContext(), ContainerActivity.class);
-        startActivity(intent);
+        switch (v.getId()){
+            case R.id.cv_containerXK:
+                Intent intent = new Intent(getContext(), ContainerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.cv_contaierNK:
+                Intent intent1 = new Intent(getContext(), ImportActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.cv_hangleNK:
+                Intent intent2 = new Intent(getContext(), ImportActivity.class);
+                startActivity(intent2);
+                break;
+        }
 
     }
 }

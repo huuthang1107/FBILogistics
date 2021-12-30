@@ -58,7 +58,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void setUpButtons() {
-        mContainerBinding.fragmentFclFab.setOnClickListener(this);
+//        mContainerBinding.fragmentFclFab.setOnClickListener(this);
 
         mContainerBinding.radioAll.setOnClickListener(this);
         mContainerBinding.radioAll.performClick();

@@ -1,5 +1,6 @@
 package com.example.demoapp.view.activity.sale;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -26,6 +27,13 @@ public class SaleActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_AIRLINES = 2;
     private static final int FRAGMENT_ROAD = 3;
     private static final int FRAGMENT_INLAND = 4;
+    private static final  int FRAGMENT_OVERSEA = 5;
+    private static final int FRAGMENT_TYPE_CONTAINER = 6;
+    private static final int FRAGMENT_LUUKHO = 7;
+    private static final int FRAGMENT_HAIQUAN = 8;
+    private static final int FRAGMENT_BAOHIEM = 9;
+    private static final int FRAGMENT_NVOCC = 10;
+    private static final  int FRAGMENT_DEPOT = 11;
     private int mCurrentFragmet = FRAGMENT_HOME;
 
     DrawerLayout mDrawerLayout;
@@ -90,6 +98,11 @@ public class SaleActivity extends AppCompatActivity implements NavigationView.On
             if (mCurrentFragmet != FRAGMENT_INLAND) {
                 replaceFragment(new InlandFragment());
                 mCurrentFragmet = FRAGMENT_INLAND;
+            }
+        }else  if(id == R.id.nav_haiquan){
+            if(mCurrentFragmet != FRAGMENT_HAIQUAN){
+                Intent intent = new Intent(this, LogActivity.class);
+                startActivity(intent);
             }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

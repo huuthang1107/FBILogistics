@@ -29,7 +29,7 @@
                 android:title="@string/nav_luukho"
                 android:icon="@drawable/ic_baseline_local_pharmacy_24"/>
             <item android:id="@+id/nav_haiquan"
-                android:title="@string/nav_luukho"
+                android:title="@string/nav_haiquan"
                 android:icon="@drawable/ic_baseline_local_pharmacy_24"/>
             <item android:id="@+id/nav_baohiem"
                 android:title="@string/nav_baohiem"

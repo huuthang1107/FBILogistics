@@ -1,12 +1,19 @@
 package com.example.demoapp.services;
 
 import com.example.demoapp.model.DomExport;
+
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface DomExportService {
+
+    @GET("GetDataDomExport.php")
+    Call<List<DomExport>> getAllDomExport();
 
     @FormUrlEncoded
     @POST("InsertDataDomExport.php")

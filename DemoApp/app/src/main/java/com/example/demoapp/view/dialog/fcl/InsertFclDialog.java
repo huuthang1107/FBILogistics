@@ -3,6 +3,7 @@ package com.example.demoapp.view.dialog.fcl;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,8 +122,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_function_add:
-                process();
-                dismiss();
+                if (isFilled()) {
+                    insertData();
+                    dismiss();
+                }
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -133,7 +136,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
     /**
      * This method used to get data user typing and insert them into database
      */
-    public void process() {
+    public void insertData() {
 
         String pol = Objects.requireNonNull(binding.tfPol.getEditText()).getText().toString();
         String pod = Objects.requireNonNull(binding.tfPod.getEditText()).getText().toString();
@@ -148,11 +151,11 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
         mCommunicateViewModel.makeChanges();
         Call<Fcl> call = mFclViewModel.insertFcl(pol, pod, of20, of40, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2], getCreatedDate());
-        
+
         call.enqueue(new Callback<Fcl>() {
             @Override
             public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Created Successful!!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -164,8 +167,34 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         });
     }
 
-    private String getCreatedDate(){
+    private String getCreatedDate() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+    }
+
+    /**
+     *
+     * @return false if the user does not select auto complete
+     */
+
+    public boolean isFilled() {
+        boolean result = true;
+
+        if (TextUtils.isEmpty(binding.insertAutoContainer.getText())) {
+            result = false;
+            binding.insertAutoContainer.setError(Constants.ERROR_AUTO_COMPLETE_TYPE);
+        }
+
+        if (TextUtils.isEmpty(binding.insertAutoMonth.getText())) {
+            result = false;
+            binding.insertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
+        }
+
+        if (TextUtils.isEmpty(binding.insertAutoContinent.getText())) {
+            result = false;
+            binding.insertAutoContinent.setError(Constants.ERROR_AUTO_COMPLETE_CONTINENT);
+        }
+
+        return result;
     }
 
 }

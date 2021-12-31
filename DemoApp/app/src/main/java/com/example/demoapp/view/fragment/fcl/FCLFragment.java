@@ -60,6 +60,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
         priceListFclAdapter = new PriceListFclAdapter(getContext());
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
+
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
         mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {

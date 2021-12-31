@@ -21,4 +21,8 @@ public class Constants {
     public static String LOG_OBJECT = "object_log";
     public static String AIR_OBJECT = "object_air";
 
+    public static final String ERROR_AUTO_COMPLETE_MONTH = "Bạn chưa chọn tháng !!!";
+    public static final String ERROR_AUTO_COMPLETE_CONTINENT = "Bạn chưa chọn châu !!!";
+    public static final String ERROR_AUTO_COMPLETE_TYPE = "Bạn chưa chọn loại cont !!!";
+
 }

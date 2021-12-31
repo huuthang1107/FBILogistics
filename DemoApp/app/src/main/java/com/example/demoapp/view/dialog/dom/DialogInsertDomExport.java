@@ -34,9 +34,10 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
 
     private final String[] listStr = new String[3];
 
-    private  String name, weight, quantity, temp, address, portExport, length, height, width;
+    private String name, weight, quantity, temp, address, portExport, length, height, width;
 
     private DomExportViewModel mDomExportViewModel;
+    private CommunicateViewModel communicateViewModel;
 
     @Nullable
     @Override
@@ -46,17 +47,20 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
 
         View view = binding.getRoot();
 
+        communicateViewModel = new ViewModelProvider(this)
+                .get(CommunicateViewModel.class);
+
         setUpViews();
 
         return view;
     }
 
-    public static DialogInsertDomExport getInstance(){
+    public static DialogInsertDomExport getInstance() {
 
         return new DialogInsertDomExport();
     }
 
-    private void setUpViews(){
+    private void setUpViews() {
 
         binding.btnDomExportInsert.setOnClickListener(this);
         binding.btnDomExportCancel.setOnClickListener(this);
@@ -99,10 +103,10 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
     public void onClick(View view) {
         int id = view.getId();
 
-        switch (id){
+        switch (id) {
             case R.id.btn_dom_export_insert:
                 insertData();
-
+                dismiss();
                 break;
             case R.id.btn_dom_export_cancel:
                 dismiss();
@@ -110,7 +114,7 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
         }
     }
 
-    public void getDataFromForm(){
+    public void getDataFromForm() {
         name = Objects.requireNonNull(binding.insertDomExportName.getEditText()).getText().toString();
         weight = Objects.requireNonNull(binding.insertDomExportWeight.getEditText()).getText().toString();
         quantity = Objects.requireNonNull(binding.insertDomExportQuantity.getEditText()).getText().toString();
@@ -122,27 +126,16 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
         width = Objects.requireNonNull(binding.insertDomExportWidth.getEditText()).getText().toString();
     }
 
-    public void insertData(){
+    public void insertData() {
         getDataFromForm();
 
-        Log.d("TestInsert", name);
-        Log.d("TestInsert", weight);
-        Log.d("TestInsert", quantity);
-        Log.d("TestInsert", temp);
-        Log.d("TestInsert", address);
-        Log.d("TestInsert", portExport);
-        Log.d("TestInsert", length);
-        Log.d("TestInsert", height);
-        Log.d("TestInsert", width);
-        Log.d("TestInsert", listStr[0]);
-        Log.d("TestInsert", listStr[1]);
-        Log.d("TestInsert", listStr[2]);
+        communicateViewModel.makeChanges();
 
         mDomExportViewModel.insertData(name, weight, quantity, temp, address, portExport, length,
                 height, width, listStr[0], listStr[1], listStr[2]).enqueue(new Callback<DomExport>() {
             @Override
             public void onResponse(@NonNull Call<DomExport> call, @NonNull Response<DomExport> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Insert Successful!!", Toast.LENGTH_LONG).show();
                 }
             }

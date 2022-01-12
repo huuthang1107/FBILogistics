@@ -2,6 +2,9 @@ package com.example.demoapp.view.dialog.fcl;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +24,9 @@ import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
+
 import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,31 +72,31 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         initView();
 
 
-
         return view;
     }
 
-    public void setInfo(){
+    public void setInfo() {
 
-           if(bundle != null){
-               fcl = (Fcl) bundle.getSerializable(Constants.FCL_UPDATE);
+        if (bundle != null) {
+            fcl = (Fcl) bundle.getSerializable(Constants.FCL_UPDATE);
 
-               binding.updateAutoMonth.setText(fcl.getMonth());
-               binding.updateAutoContainer.setText(fcl.getType());
-               binding.updateAutoContinent.setText(fcl.getContinent());
-               Objects.requireNonNull(binding.tfPol.getEditText()).setText(fcl.getPol());
-               Objects.requireNonNull(binding.tfPod.getEditText()).setText(fcl.getPod());
-               Objects.requireNonNull(binding.tfOf20.getEditText()).setText(fcl.getOf20());
-               Objects.requireNonNull(binding.tfOf40.getEditText()).setText(fcl.getOf40());
-               Objects.requireNonNull(binding.tfSu20.getEditText()).setText(fcl.getSu20());
-               Objects.requireNonNull(binding.tfSu40.getEditText()).setText(fcl.getSu40());
-               Objects.requireNonNull(binding.tfLines.getEditText()).setText(fcl.getLinelist());
-               Objects.requireNonNull(binding.tfNotes.getEditText()).setText(fcl.getNotes());
-               Objects.requireNonNull(binding.tfValid.getEditText()).setText(fcl.getValid());
-               Objects.requireNonNull(binding.tfNotes2.getEditText()).setText(fcl.getNotes2());
-           }else{
-               Toast.makeText(getContext(), "GetData Failed", Toast.LENGTH_LONG).show();
-           }
+            binding.updateAutoMonth.setText(fcl.getMonth());
+            binding.updateAutoContainer.setText(fcl.getType());
+            binding.updateAutoContinent.setText(fcl.getContinent());
+            Objects.requireNonNull(binding.tfPol.getEditText()).setText(fcl.getPol());
+            Objects.requireNonNull(binding.tfPod.getEditText()).setText(fcl.getPod());
+            Objects.requireNonNull(binding.tfOf20.getEditText()).setText(fcl.getOf20());
+            Objects.requireNonNull(binding.tfOf40.getEditText()).setText(fcl.getOf40());
+            Objects.requireNonNull(binding.tfOf45.getEditText()).setText(fcl.getOf45());
+            Objects.requireNonNull(binding.tfSu20.getEditText()).setText(fcl.getSu20());
+            Objects.requireNonNull(binding.tfSu40.getEditText()).setText(fcl.getSu40());
+            Objects.requireNonNull(binding.tfLines.getEditText()).setText(fcl.getLinelist());
+            Objects.requireNonNull(binding.tfNotes.getEditText()).setText(fcl.getNotes());
+            Objects.requireNonNull(binding.tfValid.getEditText()).setText(fcl.getValid());
+            Objects.requireNonNull(binding.tfNotes2.getEditText()).setText(fcl.getNotes2());
+        } else {
+            Toast.makeText(getContext(), "GetData Failed", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -138,7 +143,72 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
             }
         });
 
+        textWatcher();
+
         setCancelable(false);
+
+    }
+
+    /**
+     * If this field is not empty, set null for error
+     */
+    public void textWatcher() {
+        Objects.requireNonNull(binding.tfPol.getEditText()).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (TextUtils.isEmpty(binding.tfPol.getEditText().getText().toString())) {
+                    binding.tfPol.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        Objects.requireNonNull(binding.tfPod.getEditText()).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (TextUtils.isEmpty(binding.tfPod.getEditText().getText().toString())) {
+                    binding.tfPod.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        Objects.requireNonNull(binding.tfValid.getEditText()).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (TextUtils.isEmpty(binding.tfValid.getEditText().getText().toString())) {
+                    binding.tfValid.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
     }
 
@@ -152,8 +222,11 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_function_update:
-                updateFcl();
-                dismiss();
+                if (isFilled()) {
+                    updateFcl();
+                    dismiss();
+                } else
+                    Toast.makeText(getContext(), "Update Failed!!", Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -170,6 +243,7 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         String pod = Objects.requireNonNull(binding.tfPod.getEditText()).getText().toString();
         String of20 = Objects.requireNonNull(binding.tfOf20.getEditText()).getText().toString();
         String of40 = Objects.requireNonNull(binding.tfOf40.getEditText()).getText().toString();
+        String of45 = Objects.requireNonNull(binding.tfOf45.getEditText()).getText().toString();
         String su20 = Objects.requireNonNull(binding.tfSu20.getEditText()).getText().toString();
         String su40 = Objects.requireNonNull(binding.tfSu40.getEditText()).getText().toString();
         String line = Objects.requireNonNull(binding.tfLines.getEditText()).getText().toString();
@@ -178,27 +252,16 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         String note2 = Objects.requireNonNull(binding.tfNotes2.getEditText()).getText().toString();
 
         mCommunicateViewModel.makeChanges();
-        Call<Fcl> call = mFclViewModel.updateFcl(fcl.getStt(),pol, pod, of20, of40, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2]);
-        Log.d("TestUpdate", fcl.getStt());
-        Log.d("TestUpdate", pol);
-        Log.d("TestUpdate", pod);
-        Log.d("TestUpdate", of20);
-        Log.d("TestUpdate", of40);
-        Log.d("TestUpdate", su20);
-        Log.d("TestUpdate", su40);
-        Log.d("TestUpdate", line);
-        Log.d("TestUpdate", notes);
-        Log.d("TestUpdate", valid);
-        Log.d("TestUpdate", note2);
-        Log.d("TestUpdate", listStr[1]);
-        Log.d("TestUpdate", listStr[0]);
-        Log.d("TestUpdate", listStr[2]);
+        Call<Fcl> call = mFclViewModel.updateFcl(fcl.getStt(), pol, pod, of20, of40, of45, su20, su40, line, notes, valid, note2, listStr[1], listStr[0], listStr[2]);
+
         call.enqueue(new Callback<Fcl>() {
             @Override
             public void onResponse(@NonNull Call<Fcl> call, @NonNull Response<Fcl> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Created Successful!!", Toast.LENGTH_LONG).show();
                 }
+
+
             }
 
             @Override
@@ -208,4 +271,24 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         });
     }
 
+    public boolean isFilled() {
+        boolean result = true;
+
+        if (TextUtils.isEmpty(Objects.requireNonNull(binding.tfPol.getEditText()).getText().toString())) {
+            result = false;
+            binding.tfPol.setError(Constants.ERROR_POL);
+        }
+
+        if (TextUtils.isEmpty(Objects.requireNonNull(binding.tfValid.getEditText()).getText().toString())) {
+            result = false;
+            binding.tfValid.setError(Constants.ERROR_VALID);
+        }
+
+        if (TextUtils.isEmpty(Objects.requireNonNull(binding.tfPod.getEditText()).getText().toString())) {
+            result = false;
+            binding.tfPod.setError(Constants.ERROR_POD);
+        }
+
+        return result;
+    }
 }

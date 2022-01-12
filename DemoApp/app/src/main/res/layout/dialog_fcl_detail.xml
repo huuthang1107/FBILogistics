@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="400dp"
         android:padding="10dp">
 
         <TextView
@@ -135,6 +135,30 @@
             app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of20" />
 
         <TextView
+            android:id="@+id/textView45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/col_of45"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+
+        <TextView
+            android:id="@+id/tv_row_price_asia_of45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/col_of45"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+
+        <TextView
             android:id="@+id/textView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -144,7 +168,7 @@
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of45" />
 
         <TextView
             android:id="@+id/tv_row_price_asia_su20"
@@ -157,7 +181,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of45" />
 
         <TextView
             android:id="@+id/textView8"
@@ -317,11 +341,27 @@
             android:id="@+id/btn_update_fcl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="12dp"
             android:elevation="10dp"
             android:padding="10dp"
             android:text="@string/btn_update"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:backgroundTint="#fff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_created" />
+
+        <Button
+            android:id="@+id/btn_add_new_fcl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="12dp"
+            android:elevation="10dp"
+            android:padding="10dp"
+            android:text="@string/btn_add_new"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="17sp"

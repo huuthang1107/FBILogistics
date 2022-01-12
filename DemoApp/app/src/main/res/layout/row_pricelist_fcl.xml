@@ -90,6 +90,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_pol" />
 
             <TextView
+                android:id="@+id/changeTextOf20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -139,12 +140,35 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/col_su2"
+                android:text="@string/col_of45"
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+
+            <TextView
+                android:id="@+id/tv_row_price_asia_of45"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/col_of45"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/col_su2"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of45" />
 
             <TextView
                 android:id="@+id/tv_row_price_asia_su20"
@@ -157,7 +181,7 @@
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of40" />
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_of45" />
 
             <TextView
                 android:layout_width="0dp"
@@ -280,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="20dp"
-                app:layout_constraintGuide_percent="0.4" />
+                app:layout_constraintGuide_percent="0.3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </com.google.android.material.card.MaterialCardView>

@@ -26,6 +26,10 @@ public class Fcl implements Serializable {
     @Expose
     private String of40;
 
+    @SerializedName("of45")
+    @Expose
+    private String of45;
+
     @SerializedName("su20")
     @Expose
     private String su20;
@@ -66,28 +70,14 @@ public class Fcl implements Serializable {
     @Expose
     private String createdDate;
 
-    /**
-     * Constructor
-     *
-     * @param stt      stt
-     * @param pol      pol
-     * @param pod      pod
-     * @param of20     ocean freight 20
-     * @param of40     ocean freight 40
-     * @param su20     surcharge 20
-     * @param su40     surcharge 40
-     * @param linelist linelist
-     * @param notes    notes 1
-     * @param valid    valid
-     * @param notes2   notes2
-     */
-    public Fcl(String stt, String pol, String pod, String of20, String of40, String su20,
+    public Fcl(String stt, String pol, String pod, String of20, String of40, String of45, String su20,
                String su40, String linelist, String notes, String valid, String notes2) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
         this.of40 = of40;
+        this.of45 = of45;
         this.su20 = su20;
         this.su40 = su40;
         this.linelist = linelist;
@@ -96,13 +86,14 @@ public class Fcl implements Serializable {
         this.notes2 = notes2;
     }
 
-    public Fcl(String pol, String pod, String of20, String of40, String su20, String su40,
-               String linelist, String notes, String valid, String notes2, String type,
-               String month, String continent, String createdDate) {
+    public Fcl(String pol, String pod, String of20, String of40, String of45, String su20, String su40,
+               String linelist, String notes, String valid, String notes2, String type, String month,
+               String continent, String createdDate) {
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
         this.of40 = of40;
+        this.of45 = of45;
         this.su20 = su20;
         this.su40 = su40;
         this.linelist = linelist;
@@ -115,30 +106,13 @@ public class Fcl implements Serializable {
         this.createdDate = createdDate;
     }
 
-    /**
-     * Constructor
-     *
-     * @param pol       pol
-     * @param pod       pod
-     * @param of20      ocean freight 20
-     * @param of40      ocean freight 40
-     * @param su20      surcharge 20
-     * @param su40      surcharge 40
-     * @param linelist  linelist
-     * @param notes     notes 1
-     * @param valid     valid
-     * @param notes2    notes2
-     * @param type      type of container
-     * @param month     month
-     * @param continent continent
-     */
-    public Fcl(String pol, String pod, String of20, String of40,
-               String su20, String su40, String linelist, String notes, String valid,
-               String notes2, String type, String month, String continent) {
+    public Fcl(String pol, String pod, String of20, String of40, String of45, String su20, String su40,
+               String linelist, String notes, String valid, String notes2, String type, String month, String continent) {
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
         this.of40 = of40;
+        this.of45 = of45;
         this.su20 = su20;
         this.su40 = su40;
         this.linelist = linelist;
@@ -216,6 +190,14 @@ public class Fcl implements Serializable {
 
     public void setOf40(String of40) {
         this.of40 = of40;
+    }
+
+    public String getOf45() {
+        return of45;
+    }
+
+    public void setOf45(String of45) {
+        this.of45 = of45;
     }
 
     public String getSu20() {

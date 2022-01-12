@@ -39,6 +39,7 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull PriceListFclAdapter.ViewHolder holder, int position) {
         Fcl priceListModel = mListDetailFcl.get(position);
@@ -49,12 +50,14 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
             holder.pod.setText(priceListModel.getPod());
             holder.of20.setText(priceListModel.getOf20());
             holder.of40.setText(priceListModel.getOf40());
+            holder.of45.setText(priceListModel.getOf45());
             holder.su20.setText(priceListModel.getSu20());
             holder.su40.setText(priceListModel.getSu40());
             holder.line.setText(priceListModel.getLinelist());
             holder.notes1.setText(priceListModel.getNotes());
             holder.valid.setText(priceListModel.getValid());
             holder.notes2.setText(priceListModel.getNotes2());
+
         } else {
             return;
         }
@@ -98,9 +101,10 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
        notifyDataSetChanged();
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView stt, pol, pod, of20, of40, su20, su40, line, notes1, valid, notes2;
+        TextView stt, pol, pod, of20, of40, of45, su20, su40, line, notes1, valid, notes2, changeOf20;
         ConstraintLayout fclCardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,6 +114,7 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
             pod = itemView.findViewById(R.id.tv_row_price_asia_pod);
             of20 = itemView.findViewById(R.id.tv_row_price_asia_of20);
             of40 = itemView.findViewById(R.id.tv_row_price_asia_of40);
+            of45 = itemView.findViewById(R.id.tv_row_price_asia_of45);
             su20 = itemView.findViewById(R.id.tv_row_price_asia_su20);
             su40 = itemView.findViewById(R.id.tv_row_price_asia_su40);
             line = itemView.findViewById(R.id.tv_row_price_asia_line);
@@ -117,7 +122,10 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
             valid = itemView.findViewById(R.id.tv_row_price_asia_valid);
             notes2 = itemView.findViewById(R.id.tv_row_price_asia_notes2);
 
+            changeOf20 = itemView.findViewById(R.id.changeTextOf20);
+
         }
+
     }
 
 }

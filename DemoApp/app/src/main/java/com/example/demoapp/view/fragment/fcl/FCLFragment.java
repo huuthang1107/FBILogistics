@@ -1,12 +1,16 @@
 package com.example.demoapp.view.fragment.fcl;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListFclAdapter;
 
+import com.example.demoapp.databinding.FragmentAirDialogBinding;
 import com.example.demoapp.databinding.FragmentFclBinding;
+import com.example.demoapp.databinding.RowPricelistFclBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.fcl.InsertFclDialog;
@@ -28,6 +34,7 @@ import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FCLFragment extends Fragment implements View.OnClickListener {
 
@@ -56,6 +63,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentFclBinding.inflate(inflater, container, false);
+
         View view = binding.getRoot();
 
         priceListFclAdapter = new PriceListFclAdapter(getContext());
@@ -107,6 +115,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
                 setDataForRecyclerView(month, continent, radioItem);
             }
         });
+
     }
 
     /**
@@ -147,7 +156,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             }
-        }catch (NullPointerException nullPointerException){
+        } catch (NullPointerException nullPointerException) {
             Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
         return subList;
@@ -185,8 +194,22 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         this.listPriceList = new ArrayList<>();
 
         mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
-            this.listPriceList = detailsPojoFcl;
+            this.listPriceList = sortArray(detailsPojoFcl);
         });
+    }
+
+    /**
+     * This method will sort a list
+     *
+     * @param list list to sort
+     * @return sorted list
+     */
+    public List<Fcl> sortArray(List<Fcl> list) {
+        List<Fcl> result = new ArrayList<>();
+        for (int i = list.size() - 1 ; i >= 0; i--) {
+            result.add(list.get(i));
+        }
+        return result;
     }
 
     /**
@@ -216,7 +239,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
         priceListFclAdapter = new PriceListFclAdapter(getContext());
         mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
-            priceListFclAdapter.setDataFcl(prepareDataForResume(month, continent, radioItem, detailsPojoFcl));
+            priceListFclAdapter.setDataFcl(prepareDataForResume(month, continent, radioItem, sortArray(detailsPojoFcl)));
         });
 
         binding.priceListRcv.setAdapter(priceListFclAdapter);
@@ -227,7 +250,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      *
      * @param view click
      */
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "NotifyDataSetChanged"})
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -247,6 +270,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
 
             case R.id.radio_fr:
                 radioItem = binding.radioFr.getText().toString();
+
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
 

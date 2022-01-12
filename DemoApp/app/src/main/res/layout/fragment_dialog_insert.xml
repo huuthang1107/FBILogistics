@@ -201,7 +201,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col9" />
+                android:hint="@string/free_time" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -237,7 +237,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col9" />
+                android:hint="@string/col11" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout

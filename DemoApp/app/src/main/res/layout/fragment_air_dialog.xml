@@ -11,7 +11,7 @@
     app:cardUseCompatPadding="true">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         android:id="@+id/row_cv_air"
         android:padding="10dp">
 
@@ -322,6 +322,22 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="20dp"
             app:layout_constraintGuide_percent="0.4" />
+
+        <Button
+            android:id="@+id/btn_update_air"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="15dp"
+            android:elevation="10dp"
+            android:padding="10dp"
+            android:text="@string/btn_update"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:backgroundTint="#fff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_asia_air_note" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:layout_width="match_parent"

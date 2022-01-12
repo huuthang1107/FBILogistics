@@ -2,13 +2,13 @@ package com.example.demoapp.model;
 
 import java.io.Serializable;
 
-public class Air implements Serializable {
-    private String stt, aol, aod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
+public class AirExport implements Serializable {
+    private String stt, aol, aod, pol, pod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
             schedule, transittime, valid, note, month, continent;
 
-    public Air(String stt, String aol, String aod, String dim, String grossweight, String typeofcargo,
-               String airfreight, String surcharge, String airlines, String schedule,
-               String transittime, String valid, String note, String month, String continent) {
+    public AirExport(String stt, String aol, String aod, String dim, String grossweight, String typeofcargo,
+                     String airfreight, String surcharge, String airlines, String schedule,
+                     String transittime, String valid, String note, String month, String continent) {
         this.stt = stt;
         this.aol = aol;
         this.aod = aod;
@@ -25,6 +25,8 @@ public class Air implements Serializable {
         this.month = month;
         this.continent = continent;
     }
+
+
 
     public String getStt() {
         return stt;

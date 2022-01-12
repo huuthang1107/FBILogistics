@@ -16,28 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/typeof_container"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
-
-            <AutoCompleteTextView
-                android:id="@+id/insert_auto_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:textSize="19sp"
-                tools:ignore="LabelFor" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:hint="@string/select_month"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_calendar_month_black_24">
 
             <AutoCompleteTextView
                 android:id="@+id/insert_auto_month"
@@ -55,7 +36,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:hint="@string/select_continent"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_travel_explore_black_24">
 
             <AutoCompleteTextView
                 android:id="@+id/insert_auto_continent"
@@ -67,13 +48,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_pol"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_pol_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -82,13 +64,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_pod"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_pod_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -97,149 +80,192 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_of20"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_dim_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col_of2" />
+                android:hint="@string/DIM_M" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_of40"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_gross_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col_of4" />
+                android:hint="@string/colAIR_col5" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_su20"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_typeofcargo_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col_su2" />
+                android:hint="@string/colAIR_col6" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_su40"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_airfreight_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col_su4" />
+                android:hint="@string/colAIR_col7" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_lines"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_surcharge_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col8" />
+                android:hint="@string/colAIR_col8" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_notes"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_airlines_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col9" />
+                android:hint="@string/colAIR_col9" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_valid"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_schedule_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col10" />
+                android:hint="@string/colAIR_col10" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_notes2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_tf_transit_time_air_import"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col9" />
+                android:hint="@string/colAIR_col11" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_valid_air_import"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/colAIR_col12" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_notes_air_import"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/col11" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
-            <Button
-                android:id="@+id/btn_function_cancel"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_function_cancel_air_import"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/btn_color"
+                app:backgroundTintMode="screen"
+                android:background="@drawable/selector_button"
                 android:text="@string/btn_cancel_txt" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
 
-                android:id="@+id/btn_function_add"
+                android:id="@+id/btn_function_add_air_import"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
+                app:backgroundTintMode="screen"
+                android:background="@drawable/selector_button"
                 android:text="@string/btn_add_txt" />
         </LinearLayout>
     </LinearLayout>

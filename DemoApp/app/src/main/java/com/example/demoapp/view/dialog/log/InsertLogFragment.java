@@ -130,6 +130,7 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
         switch (v.getId()){
             case R.id.btn_function_add:
                 insertLog();
+                dismiss();
 
                 break;
             case R.id.btn_function_cancel:
@@ -203,22 +204,21 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
 
             }
         });
-        resetEditText();
 
     }
-    public void resetEditText(){
-        Objects.requireNonNull(logBinding.tfTenhang.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfHscode.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfCongdung.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfHinhanh.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfCangdi.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfCangden.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfLoaihang.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfSoluongcuthe.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfYeucaudacbiet.getEditText()).setText("");
-        Objects.requireNonNull(logBinding.tfValid.getEditText()).setText("");
-
-    }
+//    public void resetEditText(){
+//        Objects.requireNonNull(logBinding.tfTenhang.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfHscode.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfCongdung.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfHinhanh.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfCangdi.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfCangden.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfLoaihang.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfSoluongcuthe.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfYeucaudacbiet.getEditText()).setText("");
+//        Objects.requireNonNull(logBinding.tfValid.getEditText()).setText("");
+//
+//    }
     private void uploadImage(){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,75, byteArrayOutputStream);

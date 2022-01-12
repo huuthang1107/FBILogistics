@@ -1,19 +1,20 @@
 package com.example.demoapp.view.dialog.air;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentAirDialogBinding;
-import com.example.demoapp.model.Air;
-import com.example.demoapp.model.Log;
+import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.log.FragmentLogDetail;
 
 
-public class FragmentAirDetail extends DialogFragment {
+public class FragmentAirDetail extends DialogFragment implements View.OnClickListener {
 
     private FragmentAirDialogBinding mAirDialogBinding;
     private Bundle bundle;
@@ -23,29 +24,44 @@ public class FragmentAirDetail extends DialogFragment {
                              Bundle savedInstanceState) {
         mAirDialogBinding = FragmentAirDialogBinding.inflate(inflater, container, false);
         View view = mAirDialogBinding.getRoot();
-
         bundle = getArguments();
         if (bundle != null) {
-            Air air = (Air) bundle.getSerializable(Constants.AIR_OBJECT);
-            mAirDialogBinding.tvRowPriceAsiaAirStt.setText(air.getStt());
-            mAirDialogBinding.tvRowPriceAsiaAirAol.setText(air.getAol());
-            mAirDialogBinding.tvRowPriceAsiaAirAod.setText(air.getAod());
-            mAirDialogBinding.tvRowPriceAsiaAirDim.setText(air.getDim());
-            mAirDialogBinding.tvRowPriceAsiaAirGrossweight.setText(air.getGrossweight());
-            mAirDialogBinding.tvRowPriceAsiaAirTypeofcargo.setText(air.getTypeofcargo());
-            mAirDialogBinding.tvRowPriceAsiaAirFreight.setText(air.getAirfreight());
-            mAirDialogBinding.tvRowPriceAsiaAirSurcharge.setText(air.getSurcharge());
-            mAirDialogBinding.tvRowPriceAsiaAirAirlines.setText(air.getAirlines());
-            mAirDialogBinding.tvRowPriceAsiaAirSchedule.setText(air.getSchedule());
-            mAirDialogBinding.tvRowPriceAsiaAirTransittime.setText(air.getTransittime());
-            mAirDialogBinding.tvRowPriceAsiaAirValid.setText(air.getValid());
-            mAirDialogBinding.tvRowPriceAsiaAirNote.setText(air.getNote());
-
+            AirExport air = (AirExport) bundle.getSerializable(Constants.AIR_OBJECT);
+            bundle.putSerializable(Constants.AIR_UPDATE, air);
+            setDataAir(air);
         }
+        mAirDialogBinding.btnUpdateAir.setOnClickListener(this);
         return view;
+    }
+    public  void setDataAir(AirExport air){
+        mAirDialogBinding.tvRowPriceAsiaAirStt.setText(air.getStt());
+        mAirDialogBinding.tvRowPriceAsiaAirAol.setText(air.getAol());
+        mAirDialogBinding.tvRowPriceAsiaAirAod.setText(air.getAod());
+        mAirDialogBinding.tvRowPriceAsiaAirDim.setText(air.getDim());
+        mAirDialogBinding.tvRowPriceAsiaAirGrossweight.setText(air.getGrossweight());
+        mAirDialogBinding.tvRowPriceAsiaAirTypeofcargo.setText(air.getTypeofcargo());
+        mAirDialogBinding.tvRowPriceAsiaAirFreight.setText(air.getAirfreight());
+        mAirDialogBinding.tvRowPriceAsiaAirSurcharge.setText(air.getSurcharge());
+        mAirDialogBinding.tvRowPriceAsiaAirAirlines.setText(air.getAirlines());
+        mAirDialogBinding.tvRowPriceAsiaAirSchedule.setText(air.getSchedule());
+        mAirDialogBinding.tvRowPriceAsiaAirTransittime.setText(air.getTransittime());
+        mAirDialogBinding.tvRowPriceAsiaAirValid.setText(air.getValid());
+        mAirDialogBinding.tvRowPriceAsiaAirNote.setText(air.getNote());
     }
     public static FragmentAirDetail getInstance(){
 
         return new FragmentAirDetail();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_update_air:
+                DialogFragment fragment = UpdateAirDialog.getInstance();
+                fragment.setArguments(bundle);
+                fragment.show(getParentFragmentManager(), "Update");
+                break;
+        }
     }
 }

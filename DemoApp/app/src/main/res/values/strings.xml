@@ -60,8 +60,8 @@
 
     <!--Table columns name -->
     <string name="col1">STT</string>
-    <string name="col2">POL</string>
-    <string name="col3">POD</string>
+    <string name="col2">AOL</string>
+    <string name="col3">AOD</string>
 
 
     <string name="col_of2">O/F 20</string>
@@ -117,8 +117,9 @@
     <string name="colAIR_col2">AOL</string>
     <string name="colAIR_col3">AOD</string>
     <string name="colAIR_col4">DIM (LxHxW cm)</string>
+    <string name="DIM_M">DIM (LxHxW m)</string>
     <string name="colAIR_col5">GROSS WEIGHT</string>
-    <string name="colAIR_col6">TYPR OF CARGO</string>
+    <string name="colAIR_col6">TYPE OF CARGO</string>
     <string name="colAIR_col7">AIR FREIGHT</string>
     <string name="colAIR_col8">SURCHARGE</string>
     <string name="colAIR_col9">AIRLINES</string>
@@ -172,5 +173,9 @@
     <string name="txt_dom_length">Chiều Dài</string>
     <string name="txt_dom_height">Chiều Cao</string>
     <string name="txt_dom_width">Chiều Rộng</string>
+    <string name="action_search">Search</string>
+    <string name="btn_import_air">Nhập Khẩu</string>
+    <string name="btn_export_air">Xuất Khẩu</string>
+    <string name="title_dialog_air">Chọn loại vận chuyển</string>
 
 </resources>

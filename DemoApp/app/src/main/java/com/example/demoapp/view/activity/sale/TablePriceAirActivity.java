@@ -20,10 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAIRAdapter;
 import com.example.demoapp.databinding.ActivityTablePriceAirBinding;
-import com.example.demoapp.model.Air;
+import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.air.InsertAirDialog;
-import com.example.demoapp.viewmodel.AirViewModel;
+import com.example.demoapp.view.dialog.air.InsertAirExportDialog;
+import com.example.demoapp.viewmodel.AirExportViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 
 import java.util.ArrayList;
@@ -36,11 +36,11 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
     private String continent = "";
     PriceListAIRAdapter priceListAdapter;
 
-    private AirViewModel mAirViewModel;
+    private AirExportViewModel mAirViewModel;
 
     private LinearLayoutManager linearLayoutManager;
 
-    private List<Air> airList = new ArrayList<>();
+    private List<AirExport> airList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
         View view = tablePriceAirBinding.getRoot();
 
         priceListAdapter = new PriceListAIRAdapter(this);
-        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
+        mAirViewModel = new ViewModelProvider(this).get(AirExportViewModel.class);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
 
@@ -123,10 +123,10 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    private List<Air> prepareDataForRecyclerView(String m, String c) {
-        List<Air> list = new ArrayList<>();
+    private List<AirExport> prepareDataForRecyclerView(String m, String c) {
+        List<AirExport> list = new ArrayList<>();
         try {
-            for (Air a : airList) {
+            for (AirExport a : airList) {
                 if (a.getMonth().equalsIgnoreCase(m) && a.getContinent().equalsIgnoreCase(c)) {
                     list.add(a);
                 }
@@ -137,11 +137,11 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
         return list;
     }
 
-    public List<Air> prepareDataForResume(String m, String c, List<Air> list) {
+    public List<AirExport> prepareDataForResume(String m, String c, List<AirExport> list) {
         // reset a list when user choose different
-        List<Air> subList = new ArrayList<>();
+        List<AirExport> subList = new ArrayList<>();
         try {
-            for (Air air : list) {
+            for (AirExport air : list) {
                 if (air.getMonth().equalsIgnoreCase(m) && air.getContinent().equalsIgnoreCase(c)) {
                     subList.add(air);
                 }
@@ -167,7 +167,7 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_air_fab_activity:
-                DialogFragment dialogFragment = InsertAirDialog.insertDiaLogAIR();
+                DialogFragment dialogFragment = InsertAirExportDialog.insertDiaLogAIR();
                 dialogFragment.show(getSupportFragmentManager(), "Insert Dialog");
 
                 break;

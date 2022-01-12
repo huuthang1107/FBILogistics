@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,18 +18,22 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.model.Air;
+import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.air.FragmentAirDetail;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder> {
+public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder>
+        implements Filterable {
     private Context context;
-    private List<Air> listAIRS;
+    private List<AirExport> listAIRS;
+    private List<AirExport> mlistAirOld;
 
     public PriceListAIRAdapter(Context context) {
         this.context = context;
+        this.mlistAirOld = listAIRS;
     }
 
     @NonNull
@@ -40,7 +46,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PriceAirViewHolder holder, int position) {
-            Air priceAir = listAIRS.get(position);
+            AirExport priceAir = listAIRS.get(position);
         if ( listAIRS.size() > 0) {
 
             holder.tvstt.setText(priceAir.getStt());
@@ -70,7 +76,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
     });
     }
 
-    private void goToDetail(Air air) {
+    private void goToDetail(AirExport air) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
         DialogFragment dialogFragment = FragmentAirDetail.getInstance();
@@ -90,9 +96,57 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setDataAir(List<Air> mListDetailAir) {
+    public void setDataAir(List<AirExport> mListDetailAir) {
         this.listAIRS = mListDetailAir;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch = charSequence.toString();
+                if(strSearch.isEmpty()){
+                    listAIRS = mlistAirOld;
+                }else{
+                    List<AirExport> list = new ArrayList<>();
+                    for(AirExport air: mlistAirOld){
+                        if(air.getAod().toLowerCase().contains(strSearch.toLowerCase())
+                        && air.getAol().toLowerCase().contains(strSearch.toLowerCase())){
+                            list.add(air);
+                        }
+                    }
+                    mlistAirOld = list;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mlistAirOld;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listAIRS = (List<AirExport>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public List<AirExport> searchAir(String keySearch){
+        if(keySearch.isEmpty()){
+            listAIRS = mlistAirOld;
+        }else{
+            List<AirExport> list = new ArrayList<>();
+            for(AirExport air: mlistAirOld){
+                if(air.getAod().toLowerCase().contains(keySearch.toLowerCase())
+                        && air.getAol().toLowerCase().contains(keySearch.toLowerCase())){
+                    list.add(air);
+                }
+            }
+            mlistAirOld = list;
+        }
+        return mlistAirOld;
     }
 
 
@@ -120,4 +174,5 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         }
 
     }
+
 }

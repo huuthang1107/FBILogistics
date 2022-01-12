@@ -66,8 +66,6 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         setInfo();
         initView();
 
-
-
         return view;
     }
 

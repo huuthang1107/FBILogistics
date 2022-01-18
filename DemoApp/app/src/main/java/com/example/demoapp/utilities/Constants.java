@@ -3,7 +3,7 @@ package com.example.demoapp.utilities;
 public class Constants {
 
     public static final String FCL_UPDATE = "update_fcl";
-    public static String URL_API = "http://192.168.1.6/database/";
+    public static String URL_API = "http://192.168.1.2/database/";
     public static String FCL_OBJECT = "object_fcl";
     public static String FCL_ADD_NEW = "add_new_fcl";
     public static String IMPORT_OBJECT = "object_imp";

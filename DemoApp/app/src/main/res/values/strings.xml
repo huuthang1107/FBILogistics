@@ -174,5 +174,11 @@
     <string name="txt_dom_length">Chiều Dài</string>
     <string name="txt_dom_height">Chiều Cao</string>
     <string name="txt_dom_width">Chiều Rộng</string>
+    <string name="title_activity_pro_import">ProImportActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="label_import_imp">IMPORT</string>
+    <string name="label_import_lcl">LCL</string>
 
 </resources>

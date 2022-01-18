@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_pro_home, container, false);
 
         mViewPager2 = (ViewPager2) view.findViewById(R.id.view_pager_2);
         mCircleIndicator3 = (CircleIndicator3) view.findViewById(R.id.circle_indicator_3);

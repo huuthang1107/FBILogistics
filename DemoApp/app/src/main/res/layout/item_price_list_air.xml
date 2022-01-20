@@ -8,6 +8,16 @@
     <TableRow>
         <TextView
             android:layout_width="100dp"
+            android:layout_marginStart="2dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_column="1"
+            android:text="Nhập khẩu"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="100dp"
             android:id="@+id/tv_row_price_asia_air_stt"
             android:layout_marginStart="2dp"
             android:gravity="center"

@@ -1,4 +1,4 @@
-package com.example.demoapp.view.dialog.air;
+package com.example.demoapp.view.dialog.air.air_import;
 
 import android.os.Bundle;
 
@@ -14,15 +14,21 @@ import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentInsertAirImportDialogBinding;
-import com.example.demoapp.model.AirExport;
 import com.example.demoapp.model.AirImport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.viewmodel.AirExportViewModel;
 import com.example.demoapp.viewmodel.AirImportViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +43,7 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
     private AirImportViewModel mAirViewModel;
     private List<AirImport> airList = new ArrayList<>();
     private CommunicateViewModel mCommunicateViewModel;
+    Calendar calendar;
     public static InsertAirImportDialog insertDiaLogAIRImport(){
         return new InsertAirImportDialog();
     }
@@ -50,8 +57,16 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
         mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
         initView();
-
+        eventOnclick();
+        showDatePicker();
         return view;
+    }
+
+    private void eventOnclick() {
+        mInsertAirImportDialogBinding.btnFunctionAddAirImport.setOnClickListener(this);
+        mInsertAirImportDialogBinding.btnFunctionCancelAirImport.setOnClickListener(this);
+        mInsertAirImportDialogBinding.tfValidAirImport.setOnClickListener(this);
+
     }
 
     private void initView() {
@@ -61,8 +76,6 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
         mInsertAirImportDialogBinding.insertAutoMonth.setAdapter(adapterItemsMonth);
         mInsertAirImportDialogBinding.insertAutoContinent.setAdapter(adapterItemsContinent);
 
-        mInsertAirImportDialogBinding.btnFunctionAddAirImport.setOnClickListener(this);
-        mInsertAirImportDialogBinding.btnFunctionCancelAirImport.setOnClickListener(this);
 
         mInsertAirImportDialogBinding.insertAutoMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,6 +105,36 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
                 dismiss();
                 break;
         }
+    }
+
+    public void showDatePicker() {
+
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select date");
+
+        final MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        mInsertAirImportDialogBinding.tfValidAirImport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+
+                        TimeZone timeZoneUTC = TimeZone.getDefault();
+                        // It will be negative, so that's the -1
+                        int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
+                        // Create a date format, then a date object with our offset
+                        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                        Date date = new Date(selection + offsetFromUTC);
+
+                        Objects.requireNonNull(mInsertAirImportDialogBinding.tfValidAirImport.getEditText()).setText(simpleFormat.format(date));
+                    }
+                });
+            }
+        });
+
     }
 
     private void insertAirImport() {

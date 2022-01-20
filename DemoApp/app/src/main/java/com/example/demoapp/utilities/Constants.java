@@ -3,7 +3,7 @@ package com.example.demoapp.utilities;
 public class Constants {
 
     public static final String FCL_UPDATE = "update_fcl";
-    public static String URL_API = "http://192.168.1.5/database/";
+    public static String URL_API = "http://192.168.1.210/database/";
     public static String FCL_OBJECT = "object_fcl";
     public static String IMPORT_OBJECT = "object_imp";
 
@@ -20,6 +20,8 @@ public class Constants {
 
     public static final String LOG_OBJECT = "object_log";
     public static final String AIR_OBJECT = "object_air";
+    public static final String AIR_IMPORT = "object_import_air";
+    public static final String AIR_IMPORT_UPDATE = "object_import_air_update";
     public static final String AIR_UPDATE = "update_air";
 
     public static final String ERROR_AUTO_COMPLETE_MONTH = "Bạn chưa chọn tháng !!!";

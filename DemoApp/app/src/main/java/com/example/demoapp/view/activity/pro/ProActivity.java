@@ -10,10 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -23,7 +20,7 @@ import com.example.demoapp.view.fragment.fcl.FCLFragment;
 import com.example.demoapp.view.fragment.dom.FragmentDOM;
 import com.example.demoapp.view.fragment.home.HomeFragment;
 import com.example.demoapp.view.fragment.imp.ImportFragment;
-import com.example.demoapp.view.fragment.air.LCLFragment;
+import com.example.demoapp.view.fragment.air.AirExportFragment;
 import com.example.demoapp.view.fragment.log.LogFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -106,7 +103,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
 
         }else if (id == R.id.nav_lcl) {
             if (mCurrentFragment != FRAGMENT_LCL) {
-                replaceFragment(new LCLFragment());
+                replaceFragment(new AirExportFragment());
                 mCurrentFragment = FRAGMENT_LCL;
                 toolbar.setTitle("AIR PAGE");
             }

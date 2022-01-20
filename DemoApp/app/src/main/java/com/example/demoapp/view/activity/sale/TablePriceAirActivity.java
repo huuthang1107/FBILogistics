@@ -22,7 +22,7 @@ import com.example.demoapp.adapter.PriceListAIRAdapter;
 import com.example.demoapp.databinding.ActivityTablePriceAirBinding;
 import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.air.InsertAirExportDialog;
+import com.example.demoapp.view.dialog.air.air_export.InsertAirExportDialog;
 import com.example.demoapp.viewmodel.AirExportViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 

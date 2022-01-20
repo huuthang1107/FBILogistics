@@ -177,5 +177,9 @@
     <string name="btn_import_air">Nhập Khẩu</string>
     <string name="btn_export_air">Xuất Khẩu</string>
     <string name="title_dialog_air">Chọn loại vận chuyển</string>
+    <string name="title_import_air">Nhập khẩu</string>
+    <string name="title_export_air">Xuất khẩu</string>
+    <string name="menu_zoom_air">Zoom-out page transformer</string>
+    <string name="menu_depth_air">Depth page transformer</string>
 
 </resources>

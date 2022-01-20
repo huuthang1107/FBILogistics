@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,13 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.R;
 import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.air.FragmentAirDetail;
+import com.example.demoapp.view.dialog.air.air_export.FragmentAirDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder>
-        implements Filterable {
+public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder> {
     private Context context;
     private List<AirExport> listAIRS;
     private List<AirExport> mlistAirOld;
@@ -101,53 +97,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         notifyDataSetChanged();
     }
 
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String strSearch = charSequence.toString();
-                if(strSearch.isEmpty()){
-                    listAIRS = mlistAirOld;
-                }else{
-                    List<AirExport> list = new ArrayList<>();
-                    for(AirExport air: mlistAirOld){
-                        if(air.getAod().toLowerCase().contains(strSearch.toLowerCase())
-                        && air.getAol().toLowerCase().contains(strSearch.toLowerCase())){
-                            list.add(air);
-                        }
-                    }
-                    mlistAirOld = list;
-                }
 
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = mlistAirOld;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                listAIRS = (List<AirExport>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
-    public List<AirExport> searchAir(String keySearch){
-        if(keySearch.isEmpty()){
-            listAIRS = mlistAirOld;
-        }else{
-            List<AirExport> list = new ArrayList<>();
-            for(AirExport air: mlistAirOld){
-                if(air.getAod().toLowerCase().contains(keySearch.toLowerCase())
-                        && air.getAol().toLowerCase().contains(keySearch.toLowerCase())){
-                    list.add(air);
-                }
-            }
-            mlistAirOld = list;
-        }
-        return mlistAirOld;
-    }
 
 
     public class PriceAirViewHolder extends RecyclerView.ViewHolder {

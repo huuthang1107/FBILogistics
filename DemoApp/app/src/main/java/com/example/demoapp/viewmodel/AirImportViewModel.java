@@ -44,10 +44,11 @@ public class AirImportViewModel extends AndroidViewModel {
     }
 
     public void loadAllAir() {
+
         mAirList = mAirImportRepository.getAllAir();
     }
 
-    public LiveData<List<AirImport>> getLclList() {
+    public LiveData<List<AirImport>> getAirImportList() {
         loadAllAir();
         return mAirList;
     }

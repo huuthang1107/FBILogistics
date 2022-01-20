@@ -13,5 +13,6 @@
 
     <color name="btn_color">#194f85</color>
     <color name="rcv_price">#ebebeb</color>
+    <color name="orange">#FF5722</color>
 
 </resources>

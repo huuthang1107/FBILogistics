@@ -1,4 +1,4 @@
-package com.example.demoapp.view.dialog.air;
+package com.example.demoapp.view.dialog.air.air_export;
 
 import android.os.Bundle;
 
@@ -56,8 +56,8 @@ public class UpdateAirDialog extends DialogFragment implements View.OnClickListe
     }
 
     private void buttonEvent() {
-        mUpdateAir.btnFunctionCancel.setOnClickListener(this);
-        mUpdateAir.btnFunctionUpdate.setOnClickListener(this);
+        mUpdateAir.btnFunctionInsertExport.setOnClickListener(this);
+        mUpdateAir.btnFunctionUpdateExport.setOnClickListener(this);
     }
 
     private void unit() {
@@ -145,18 +145,53 @@ public class UpdateAirDialog extends DialogFragment implements View.OnClickListe
 
     }
 
+    private void insertAirExport() {
+        String strAol = Objects.requireNonNull(mUpdateAir.tfAol.getEditText()).getText().toString();
+        String strAod = Objects.requireNonNull(mUpdateAir.tfAod.getEditText()).getText().toString();
+        String strDim = Objects.requireNonNull(mUpdateAir.tfDim.getEditText()).getText().toString();
+        String strGross = Objects.requireNonNull(mUpdateAir.tfGross.getEditText()).getText().toString();
+        String strType = Objects.requireNonNull(mUpdateAir.tfTypeofcargo.getEditText()).getText().toString();
+        String strAirFreight = Objects.requireNonNull(mUpdateAir.tfAirfreight.getEditText()).getText().toString();
+        String strSurcharge = Objects.requireNonNull(mUpdateAir.tfSurcharge.getEditText()).getText().toString();
+        String strAirLines = Objects.requireNonNull(mUpdateAir.tfAirlines.getEditText()).getText().toString();
+        String strSchedule = Objects.requireNonNull(mUpdateAir.tfSchedule.getEditText()).getText().toString();
+        String strTransittime = Objects.requireNonNull(mUpdateAir.tfTfTransitTime.getEditText()).getText().toString();
+        String strValid = Objects.requireNonNull(mUpdateAir.tfValid.getEditText()).getText().toString();
+        String strNote = Objects.requireNonNull(mUpdateAir.tfNotes.getEditText()).getText().toString();
+
+        mCommunicateViewModel.makeChanges();
+        Call<AirExport> call = mAirViewModel.insertAir(strAol, strAod, strDim, strGross, strType, strAirFreight,strSurcharge,
+                strAirLines, strSchedule, strTransittime, strValid, strNote, listPriceAir[0] , listPriceAir[1]);
+        call.enqueue(new Callback<AirExport>() {
+            @Override
+            public void onResponse(Call<AirExport> call, Response<AirExport> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(), "Inserr Successful!!", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AirExport> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_function_update:
+            case R.id.btn_function_update_export:
                 updateAir();
                 dismiss();
                 break;
-            case R.id.btn_function_cancel:
+            case R.id.btn_function_insert_export:
+                insertAirExport();
                 dismiss();
                 break;
         }
     }
+
+
 
 
 }

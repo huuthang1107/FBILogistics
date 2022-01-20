@@ -1,6 +1,8 @@
 package com.example.demoapp.model;
 
-public class AirImport {
+import java.io.Serializable;
+
+public class AirImport implements Serializable {
 
     private String stt, pol, pod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
             schedule, transittime, valid, note, month, continent;

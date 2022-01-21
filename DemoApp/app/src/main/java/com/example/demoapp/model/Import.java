@@ -26,9 +26,21 @@ public class Import implements Serializable {
     @Expose
     private String of40;
 
-    @SerializedName("surcharge")
+    @SerializedName("of45")
     @Expose
-    private String surcharge;
+    private String of45;
+
+    @SerializedName("sur20")
+    @Expose
+    private String sur20;
+
+    @SerializedName("sur40")
+    @Expose
+    private String sur40;
+
+    @SerializedName("sur45")
+    @Expose
+    private String sur45;
 
     @SerializedName("total_freight")
     @Expose
@@ -70,32 +82,23 @@ public class Import implements Serializable {
     @Expose
     private String continent;
 
-    /**
-     *
-     * @param stt stt
-     * @param pol pol
-     * @param pod pod
-     * @param of20 ocean freight 20
-     * @param of40 ocean freight 40
-     * @param surcharge surcharge
-     * @param totalFreight total freight
-     * @param carrier carrier
-     * @param schedule schedule
-     * @param transitTime transit time
-     * @param freeTime free time
-     * @param valid valid
-     * @param note note
-     * @param type type
-     * @param month month
-     * @param continent continent
-     */
-    public Import(String stt, String pol, String pod, String of20, String of40, String surcharge, String totalFreight, String carrier, String schedule, String transitTime, String freeTime, String valid, String note, String type, String month, String continent) {
+    @SerializedName("created_date")
+    @Expose
+    private String createdDate;
+
+    public Import(String stt, String pol, String pod, String of20, String of40, String of45,
+                  String sur20, String sur40, String sur45, String totalFreight, String carrier,
+                  String schedule, String transitTime, String freeTime, String valid, String note,
+                  String type, String month, String continent, String createdDate) {
         this.stt = stt;
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
         this.of40 = of40;
-        this.surcharge = surcharge;
+        this.of45 = of45;
+        this.sur20 = sur20;
+        this.sur40 = sur40;
+        this.sur45 = sur45;
         this.totalFreight = totalFreight;
         this.carrier = carrier;
         this.schedule = schedule;
@@ -106,34 +109,21 @@ public class Import implements Serializable {
         this.type = type;
         this.month = month;
         this.continent = continent;
+        this.createdDate = createdDate;
     }
 
-    /**
-     * Constructor
-     * @param pol pol
-     * @param pod pod
-     * @param of20 ocean freight 20
-     * @param of40 ocean freight 40
-     * @param surcharge surcharge
-     * @param totalFreight total freight
-     * @param carrier carrier
-     * @param schedule schedule
-     * @param transitTime transit
-     * @param freeTime free time
-     * @param valid valid
-     * @param note note
-     * @param type type
-     * @param month month
-     * @param continent continent
-     */
-    public Import(String pol, String pod, String of20, String of40, String surcharge,
-                  String totalFreight, String carrier, String schedule, String transitTime,
-                  String freeTime, String valid, String note, String type, String month, String continent) {
+    public Import(String pol, String pod, String of20, String of40, String of45, String sur20,
+                  String sur40, String sur45, String totalFreight, String carrier, String schedule,
+                  String transitTime, String freeTime, String valid, String note, String type,
+                  String month, String continent, String createdDate) {
         this.pol = pol;
         this.pod = pod;
         this.of20 = of20;
         this.of40 = of40;
-        this.surcharge = surcharge;
+        this.of45 = of45;
+        this.sur20 = sur20;
+        this.sur40 = sur40;
+        this.sur45 = sur45;
         this.totalFreight = totalFreight;
         this.carrier = carrier;
         this.schedule = schedule;
@@ -144,6 +134,7 @@ public class Import implements Serializable {
         this.type = type;
         this.month = month;
         this.continent = continent;
+        this.createdDate = createdDate;
     }
 
     public String getStt() {
@@ -186,12 +177,36 @@ public class Import implements Serializable {
         this.of40 = of40;
     }
 
-    public String getSurcharge() {
-        return surcharge;
+    public String getOf45() {
+        return of45;
     }
 
-    public void setSurcharge(String surcharge) {
-        this.surcharge = surcharge;
+    public void setOf45(String of45) {
+        this.of45 = of45;
+    }
+
+    public String getSur20() {
+        return sur20;
+    }
+
+    public void setSur20(String sur20) {
+        this.sur20 = sur20;
+    }
+
+    public String getSur40() {
+        return sur40;
+    }
+
+    public void setSur40(String sur40) {
+        this.sur40 = sur40;
+    }
+
+    public String getSur45() {
+        return sur45;
+    }
+
+    public void setSur45(String sur45) {
+        this.sur45 = sur45;
     }
 
     public String getTotalFreight() {
@@ -272,5 +287,13 @@ public class Import implements Serializable {
 
     public void setContinent(String continent) {
         this.continent = continent;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 }

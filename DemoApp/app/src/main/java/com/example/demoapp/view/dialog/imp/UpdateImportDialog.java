@@ -2,23 +2,24 @@ package com.example.demoapp.view.dialog.imp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.demoapp.R;
+import com.example.demoapp.databinding.FragmentUpdateImportDialogBinding;
 import com.example.demoapp.model.Import;
-import com.example.demoapp.databinding.FragmentDialogInsertImportBinding;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.ImportViewModel;
@@ -36,78 +37,72 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InsertImportDialog extends DialogFragment implements View.OnClickListener {
 
-    private final String[] listStr = new String[3];
+public class UpdateImportDialog extends DialogFragment implements View.OnClickListener {
 
-    private FragmentDialogInsertImportBinding binding;
+    private FragmentUpdateImportDialogBinding binding;
+
     private CommunicateViewModel mCommunicateViewModel;
     private ImportViewModel mImportViewModel;
 
+    private final String[] listStr = new String[3];
+
     private Bundle bundle;
+    private Import imp;
 
-    /**
-     * This method will set up view for insert dialog
-     *
-     * @param inflater           inflater
-     * @param container          container
-     * @param savedInstanceState save
-     * @return view of Import insert dialog
-     */
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        binding = FragmentDialogInsertImportBinding.inflate(inflater, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        binding = FragmentUpdateImportDialogBinding.inflate(inflater, container, false);
 
         View root = binding.getRoot();
 
         mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
         mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
-        initView();
         showDatePicker();
 
         bundle = getArguments();
-        setData();
+        setInfo();
+
+        initView();
 
         return root;
     }
 
-    public void setData() {
+    public static UpdateImportDialog getInstance() {
+        return new UpdateImportDialog();
+    }
+
+    public void setInfo() {
+
         if (bundle != null) {
-            Import imp = (Import) bundle.getSerializable(Constants.IMPORT_UPDATE);
-            if ("YES".equalsIgnoreCase(bundle.getString(Constants.IMPORT_ADD_NEW))) {
-                listStr[0] = imp.getType();
-                listStr[1] = imp.getMonth();
-                listStr[2] = imp.getContinent();
+            imp = (Import) bundle.getSerializable(Constants.IMPORT_UPDATE);
 
-                binding.insertAutoContainer.setText(imp.getType(), false);
-                binding.insertAutoMonth.setText(imp.getMonth(), false);
-                binding.insertAutoContinent.setText(imp.getContinent(), false);
+            binding.updateAutoContainer.setText(imp.getType(), false);
+            binding.updateAutoMonth.setText(imp.getMonth(), false);
+            binding.updateAutoContinent.setText(imp.getContinent(), false);
 
-                Objects.requireNonNull(binding.tfPol.getEditText()).setText(imp.getPol());
-                Objects.requireNonNull(binding.tfPod.getEditText()).setText(imp.getPod());
+            Objects.requireNonNull(binding.tfPol.getEditText()).setText(imp.getPol());
+            Objects.requireNonNull(binding.tfPod.getEditText()).setText(imp.getPod());
 
-                Objects.requireNonNull(binding.tfOf20.getEditText()).setText(imp.getOf20());
-                Objects.requireNonNull(binding.tfOf40.getEditText()).setText(imp.getOf40());
-                Objects.requireNonNull(binding.tfOf45.getEditText()).setText(imp.getOf45());
+            Objects.requireNonNull(binding.tfOf20.getEditText()).setText(imp.getOf20());
+            Objects.requireNonNull(binding.tfOf40.getEditText()).setText(imp.getOf40());
+            Objects.requireNonNull(binding.tfOf45.getEditText()).setText(imp.getOf45());
 
-                Objects.requireNonNull(binding.tfSur20.getEditText()).setText(imp.getSur20());
-                Objects.requireNonNull(binding.tfSur40.getEditText()).setText(imp.getSur40());
-                Objects.requireNonNull(binding.tfSur45.getEditText()).setText(imp.getSur45());
+            Objects.requireNonNull(binding.tfSur20.getEditText()).setText(imp.getSur20());
+            Objects.requireNonNull(binding.tfSur40.getEditText()).setText(imp.getSur40());
+            Objects.requireNonNull(binding.tfSur45.getEditText()).setText(imp.getSur45());
 
-                Objects.requireNonNull(binding.tfTotalFreight.getEditText()).setText(imp.getTotalFreight());
-                Objects.requireNonNull(binding.tfCarrier.getEditText()).setText(imp.getCarrier());
-                Objects.requireNonNull(binding.tfSchedule.getEditText()).setText(imp.getSchedule());
-                Objects.requireNonNull(binding.tfTransitTime.getEditText()).setText(imp.getTransitTime());
-                Objects.requireNonNull(binding.tfFreeTime.getEditText()).setText(imp.getFreeTime());
-                Objects.requireNonNull(binding.tfValid.getEditText()).setText(imp.getValid());
-                Objects.requireNonNull(binding.tfNote.getEditText()).setText(imp.getNote());
-            }
+            Objects.requireNonNull(binding.tfTotalFreight.getEditText()).setText(imp.getTotalFreight());
+            Objects.requireNonNull(binding.tfCarrier.getEditText()).setText(imp.getCarrier());
+            Objects.requireNonNull(binding.tfSchedule.getEditText()).setText(imp.getSchedule());
+            Objects.requireNonNull(binding.tfTransitTime.getEditText()).setText(imp.getTransitTime());
+            Objects.requireNonNull(binding.tfFreeTime.getEditText()).setText(imp.getFreeTime());
+            Objects.requireNonNull(binding.tfValid.getEditText()).setText(imp.getValid());
+            Objects.requireNonNull(binding.tfNote.getEditText()).setText(imp.getNote());
         }
-
     }
 
     public void showDatePicker() {
@@ -144,63 +139,60 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
         ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
-        binding.insertAutoContainer.setAdapter(adapterItemsType);
-        binding.insertAutoMonth.setAdapter(adapterItemsMonth);
-        binding.insertAutoContinent.setAdapter(adapterItemsContinent);
+        binding.updateAutoContainer.setAdapter(adapterItemsType);
+        binding.updateAutoMonth.setAdapter(adapterItemsMonth);
+        binding.updateAutoContinent.setAdapter(adapterItemsContinent);
+
+        listStr[0] = binding.updateAutoContainer.getText().toString();
+        listStr[1] = binding.updateAutoMonth.getText().toString();
+        listStr[2] = binding.updateAutoContinent.getText().toString();
 
         // buttons
-        binding.btnFunctionAdd.setOnClickListener(this);
-        binding.btnFunctionCancel.setOnClickListener(this);
+        binding.importUpdateBtnCancel.setOnClickListener(this);
+        binding.importUpdateBtnUpdate.setOnClickListener(this);
 
-        binding.insertAutoContainer.setOnItemClickListener((adapterView, view, i, l) -> {
+        binding.updateAutoContainer.setOnItemClickListener((adapterView, view, i, l) -> {
             listStr[0] = adapterView.getItemAtPosition(i).toString();
             Toast.makeText(getContext(), listStr[0], Toast.LENGTH_LONG).show();
         });
 
-        binding.insertAutoMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+        binding.updateAutoMonth.setOnItemClickListener((adapterView, view, i, l) -> {
             listStr[1] = adapterView.getItemAtPosition(i).toString();
             Toast.makeText(getContext(), listStr[1], Toast.LENGTH_LONG).show();
         });
 
-        binding.insertAutoContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+        binding.updateAutoContinent.setOnItemClickListener((adapterView, view, i, l) -> {
             listStr[2] = adapterView.getItemAtPosition(i).toString();
             Toast.makeText(getContext(), listStr[2], Toast.LENGTH_LONG).show();
         });
 
         textWatcher();
-
         setCancelable(false);
 
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.btn_function_add:
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.import_update_btn_cancel:
+                dismiss();
+                break;
+            case R.id.import_update_btn_update:
                 if (isFilled()) {
                     process();
                     dismiss();
-                } else {
-                    Toast.makeText(getContext(), Constants.INSERT_FAILED, Toast.LENGTH_LONG).show();
-                }
-                break;
-            case R.id.btn_function_cancel:
-                dismiss();
+                } else
+                    Toast.makeText(getContext(), Constants.UPDATE_FAILED, Toast.LENGTH_LONG).show();
                 break;
         }
     }
 
-    public static InsertImportDialog insertDialog() {
-        return new InsertImportDialog();
-    }
-
     /**
-     * This method will get information user typing and insert them into database
+     * get data of fields and update
      */
-
-    public void process() {
+    private void process() {
 
         String pol = Objects.requireNonNull(binding.tfPol.getEditText()).getText().toString();
         String pod = Objects.requireNonNull(binding.tfPod.getEditText()).getText().toString();
@@ -222,9 +214,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         String note = Objects.requireNonNull(binding.tfNote.getEditText()).getText().toString();
 
         mCommunicateViewModel.makeChanges();
-        Call<Import> call = mImportViewModel.insertImport(pol, pod, of20, of40, of45, sur20, sur40,
+        Call<Import> call = mImportViewModel.updateImport(imp.getStt(), pol, pod, of20, of40, of45, sur20, sur40,
                 sur45, totalFreight, carrier, schedule, transit, free, valid, note, listStr[0],
-                listStr[1], listStr[2], getCreatedDate());
+                listStr[1], listStr[2]);
 
         call.enqueue(new Callback<Import>() {
             @Override
@@ -238,31 +230,11 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
     }
 
     /**
-     * get current date
      *
-     * @return date
+     * @return false if one of these fields is not filled
      */
-    private String getCreatedDate() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-    }
-
     public boolean isFilled() {
         boolean result = true;
-
-        if (TextUtils.isEmpty(binding.insertAutoContainer.getText())) {
-            result = false;
-            binding.insertAutoContainer.setError(Constants.ERROR_AUTO_COMPLETE_TYPE);
-        }
-
-        if (TextUtils.isEmpty(binding.insertAutoMonth.getText())) {
-            result = false;
-            binding.insertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
-        }
-
-        if (TextUtils.isEmpty(binding.insertAutoContinent.getText())) {
-            result = false;
-            binding.insertAutoContinent.setError(Constants.ERROR_AUTO_COMPLETE_CONTINENT);
-        }
 
         if (TextUtils.isEmpty(Objects.requireNonNull(binding.tfPol.getEditText()).getText().toString())) {
             result = false;
@@ -282,8 +254,9 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
         return result;
     }
 
+
     /**
-     * watcher for fields
+     * Using text watcher to check fields
      */
     public void textWatcher() {
         Objects.requireNonNull(binding.tfPol.getEditText()).addTextChangedListener(new TextWatcher() {
@@ -343,64 +316,6 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
             }
         });
 
-        binding.insertAutoMonth.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (TextUtils.isEmpty(binding.insertAutoMonth.getText())) {
-                    binding.insertAutoMonth.setError(null);
-
-                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.insertAutoContainer.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (TextUtils.isEmpty(binding.insertAutoContainer.getText())) {
-                    binding.insertAutoContainer.setError(null);
-                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        binding.insertAutoContinent.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (TextUtils.isEmpty(binding.insertAutoContinent.getText())) {
-                    binding.insertAutoContinent.setError(null);
-                }
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
         Objects.requireNonNull(binding.tfOf20.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -442,7 +357,7 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
             public void afterTextChanged(Editable editable) {
                 try {
                     Objects.requireNonNull(binding.tfTotalFreight.getEditText()).setText(
-                            totalFreight(Objects.requireNonNull(binding.tfOf20.getEditText()).getText().toString(),
+                            totalFreight(binding.tfOf20.getEditText().getText().toString(),
                                     Objects.requireNonNull(binding.tfSur20.getEditText()).getText().toString()));
 
                 } catch (Exception e) {
@@ -450,7 +365,6 @@ public class InsertImportDialog extends DialogFragment implements View.OnClickLi
                 }
             }
         });
-
     }
 
     /**

@@ -29,7 +29,7 @@
     <string name="company_name">FBI Logistics</string>
     <!-- hint of dropdown menu-->
     <string name="select_month">Chọn Tháng</string>
-    <string name="select_continent">Chọn Châu Lục</string>
+    <string name="select_continent">Chọn Châu</string>
     <string name="typeof_container">Chọn Loại Container</string>
     <!--    price list table-->
     <string name="stt">STT</string>
@@ -180,5 +180,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="label_import_imp">IMPORT</string>
     <string name="label_import_lcl">LCL</string>
+    <string name="col_su45">SUR 45</string>
+    <string name="title_activity_dom">DomActivity</string>
 
 </resources>

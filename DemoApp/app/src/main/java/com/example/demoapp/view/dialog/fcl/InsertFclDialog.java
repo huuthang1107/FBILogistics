@@ -1,16 +1,13 @@
 package com.example.demoapp.view.dialog.fcl;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -20,14 +17,12 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
-import com.example.demoapp.databinding.FragmentDialogInsertBinding;
+import com.example.demoapp.databinding.FragmentDialogInsertFclBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -44,12 +39,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
     private final String[] listStr = new String[3];
 
-    private FragmentDialogInsertBinding binding;
+    private FragmentDialogInsertFclBinding binding;
 
     private FclViewModel mFclViewModel;
     private CommunicateViewModel mCommunicateViewModel;
-
-    private Bundle bundle;
 
 
     public static InsertFclDialog insertDialog() {
@@ -68,16 +61,16 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = FragmentDialogInsertBinding.inflate(inflater, container, false);
+        binding = FragmentDialogInsertFclBinding.inflate(inflater, container, false);
 
-        View view = binding.getRoot();
+        View root = binding.getRoot();
 
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
-        mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+        mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
         initView();
 
-        bundle = getArguments();
+        Bundle bundle = getArguments();
         if (bundle != null) {
             Fcl fcl = (Fcl) bundle.getSerializable(Constants.FCL_UPDATE);
             if ("YES".equalsIgnoreCase(bundle.getString(Constants.FCL_ADD_NEW))) {
@@ -85,7 +78,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
             }
         }
         showDatePicker();
-        return view;
+        return root;
     }
 
     public void showDatePicker() {
@@ -95,25 +88,19 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
 
         final MaterialDatePicker<Long> materialDatePicker = builder.build();
 
-        binding.edtValid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
-                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-                    @Override
-                    public void onPositiveButtonClick(Long selection) {
+        binding.edtValid.setOnClickListener(view -> {
+            materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
+            materialDatePicker.addOnPositiveButtonClickListener(selection -> {
 
-                        TimeZone timeZoneUTC = TimeZone.getDefault();
-                        // It will be negative, so that's the -1
-                        int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
-                        // Create a date format, then a date object with our offset
-                        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-                        Date date = new Date(selection + offsetFromUTC);
+                TimeZone timeZoneUTC = TimeZone.getDefault();
+                // It will be negative, so that's the -1
+                int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
+                // Create a date format, then a date object with our offset
+                SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                Date date = new Date(selection + offsetFromUTC);
 
-                        Objects.requireNonNull(binding.tfValid.getEditText()).setText(simpleFormat.format(date));
-                    }
-                });
-            }
+                Objects.requireNonNull(binding.tfValid.getEditText()).setText(simpleFormat.format(date));
+            });
         });
 
     }
@@ -148,9 +135,9 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
     public void initView() {
 
         // auto complete textview
-        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_FCL);
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_FCL);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.insertAutoContainer.setAdapter(adapterItemsType);
         binding.insertAutoMonth.setAdapter(adapterItemsMonth);
@@ -160,27 +147,14 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         binding.btnFunctionAdd.setOnClickListener(this);
         binding.btnFunctionCancel.setOnClickListener(this);
 
-        binding.insertAutoContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[0] = adapterView.getItemAtPosition(i).toString();
-                changeContName(listStr[0]);
-            }
+        binding.insertAutoContainer.setOnItemClickListener((adapterView, view, i, l) -> {
+            listStr[0] = adapterView.getItemAtPosition(i).toString();
+            changeContName(listStr[0]);
         });
 
-        binding.insertAutoMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[1] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.insertAutoMonth.setOnItemClickListener((adapterView, view, i, l) -> listStr[1] = adapterView.getItemAtPosition(i).toString());
 
-        binding.insertAutoContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[2] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.insertAutoContinent.setOnItemClickListener((adapterView, view, i, l) -> listStr[2] = adapterView.getItemAtPosition(i).toString());
 
         textWatcher();
 
@@ -341,7 +315,7 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
                 if (isFilled()) {
                     insertData();
                     dismiss();
-                }else Toast.makeText(getContext(), "Insert Failed!!", Toast.LENGTH_LONG).show();
+                }else Toast.makeText(getContext(), Constants.INSERT_FAILED, Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();

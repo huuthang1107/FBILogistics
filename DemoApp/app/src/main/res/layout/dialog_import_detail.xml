@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,9 +11,8 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/row_cv_fcl"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="wrap_content"
         android:padding="10dp">
 
         <TextView
@@ -30,7 +30,6 @@
             android:id="@+id/tv_row_price_import_stt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="stt"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -53,7 +52,6 @@
             android:id="@+id/tv_row_price_import_pol"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="pol"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -76,7 +74,6 @@
             android:id="@+id/tv_row_price_import_pod"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="POD"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -99,7 +96,6 @@
             android:id="@+id/tv_row_price_import_of20"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="OF20"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -134,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/surcharge"
+            android:text="@string/col_of45"
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
@@ -142,10 +138,10 @@
             app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_of40" />
 
         <TextView
-            android:id="@+id/tv_row_price_import_surcharge"
+            android:id="@+id/tv_row_price_import_of45"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/surcharge"
+            android:text="@string/col_of45"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -157,12 +153,81 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="@string/col_su2"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_of45" />
+
+        <TextView
+            android:id="@+id/tv_row_price_import_sur20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/col_su2"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_of45" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/col_su4"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur20" />
+
+        <TextView
+            android:id="@+id/tv_row_price_import_sur40"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/col_su4"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur20" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/col_su45"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur40" />
+
+        <TextView
+            android:id="@+id/tv_row_price_import_sur45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/col_su45"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur40" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/total_freight"
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_surcharge" />
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur45" />
 
         <TextView
             android:id="@+id/tv_row_price_import_total"
@@ -174,7 +239,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_surcharge" />
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur45" />
 
         <TextView
             android:layout_width="0dp"
@@ -314,6 +379,30 @@
             app:layout_constraintStart_toStartOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_valid" />
 
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/created_date"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_note" />
+
+        <TextView
+            android:id="@+id/tv_row_price_import_created"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/created_date"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_note" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -322,10 +411,43 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="20dp"
             app:layout_constraintGuide_percent="0.4" />
+
+        <Button
+            android:id="@+id/btn_update_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="12dp"
+            android:elevation="10dp"
+            android:padding="10dp"
+            android:text="@string/btn_update"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:backgroundTint="#fff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_created" />
+
+        <Button
+            android:id="@+id/btn_add_new_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="12dp"
+            android:elevation="10dp"
+            android:padding="10dp"
+            android:text="@string/btn_add_new"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:backgroundTint="#fff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_created" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="wrap_content" />
 </com.google.android.material.card.MaterialCardView>
 

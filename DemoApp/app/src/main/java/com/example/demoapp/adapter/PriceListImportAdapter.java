@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,7 +32,7 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
         this.context = context;
     }
 
-    public void setImports(List<Import> list){
+    public void setImports(List<Import> list) {
         this.listPriceList = list;
         notifyDataSetChanged();
     }
@@ -47,14 +48,19 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
     @Override
     public void onBindViewHolder(@NonNull PriceListImportAdapter.ViewHolder holder, int position) {
         Import imp = listPriceList.get(position);
-        if (listPriceList != null && listPriceList.size() > 0) {
+        if (listPriceList.size() > 0) {
 
             holder.stt.setText(imp.getStt());
             holder.pol.setText(imp.getPol());
             holder.pod.setText(imp.getPod());
             holder.of20.setText(imp.getOf20());
             holder.of40.setText(imp.getOf40());
-            holder.surcharge.setText(imp.getSurcharge());
+            holder.of45.setText(imp.getOf45());
+
+            holder.sur20.setText(imp.getSur20());
+            holder.sur40.setText(imp.getSur40());
+            holder.sur45.setText(imp.getSur45());
+
             holder.total.setText(imp.getTotalFreight());
             holder.carrier.setText(imp.getCarrier());
             holder.schedule.setText(imp.getSchedule());
@@ -62,10 +68,10 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
             holder.free.setText(imp.getFreeTime());
             holder.valid.setText(imp.getValid());
             holder.note.setText(imp.getNote());
-
         } else {
             return;
         }
+
         holder.importCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +80,7 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
         });
     }
 
-    public void goToDetail(Import imp){
+    public void goToDetail(Import imp) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
         DialogFragment dialogFragment = FragmentImportDetail.getInstance();
@@ -83,7 +89,7 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
 
         bundle.putSerializable(Constants.IMPORT_OBJECT, imp);
         dialogFragment.setArguments(bundle);
-        dialogFragment.show( fm,"DetailImport");
+        dialogFragment.show(fm, "DetailImport");
     }
 
     @Override
@@ -94,19 +100,27 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
         return 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView stt, pol, pod, of20, of40, surcharge, total, carrier, schedule, transit, free, valid, note;
+        TextView stt, pol, pod, of20, of40, of45, sur20, sur40, sur45, total, carrier, schedule,
+                transit, free, valid, note;
         ConstraintLayout importCardView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             importCardView = itemView.findViewById(R.id.row_cv_import);
             stt = itemView.findViewById(R.id.tv_row_price_import_stt);
             pol = itemView.findViewById(R.id.tv_row_price_import_pol);
             pod = itemView.findViewById(R.id.tv_row_price_import_pod);
+
             of20 = itemView.findViewById(R.id.tv_row_price_import_of20);
             of40 = itemView.findViewById(R.id.tv_row_price_import_of40);
-            surcharge = itemView.findViewById(R.id.tv_row_price_import_surcharge);
+            of45 = itemView.findViewById(R.id.tv_row_price_import_of45);
+
+            sur20 = itemView.findViewById(R.id.tv_row_price_import_sur20);
+            sur40 = itemView.findViewById(R.id.tv_row_price_import_sur40);
+            sur45 = itemView.findViewById(R.id.tv_row_price_import_sur45);
+
             total = itemView.findViewById(R.id.tv_row_price_import_total);
             carrier = itemView.findViewById(R.id.tv_row_price_import_carrier);
             schedule = itemView.findViewById(R.id.tv_row_price_import_schedule);

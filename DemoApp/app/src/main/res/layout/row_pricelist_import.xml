@@ -138,7 +138,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/surcharge"
+                android:text="@string/col_of45"
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
@@ -146,10 +146,10 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_of40" />
 
             <TextView
-                android:id="@+id/tv_row_price_import_surcharge"
+                android:id="@+id/tv_row_price_import_of45"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/surcharge"
+                android:text="@string/col_of45"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold"
@@ -161,12 +161,81 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@string/col_su2"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_of45" />
+
+            <TextView
+                android:id="@+id/tv_row_price_import_sur20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/col_su2"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_of45" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/col_su4"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur20" />
+
+            <TextView
+                android:id="@+id/tv_row_price_import_sur40"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/col_su4"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur20" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/col_su45"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur40" />
+
+            <TextView
+                android:id="@+id/tv_row_price_import_sur45"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/col_su45"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur40" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/total_freight"
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_surcharge" />
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur45" />
 
             <TextView
                 android:id="@+id/tv_row_price_import_total"
@@ -178,7 +247,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_surcharge" />
+                app:layout_constraintTop_toBottomOf="@id/tv_row_price_import_sur45" />
 
             <TextView
                 android:layout_width="0dp"

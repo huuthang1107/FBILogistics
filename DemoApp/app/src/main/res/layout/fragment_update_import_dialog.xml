@@ -22,7 +22,7 @@
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <AutoCompleteTextView
-                android:id="@+id/insert_auto_container"
+                android:id="@+id/update_auto_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -40,7 +40,7 @@
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <AutoCompleteTextView
-                android:id="@+id/insert_auto_month"
+                android:id="@+id/update_auto_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -58,7 +58,7 @@
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <AutoCompleteTextView
-                android:id="@+id/insert_auto_continent"
+                android:id="@+id/update_auto_continent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -107,8 +107,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:inputType="number|numberDecimal"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:hint="@string/col_of2" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,7 +145,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_su20"
+            android:id="@+id/tf_sur20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -155,12 +155,13 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:inputType="number|numberDecimal"
                 android:layout_height="wrap_content"
                 android:hint="@string/col_su2" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_su40"
+            android:id="@+id/tf_sur40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -170,12 +171,45 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:hint="@string/col_su4" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_lines"
+            android:id="@+id/tf_sur45"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:hint="@string/col_su45" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_total_freight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:inputType="number|numberDecimal"
+                android:layout_height="wrap_content"
+                android:hint="@string/total_freight" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_carrier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -186,11 +220,41 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col8" />
+                android:hint="@string/carrier" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_notes"
+            android:id="@+id/tf_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/schedule" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_transit_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            app:startIconDrawable="@drawable/ic_baseline_favorite_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/transit_time" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_free_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -204,19 +268,19 @@
                 android:hint="@string/free_time" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tf_valid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:clickable="true"
-
             android:layout_marginEnd="10dp"
+            android:clickable="true"
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_valid"
+                android:id="@+id/import_edt_valid"
                 android:layout_width="match_parent"
                 android:clickable="true"
                 android:focusable="false"
@@ -225,7 +289,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_notes2"
+            android:id="@+id/tf_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -237,7 +301,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/col11" />
+                android:hint="@string/note" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -247,7 +311,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_function_cancel"
+                android:id="@+id/import_update_btn_cancel"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -257,13 +321,13 @@
 
             <Button
 
-                android:id="@+id/btn_function_add"
+                android:id="@+id/import_update_btn_update"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@color/btn_color"
-                android:text="@string/btn_add_txt" />
+                android:text="@string/btn_update_txt" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

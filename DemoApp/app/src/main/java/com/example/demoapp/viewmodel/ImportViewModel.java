@@ -37,11 +37,17 @@ public class ImportViewModel extends AndroidViewModel {
         return mImportList;
     }
 
-    public Call<Import> insertImport(String pol, String pod, String of20, String of40, String surcharge, String totalFreight,
+    public Call<Import> insertImport(String pol, String pod, String of20, String of40, String of45,String sur20, String sur40, String sur45, String totalFreight,
+                                     String carrier, String schedule, String transitTime, String freeTime, String valid, String note,
+                                     String type, String month, String continent, String createdDate) {
+
+
+        return mImportRepository.insertImport(pol, pod, of20, of40, of45, sur20, sur40, sur45, totalFreight, carrier, schedule, transitTime, freeTime, valid, note, type, month, continent, createdDate);
+    }
+
+    public Call<Import> updateImport(String stt, String pol, String pod, String of20, String of40, String of45, String sur20, String sur40, String sur45, String totalFreight,
                                      String carrier, String schedule, String transitTime, String freeTime, String valid, String note,
                                      String type, String month, String continent) {
-
-
-        return mImportRepository.insertImport(pol, pod, of20, of40, surcharge, totalFreight, carrier, schedule, transitTime, freeTime, valid, note, type, month, continent);
+        return mImportRepository.updateImport(stt, pol, pod, of20, of40, of45, sur20, sur40, sur45, totalFreight, carrier, schedule, transitTime, freeTime, valid, note, type, month, continent);
     }
 }

@@ -17,14 +17,10 @@ import android.widget.Toast;
 import com.example.demoapp.R;
 import com.example.demoapp.view.activity.imp.ProImportActivity;
 import com.example.demoapp.view.fragment.fcl.FCLFragment;
-import com.example.demoapp.view.fragment.dom.FragmentDOM;
 import com.example.demoapp.view.fragment.home.HomeFragment;
-import com.example.demoapp.view.fragment.imp.ImportFragment;
 import com.example.demoapp.view.fragment.air.LCLFragment;
 import com.example.demoapp.view.fragment.log.LogFragment;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Objects;
 
 public class ProActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final static int FRAGMENT_HOME = 0;
@@ -117,7 +113,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         }
         else if (id == R.id.nav_dom){
             if(mCurrentFragment != FRAGMENT_DOM){
-                replaceFragment(new FragmentDOM());
+
                 mCurrentFragment = FRAGMENT_DOM;
                 toolbar.setTitle("DOM PAGE");
             }

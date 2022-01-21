@@ -22,7 +22,7 @@
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <AutoCompleteTextView
-                android:id="@+id/update_auto_container"
+                android:id="@+id/insert_auto_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -40,7 +40,7 @@
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <AutoCompleteTextView
-                android:id="@+id/update_auto_month"
+                android:id="@+id/insert_auto_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -58,7 +58,7 @@
             app:startIconDrawable="@drawable/ic_baseline_favorite_24">
 
             <AutoCompleteTextView
-                android:id="@+id/update_auto_continent"
+                android:id="@+id/insert_auto_continent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -107,8 +107,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="@string/col_of2" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,8 +123,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="@string/col_of4" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -256,13 +256,13 @@
 
             <Button
 
-                android:id="@+id/btn_function_update"
+                android:id="@+id/btn_function_add"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
                 android:backgroundTint="@color/btn_color"
-                android:text="@string/btn_update" />
+                android:text="@string/btn_add_txt" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

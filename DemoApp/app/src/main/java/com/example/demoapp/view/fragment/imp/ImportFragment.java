@@ -139,17 +139,22 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
         // reset a list when user choose different
         List<Import> subList = new ArrayList<>();
 
-        for (Import imp : list) {
-            if (r.equalsIgnoreCase("all")) {
-                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
-                    subList.add(imp);
-                }
-            } else {
-                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)
-                        && imp.getType().equalsIgnoreCase(r)) {
-                    subList.add(imp);
+        try {
+            for (Import imp : list) {
+                if (r.equalsIgnoreCase("all")) {
+                    if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
+                        subList.add(imp);
+                    }
+                } else {
+                    if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)
+                            && imp.getType().equalsIgnoreCase(r)) {
+                        subList.add(imp);
+                    }
                 }
             }
+
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
         return subList;
     }

@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -24,8 +22,13 @@ import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,12 +68,13 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         View view = binding.getRoot();
 
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
-        mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+        mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
         bundle = getArguments();
         setInfo();
-        initView();
 
+        initView();
+        showDatePicker();
 
         return view;
     }
@@ -106,9 +110,9 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
     public void initView() {
 
         // auto complete textview
-        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_FCL);
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_FCL);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.updateAutoContainer.setAdapter(adapterItemsType);
         binding.updateAutoMonth.setAdapter(adapterItemsMonth);
@@ -122,26 +126,11 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         binding.btnFunctionUpdate.setOnClickListener(this);
         binding.btnFunctionCancel.setOnClickListener(this);
 
-        binding.updateAutoContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[0] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.updateAutoContainer.setOnItemClickListener((adapterView, view, i, l) -> listStr[0] = adapterView.getItemAtPosition(i).toString());
 
-        binding.updateAutoMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[1] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.updateAutoMonth.setOnItemClickListener((adapterView, view, i, l) -> listStr[1] = adapterView.getItemAtPosition(i).toString());
 
-        binding.updateAutoContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[2] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.updateAutoContinent.setOnItemClickListener((adapterView, view, i, l) -> listStr[2] = adapterView.getItemAtPosition(i).toString());
 
         textWatcher();
 
@@ -209,7 +198,6 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
 
             }
         });
-
     }
 
     /**
@@ -226,12 +214,36 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
                     updateFcl();
                     dismiss();
                 } else
-                    Toast.makeText(getContext(), "Update Failed!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), Constants.UPDATE_FAILED, Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
                 break;
         }
+    }
+
+    public void showDatePicker() {
+
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select date");
+
+        final MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        binding.edtValid.setOnClickListener(view -> {
+            materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
+            materialDatePicker.addOnPositiveButtonClickListener(selection -> {
+
+                TimeZone timeZoneUTC = TimeZone.getDefault();
+                // It will be negative, so that's the -1
+                int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
+                // Create a date format, then a date object with our offset
+                SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                Date date = new Date(selection + offsetFromUTC);
+
+                Objects.requireNonNull(binding.tfValid.getEditText()).setText(simpleFormat.format(date));
+            });
+        });
+
     }
 
     /**
@@ -260,8 +272,6 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Created Successful!!", Toast.LENGTH_LONG).show();
                 }
-
-
             }
 
             @Override

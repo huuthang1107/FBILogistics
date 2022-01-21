@@ -183,4 +183,13 @@
     <string name="col_su45">SUR 45</string>
     <string name="title_activity_dom">DomActivity</string>
 
+    <string name="label_dom_export">Xuất</string>
+    <string name="label_dom_import">Nhập</string>
+    <string name="label_dom_dry">Khô</string>
+    <string name="label_dom_cold">Lạnh</string>
+    <string name="label_dom_cy">CY-CY</string>
+    <string name="label_dom_door">Door</string>
+    <string name="dom">DOM</string>
+
+
 </resources>

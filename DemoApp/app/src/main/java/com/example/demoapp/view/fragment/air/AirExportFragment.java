@@ -67,9 +67,17 @@ public class AirExportFragment extends Fragment implements View.OnClickListener 
     private void getDataAIR() {
         airList = new ArrayList<>();
         mAirViewModel.getLclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
-            this.airList = detailsPojoAir;
+            this.airList = sortAirExport(detailsPojoAir);
         });
 
+    }
+
+    public List<AirExport> sortAirExport(List<AirExport> list){
+        List<AirExport> result = new ArrayList<>();
+        for (int i = list.size()-1; i >=0; i--){
+            result.add(list.get(i));
+        }
+        return  result;
     }
 
     private void setUpButtons() {

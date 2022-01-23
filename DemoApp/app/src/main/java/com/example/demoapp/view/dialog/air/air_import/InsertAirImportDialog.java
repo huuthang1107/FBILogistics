@@ -93,7 +93,6 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
         setCancelable(false);
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){

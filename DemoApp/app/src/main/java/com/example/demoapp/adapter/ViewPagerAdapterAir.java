@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.demoapp.view.fragment.air.AirExportFragment;
 import com.example.demoapp.view.fragment.air.AirImportFragment;
+import com.example.demoapp.view.fragment.air.RetailGoodsExportFragment;
 import com.example.demoapp.view.fragment.home.HomeFragment;
 
 public class ViewPagerAdapterAir extends FragmentStateAdapter {
@@ -26,6 +27,8 @@ public class ViewPagerAdapterAir extends FragmentStateAdapter {
                 return new AirImportFragment();
             case 2:
                 return new AirExportFragment();
+             case 3:
+                 return new RetailGoodsExportFragment();
             default:
                 return new HomeFragment();
         }
@@ -33,6 +36,6 @@ public class ViewPagerAdapterAir extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }

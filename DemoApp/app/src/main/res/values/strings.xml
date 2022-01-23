@@ -181,5 +181,8 @@
     <string name="title_export_air">Xuất khẩu</string>
     <string name="menu_zoom_air">Zoom-out page transformer</string>
     <string name="menu_depth_air">Depth page transformer</string>
+    <string name="title_retail_goods_air">Hàng lẻ xuất</string>
+    <string name="ocean_airfreight">OCEAN FREIGHT</string>
+    <string name="local_charge">LOCAL CHARGE</string>
 
 </resources>

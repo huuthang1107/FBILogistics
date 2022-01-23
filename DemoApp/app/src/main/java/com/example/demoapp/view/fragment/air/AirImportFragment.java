@@ -140,10 +140,16 @@ public class AirImportFragment extends Fragment implements View.OnClickListener 
     private void getDataAirImport() {
         airImportList = new ArrayList<>();
         mAirImportViewModel.getAirImportList().observe(getViewLifecycleOwner(), detailsPojoAir ->{
-            this.airImportList = detailsPojoAir;
+            this.airImportList = sortAirImport(detailsPojoAir);
         });
 
-
+    }
+    public List<AirImport> sortAirImport(List<AirImport> list){
+        List<AirImport> result = new ArrayList<>();
+        for (int i = list.size()-1; i>=0 ; i--){
+            result.add(list.get(i));
+        }
+        return result;
     }
 
     @Override

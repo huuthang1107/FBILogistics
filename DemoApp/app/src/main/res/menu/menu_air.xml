@@ -9,4 +9,7 @@
     <item android:id="@+id/tab_export_air"
         android:icon="@drawable/baseline_file_upload_black_24"
         android:title="@string/title_export_air"/>
+    <item android:id="@+id/tab_retail_goods_air"
+        android:icon="@drawable/baseline_shopping_bag_black_24"
+        android:title="@string/title_retail_goods_air"/>
 </menu>

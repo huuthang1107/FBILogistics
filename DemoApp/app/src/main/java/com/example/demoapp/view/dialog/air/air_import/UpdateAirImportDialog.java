@@ -61,8 +61,8 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
 
             mAirImportDialogBinding.insertAutoMonth.setText(mAirImport.getMonth());
             mAirImportDialogBinding.insertAutoContinent.setText(mAirImport.getContinent());
-            Objects.requireNonNull(mAirImportDialogBinding.tfPolAirImport.getEditText()).setText(mAirImport.getPol());
-            Objects.requireNonNull(mAirImportDialogBinding.tfPodAirImport.getEditText()).setText(mAirImport.getPod());
+            Objects.requireNonNull(mAirImportDialogBinding.tfPolAirImport.getEditText()).setText(mAirImport.getAol());
+            Objects.requireNonNull(mAirImportDialogBinding.tfPodAirImport.getEditText()).setText(mAirImport.getAod());
             Objects.requireNonNull(mAirImportDialogBinding.tfDimAirImport.getEditText()).setText(mAirImport.getDim());
             Objects.requireNonNull(mAirImportDialogBinding.tfGrossAirImport.getEditText()).setText(mAirImport.getGrossweight());
             Objects.requireNonNull(mAirImportDialogBinding.tfTypeofcargoAirImport.getEditText()).setText(mAirImport.getTypeofcargo());

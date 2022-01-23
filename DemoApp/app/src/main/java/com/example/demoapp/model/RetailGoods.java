@@ -2,24 +2,23 @@ package com.example.demoapp.model;
 
 import java.io.Serializable;
 
-public class AirImport implements Serializable {
+public class RetailGoods implements Serializable {
+    private String stt, pol, pod, dim, grossweight, typeofcargo, oceanfreight,
+            localcharge, carrier, schedule, transittime, valid, note, month, continent;
 
-    private String stt, aol, aod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
-            schedule, transittime, valid, note, month, continent;
-
-    public AirImport(String stt, String aol, String aod, String dim, String grossweight,
-                     String typeofcargo, String airfreight, String surcharge, String airlines,
-                     String schedule, String transittime, String valid, String note, String month,
-                     String continent) {
+    public RetailGoods(String stt, String pol, String pod, String dim, String grossweight,
+                       String typeofcargo, String oceanfreight, String localcharge, String carrier,
+                       String schedule, String transittime, String valid, String note, String month,
+                       String continent) {
         this.stt = stt;
-        this.aol = aol;
-        this.aod = aod;
+        this.pol = pol;
+        this.pod = pod;
         this.dim = dim;
         this.grossweight = grossweight;
         this.typeofcargo = typeofcargo;
-        this.airfreight = airfreight;
-        this.surcharge = surcharge;
-        this.airlines = airlines;
+        this.oceanfreight = oceanfreight;
+        this.localcharge = localcharge;
+        this.carrier = carrier;
         this.schedule = schedule;
         this.transittime = transittime;
         this.valid = valid;
@@ -36,20 +35,20 @@ public class AirImport implements Serializable {
         this.stt = stt;
     }
 
-    public String getAol() {
-        return aol;
+    public String getPol() {
+        return pol;
     }
 
-    public void setAol(String aol) {
-        this.aol = aol;
+    public void setPol(String pol) {
+        this.pol = pol;
     }
 
-    public String getAod() {
-        return aod;
+    public String getPod() {
+        return pod;
     }
 
-    public void setAod(String aod) {
-        this.aod = aod;
+    public void setPod(String pod) {
+        this.pod = pod;
     }
 
     public String getDim() {
@@ -76,28 +75,28 @@ public class AirImport implements Serializable {
         this.typeofcargo = typeofcargo;
     }
 
-    public String getAirfreight() {
-        return airfreight;
+    public String getOceanfreight() {
+        return oceanfreight;
     }
 
-    public void setAirfreight(String airfreight) {
-        this.airfreight = airfreight;
+    public void setOceanfreight(String oceanfreight) {
+        this.oceanfreight = oceanfreight;
     }
 
-    public String getSurcharge() {
-        return surcharge;
+    public String getLocalcharge() {
+        return localcharge;
     }
 
-    public void setSurcharge(String surcharge) {
-        this.surcharge = surcharge;
+    public void setLocalcharge(String localcharge) {
+        this.localcharge = localcharge;
     }
 
-    public String getAirlines() {
-        return airlines;
+    public String getCarrier() {
+        return carrier;
     }
 
-    public void setAirlines(String airlines) {
-        this.airlines = airlines;
+    public void setCarrier(String carrier) {
+        this.carrier = carrier;
     }
 
     public String getSchedule() {

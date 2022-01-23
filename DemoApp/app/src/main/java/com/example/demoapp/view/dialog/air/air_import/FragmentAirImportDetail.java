@@ -39,9 +39,9 @@ public class FragmentAirImportDetail extends DialogFragment implements View.OnCl
     }
 
     private void setDataAirImport(AirImport air) {
-        mAirImportDetailBinding.tvLabelStt.setText(air.getStt());
-        mAirImportDetailBinding.tvRowPriceAirPolImport.setText(air.getPol());
-        mAirImportDetailBinding.tvRowPriceAirPodImport.setText(air.getPol());
+        mAirImportDetailBinding.tvRowPriceAirSttImport.setText(air.getStt());
+        mAirImportDetailBinding.tvRowPriceAirPolImport.setText(air.getAol());
+        mAirImportDetailBinding.tvRowPriceAirPodImport.setText(air.getAol());
         mAirImportDetailBinding.tvRowPriceAirDimImport.setText(air.getDim());
         mAirImportDetailBinding.tvRowPriceAirGrossweightImport.setText(air.getGrossweight());
         mAirImportDetailBinding.tvRowPriceAirTypeofcargoImport.setText(air.getTypeofcargo());

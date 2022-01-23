@@ -47,8 +47,8 @@ public class PriceListAirImportAdapter extends RecyclerView.Adapter<PriceListAir
         if ( listAIRS.size() > 0) {
 
             holder.tvStt.setText(priceAir.getStt());
-            holder.tvPol.setText(priceAir.getPol());
-            holder.tvPod.setText(priceAir.getPod());
+            holder.tvPol.setText(priceAir.getAol());
+            holder.tvPod.setText(priceAir.getAod());
             holder.tvDim.setText(priceAir.getDim());
             holder.tvGross.setText(priceAir.getGrossweight());
             holder.tvType.setText(priceAir.getTypeofcargo());

@@ -56,6 +56,11 @@ public class AirActivity extends AppCompatActivity {
                         mAirBinding.viewPagerAir.setCurrentItem(2);
                         Toast.makeText(getApplicationContext(), "Xuất khẩu", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.tab_retail_goods_air:
+                        mAirBinding.viewPagerAir.setCurrentItem(3);
+                        Toast.makeText(getApplicationContext(), "Hàng lẻ xuất khẩu", Toast.LENGTH_SHORT).show();
+                        break;
+
                 }
                 return true;
             }
@@ -80,6 +85,9 @@ public class AirActivity extends AppCompatActivity {
                         mAirBinding.botomNavAir.getMenu().findItem(R.id.tab_export_air).setChecked(true);
                         mAirBinding.viewPagerAir.setPageTransformer(new ZoomOutPageTransformer());
                         break;
+                    case 3:
+                        mAirBinding.botomNavAir.getMenu().findItem(R.id.tab_retail_goods_air).setChecked(true);
+                        mAirBinding.viewPagerAir.setPageTransformer(new ZoomOutPageTransformer());
 
                 }
             }

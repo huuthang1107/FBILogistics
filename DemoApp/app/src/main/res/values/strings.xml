@@ -190,6 +190,16 @@
     <string name="label_dom_cy">CY-CY</string>
     <string name="label_dom_door">Door</string>
     <string name="dom">DOM</string>
+    <string name="title_activity_detail_dom">DetailDomActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 
 </resources>

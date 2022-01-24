@@ -60,7 +60,7 @@ public class SaleActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar
-                , R.string.nav_drawer_open, R.string.nav_drawer_close);
+                , R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 

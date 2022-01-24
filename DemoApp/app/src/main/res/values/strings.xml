@@ -109,12 +109,6 @@
     <string name="nav_nameInfoSale">FBILogistics</string>
     <string name="nav_linkInfoSale">www.fbi.amoris.vn</string>
 
-    <string name="nav_drawer_open">Open navigation drawer</string>
-    <string name="nav_drawer_close">Close navigation drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <string name="colAIR_col2">AOL</string>
     <string name="colAIR_col3">AOD</string>
     <string name="colAIR_col4">DIM (LxHxW cm)</string>
@@ -151,7 +145,6 @@
     <string name="width">Chiều rộng</string>
     <string name="height">Chiều cao</string>
 
-    // log
     <string name="collog_1">Tên hàng</string>
     <string name="collog_2">H/S code</string>
     <string name="collog_3">Công dụng</string>
@@ -181,7 +174,6 @@
     <string name="label_import_imp">IMPORT</string>
     <string name="label_import_lcl">LCL</string>
     <string name="col_su45">SUR 45</string>
-    <string name="title_activity_dom">DomActivity</string>
 
     <string name="label_dom_export">Xuất</string>
     <string name="label_dom_import">Nhập</string>
@@ -190,7 +182,7 @@
     <string name="label_dom_cy">CY-CY</string>
     <string name="label_dom_door">Door</string>
     <string name="dom">DOM</string>
-    <string name="title_activity_detail_dom">DetailDomActivity</string>
+    <string name="title_activity_dom">DomActivity</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -199,7 +191,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="title_activity_detail">DetailActivity</string>
 
 
 </resources>

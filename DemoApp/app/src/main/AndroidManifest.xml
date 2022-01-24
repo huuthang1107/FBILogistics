@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApp"
         android:usesCleartextTraffic="true" >
-
         <activity
             android:name=".view.activity.imp.ProImportActivity"
             android:exported="false"

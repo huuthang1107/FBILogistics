@@ -2,24 +2,21 @@ package com.example.demoapp.view.dialog.dom;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDialogDomExportDetailBinding;
-import com.example.demoapp.databinding.FragmentDomExportBinding;
+import com.example.demoapp.model.DomExport;
+import com.example.demoapp.utilities.Constants;
 
 public class DialogDomExportDetail extends DialogFragment {
 
     private FragmentDialogDomExportDetailBinding binding;
-
-    public DialogDomExportDetail() {
-        // Required empty public constructor
-    }
+    private Bundle bundle;
 
     // TODO: Rename and change types and number of parameters
     public static DialogDomExportDetail getInstance() {
@@ -33,12 +30,50 @@ public class DialogDomExportDetail extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentDialogDomExportDetailBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        setData();
+        setListenerForButtons();
+
         return root;
+    }
+
+    public void setListenerForButtons() {
+        binding.btnUpdateDomExport.setOnClickListener(view -> {
+            DialogFragment fragment = DialogDomExportUpdate.getInstance();
+            fragment.setArguments(bundle);
+            fragment.show(getParentFragmentManager(), "UpdateDomExport");
+        });
+
+        binding.btnAddNewDomExport.setOnClickListener(view -> {
+            DialogFragment fragment2 = DialogDomExportInsert.getInstance();
+            fragment2.setArguments(bundle);
+            fragment2.show(getParentFragmentManager(), "AddNewDomExport");
+        });
+    }
+
+    public void setData() {
+        bundle = getArguments();
+        if (bundle != null) {
+            DomExport domExport = (DomExport) bundle.getSerializable(Constants.DOM_EXPORT_OBJECT);
+
+            bundle.putSerializable(Constants.DOM_EXPORT_UPDATE, domExport);
+            bundle.putString(Constants.DOM_EXPORT_ADD_NEW, "YES");
+
+            binding.tvDomExportProductName.setText(domExport.getName());
+            binding.tvDomExportWeight.setText(domExport.getWeight());
+            binding.tvDomExportQuantity.setText(domExport.getQuantity());
+            binding.tvDomExportTemp.setText(domExport.getTemp());
+            binding.tvDomExportAddress.setText(domExport.getAddress());
+            binding.tvDomExportSeaport.setText(domExport.getPortExport());
+            binding.tvDomExportLength.setText(domExport.getLength());
+            binding.tvRowDomExportHeight.setText(domExport.getHeight());
+            binding.tvRowDomExportWidth.setText(domExport.getWidth());
+            binding.tvRowDomExportCreated.setText(domExport.getCreatedDate());
+        }
     }
 }

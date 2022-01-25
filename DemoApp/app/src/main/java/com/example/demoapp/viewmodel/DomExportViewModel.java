@@ -33,7 +33,14 @@ public class DomExportViewModel extends AndroidViewModel {
         return mDomExportRepository.insertData(name, weight, quantity, temp, address, portExport, length, height, width, type, month, continent, createdDate);
     }
 
-    public MutableLiveData<List<DomExport>> getAllData(){
+    public Call<DomExport> updateData(String stt, String name, String weight, String quantity,
+                                      String temp, String address, String portExport, String length,
+                                      String height, String width, String type, String month, String continent) {
+
+        return mDomExportRepository.updateData(stt, name, weight, quantity, temp, address, portExport, length, height, width, type, month, continent);
+    }
+
+    public MutableLiveData<List<DomExport>> getAllData() {
         return mDomExportRepository.getAllData();
     }
 }

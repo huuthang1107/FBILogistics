@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,12 +17,11 @@ import com.example.demoapp.databinding.RowDomExportBinding;
 import com.example.demoapp.model.DomExport;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.dom.DialogDomExportDetail;
-import com.example.demoapp.view.dialog.fcl.FragmentFclDetail;
 
 import java.util.List;
 
 public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.ExportViewHolder> {
-    private  Context context;
+    private final Context context;
     private List<DomExport> listExport;
 
     @NonNull
@@ -38,12 +36,7 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
         DomExport domExport = listExport.get(position);
         holder.bind(domExport);
 
-        holder.binding.rowCvDomExport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToDetail(domExport);
-            }
-        });
+        holder.binding.rowCvDomExport.setOnClickListener(view -> goToDetail(domExport));
 
     }
 
@@ -57,7 +50,7 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
         bundle.putSerializable(Constants.DOM_EXPORT_OBJECT, domExport);
 
         dialogFragment.setArguments(bundle);
-        dialogFragment.show( fm,"DetailFcl");
+        dialogFragment.show( fm,"Detail Dom Export");
     }
 
     public ExportDomAdapter(Context context) {

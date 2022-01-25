@@ -210,5 +210,6 @@
     <string name="nav_dom_cold">Xe tải lạnh</string>
     <string name="nav_dom_cy">CY-CY</string>
     <string name="nav_dom_door">Door to Door</string>
+    <string name="created_date_case">Ngày Tạo</string>
 
 </resources>

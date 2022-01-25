@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,10 @@ import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.ExportDomAdapter;
-import com.example.demoapp.adapter.PriceListFclAdapter;
 import com.example.demoapp.databinding.FragmentDomExportBinding;
 import com.example.demoapp.model.DomExport;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.dom.DialogInsertDomExport;
+import com.example.demoapp.view.dialog.dom.DialogDomExportInsert;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.DomExportViewModel;
 
@@ -185,7 +182,7 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
         int id = view.getId();
         switch (id) {
             case R.id.dom_export_fab:
-                DialogFragment dialogFragment = DialogInsertDomExport.getInstance();
+                DialogFragment dialogFragment = DialogDomExportInsert.getInstance();
                 dialogFragment.show(getChildFragmentManager(), "ExportDom");
 
             case R.id.radio_export_all:

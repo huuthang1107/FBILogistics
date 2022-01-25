@@ -2,7 +2,9 @@ package com.example.demoapp.view.dialog.dom;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +31,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DialogInsertDomExport extends DialogFragment implements View.OnClickListener {
+public class DialogDomExportInsert extends DialogFragment implements View.OnClickListener {
 
     private DialogInsertDomExportBinding binding;
+    private Bundle bundle;
 
     private final String[] listStr = new String[3];
 
@@ -51,13 +54,41 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
         communicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
         setUpViews();
+        textWatcher();
+        setData();
 
         return view;
     }
 
-    public static DialogInsertDomExport getInstance() {
+    public void setData() {
+        bundle = getArguments();
+        if (bundle != null) {
+            DomExport mDomExport = (DomExport) bundle.getSerializable(Constants.DOM_EXPORT_UPDATE);
+            if ("YES".equalsIgnoreCase(bundle.getString(Constants.DOM_EXPORT_ADD_NEW))) {
+                binding.domExportInsertAutoContainer.setText(mDomExport.getType());
+                binding.domExportInsertAutoMonth.setText(mDomExport.getMonth());
+                binding.domExportInsertAutoContinent.setText(mDomExport.getContinent());
 
-        return new DialogInsertDomExport();
+                listStr[0] = binding.domExportInsertAutoContainer.getText().toString();
+                listStr[1] = binding.domExportInsertAutoMonth.getText().toString();
+                listStr[2] = binding.domExportInsertAutoContinent.getText().toString();
+
+                Objects.requireNonNull(binding.insertDomExportName.getEditText()).setText(mDomExport.getName());
+                Objects.requireNonNull(binding.insertDomExportWeight.getEditText()).setText(mDomExport.getWeight());
+                Objects.requireNonNull(binding.insertDomExportQuantity.getEditText()).setText(mDomExport.getQuantity());
+                Objects.requireNonNull(binding.insertDomExportTemp.getEditText()).setText(mDomExport.getTemp());
+                Objects.requireNonNull(binding.insertDomExportAddress.getEditText()).setText(mDomExport.getAddress());
+                Objects.requireNonNull(binding.insertDomExportPort.getEditText()).setText(mDomExport.getPortExport());
+                Objects.requireNonNull(binding.insertDomExportLength.getEditText()).setText(mDomExport.getLength());
+                Objects.requireNonNull(binding.insertDomExportHeight.getEditText()).setText(mDomExport.getHeight());
+                Objects.requireNonNull(binding.insertDomExportWidth.getEditText()).setText(mDomExport.getWidth());
+            }
+        }
+    }
+
+    public static DialogDomExportInsert getInstance() {
+
+        return new DialogDomExportInsert();
     }
 
     private void setUpViews() {
@@ -88,6 +119,7 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
 
     /**
      * Get current date and time
+     *
      * @return current date and time
      */
     private String getCreatedDate() {
@@ -101,8 +133,11 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
 
         switch (id) {
             case R.id.btn_dom_export_insert:
-                insertData();
-                dismiss();
+                if (isFilled()) {
+                    insertData();
+                    dismiss();
+                } else
+                    Toast.makeText(getContext(), Constants.INSERT_FAILED, Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_dom_export_cancel:
                 dismiss();
@@ -141,5 +176,91 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
 
             }
         });
+    }
+
+    public boolean isFilled() {
+        boolean result = true;
+
+        if (TextUtils.isEmpty(binding.domExportInsertAutoContainer.getText())) {
+            result = false;
+            binding.domExportInsertAutoContainer.setError(Constants.ERROR_AUTO_COMPLETE_TYPE);
+        }
+
+        if (TextUtils.isEmpty(binding.domExportInsertAutoMonth.getText())) {
+            result = false;
+            binding.domExportInsertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
+        }
+
+        if (TextUtils.isEmpty(binding.domExportInsertAutoContinent.getText())) {
+            result = false;
+            binding.domExportInsertAutoContinent.setError(Constants.ERROR_AUTO_COMPLETE_CONTINENT);
+        }
+
+        return result;
+    }
+
+    /**
+     * If this field is not empty, set null for error
+     */
+    public void textWatcher() {
+
+        binding.domExportInsertAutoContainer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (TextUtils.isEmpty(binding.domExportInsertAutoContainer.getText())) {
+                    binding.domExportInsertAutoContainer.setError(null);
+
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.domExportInsertAutoMonth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (TextUtils.isEmpty(binding.domExportInsertAutoMonth.getText())) {
+                    binding.domExportInsertAutoMonth.setError(null);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.domExportInsertAutoContinent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (TextUtils.isEmpty(binding.domExportInsertAutoContinent.getText())) {
+                    binding.domExportInsertAutoContinent.setError(null);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.demoapp" >
+    package="com.example.demoapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,10 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoApp"
-        android:usesCleartextTraffic="true" >
-
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".view.activity.imp.ProImportActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dom"
+            android:theme="@style/Theme.DemoApp.NoActionBar" />
+        <activity
+            android:name=".view.activity.pro.ProActivity"
             android:exported="false"
             android:label="@string/title_activity_pro_import" />
         <activity
@@ -33,8 +37,8 @@
             android:name=".view.activity.sale.TablePriceAirActivity"
             android:exported="true" />
         <activity
-            android:name=".view.activity.pro.ProActivity"
-            android:exported="true" >
+            android:name=".view.activity.dom.DomActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

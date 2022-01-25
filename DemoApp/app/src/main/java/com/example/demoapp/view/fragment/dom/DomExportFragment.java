@@ -44,46 +44,6 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
     private String continent = "";
     private String radioItem = "All";
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public DomExportFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DomExportFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DomExportFragment newInstance(String param1, String param2) {
-        DomExportFragment fragment = new DomExportFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,38 +51,22 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
         binding = FragmentDomExportBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        mExportDomAdapter = new ExportDomAdapter(getContext());
         mDomExportViewModel = new ViewModelProvider(this).get(DomExportViewModel.class);
 
-        CommunicateViewModel communicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
-        communicateViewModel.needReloading.observe(getViewLifecycleOwner(), reloading -> {
-            if ((reloading)) {
-                Log.d("testload", String.valueOf(reloading.toString()));
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
+            if (needLoading) {
                 onResume();
             }
         });
 
         getAllData();
         setAutoComplete();
-        setRadios();
-        setButton();
+        setButtons();
 
         return view;
-    }
-
-    public void setRadios() {
-
-        binding.radioExportAll.setOnClickListener(this);
-        binding.radioExportAll.performClick();
-
-        binding.radioExportFr.setOnClickListener(this);
-
-        binding.radioExportRf.setOnClickListener(this);
-
-        binding.radioExportOt.setOnClickListener(this);
-
-        binding.radioExportIso.setOnClickListener(this);
-
-        binding.radioExportFt.setOnClickListener(this);
     }
 
     public void setUpRecyclerView(String m, String c, String r) {
@@ -211,7 +155,6 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
 
-        mExportDomAdapter = new ExportDomAdapter(getContext());
         mDomExportViewModel.getAllData().observe(getViewLifecycleOwner(), domExports -> {
             mExportDomAdapter.setDomExport(filterDataResume(month, continent, radioItem, domExports));
         });
@@ -219,8 +162,21 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
         binding.rcvDomExport.setAdapter(mExportDomAdapter);
     }
 
-    public void setButton() {
+    public void setButtons() {
         binding.domExportFab.setOnClickListener(this);
+
+        binding.radioExportAll.setOnClickListener(this);
+        binding.radioExportAll.performClick();
+
+        binding.radioExportFr.setOnClickListener(this);
+
+        binding.radioExportRf.setOnClickListener(this);
+
+        binding.radioExportOt.setOnClickListener(this);
+
+        binding.radioExportIso.setOnClickListener(this);
+
+        binding.radioExportFt.setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -231,6 +187,36 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
             case R.id.dom_export_fab:
                 DialogFragment dialogFragment = DialogInsertDomExport.getInstance();
                 dialogFragment.show(getChildFragmentManager(), "ExportDom");
+
+            case R.id.radio_export_all:
+                radioItem = binding.radioExportAll.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_export_ft:
+                radioItem = binding.radioExportFt.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_export_rf:
+                radioItem = binding.radioExportRf.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_export_ot:
+                radioItem = binding.radioExportOt.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_export_fr:
+                radioItem = binding.radioExportFr.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_export_iso:
+                radioItem = binding.radioExportIso.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
         }
     }
 

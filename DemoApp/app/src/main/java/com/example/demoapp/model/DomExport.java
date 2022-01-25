@@ -3,7 +3,9 @@ package com.example.demoapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DomExport {
+import java.io.Serializable;
+
+public class DomExport implements Serializable {
     @SerializedName("stt")
     @Expose
     private String stt;
@@ -56,9 +58,11 @@ public class DomExport {
     @Expose
     private String continent;
 
-    public DomExport(String stt, String name, String weight, String quantity, String temp,
-                     String address, String portExport, String length, String height, String width,
-                     String type, String month, String continent) {
+    @SerializedName("created_date")
+    @Expose
+    private String createdDate;
+
+    public DomExport(String stt, String name, String weight, String quantity, String temp, String address, String portExport, String length, String height, String width, String type, String month, String continent, String createdDate) {
         this.stt = stt;
         this.name = name;
         this.weight = weight;
@@ -72,11 +76,10 @@ public class DomExport {
         this.type = type;
         this.month = month;
         this.continent = continent;
+        this.createdDate = createdDate;
     }
 
-    public DomExport(String name, String weight, String quantity, String temp, String address,
-                     String portExport, String length, String height, String width, String type,
-                     String month, String continent) {
+    public DomExport(String name, String weight, String quantity, String temp, String address, String portExport, String length, String height, String width, String type, String month, String continent, String createdDate) {
         this.name = name;
         this.weight = weight;
         this.quantity = quantity;
@@ -89,19 +92,7 @@ public class DomExport {
         this.type = type;
         this.month = month;
         this.continent = continent;
-    }
-
-    public DomExport(String name, String weight, String quantity, String temp,
-                     String address, String portExport, String length, String height, String width) {
-        this.name = name;
-        this.weight = weight;
-        this.quantity = quantity;
-        this.temp = temp;
-        this.address = address;
-        this.portExport = portExport;
-        this.length = length;
-        this.height = height;
-        this.width = width;
+        this.createdDate = createdDate;
     }
 
     public String getStt() {
@@ -206,5 +197,13 @@ public class DomExport {
 
     public void setContinent(String continent) {
         this.continent = continent;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 }

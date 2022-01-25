@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -22,6 +21,8 @@ import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.DomExportViewModel;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -47,8 +48,7 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
 
         View view = binding.getRoot();
 
-        communicateViewModel = new ViewModelProvider(this)
-                .get(CommunicateViewModel.class);
+        communicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
         setUpViews();
 
@@ -66,36 +66,32 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
         binding.btnDomExportCancel.setOnClickListener(this);
         mDomExportViewModel = new ViewModelProvider(this).get(DomExportViewModel.class);
 
-        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_DOM);
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_DOM);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.domExportInsertAutoContainer.setAdapter(adapterItemsType);
         binding.domExportInsertAutoMonth.setAdapter(adapterItemsMonth);
         binding.domExportInsertAutoContinent.setAdapter(adapterItemsContinent);
 
-        binding.domExportInsertAutoContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[0] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.domExportInsertAutoContainer.setOnItemClickListener((adapterView, view, i, l) ->
+                listStr[0] = adapterView.getItemAtPosition(i).toString());
 
-        binding.domExportInsertAutoMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[1] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.domExportInsertAutoMonth.setOnItemClickListener((adapterView, view, i, l) ->
+                listStr[1] = adapterView.getItemAtPosition(i).toString());
 
-        binding.domExportInsertAutoContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                listStr[2] = adapterView.getItemAtPosition(i).toString();
-            }
-        });
+        binding.domExportInsertAutoContinent.setOnItemClickListener((adapterView, view, i, l) ->
+                listStr[2] = adapterView.getItemAtPosition(i).toString());
 
         setCancelable(false);
+    }
+
+    /**
+     * Get current date and time
+     * @return current date and time
+     */
+    private String getCreatedDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -132,7 +128,7 @@ public class DialogInsertDomExport extends DialogFragment implements View.OnClic
         communicateViewModel.makeChanges();
 
         mDomExportViewModel.insertData(name, weight, quantity, temp, address, portExport, length,
-                height, width, listStr[0], listStr[1], listStr[2]).enqueue(new Callback<DomExport>() {
+                height, width, listStr[0], listStr[1], listStr[2], getCreatedDate()).enqueue(new Callback<DomExport>() {
             @Override
             public void onResponse(@NonNull Call<DomExport> call, @NonNull Response<DomExport> response) {
                 if (response.isSuccessful()) {

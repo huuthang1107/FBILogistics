@@ -1,16 +1,11 @@
 package com.example.demoapp.view.fragment.fcl;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,9 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListFclAdapter;
 
-import com.example.demoapp.databinding.FragmentAirDialogBinding;
 import com.example.demoapp.databinding.FragmentFclBinding;
-import com.example.demoapp.databinding.RowPricelistFclBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.fcl.InsertFclDialog;
@@ -34,7 +27,6 @@ import com.example.demoapp.viewmodel.FclViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class FCLFragment extends Fragment implements View.OnClickListener {
 
@@ -69,7 +61,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         priceListFclAdapter = new PriceListFclAdapter(getContext());
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
 
-        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
         mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
             if (needLoading) {
@@ -94,26 +86,20 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      * this method will listen a event of auto complete (month, continent)
      */
     public void setAdapterItems() {
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.autoCompleteMonth.setAdapter(adapterItemsMonth);
         binding.autoCompleteContinent.setAdapter(adapterItemsContinent);
 
-        binding.autoCompleteMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                month = adapterView.getItemAtPosition(i).toString();
-                setDataForRecyclerView(month, continent, radioItem);
-            }
+        binding.autoCompleteMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+            month = adapterView.getItemAtPosition(i).toString();
+            setDataForRecyclerView(month, continent, radioItem);
         });
 
-        binding.autoCompleteContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                continent = adapterView.getItemAtPosition(i).toString();
-                setDataForRecyclerView(month, continent, radioItem);
-            }
+        binding.autoCompleteContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+            continent = adapterView.getItemAtPosition(i).toString();
+            setDataForRecyclerView(month, continent, radioItem);
         });
 
     }
@@ -182,9 +168,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         } catch (NullPointerException nullPointerException) {
             Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
         }
-
         return subList;
-
     }
 
     /**
@@ -193,9 +177,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     public void getAllData() {
         this.listPriceList = new ArrayList<>();
 
-        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
-            this.listPriceList = sortArray(detailsPojoFcl);
-        });
+        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> this.listPriceList = sortArray(detailsPojoFcl));
     }
 
     /**
@@ -206,7 +188,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      */
     public List<Fcl> sortArray(List<Fcl> list) {
         List<Fcl> result = new ArrayList<>();
-        for (int i = list.size() - 1 ; i >= 0; i--) {
+        for (int i = list.size() - 1; i >= 0; i--) {
             result.add(list.get(i));
         }
         return result;
@@ -238,9 +220,8 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         super.onResume();
 
         priceListFclAdapter = new PriceListFclAdapter(getContext());
-        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl -> {
-            priceListFclAdapter.setDataFcl(prepareDataForResume(month, continent, radioItem, sortArray(detailsPojoFcl)));
-        });
+        mFclViewModel.getFclList().observe(getViewLifecycleOwner(), detailsPojoFcl ->
+                priceListFclAdapter.setDataFcl(prepareDataForResume(month, continent, radioItem, sortArray(detailsPojoFcl))));
 
         binding.priceListRcv.setAdapter(priceListFclAdapter);
     }

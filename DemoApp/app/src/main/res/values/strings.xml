@@ -167,7 +167,7 @@
     <string name="select_ExportAndImport">Loại Vận Chuyển</string>
     <string name="txt_dom_name">Tên Hàng</string>
     <string name="txt_dom_weight">Trọng Lượng</string>
-    <string name="txt_dom_quantity">Số Lượng Cont</string>
+    <string name="txt_dom_quantity">SL Cont</string>
     <string name="txt_dom_temp">Nhiệt Độ</string>
     <string name="txt_dom_address">Địa Chỉ</string>
     <string name="txt_dom_port">Cảng Chờ Xuất</string>
@@ -182,5 +182,33 @@
     <string name="label_import_lcl">LCL</string>
     <string name="col_su45">SUR 45</string>
     <string name="title_activity_dom">DomActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="term">TERM</string>
+    <string name="cargo">CARGO</string>
+    <string name="col_of">OF</string>
+    <string name="local_pol">LOCAL_POL</string>
+    <string name="local_pod">LOCAL_POD</string>
+    <string name="ph_ng_kinh_doanh">PHÒNG KINH DOANH</string>
+    <string name="name_intro">Name: Ms. Julia</string>
+    <string name="phone_intro">Điện thoại: 0773 40 10 20</string>
+    <string name="email_intro">Email: Julia@fbilogistics.vn</string>
+    <string name="name_pro_intro">OVERSEA DEPARTMENT</string>
+    <string name="name2_intro">Name: Ms. Chloe</string>
+    <string name="phone2_intro">Tel: +84 28 3535 7878 EXT: 170</string>
+    <string name="email2_intro">Email: chloe@fbilogistics.vn</string>
+    <string name="name3_intro">CHĂM SÓC KHÁCH HÀNG</string>
+    <string name="phone3_intro">Điện thoại: +84 28 3535 7878 EXT: 100</string>
+    <string name="phone4_intro">Hotline: 0772 50 10 20</string>
+    <string name="email4_intro">Email: chamsockhachhang@fbilogistics.vn</string>
+    <string name="nav_dom_export">Hàng xuất</string>
+    <string name="nav_dom_import">Hàng nhập</string>
+    <string name="nav_dom_dry">Xe tải khô</string>
+    <string name="nav_dom_cold">Xe tải lạnh</string>
+    <string name="nav_dom_cy">CY-CY</string>
+    <string name="nav_dom_door">Door to Door</string>
 
 </resources>

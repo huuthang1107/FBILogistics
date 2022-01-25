@@ -3,15 +3,22 @@ package com.example.demoapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.databinding.RowDomExportBinding;
 import com.example.demoapp.model.DomExport;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.DialogDomExportDetail;
+import com.example.demoapp.view.dialog.fcl.FragmentFclDetail;
 
 import java.util.List;
 
@@ -26,8 +33,31 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExportViewHolder holder, int position) {
-        holder.bind(listExport.get(position));
+    public void onBindViewHolder(@NonNull ExportViewHolder holder, int  position) {
+
+        DomExport domExport = listExport.get(position);
+        holder.bind(domExport);
+
+        holder.binding.rowCvDomExport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToDetail(domExport);
+            }
+        });
+
+    }
+
+    public void goToDetail(DomExport domExport){
+        FragmentActivity activity = (FragmentActivity) context;
+        FragmentManager fm = activity.getSupportFragmentManager();
+        DialogFragment dialogFragment = DialogDomExportDetail.getInstance();
+
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable(Constants.DOM_EXPORT_OBJECT, domExport);
+
+        dialogFragment.setArguments(bundle);
+        dialogFragment.show( fm,"DetailFcl");
     }
 
     public ExportDomAdapter(Context context) {
@@ -42,14 +72,14 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
 
     @Override
     public int getItemCount() {
-        if (listExport == null) {
-            return 0;
+        if (listExport != null) {
+            return listExport.size();
         }
-        return listExport.size();
+        return 0;
     }
 
     public static class ExportViewHolder extends RecyclerView.ViewHolder {
-        private RowDomExportBinding binding;
+        private final RowDomExportBinding binding;
 
         public ExportViewHolder(@NonNull RowDomExportBinding root) {
             super(root.getRoot());
@@ -57,25 +87,15 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
         }
 
         public void bind(DomExport export) {
-            String name = export.getName();
-            String weight = export.getWeight();
-            String quantity = export.getQuantity();
-            String temp = export.getTemp();
-            String address = export.getAddress();
-            String portExport = export.getPortExport();
-            String length = export.getLength();
-            String height = export.getHeight();
-            String width = export.getWidth();
-
-            binding.tvDomExportProductName.setText(name);
-            binding.tvDomExportWeight.setText(weight);
-            binding.tvDomExportQuantity.setText(quantity);
-            binding.tvDomExportTemp.setText(temp);
-            binding.tvDomExportAddress.setText(address);
-            binding.tvDomExportSeaport.setText(portExport);
-            binding.tvDomExportLength.setText(length);
-            binding.tvRowDomExportHeight.setText(height);
-            binding.tvRowDomExportWidth.setText(width);
+            binding.tvDomExportProductName.setText(export.getName());
+            binding.tvDomExportWeight.setText(export.getWeight());
+            binding.tvDomExportQuantity.setText(export.getQuantity());
+            binding.tvDomExportTemp.setText(export.getTemp());
+            binding.tvDomExportAddress.setText(export.getAddress());
+            binding.tvDomExportSeaport.setText(export.getPortExport());
+            binding.tvDomExportLength.setText(export.getLength());
+            binding.tvRowDomExportHeight.setText(export.getHeight());
+            binding.tvRowDomExportWidth.setText(export.getWidth());
         }
     }
 }

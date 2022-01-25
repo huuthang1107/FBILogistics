@@ -6,14 +6,11 @@ import com.example.demoapp.R;
 import com.example.demoapp.databinding.ActivityProImportBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import java.util.Objects;
 
 public class ProImportActivity extends AppCompatActivity {
 

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapter.ViewHolder> {
 
-    private Context context;
+    private final Context context;
     private List<Fcl> mListDetailFcl;
 
     public PriceListFclAdapter(Context context) {
@@ -61,12 +61,7 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
         } else {
             return;
         }
-        holder.fclCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               goToDetail(priceListModel);
-            }
-        });
+        holder.fclCardView.setOnClickListener(view -> goToDetail(priceListModel));
     }
 
     /**
@@ -82,7 +77,6 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
 
         bundle.putSerializable(Constants.FCL_OBJECT, fcl);
 
-        bundle.putSerializable(Constants.FCL_OBJECT, fcl);
         dialogFragment.setArguments(bundle);
         dialogFragment.show( fm,"DetailFcl");
     }
@@ -98,7 +92,7 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
     @SuppressLint("NotifyDataSetChanged")
     public void setDataFcl(List<Fcl> list) {
         this.mListDetailFcl = list;
-       notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
 

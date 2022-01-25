@@ -1,66 +1,196 @@
 package com.example.demoapp.view.fragment.imp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.PriceListImportLclAdapter;
+import com.example.demoapp.databinding.FragmentImportLclBinding;
+import com.example.demoapp.model.ImportLcl;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.imp.InsertImportDialog;
+import com.example.demoapp.view.dialog.imp.InsertImportLclDialog;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.ImportLclViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ImportLclFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ImportLclFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ImportLclFragment extends Fragment implements View.OnClickListener {
 
-    public ImportLclFragment() {
-        // Required empty public constructor
+    private FragmentImportLclBinding binding;
+
+
+    private String month = "";
+    private String continent = "";
+
+    List<ImportLcl> listPriceList = new ArrayList<>();
+    private PriceListImportLclAdapter priceListAdapter;
+    private ImportLclViewModel mImportViewModel;
+
+    /**
+     * this method will create a view (fragment)
+     *
+     * @param inflater           fragment
+     * @param container          container
+     * @param savedInstanceState save
+     * @return view
+     */
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        binding = FragmentImportLclBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        priceListAdapter = new PriceListImportLclAdapter(getContext());
+        mImportViewModel = new ViewModelProvider(this).get(ImportLclViewModel.class);
+
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
+            if (needLoading) {
+                onResume();
+            }
+        });
+
+        setAdapterItems();
+        setUpButtons();
+        getAllData();
+
+        return root;
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ImportLclFragment.
+     * this method will listen a event of auto complete (month, continent)
      */
-    // TODO: Rename and change types and number of parameters
-    public static ImportLclFragment newInstance(String param1, String param2) {
-        ImportLclFragment fragment = new ImportLclFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public void setAdapterItems() {
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+
+        binding.autoCompleteMonth.setAdapter(adapterItemsMonth);
+        binding.autoCompleteContinent.setAdapter(adapterItemsContinent);
+
+        binding.autoCompleteMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+            month = adapterView.getItemAtPosition(i).toString();
+            setDataForRecyclerView(month, continent);
+        });
+
+        binding.autoCompleteContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+            continent = adapterView.getItemAtPosition(i).toString();
+            setDataForRecyclerView(month, continent);
+        });
+
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    /**
+     * this method will set data for recycler view
+     *
+     * @param m month
+     * @param c continent
+     */
+    public void setDataForRecyclerView(String m, String c) {
+        if (!m.isEmpty() && !c.isEmpty()) {
+            priceListAdapter.setImports(prepareDataForRecyclerView(month, continent));
+            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.priceListRcv.setAdapter(priceListAdapter);
+        }
+    }
+
+    /**
+     * this method will filter list data by month and continent
+     *
+     * @param m month
+     * @param c continent
+     * @return get list by month and continent
+     */
+    public List<ImportLcl> prepareDataForRecyclerView(String m, String c) {
+        // reset a list when user choose different
+        List<ImportLcl> list = new ArrayList<>();
+
+        for (ImportLcl imp : listPriceList) {
+
+            if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
+                list.add(imp);
+            }
+        }
+        return list;
+    }
+
+    public List<ImportLcl> prepareDataForResume(String m, String c, List<ImportLcl> list) {
+        // reset a list when user choose different
+        List<ImportLcl> subList = new ArrayList<>();
+
+        try {
+            for (ImportLcl imp : list) {
+                if (imp.getMonth().equalsIgnoreCase(m) && imp.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(imp);
+                }
+            }
+
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+
+    /**
+     * this method will get all data from database
+     */
+    public void getAllData() {
+
+        try {
+            mImportViewModel.getImportList().observe(getViewLifecycleOwner(), detailsPojoImports ->
+                    this.listPriceList = detailsPojoImports);
+        } catch (NullPointerException exception) {
+            Toast.makeText(getContext(), exception.toString(), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_import_lcl, container, false);
+    public void onResume() {
+        super.onResume();
+        priceListAdapter = new PriceListImportLclAdapter(getContext());
+        mImportViewModel.getImportList().observe(getViewLifecycleOwner(), imp ->
+                priceListAdapter.setImports(prepareDataForResume(month, continent, imp)));
+
+        binding.priceListRcv.setAdapter(priceListAdapter);
+    }
+
+    /**
+     * this method will set listen for buttons
+     */
+    public void setUpButtons() {
+        binding.fragmentImportLclFab.setOnClickListener(this);
+
+    }
+
+    /**
+     * this method used to set event for button click
+     *
+     * @param view click
+     */
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.fragment_import_lcl_fab) {
+            DialogFragment dialogFragment = InsertImportLclDialog.getInstance();
+            dialogFragment.show(getParentFragmentManager(), "Insert Dialog");
+        }
     }
 }

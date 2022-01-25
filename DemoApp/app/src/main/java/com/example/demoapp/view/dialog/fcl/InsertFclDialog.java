@@ -358,6 +358,10 @@ public class InsertFclDialog extends DialogFragment implements View.OnClickListe
         });
     }
 
+    /**
+     * Get current date and time
+     * @return current date and time
+     */
     private String getCreatedDate() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
     }

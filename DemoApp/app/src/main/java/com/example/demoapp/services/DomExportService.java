@@ -20,5 +20,5 @@ public interface DomExportService {
     Call<DomExport> insertData(@Field("name") String name, @Field("weight") String weight, @Field("quantity") String quantity,
                                @Field("temp") String temp, @Field("address") String address, @Field("port_export") String portExport,
                                @Field("length") String length, @Field("height") String height, @Field("width") String width,
-                               @Field("type") String type, @Field("month") String month, @Field("continent") String continent);
+                               @Field("type") String type, @Field("month") String month, @Field("continent") String continent, @Field("created_date") String createdDate);
 }

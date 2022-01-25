@@ -48,8 +48,8 @@ public class DomExportRepository {
 
     public Call<DomExport> insertData(String name, String weight, String quantity,
                                       String temp, String address, String portExport, String length,
-                                      String height, String width, String type, String month, String continent) {
+                                      String height, String width, String type, String month, String continent, String createdDate) {
 
-        return mDomExportService.insertData(name, weight, quantity, temp, address, portExport, length, height, width, type, month, continent);
+        return mDomExportService.insertData(name, weight, quantity, temp, address, portExport, length, height, width, type, month, continent, createdDate);
     }
 }

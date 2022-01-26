@@ -17,8 +17,19 @@ public interface LogService {
                       @Field("congdung") String congdung, @Field("hinhanh") String hinhanh,
                       @Field("cangdi") String cangdi, @Field("cangden") String cangden,
                       @Field("loaihang") String loaihang, @Field("soluongcuthe") String soluongcuthe,
-                      @Field("yeucaudacbiet") String yeucaudacbiet, @Field("valid") String valid
-                     , @Field("month") String month, @Field("importorexport") String importorexport) ;
+                      @Field("yeucaudacbiet") String yeucaudacbiet, @Field("price") String price
+                     , @Field("month") String month, @Field("importorexport") String importorexport,
+                      @Field("type") String type) ;
+
+    @FormUrlEncoded
+    @POST("UpdateDataLog.php")
+    Call<Log> updateData(@Field("stt") String stt, @Field("tenhang") String tenhang, @Field("hscode") String hscode,
+                      @Field("congdung") String congdung, @Field("hinhanh") String hinhanh,
+                      @Field("cangdi") String cangdi, @Field("cangden") String cangden,
+                      @Field("loaihang") String loaihang, @Field("soluongcuthe") String soluongcuthe,
+                      @Field("yeucaudacbiet") String yeucaudacbiet, @Field("price") String price
+            , @Field("month") String month, @Field("importorexport") String importorexport,
+                      @Field("type") String type) ;
 
     @GET("GetDataLog.php")
     Call<List<Log>> getpriceLog();

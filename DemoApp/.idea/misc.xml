@@ -99,10 +99,13 @@
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_retail_goods_export.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_road.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_seaway.xml" value="0.2749094202898551" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_update_air_import_dialog.xml" value="0.23981481481481481" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_update_log.xml" value="0.1875" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_update_retail_goods_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/item_photo.xml" value="0.32065217391304346" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/item_price_list_air.xml" value="0.1515625" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/row_dom_export.xml" value="0.27219202898550726" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/row_price_log.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/row_price_retail_goods.xml" value="0.264" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/row_pricelist_air.xml" value="0.1515625" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/row_pricelist_air_import.xml" value="0.1515625" />

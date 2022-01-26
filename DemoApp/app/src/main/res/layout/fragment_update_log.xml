@@ -39,7 +39,7 @@
             app:startIconDrawable="@drawable/baseline_travel_explore_black_24">
 
             <AutoCompleteTextView
-                android:id="@+id/insert_auto_continent"
+                android:id="@+id/insert_auto_importorexport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -228,33 +228,33 @@
                 android:hint="@string/collog_10" />
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="300dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:layout_weight="3">-->
-<!--            <ImageView-->
-<!--                android:id="@+id/iv_add_log"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="300dp"-->
-<!--                android:src="@drawable/logo"-->
-<!--                android:layout_marginRight="10dp"/>-->
-<!--            <com.google.android.material.button.MaterialButton-->
-<!--                android:id="@+id/btn_dinhkemhinhanh"-->
-<!--                android:layout_weight="2"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="5dp"-->
-<!--                app:backgroundTintMode="screen"-->
-<!--                android:background="@drawable/selector_button"-->
-<!--                android:text="@string/btn_dinhkem"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold"-->
-<!--                />-->
-<!--        </LinearLayout>-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="300dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:layout_weight="3">-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/iv_add_log"-->
+        <!--                android:layout_weight="1"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="300dp"-->
+        <!--                android:src="@drawable/logo"-->
+        <!--                android:layout_marginRight="10dp"/>-->
+        <!--            <com.google.android.material.button.MaterialButton-->
+        <!--                android:id="@+id/btn_dinhkemhinhanh"-->
+        <!--                android:layout_weight="2"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginRight="5dp"-->
+        <!--                app:backgroundTintMode="screen"-->
+        <!--                android:background="@drawable/selector_button"-->
+        <!--                android:text="@string/btn_dinhkem"-->
+        <!--                android:textColor="@color/black"-->
+        <!--                android:textStyle="bold"-->
+        <!--                />-->
+        <!--        </LinearLayout>-->
 
 
         <LinearLayout
@@ -265,7 +265,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_function_cancel"
+                android:id="@+id/btn_function_add_log"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -273,11 +273,11 @@
                 app:backgroundTintMode="screen"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="@string/btn_cancel_txt"
+                android:text="@string/btn_add_txt"
                 android:background="@drawable/selector_button"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_function_add"
+                android:id="@+id/btn_function_update_log"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -286,7 +286,7 @@
                 android:textStyle="bold"
                 app:backgroundTintMode="screen"
                 android:background="@drawable/selector_button"
-                android:text="@string/btn_add_txt" />
+                android:text="@string/btn_update_txt" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

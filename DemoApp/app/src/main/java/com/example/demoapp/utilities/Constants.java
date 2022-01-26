@@ -21,10 +21,16 @@ public class Constants {
     public  final static String[] ITEMS_DOM = {"FT", "RF", "OT", "FR", "ISO"};
 
     public static final String LOG_OBJECT = "object_log";
+    public static final String LOG_UPDATE = "object_update";
     public static final String AIR_OBJECT = "object_air";
     public static final String AIR_IMPORT = "object_import_air";
     public static final String AIR_IMPORT_UPDATE = "object_import_air_update";
     public static final String AIR_UPDATE = "update_air";
+
+    public final  static String[] ITEMS_TYPE = {"Xuất kinh doanh", "Xuất gia công", "Xuất SXXK", "Xuất PMD Cty", "Xuất PMD CN",
+    "Xuất tại chỗ", "XN tại chỗ", "Di lý", "Quá cảnh", "Nhập kinh doanh", "Nhập gia công", "Nhập SXXK", "Nhập PMD Cty",
+    "Nhập PMD CN", "Nhập tại chỗ", "Giấy phép", "Vận chuyển", "Kiểm định", "Kiểm dịch", "Xin C/O",
+    "Kiểm đếm", "Thanh lý", "Lashing", "Tái xuất", "Thay remark"};
 
     public static final String ERROR_AUTO_COMPLETE_MONTH = "Bạn chưa chọn tháng !!!";
     public static final String ERROR_AUTO_COMPLETE_CONTINENT = "Bạn chưa chọn châu !!!";

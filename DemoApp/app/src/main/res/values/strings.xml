@@ -184,5 +184,6 @@
     <string name="title_retail_goods_air">Hàng lẻ xuất</string>
     <string name="ocean_airfreight">OCEAN FREIGHT</string>
     <string name="local_charge">LOCAL CHARGE</string>
+    <string name="select_type">Loại hình</string>
 
 </resources>

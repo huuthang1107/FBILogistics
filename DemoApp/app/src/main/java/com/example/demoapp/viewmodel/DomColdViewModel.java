@@ -7,9 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.demoapp.model.DomCold;
-import com.example.demoapp.model.DomDry;
 import com.example.demoapp.repository.DomColdRepository;
-import com.example.demoapp.repository.DomDryRepository;
 import com.example.demoapp.utilities.Constants;
 
 import java.util.List;

@@ -13,13 +13,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.DialogDomDryUpdateBinding;
-import com.example.demoapp.databinding.FragmentDialogDomExportUpdateBinding;
 import com.example.demoapp.model.DomDry;
-import com.example.demoapp.model.DomExport;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.DomDryViewModel;
-import com.example.demoapp.viewmodel.DomExportViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -73,67 +70,67 @@ public class DialogDomDryUpdate extends DialogFragment {
         if (bundle != null) {
             mDomDry = (DomDry) bundle.getSerializable(Constants.DOM_DRY_UPDATE);
 
-            binding.domExportUpdateAutoContainer.setText(mDomExport.getType());
-            binding.domExportUpdateAutoMonth.setText(mDomExport.getMonth());
-            binding.domExportUpdateAutoContinent.setText(mDomExport.getContinent());
+            binding.domDryUpdateAutoContainer.setText(mDomDry.getType());
+            binding.domDryUpdateAutoMonth.setText(mDomDry.getMonth());
+            binding.domDryUpdateAutoContinent.setText(mDomDry.getContinent());
 
-            Objects.requireNonNull(binding.updateDomExportName.getEditText()).setText(mDomExport.getName());
-            Objects.requireNonNull(binding.updateDomExportWeight.getEditText()).setText(mDomExport.getWeight());
-            Objects.requireNonNull(binding.updateDomExportQuantity.getEditText()).setText(mDomExport.getQuantity());
-            Objects.requireNonNull(binding.updateDomExportTemp.getEditText()).setText(mDomExport.getTemp());
-            Objects.requireNonNull(binding.updateDomExportAddress.getEditText()).setText(mDomExport.getAddress());
-            Objects.requireNonNull(binding.updateDomExportPort.getEditText()).setText(mDomExport.getPortExport());
-            Objects.requireNonNull(binding.updateDomExportLength.getEditText()).setText(mDomExport.getLength());
-            Objects.requireNonNull(binding.updateDomExportHeight.getEditText()).setText(mDomExport.getHeight());
-            Objects.requireNonNull(binding.updateDomExportWidth.getEditText()).setText(mDomExport.getWidth());
+            Objects.requireNonNull(binding.updateDomDryName.getEditText()).setText(mDomDry.getName());
+            Objects.requireNonNull(binding.updateDomDryWeight.getEditText()).setText(mDomDry.getWeight());
+            Objects.requireNonNull(binding.updateDomDryQuantityPallet.getEditText()).setText(mDomDry.getQuantityPallet());
+            Objects.requireNonNull(binding.updateDomDryQuantityCarton.getEditText()).setText(mDomDry.getQuantityCarton());
+            Objects.requireNonNull(binding.updateDomDryAddressReceive.getEditText()).setText(mDomDry.getAddressReceive());
+            Objects.requireNonNull(binding.updateDomDryAddressDelivery.getEditText()).setText(mDomDry.getAddressDelivery());
+            Objects.requireNonNull(binding.updateDomDryLength.getEditText()).setText(mDomDry.getLength());
+            Objects.requireNonNull(binding.updateDomDryHeight.getEditText()).setText(mDomDry.getHeight());
+            Objects.requireNonNull(binding.updateDomDryWidth.getEditText()).setText(mDomDry.getWidth());
         }
     }
 
     private void setUpViews() {
 
-        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_DOM);
+        ArrayAdapter<String> adapterItemsType = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_TYPE_DOM_DRY);
         ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
         ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
-        listStr[0] = binding.domExportUpdateAutoContainer.getText().toString();
-        listStr[1] = binding.domExportUpdateAutoMonth.getText().toString();
-        listStr[2] = binding.domExportUpdateAutoContinent.getText().toString();
+        listStr[0] = binding.domDryUpdateAutoContainer.getText().toString();
+        listStr[1] = binding.domDryUpdateAutoMonth.getText().toString();
+        listStr[2] = binding.domDryUpdateAutoContinent.getText().toString();
 
-        binding.domExportUpdateAutoContainer.setAdapter(adapterItemsType);
-        binding.domExportUpdateAutoMonth.setAdapter(adapterItemsMonth);
-        binding.domExportUpdateAutoContinent.setAdapter(adapterItemsContinent);
+        binding.domDryUpdateAutoContainer.setAdapter(adapterItemsType);
+        binding.domDryUpdateAutoMonth.setAdapter(adapterItemsMonth);
+        binding.domDryUpdateAutoContinent.setAdapter(adapterItemsContinent);
 
-        binding.domExportUpdateAutoContainer.setOnItemClickListener((adapterView, view, i, l) ->
+        binding.domDryUpdateAutoContainer.setOnItemClickListener((adapterView, view, i, l) ->
                 listStr[0] = adapterView.getItemAtPosition(i).toString());
 
-        binding.domExportUpdateAutoMonth.setOnItemClickListener((adapterView, view, i, l) ->
+        binding.domDryUpdateAutoMonth.setOnItemClickListener((adapterView, view, i, l) ->
                 listStr[1] = adapterView.getItemAtPosition(i).toString());
 
-        binding.domExportUpdateAutoContinent.setOnItemClickListener((adapterView, view, i, l) ->
+        binding.domDryUpdateAutoContinent.setOnItemClickListener((adapterView, view, i, l) ->
                 listStr[2] = adapterView.getItemAtPosition(i).toString());
 
         setCancelable(false);
     }
 
     public void setListenerForButtons() {
-        binding.btnDomExportUpdateUpdate.setOnClickListener(view -> {
+        binding.btnDomDryUpdate.setOnClickListener(view -> {
             updateData();
             dismiss();
         });
-        binding.btnDomExportUpdateCancel.setOnClickListener(view -> dismiss());
+        binding.btnDomDryCancel.setOnClickListener(view -> dismiss());
     }
 
 
     public void getDataFromForm() {
-        name = Objects.requireNonNull(binding.updateDomExportName.getEditText()).getText().toString();
-        weight = Objects.requireNonNull(binding.updateDomExportWeight.getEditText()).getText().toString();
-        quantity = Objects.requireNonNull(binding.updateDomExportQuantity.getEditText()).getText().toString();
-        temp = Objects.requireNonNull(binding.updateDomExportTemp.getEditText()).getText().toString();
-        address = Objects.requireNonNull(binding.updateDomExportAddress.getEditText()).getText().toString();
-        portExport = Objects.requireNonNull(binding.updateDomExportPort.getEditText()).getText().toString();
-        length = Objects.requireNonNull(binding.updateDomExportLength.getEditText()).getText().toString();
-        height = Objects.requireNonNull(binding.updateDomExportHeight.getEditText()).getText().toString();
-        width = Objects.requireNonNull(binding.updateDomExportWidth.getEditText()).getText().toString();
+        name = Objects.requireNonNull(binding.updateDomDryName.getEditText()).getText().toString();
+        weight = Objects.requireNonNull(binding.updateDomDryWeight.getEditText()).getText().toString();
+        quantityPallet = Objects.requireNonNull(binding.updateDomDryQuantityPallet.getEditText()).getText().toString();
+        quantityCarton = Objects.requireNonNull(binding.updateDomDryQuantityCarton.getEditText()).getText().toString();
+        addressReceive = Objects.requireNonNull(binding.updateDomDryAddressReceive.getEditText()).getText().toString();
+        addressDelivery = Objects.requireNonNull(binding.updateDomDryAddressDelivery.getEditText()).getText().toString();
+        length = Objects.requireNonNull(binding.updateDomDryLength.getEditText()).getText().toString();
+        height = Objects.requireNonNull(binding.updateDomDryHeight.getEditText()).getText().toString();
+        width = Objects.requireNonNull(binding.updateDomDryWidth.getEditText()).getText().toString();
     }
 
     public void updateData() {
@@ -141,17 +138,17 @@ public class DialogDomDryUpdate extends DialogFragment {
 
         communicateViewModel.makeChanges();
 
-        mDomExportViewModel.updateData(mDomExport.getStt(), name, weight, quantity, temp, address, portExport, length,
-                height, width, listStr[0], listStr[1], listStr[2]).enqueue(new Callback<DomExport>() {
+        mDomDryViewModel.updateData(mDomDry.getStt(), name, weight, quantityPallet, quantityCarton, addressReceive, addressDelivery, length,
+                height, width, listStr[0], listStr[1], listStr[2]).enqueue(new Callback<DomDry>() {
             @Override
-            public void onResponse(@NonNull Call<DomExport> call, @NonNull Response<DomExport> response) {
+            public void onResponse(@NonNull Call<DomDry> call, @NonNull Response<DomDry> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getContext(), "Update Successful!!", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<DomExport> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<DomDry> call, @NonNull Throwable t) {
 
             }
         });

@@ -20,7 +20,6 @@ import com.example.demoapp.adapter.ImportDomAdapter;
 import com.example.demoapp.databinding.FragmentDomImportBinding;
 import com.example.demoapp.model.DomImport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.dom.dom_export.DialogDomExportInsert;
 import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportInsert;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.DomImportViewModel;

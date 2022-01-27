@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.databinding.RowDomColdBinding;
 import com.example.demoapp.model.DomCold;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.dom_cold.DialogDomColdDetail;
 import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportDetail;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
     public void goToDetail(DomCold domCold) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
-        DialogFragment dialogFragment = DialogDomImportDetail.getInstance();
+        DialogFragment dialogFragment = DialogDomColdDetail.getInstance();
 
         Bundle bundle = new Bundle();
 

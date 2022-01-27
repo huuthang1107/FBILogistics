@@ -17,6 +17,7 @@ import com.example.demoapp.databinding.RowDomDryBinding;
 
 import com.example.demoapp.model.DomDry;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.dom_dry.DialogDomDryDetail;
 import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportDetail;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class DryDomAdapter extends RecyclerView.Adapter<DryDomAdapter.DryViewHol
     public void goToDetail(DomDry domDry) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
-        DialogFragment dialogFragment = DialogDomImportDetail.getInstance();
+        DialogFragment dialogFragment = DialogDomDryDetail.getInstance();
 
         Bundle bundle = new Bundle();
 

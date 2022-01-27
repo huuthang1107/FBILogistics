@@ -2,65 +2,140 @@ package com.example.demoapp.view.fragment.dom;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.ColdDomAdapter;
+import com.example.demoapp.databinding.FragmentDomColdBinding;
+import com.example.demoapp.model.DomCold;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.dom_cold.DialogDomColdInsert;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.DomColdViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DomColdFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class DomColdFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentDomColdBinding binding;
+    private DomColdViewModel mDomColdViewModel;
+    private ColdDomAdapter mColdDomAdapter;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private List<DomCold> mDomColdList = new ArrayList<>();
 
-    public DomColdFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DomColdFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DomColdFragment newInstance(String param1, String param2) {
-        DomColdFragment fragment = new DomColdFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private String month = "";
+    private String continent = "";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentDomColdBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
+        mColdDomAdapter = new ColdDomAdapter(getContext());
+        mDomColdViewModel = new ViewModelProvider(this).get(DomColdViewModel.class);
+
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
+            if (needLoading) {
+                onResume();
+            }
+        });
+
+        getAllData();
+        setAutoComplete();
+        setButtons();
+
+        return view;
+    }
+
+    public void setUpRecyclerView(String m, String c) {
+        if (!m.isEmpty() && !c.isEmpty()) {
+            mColdDomAdapter.setDomCold(filterData(m, c));
+            binding.rcvDomCold.setAdapter(mColdDomAdapter);
+            binding.rcvDomCold.setLayoutManager(new LinearLayoutManager(getContext()));
         }
     }
 
+    public List<DomCold> filterData(String m, String c) {
+        List<DomCold> subList = new ArrayList<>();
+        try {
+            for (DomCold domCold : mDomColdList) {
+                if (domCold.getMonth().equalsIgnoreCase(m) && domCold.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(domCold);
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+    public List<DomCold> filterDataResume(String m, String c, List<DomCold> list) {
+        List<DomCold> subList = new ArrayList<>();
+        try {
+            for (DomCold domCold : list) {
+                if (domCold.getMonth().equalsIgnoreCase(m) && domCold.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(domCold);
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+    public void setAutoComplete() {
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+
+        binding.autoDomMonth.setAdapter(adapterItemsMonth);
+        binding.autoDomContinent.setAdapter(adapterItemsContinent);
+
+        binding.autoDomMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+            month = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent);
+        });
+
+        binding.autoDomContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+            continent = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent);
+        });
+    }
+
+    public void getAllData() {
+        this.mDomColdList = new ArrayList<>();
+
+        mDomColdViewModel.getAllData().observe(getViewLifecycleOwner(), domColds -> this.mDomColdList = domColds);
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dom_cold, container, false);
+    public void onResume() {
+        super.onResume();
+
+        mDomColdViewModel.getAllData().observe(getViewLifecycleOwner(), domColds -> mColdDomAdapter.setDomCold(filterDataResume(month, continent, domColds)));
+
+        binding.rcvDomCold.setAdapter(mColdDomAdapter);
+    }
+
+    public void setButtons() {
+        binding.domColdFab.setOnClickListener(view -> {
+            DialogFragment dialogFragment = DialogDomColdInsert.getInstance();
+            dialogFragment.show(getChildFragmentManager(), "Dry Insert");
+        });
     }
 }

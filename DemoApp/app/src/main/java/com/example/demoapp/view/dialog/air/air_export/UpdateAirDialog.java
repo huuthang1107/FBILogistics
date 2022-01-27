@@ -1,16 +1,15 @@
 package com.example.demoapp.view.dialog.air.air_export;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentUpdateAirDialogBinding;
@@ -91,7 +90,7 @@ public class UpdateAirDialog extends DialogFragment implements View.OnClickListe
     }
 
     private void updateInformation() {
-        if(mBundle!= null){
+        if(mBundle != null){
             mAir = (AirExport) mBundle.getSerializable(Constants.AIR_UPDATE);
 
             mUpdateAir.updateAutoMonth.setText(mAir.getMonth());

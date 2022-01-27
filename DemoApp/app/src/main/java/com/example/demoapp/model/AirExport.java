@@ -3,7 +3,7 @@ package com.example.demoapp.model;
 import java.io.Serializable;
 
 public class AirExport implements Serializable {
-    private String stt, aol, aod, pol, pod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
+    private String stt, aol, aod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
             schedule, transittime, valid, note, month, continent;
 
     public AirExport(String stt, String aol, String aod, String dim, String grossweight, String typeofcargo,

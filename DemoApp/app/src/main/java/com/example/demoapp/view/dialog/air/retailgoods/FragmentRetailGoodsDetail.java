@@ -1,13 +1,11 @@
 package com.example.demoapp.view.dialog.air.retailgoods;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentRetailGoodsDetailBinding;
@@ -43,6 +41,7 @@ public class FragmentRetailGoodsDetail extends DialogFragment implements View.On
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsStt.setText(retailGoods.getStt());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsPol.setText(retailGoods.getPol());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsPod.setText(retailGoods.getPod());
+        mRetailGoodsDetailBinding.tvRowPriceRetailGoodsDim.setText(retailGoods.getDim());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsGrossweight.setText(retailGoods.getGrossweight());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsTypeofcargo.setText(retailGoods.getTypeofcargo());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsOceanFreight.setText(retailGoods.getOceanfreight());

@@ -2,20 +2,16 @@ package com.example.demoapp.view.dialog.air.air_import;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentAirImportDetailBinding;
 import com.example.demoapp.model.AirImport;
 import com.example.demoapp.utilities.Constants;
-
-import java.io.Serializable;
 
 
 public class FragmentAirImportDetail extends DialogFragment implements View.OnClickListener {
@@ -41,7 +37,7 @@ public class FragmentAirImportDetail extends DialogFragment implements View.OnCl
     private void setDataAirImport(AirImport air) {
         mAirImportDetailBinding.tvRowPriceAirSttImport.setText(air.getStt());
         mAirImportDetailBinding.tvRowPriceAirPolImport.setText(air.getAol());
-        mAirImportDetailBinding.tvRowPriceAirPodImport.setText(air.getAol());
+        mAirImportDetailBinding.tvRowPriceAirPodImport.setText(air.getAod());
         mAirImportDetailBinding.tvRowPriceAirDimImport.setText(air.getDim());
         mAirImportDetailBinding.tvRowPriceAirGrossweightImport.setText(air.getGrossweight());
         mAirImportDetailBinding.tvRowPriceAirTypeofcargoImport.setText(air.getTypeofcargo());

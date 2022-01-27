@@ -1,17 +1,15 @@
 package com.example.demoapp.view.dialog.air.air_import;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentUpdateAirImportDialogBinding;
@@ -29,7 +27,7 @@ import retrofit2.Response;
 
 public class UpdateAirImportDialog extends DialogFragment implements View.OnClickListener {
     private FragmentUpdateAirImportDialogBinding mAirImportDialogBinding;
-    private String[] listPriceAirImport = new String[2];
+    private final String[] listPriceAirImport = new String[2];
     private AirImportViewModel mAirImportViewModel;
     private Bundle mBundle;
     private AirImport mAirImport;
@@ -128,21 +126,21 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
     }
 
     private void insertAirImport() {
-        String strPol = mAirImportDialogBinding.tfPolAirImport.getEditText().getText().toString();
-        String strPod = mAirImportDialogBinding.tfPodAirImport.getEditText().getText().toString();
-        String strDim = mAirImportDialogBinding.tfDimAirImport.getEditText().getText().toString();
-        String strGross = mAirImportDialogBinding.tfGrossAirImport.getEditText().getText().toString();
-        String strType = mAirImportDialogBinding.tfTypeofcargoAirImport.getEditText().getText().toString();
-        String strFreight = mAirImportDialogBinding.tfAirfreightAirImport.getEditText().getText().toString();
-        String strSurcharge = mAirImportDialogBinding.tfSurchargeAirImport.getEditText().getText().toString();
-        String strLine = mAirImportDialogBinding.tfAirlinesAirImport.getEditText().getText().toString();
-        String strSchedule = mAirImportDialogBinding.tfScheduleAirImport.getEditText().getText().toString();
-        String strTransittime = mAirImportDialogBinding.tfTfTransitTimeAirImport.getEditText().getText().toString();
-        String strValid = mAirImportDialogBinding.tfValidAirImport.getEditText().getText().toString();
-        String strNotes = mAirImportDialogBinding.tfNotesAirImport.getEditText().getText().toString();
+        String strAol = Objects.requireNonNull(mAirImportDialogBinding.tfPolAirImport.getEditText()).getText().toString();
+        String strAod = Objects.requireNonNull(mAirImportDialogBinding.tfPodAirImport.getEditText()).getText().toString();
+        String strDim = Objects.requireNonNull(mAirImportDialogBinding.tfDimAirImport.getEditText()).getText().toString();
+        String strGross = Objects.requireNonNull(mAirImportDialogBinding.tfGrossAirImport.getEditText()).getText().toString();
+        String strType = Objects.requireNonNull(mAirImportDialogBinding.tfTypeofcargoAirImport.getEditText()).getText().toString();
+        String strFreight = Objects.requireNonNull(mAirImportDialogBinding.tfAirfreightAirImport.getEditText()).getText().toString();
+        String strSurcharge = Objects.requireNonNull(mAirImportDialogBinding.tfSurchargeAirImport.getEditText()).getText().toString();
+        String strLine = Objects.requireNonNull(mAirImportDialogBinding.tfAirlinesAirImport.getEditText()).getText().toString();
+        String strSchedule = Objects.requireNonNull(mAirImportDialogBinding.tfScheduleAirImport.getEditText()).getText().toString();
+        String strTransittime = Objects.requireNonNull(mAirImportDialogBinding.tfTfTransitTimeAirImport.getEditText()).getText().toString();
+        String strValid = Objects.requireNonNull(mAirImportDialogBinding.tfValidAirImport.getEditText()).getText().toString();
+        String strNotes = Objects.requireNonNull(mAirImportDialogBinding.tfNotesAirImport.getEditText()).getText().toString();
 
         mCommunicateViewModel.makeChanges();
-        Call<AirImport> call = mAirImportViewModel.insertAir(strPol, strPod, strDim, strGross, strType,
+        Call<AirImport> call = mAirImportViewModel.insertAir(strAol, strAod, strDim, strGross, strType,
                 strFreight, strSurcharge, strLine, strSchedule, strTransittime, strValid, strNotes,
                 listPriceAirImport[0], listPriceAirImport[1]);
         call.enqueue(new Callback<AirImport>() {
@@ -163,21 +161,21 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
     }
 
     private void updateAirImport() {
-        String strPol = mAirImportDialogBinding.tfPolAirImport.getEditText().getText().toString();
-        String strPod = mAirImportDialogBinding.tfPodAirImport.getEditText().getText().toString();
-        String strDim = mAirImportDialogBinding.tfDimAirImport.getEditText().getText().toString();
-        String strGross = mAirImportDialogBinding.tfGrossAirImport.getEditText().getText().toString();
-        String strType = mAirImportDialogBinding.tfTypeofcargoAirImport.getEditText().getText().toString();
-        String strFreight = mAirImportDialogBinding.tfAirfreightAirImport.getEditText().getText().toString();
-        String strSurcharge = mAirImportDialogBinding.tfSurchargeAirImport.getEditText().getText().toString();
-        String strLine = mAirImportDialogBinding.tfAirlinesAirImport.getEditText().getText().toString();
-        String strSchedule = mAirImportDialogBinding.tfScheduleAirImport.getEditText().getText().toString();
-        String strTransittime = mAirImportDialogBinding.tfTfTransitTimeAirImport.getEditText().getText().toString();
-        String strValid = mAirImportDialogBinding.tfValidAirImport.getEditText().getText().toString();
-        String strNotes = mAirImportDialogBinding.tfNotesAirImport.getEditText().getText().toString();
+        String strAol = Objects.requireNonNull(mAirImportDialogBinding.tfPolAirImport.getEditText()).getText().toString();
+        String strAod = Objects.requireNonNull(mAirImportDialogBinding.tfPodAirImport.getEditText()).getText().toString();
+        String strDim = Objects.requireNonNull(mAirImportDialogBinding.tfDimAirImport.getEditText()).getText().toString();
+        String strGross = Objects.requireNonNull(mAirImportDialogBinding.tfGrossAirImport.getEditText()).getText().toString();
+        String strType = Objects.requireNonNull(mAirImportDialogBinding.tfTypeofcargoAirImport.getEditText()).getText().toString();
+        String strFreight = Objects.requireNonNull(mAirImportDialogBinding.tfAirfreightAirImport.getEditText()).getText().toString();
+        String strSurcharge = Objects.requireNonNull(mAirImportDialogBinding.tfSurchargeAirImport.getEditText()).getText().toString();
+        String strLine = Objects.requireNonNull(mAirImportDialogBinding.tfAirlinesAirImport.getEditText()).getText().toString();
+        String strSchedule = Objects.requireNonNull(mAirImportDialogBinding.tfScheduleAirImport.getEditText()).getText().toString();
+        String strTransittime = Objects.requireNonNull(mAirImportDialogBinding.tfTfTransitTimeAirImport.getEditText()).getText().toString();
+        String strValid = Objects.requireNonNull(mAirImportDialogBinding.tfValidAirImport.getEditText()).getText().toString();
+        String strNotes = Objects.requireNonNull(mAirImportDialogBinding.tfNotesAirImport.getEditText()).getText().toString();
 
         mCommunicateViewModel.makeChanges();
-        Call<AirImport> call = mAirImportViewModel.updateAir(mAirImport.getStt(), strPol, strPod, strDim, strGross, strType,
+        Call<AirImport> call = mAirImportViewModel.updateAir(mAirImport.getStt(), strAol, strAod, strDim, strGross, strType,
                 strFreight, strSurcharge, strLine, strSchedule, strTransittime, strValid, strNotes,
                 listPriceAirImport[0], listPriceAirImport[1]);
         call.enqueue(new Callback<AirImport>() {

@@ -1,17 +1,15 @@
 package com.example.demoapp.view.dialog.air.retailgoods;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentUpdateRetailGoodsDialogBinding;
@@ -29,7 +27,7 @@ import retrofit2.Response;
 
 public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnClickListener {
     private FragmentUpdateRetailGoodsDialogBinding mRetailGoodsDialogBinding;
-    private String[] listPriceRetailGoods = new String[2];
+    private final String[] listPriceRetailGoods = new String[2];
     private RetailGoodsViewModel mRetailGoodsViewModel;
     private Bundle mBundle;
     private RetailGoods mRetailGoods;
@@ -161,18 +159,18 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
     }
 
     private void updateRetailGoods() {
-        String strPol = mRetailGoodsDialogBinding.tfPolRetailGoods.getEditText().getText().toString();
-        String strPod = mRetailGoodsDialogBinding.tfPodRetailGoods.getEditText().getText().toString();
-        String strDim = mRetailGoodsDialogBinding.tfDimRetailGoods.getEditText().getText().toString();
-        String strGross = mRetailGoodsDialogBinding.tfGrossRetailGoods.getEditText().getText().toString();
-        String strType = mRetailGoodsDialogBinding.tfTypeofcargoRetailGoods.getEditText().getText().toString();
-        String strOceanFreight = mRetailGoodsDialogBinding.tfOceanAirfreightRetailGoods.getEditText().getText().toString();
-        String strLocalCharge = mRetailGoodsDialogBinding.tfLocalchargeAirImport.getEditText().getText().toString();
-        String strCarrier = mRetailGoodsDialogBinding.tfCarrierRetailGoods.getEditText().getText().toString();
-        String strSchedule = mRetailGoodsDialogBinding.tfScheduleRetailGoods.getEditText().getText().toString();
-        String strTransittime = mRetailGoodsDialogBinding.tfTfTransitTimeRetailGoods.getEditText().getText().toString();
-        String strValid = mRetailGoodsDialogBinding.tfValidRetailGoods.getEditText().getText().toString();
-        String strNotes = mRetailGoodsDialogBinding.tfNotesRetailGoods.getEditText().getText().toString();
+        String strPol = Objects.requireNonNull(mRetailGoodsDialogBinding.tfPolRetailGoods.getEditText()).getText().toString();
+        String strPod = Objects.requireNonNull(mRetailGoodsDialogBinding.tfPodRetailGoods.getEditText()).getText().toString();
+        String strDim = Objects.requireNonNull(mRetailGoodsDialogBinding.tfDimRetailGoods.getEditText()).getText().toString();
+        String strGross = Objects.requireNonNull(mRetailGoodsDialogBinding.tfGrossRetailGoods.getEditText()).getText().toString();
+        String strType = Objects.requireNonNull(mRetailGoodsDialogBinding.tfTypeofcargoRetailGoods.getEditText()).getText().toString();
+        String strOceanFreight = Objects.requireNonNull(mRetailGoodsDialogBinding.tfOceanAirfreightRetailGoods.getEditText()).getText().toString();
+        String strLocalCharge = Objects.requireNonNull(mRetailGoodsDialogBinding.tfLocalchargeAirImport.getEditText()).getText().toString();
+        String strCarrier = Objects.requireNonNull(mRetailGoodsDialogBinding.tfCarrierRetailGoods.getEditText()).getText().toString();
+        String strSchedule = Objects.requireNonNull(mRetailGoodsDialogBinding.tfScheduleRetailGoods.getEditText()).getText().toString();
+        String strTransittime = Objects.requireNonNull(mRetailGoodsDialogBinding.tfTfTransitTimeRetailGoods.getEditText()).getText().toString();
+        String strValid = Objects.requireNonNull(mRetailGoodsDialogBinding.tfValidRetailGoods.getEditText()).getText().toString();
+        String strNotes = Objects.requireNonNull(mRetailGoodsDialogBinding.tfNotesRetailGoods.getEditText()).getText().toString();
 
         mCommunicateViewModel.makeChanges();
         Call<RetailGoods> call = mRetailGoodsViewModel.updateRetailGoods(mRetailGoods.getStt(),

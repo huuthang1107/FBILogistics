@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListAIRAdapter;
+import com.example.demoapp.adapter.sale.PriceListAIRSaleAdapter;
 import com.example.demoapp.databinding.ActivityTablePriceAirBinding;
 import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
@@ -34,7 +34,7 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
     private ActivityTablePriceAirBinding tablePriceAirBinding;
     private String month = "";
     private String continent = "";
-    PriceListAIRAdapter priceListAdapter;
+    PriceListAIRSaleAdapter priceListAdapter;
 
     private AirExportViewModel mAirViewModel;
 
@@ -48,7 +48,7 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
         tablePriceAirBinding = ActivityTablePriceAirBinding.inflate(getLayoutInflater());
         View view = tablePriceAirBinding.getRoot();
 
-        priceListAdapter = new PriceListAIRAdapter(this);
+        priceListAdapter = new PriceListAIRSaleAdapter(this);
         mAirViewModel = new ViewModelProvider(this).get(AirExportViewModel.class);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
@@ -77,7 +77,7 @@ public class TablePriceAirActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setUpButtons() {
-        tablePriceAirBinding.fragmentAirFabActivity.setOnClickListener(this);
+//        tablePriceAirBinding.fragmentAirFabActivity.setOnClickListener(this);
     }
 
     private void setAdapterItems() {

@@ -1,22 +1,24 @@
-package com.example.demoapp.view.dialog.dom;
+package com.example.demoapp.view.dialog.dom.dom_dry;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.demoapp.R;
+import com.example.demoapp.databinding.DialogDomDryUpdateBinding;
 import com.example.demoapp.databinding.FragmentDialogDomExportUpdateBinding;
+import com.example.demoapp.model.DomDry;
 import com.example.demoapp.model.DomExport;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.DomDryViewModel;
 import com.example.demoapp.viewmodel.DomExportViewModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -27,17 +29,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DialogDomExportUpdate extends DialogFragment {
+public class DialogDomDryUpdate extends DialogFragment {
 
-    private FragmentDialogDomExportUpdateBinding binding;
+    private DialogDomDryUpdateBinding binding;
 
     private CommunicateViewModel communicateViewModel;
-    private DomExportViewModel mDomExportViewModel;
+    private DomDryViewModel mDomDryViewModel;
 
     private final String[] listStr = new String[3];
-    private DomExport mDomExport;
+    private DomDry mDomDry;
 
-    private String name, weight, quantity, temp, address, portExport, length, height, width;
+    private String name, weight, quantityPallet, quantityCarton, addressReceive, addressDelivery, length, height, width;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,11 @@ public class DialogDomExportUpdate extends DialogFragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentDialogDomExportUpdateBinding.inflate(inflater, container, false);
+        binding = DialogDomDryUpdateBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         communicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
-        mDomExportViewModel = new ViewModelProvider(this).get(DomExportViewModel.class);
+        mDomDryViewModel = new ViewModelProvider(this).get(DomDryViewModel.class);
 
         setData();
         setUpViews();
@@ -61,15 +63,15 @@ public class DialogDomExportUpdate extends DialogFragment {
         return root;
     }
 
-    public static DialogDomExportUpdate getInstance() {
-        return new DialogDomExportUpdate();
+    public static DialogDomDryUpdate getInstance() {
+        return new DialogDomDryUpdate();
     }
 
     public void setData() {
         Bundle bundle = getArguments();
 
         if (bundle != null) {
-            mDomExport = (DomExport) bundle.getSerializable(Constants.DOM_EXPORT_UPDATE);
+            mDomDry = (DomDry) bundle.getSerializable(Constants.DOM_DRY_UPDATE);
 
             binding.domExportUpdateAutoContainer.setText(mDomExport.getType());
             binding.domExportUpdateAutoMonth.setText(mDomExport.getMonth());

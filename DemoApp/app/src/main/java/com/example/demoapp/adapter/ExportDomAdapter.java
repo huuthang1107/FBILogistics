@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.databinding.RowDomExportBinding;
 import com.example.demoapp.model.DomExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.dom.DialogDomExportDetail;
+import com.example.demoapp.view.dialog.dom.dom_export.DialogDomExportDetail;
 
 import java.util.List;
 

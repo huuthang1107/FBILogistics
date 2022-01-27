@@ -20,8 +20,22 @@ public class Constants {
     public static final String DOM_EXPORT_UPDATE = "add_new_dom_export";
     public static final String DOM_EXPORT_ADD_NEW = "update_dom_export";
 
+    public static final String DOM_IMPORT_OBJECT = "object_dom_import";
+    public static final String DOM_IMPORT_UPDATE = "add_new_dom_import";
+    public static final String DOM_IMPORT_ADD_NEW = "update_dom_import";
+
+    public static final String DOM_DRY_OBJECT = "object_dom_dry";
+    public static final String DOM_DRY_UPDATE = "add_new_dom_dry";
+    public static final String DOM_DRY_ADD_NEW = "update_dom_dry";
+
+    public static final String DOM_COLD_OBJECT = "object_dom_cold";
+    public static final String DOM_COLD_UPDATE = "add_new_dom_cold";
+    public static final String DOM_COLD_ADD_NEW = "update_dom_cold";
+
     public  final static String[] ITEMS_MONTH = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
             "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
+
+    public  final static String[] ITEMS_TYPE_DOM_DRY = {"500KGS", "1 Tấn", "2 Tấn", "3 Tấn", "5 Tấn", "8 Tấn", "10 Tấn", "13 Tấn", "15 Tấn" };
 
     public  final static String[] ITEMS_CONTINENT = {"Asia", "Europe", "America", "Africa", "Australia"};
 

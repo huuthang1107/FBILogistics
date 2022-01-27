@@ -1,66 +1,209 @@
 package com.example.demoapp.view.fragment.dom;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.ImportDomAdapter;
+import com.example.demoapp.databinding.FragmentDomImportBinding;
+import com.example.demoapp.model.DomImport;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.dom_export.DialogDomExportInsert;
+import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportInsert;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.DomImportViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DomImportFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DomImportFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class DomImportFragment extends Fragment implements View.OnClickListener {
 
-    public DomImportFragment() {
-        // Required empty public constructor
-    }
+    private FragmentDomImportBinding binding;
+    private DomImportViewModel mDomImportViewModel;
+    private ImportDomAdapter mImportDomAdapter;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DomImportFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DomImportFragment newInstance(String param1, String param2) {
-        DomImportFragment fragment = new DomImportFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private List<DomImport> mDomImportList = new ArrayList<>();
+
+    private String month = "";
+    private String continent = "";
+    private String radioItem = "All";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentDomImportBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
+        mImportDomAdapter = new ImportDomAdapter(getContext());
+        mDomImportViewModel = new ViewModelProvider(this).get(DomImportViewModel.class);
+
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
+            if (needLoading) {
+                onResume();
+            }
+        });
+
+        getAllData();
+        setAutoComplete();
+        setButtons();
+
+        return view;
+    }
+
+    public void setUpRecyclerView(String m, String c, String r) {
+        if (!m.isEmpty() && !c.isEmpty()) {
+            mImportDomAdapter.setDomImport(filterData(m, c, r));
+            binding.rcvDomImport.setAdapter(mImportDomAdapter);
+            binding.rcvDomImport.setLayoutManager(new LinearLayoutManager(getContext()));
         }
     }
 
+    public List<DomImport> filterData(String m, String c, String r) {
+        List<DomImport> subList = new ArrayList<>();
+        try {
+            for (DomImport domImport : mDomImportList) {
+                if (r.equalsIgnoreCase("all")) {
+                    if (domImport.getMonth().equalsIgnoreCase(m) && domImport.getContinent().equalsIgnoreCase(c)) {
+                        subList.add(domImport);
+                    }
+                } else {
+                    if (domImport.getMonth().equalsIgnoreCase(m) && domImport.getContinent().equalsIgnoreCase(c)
+                            && domImport.getType().equalsIgnoreCase(r)) {
+                        subList.add(domImport);
+                    }
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+    public List<DomImport> filterDataResume(String m, String c, String r, List<DomImport> list) {
+        List<DomImport> subList = new ArrayList<>();
+        try {
+            for (DomImport domImport : list) {
+                if (r.equalsIgnoreCase("all")) {
+                    if (domImport.getMonth().equalsIgnoreCase(m) && domImport.getContinent().equalsIgnoreCase(c)) {
+                        subList.add(domImport);
+                    }
+                } else {
+                    if (domImport.getMonth().equalsIgnoreCase(m) && domImport.getContinent().equalsIgnoreCase(c)
+                            && domImport.getType().equalsIgnoreCase(r)) {
+                        subList.add(domImport);
+                    }
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+    public void setAutoComplete() {
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+
+        binding.autoDomMonth.setAdapter(adapterItemsMonth);
+        binding.autoDomContinent.setAdapter(adapterItemsContinent);
+
+        binding.autoDomMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+            month = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent, radioItem);
+        });
+
+        binding.autoDomContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+            continent = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent, radioItem);
+        });
+    }
+
+    public void getAllData() {
+        this.mDomImportList = new ArrayList<>();
+
+        mDomImportViewModel.getAllData().observe(getViewLifecycleOwner(), domImports -> this.mDomImportList = domImports);
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dom_import, container, false);
+    public void onResume() {
+        super.onResume();
+
+        mDomImportViewModel.getAllData().observe(getViewLifecycleOwner(), domImports -> mImportDomAdapter.setDomImport(filterDataResume(month, continent, radioItem, domImports)));
+
+        binding.rcvDomImport.setAdapter(mImportDomAdapter);
+    }
+
+    public void setButtons() {
+        binding.domImportFab.setOnClickListener(this);
+
+        binding.radioImportAll.setOnClickListener(this);
+        binding.radioImportAll.performClick();
+
+        binding.radioImportFr.setOnClickListener(this);
+
+        binding.radioImportRf.setOnClickListener(this);
+
+        binding.radioImportOt.setOnClickListener(this);
+
+        binding.radioImportIso.setOnClickListener(this);
+
+        binding.radioImportFt.setOnClickListener(this);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.dom_import_fab:
+                DialogFragment dialogFragment = DialogDomImportInsert.getInstance();
+                dialogFragment.show(getChildFragmentManager(), "ImportDom");
+
+            case R.id.radio_import_all:
+                radioItem = binding.radioImportAll.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_import_ft:
+                radioItem = binding.radioImportFt.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_import_rf:
+                radioItem = binding.radioImportRf.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_import_ot:
+                radioItem = binding.radioImportOt.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_import_fr:
+                radioItem = binding.radioImportFr.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+
+            case R.id.radio_import_iso:
+                radioItem = binding.radioImportIso.getText().toString();
+                setUpRecyclerView(month, continent, radioItem);
+                break;
+        }
     }
 }

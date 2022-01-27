@@ -211,5 +211,11 @@
     <string name="nav_dom_cy">CY-CY</string>
     <string name="nav_dom_door">Door to Door</string>
     <string name="created_date_case">Ngày Tạo</string>
+    <string name="port_receive">Cảng lấy hàng</string>
+    <string name="txt_dom_port_receive">Cảng nhận hàng</string>
+    <string name="txt_dom_quantity_pallet">SL Kiện</string>
+    <string name="txt_dom_quantity_carton">SL Carton</string>
+    <string name="address_receive">ĐC Lấy Hàng</string>
+    <string name="address_delivery">ĐC Giao Hàng</string>
 
 </resources>

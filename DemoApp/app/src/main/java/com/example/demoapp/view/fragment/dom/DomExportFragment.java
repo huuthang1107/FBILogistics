@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -21,7 +20,7 @@ import com.example.demoapp.adapter.ExportDomAdapter;
 import com.example.demoapp.databinding.FragmentDomExportBinding;
 import com.example.demoapp.model.DomExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.dom.DialogDomExportInsert;
+import com.example.demoapp.view.dialog.dom.dom_export.DialogDomExportInsert;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.DomExportViewModel;
 
@@ -117,44 +116,34 @@ public class DomExportFragment extends Fragment implements View.OnClickListener 
     }
 
     public void setAutoComplete() {
-        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
-        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         binding.autoDomMonth.setAdapter(adapterItemsMonth);
         binding.autoDomContinent.setAdapter(adapterItemsContinent);
 
-        binding.autoDomMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                month = adapterView.getItemAtPosition(i).toString();
-                setUpRecyclerView(month, continent, radioItem);
-            }
+        binding.autoDomMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+            month = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent, radioItem);
         });
 
-        binding.autoDomContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                continent = adapterView.getItemAtPosition(i).toString();
-                setUpRecyclerView(month, continent, radioItem);
-            }
+        binding.autoDomContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+            continent = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent, radioItem);
         });
     }
 
     public void getAllData() {
         this.mDomExportList = new ArrayList<>();
 
-        mDomExportViewModel.getAllData().observe(getViewLifecycleOwner(), domExports -> {
-            this.mDomExportList = domExports;
-        });
+        mDomExportViewModel.getAllData().observe(getViewLifecycleOwner(), domExports -> this.mDomExportList = domExports);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        mDomExportViewModel.getAllData().observe(getViewLifecycleOwner(), domExports -> {
-            mExportDomAdapter.setDomExport(filterDataResume(month, continent, radioItem, domExports));
-        });
+        mDomExportViewModel.getAllData().observe(getViewLifecycleOwner(), domExports -> mExportDomAdapter.setDomExport(filterDataResume(month, continent, radioItem, domExports)));
 
         binding.rcvDomExport.setAdapter(mExportDomAdapter);
     }

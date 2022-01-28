@@ -1,4 +1,4 @@
-package com.example.demoapp.view.activity.pro.bottomnav;
+package com.example.demoapp.view.activity.log;
 
 import android.os.Bundle;
 

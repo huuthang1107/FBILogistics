@@ -13,8 +13,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Account;
 import com.example.demoapp.services.AccountService;
-import com.example.demoapp.view.activity.pro.AirActivity;
-import com.example.demoapp.view.activity.pro.bottomnav.LogProActivity;
+import com.example.demoapp.view.activity.air.AirActivity;
+import com.example.demoapp.view.activity.log.LogProActivity;
 import com.example.demoapp.view.activity.sale.SaleActivity;
 import com.google.android.material.button.MaterialButton;
 

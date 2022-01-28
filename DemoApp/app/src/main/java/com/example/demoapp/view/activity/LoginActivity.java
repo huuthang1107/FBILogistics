@@ -14,7 +14,10 @@ import com.example.demoapp.R;
 import com.example.demoapp.model.Account;
 import com.example.demoapp.services.AccountService;
 import com.example.demoapp.view.activity.air.AirActivity;
+import com.example.demoapp.view.activity.dom.DomActivity;
 import com.example.demoapp.view.activity.log.LogProActivity;
+import com.example.demoapp.view.activity.pro.ProActivity;
+import com.example.demoapp.view.activity.sale.ImportActivity;
 import com.example.demoapp.view.activity.sale.SaleActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -118,6 +121,21 @@ public class LoginActivity extends AppCompatActivity  {
             } else if (strUsername.equals(account.getUsername()) && strPassword.equals(account.getPassword())
                     && account.getPosition().equalsIgnoreCase("Sale")) {
                 Intent intent = new Intent(this, SaleActivity.class);
+                startActivity(intent);
+                break;
+            }else if (strUsername.equals(account.getUsername()) && strPassword.equals(account.getPassword())
+                    && account.getPosition().equalsIgnoreCase("Fcl")) {
+                Intent intent = new Intent(this, ProActivity.class);
+                startActivity(intent);
+                break;
+            }else if (strUsername.equals(account.getUsername()) && strPassword.equals(account.getPassword())
+                    && account.getPosition().equalsIgnoreCase("Import")) {
+                Intent intent = new Intent(this, ImportActivity.class);
+                startActivity(intent);
+                break;
+            }else if (strUsername.equals(account.getUsername()) && strPassword.equals(account.getPassword())
+                    && account.getPosition().equalsIgnoreCase("Dom")) {
+                Intent intent = new Intent(this, DomActivity.class);
                 startActivity(intent);
                 break;
             } else if (strUsername != account.getUsername() && strPassword != account.getPassword())

@@ -25,8 +25,14 @@
             android:theme="@style/Theme.DemoApp.NoActionBar"></activity>
         <activity
             android:name=".view.activity.pro.ProActivity"
-            android:exported="false"
-            android:label="@string/title_activity_pro_import" />
+            android:exported="true"
+            android:label="@string/title_activity_pro_import" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".view.activity.sale.AirImportSaleActivity"
             android:exported="false" />
@@ -51,11 +57,7 @@
         <activity
             android:name=".view.activity.sale.SaleActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".view.activity.sale.TablePriceAirActivity"
@@ -65,7 +67,9 @@
             android:exported="true"></activity>
         <activity
             android:name=".view.activity.LoginActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

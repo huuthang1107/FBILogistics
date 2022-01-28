@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.demoapp.R;
+import com.example.demoapp.view.activity.dom.DomActivity;
 import com.example.demoapp.view.activity.imp.ProImportActivity;
 import com.example.demoapp.view.fragment.fcl.FCLFragment;
 import com.example.demoapp.view.fragment.home.HomeFragment;
@@ -113,9 +114,9 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         }
         else if (id == R.id.nav_dom){
             if(mCurrentFragment != FRAGMENT_DOM){
-
-                mCurrentFragment = FRAGMENT_DOM;
-                toolbar.setTitle("DOM PAGE");
+                Intent intent = new Intent(this, DomActivity.class);
+                startActivity(intent);
+                finish();
             }
         }else if( id == R.id.nav_log) {
             if (mCurrentFragment != FRAGMENT_LOG) {

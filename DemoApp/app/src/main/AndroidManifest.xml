@@ -18,7 +18,7 @@
             android:label="@string/title_activity_dom"
             android:theme="@style/Theme.DemoApp.NoActionBar" />
         <activity
-            android:name=".view.activity.pro.ProActivity"
+            android:name=".view.activity.dom.DomActivity"
             android:exported="false"
             android:label="@string/title_activity_pro_import" />
         <activity
@@ -37,7 +37,7 @@
             android:name=".view.activity.sale.TablePriceAirActivity"
             android:exported="true" />
         <activity
-            android:name=".view.activity.dom.DomActivity"
+            android:name=".view.activity.pro.ProActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,18 +1,18 @@
 package com.example.demoapp.view.activity.sale;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListFclAdapter;
+import com.example.demoapp.adapter.sale.PriceListFclSaleAdapter;
 import com.example.demoapp.databinding.ActivityContainerBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
@@ -31,7 +31,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
     private ActivityContainerBinding mContainerBinding;
 
     private List<Fcl> listPriceList = new ArrayList<>();
-    private PriceListFclAdapter priceListFclAdapter;
+    private PriceListFclSaleAdapter priceListFclAdapter;
 
     private FclViewModel mFclViewModel;
 
@@ -41,7 +41,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
         mContainerBinding = ActivityContainerBinding.inflate(getLayoutInflater());
         View view = mContainerBinding.getRoot();
 
-        priceListFclAdapter = new PriceListFclAdapter(this);
+        priceListFclAdapter = new PriceListFclSaleAdapter(this);
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
 
@@ -166,7 +166,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
     protected void onResume() {
         super.onResume();
 
-        priceListFclAdapter = new PriceListFclAdapter(this);
+        priceListFclAdapter = new PriceListFclSaleAdapter(this);
         mFclViewModel.getFclList().observe(this, detailsPojoFcl -> {
             priceListFclAdapter.setDataFcl(prepareDataForResume(month, continent, radioItem, detailsPojoFcl));
         });

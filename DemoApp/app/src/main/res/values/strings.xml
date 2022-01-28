@@ -152,7 +152,7 @@
     <string name="width">Chiều rộng</string>
     <string name="height">Chiều cao</string>
 
- 
+
     <string name="collog_1">Tên hàng</string>
     <string name="collog_2">H/S code</string>
     <string name="collog_3">Công dụng</string>
@@ -177,7 +177,6 @@
     <string name="txt_dom_width">Chiều Rộng</string>
 
     <string name="title_activity_pro_import">ProImportActivity</string>
-    <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="label_import_imp">IMPORT</string>
@@ -235,7 +234,6 @@
     <string name="title_activity_log_pro">LogProActivity</string>
     <string name="title_home">Home</string>
     <string name="title_log">Log</string>
-
 
 
 </resources>

@@ -220,8 +220,6 @@
                 android:clickable="true"
                 android:focusable="false"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="false"
                 android:hint="@string/col10" />
         </com.google.android.material.textfield.TextInputLayout>
 

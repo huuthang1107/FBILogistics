@@ -20,9 +20,7 @@
             app:popupTheme="@style/Theme.AppCompat.Light"
             app:title="@string/company_name"
             />
-
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <LinearLayout
         android:layout_below="@id/top_air"
@@ -69,74 +67,11 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/layout_radio_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/auto_complete"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radio_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/all" />
-
-        <RadioButton
-            android:id="@+id/radio_gp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/gp" />
-
-        <RadioButton
-            android:id="@+id/radio_fr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/hq" />
-
-        <RadioButton
-            android:id="@+id/radio_rf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/rf" />
-
-        <RadioButton
-            android:id="@+id/radio_ot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/fr" />
-
-        <RadioButton
-            android:id="@+id/radio_hq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/ot" />
-        <RadioButton
-            android:id="@+id/radio_tk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:buttonTint="@color/btn_color"
-            android:text="@string/tk" />
-    </RadioGroup>
-
     <androidx.core.widget.NestedScrollView
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_radio_button">
+        android:layout_below="@+id/auto_complete">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,12 +89,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
         android:gravity="end"
+        android:layout_marginBottom="50dp"
         android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fragment_fcl_fab"
+            android:id="@+id/fragment_import_lcl_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

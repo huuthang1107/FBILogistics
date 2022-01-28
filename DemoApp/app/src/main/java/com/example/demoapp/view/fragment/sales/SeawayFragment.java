@@ -12,6 +12,7 @@ import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentSeawayBinding;
 import com.example.demoapp.view.activity.sale.ContainerActivity;
 import com.example.demoapp.view.activity.sale.ImportActivity;
+import com.example.demoapp.view.activity.sale.ImportLclSaleActivity;
 import com.example.demoapp.view.activity.sale.RetailGoodsExportActivity;
 
 
@@ -49,7 +50,7 @@ public class SeawayFragment extends Fragment implements View.OnClickListener{
                 startActivity(intent1);
                 break;
             case R.id.cv_hangleNK:
-                Intent intent2 = new Intent(getContext(), ImportActivity.class);
+                Intent intent2 = new Intent(getContext(), ImportLclSaleActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.cv_hangleXK:

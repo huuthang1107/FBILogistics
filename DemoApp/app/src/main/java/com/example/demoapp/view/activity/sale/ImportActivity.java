@@ -1,20 +1,22 @@
 package com.example.demoapp.view.activity.sale;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListImportAdapter;
+import com.example.demoapp.adapter.sale.PriceListImportSaleAdapter;
+
 import com.example.demoapp.databinding.ActivityImportBinding;
 import com.example.demoapp.model.Import;
+import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.imp.InsertImportDialog;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.ImportViewModel;
@@ -24,19 +26,12 @@ import java.util.List;
 
 public class ImportActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String[] itemsMonth = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
-            "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
-
-    private final String[] itemsContinent = {"Asia", "Europe", "America", "Africa", "Australia"};
-
-    private ArrayAdapter<String> adapterItemsMonth, adapterItemsContinent;
-
     private String month = "";
     private String continent = "";
     private String radioItem = "All";
 
     List<Import> listPriceList = new ArrayList<>();
-    private PriceListImportAdapter priceListAdapter;
+    private PriceListImportSaleAdapter priceListAdapter;
     private ImportViewModel mImportViewModel;
     private ActivityImportBinding mImportBinding;
 
@@ -45,7 +40,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         mImportBinding = ActivityImportBinding.inflate(getLayoutInflater());
         View view = mImportBinding.getRoot();
-        priceListAdapter = new PriceListImportAdapter(this);
+        priceListAdapter = new PriceListImportSaleAdapter(this);
         mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
 
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
@@ -63,8 +58,8 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void setAdapterItems() {
-        adapterItemsMonth = new ArrayAdapter<String>(this, R.layout.dropdown_item, itemsMonth);
-        adapterItemsContinent = new ArrayAdapter<String>(this, R.layout.dropdown_item, itemsContinent);
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
         mImportBinding.autoCompleteMonth.setAdapter(adapterItemsMonth);
         mImportBinding.autoCompleteContinent.setAdapter(adapterItemsContinent);
@@ -159,7 +154,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
-        priceListAdapter = new PriceListImportAdapter(this);
+        priceListAdapter = new PriceListImportSaleAdapter(this);
         mImportViewModel.getImportList().observe(this, imp -> {
             priceListAdapter.setImports( prepareDataForResume(month, continent, radioItem, imp));
         });
@@ -171,7 +166,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
      * this method will set listen for buttons
      */
     public void setUpButtons() {
-        mImportBinding.fragmentFclFab.setOnClickListener(this);
+//        mImportBinding.fragmentFclFab.setOnClickListener(this);
 
         mImportBinding.radioAll.setOnClickListener(this);
         mImportBinding.radioAll.performClick();

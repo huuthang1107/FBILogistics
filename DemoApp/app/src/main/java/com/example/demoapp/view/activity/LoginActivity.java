@@ -120,12 +120,12 @@ public class LoginActivity extends AppCompatActivity  {
                 Intent intent = new Intent(this, SaleActivity.class);
                 startActivity(intent);
                 break;
-            }else{
-                Toast.makeText(getApplicationContext(),"Wrong account password",Toast.LENGTH_SHORT).show();
-            }
-
+            } else if (strUsername != account.getUsername() && strPassword != account.getPassword())
+                Toast.makeText(getApplicationContext(), "Wrong account password", Toast.LENGTH_SHORT).show();
         }
+
     }
+
 
     private void getListUsers() {
         AccountService.apiAccountService.getAccount().enqueue(new Callback<List<Account>>() {

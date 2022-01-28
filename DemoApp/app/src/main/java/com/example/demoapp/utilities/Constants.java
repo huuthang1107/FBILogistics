@@ -2,7 +2,7 @@ package com.example.demoapp.utilities;
 
 public class Constants {
 
-    public static final String URL_API = "http://192.168.1.5/database/";
+    public static final String URL_API = "http://192.168.1.210/database/";
 
     public static final String FCL_UPDATE = "update_fcl";
 
@@ -35,9 +35,7 @@ public class Constants {
 
     public static final String RETAIL_GOODS = "object_retail_goods" ;
     public static final String RETAIL_GOODS_UPDATE = "object_retail_goods_update";
-    public static String URL_API = "http://192.168.1.210/database/";
-    public static String FCL_OBJECT = "object_fcl";
-    public static String IMPORT_OBJECT = "object_imp";
+
 
 
     public  final static String[] ITEMS_MONTH = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
@@ -58,8 +56,7 @@ public class Constants {
 
     public final static String[] ITEMS_IMPORT = {"GP", "HQ", "RF", "FR", "OT", "TK"};
 
-    public static String LOG_OBJECT = "object_log";
-    public static String AIR_OBJECT = "object_air";
+
 
     public static final String LOG_OBJECT = "object_log";
     public static final String LOG_UPDATE = "object_update";

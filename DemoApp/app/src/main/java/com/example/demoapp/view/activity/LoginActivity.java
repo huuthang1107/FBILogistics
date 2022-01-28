@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -119,7 +120,10 @@ public class LoginActivity extends AppCompatActivity  {
                 Intent intent = new Intent(this, SaleActivity.class);
                 startActivity(intent);
                 break;
+            }else{
+                Toast.makeText(getApplicationContext(),"Wrong account password",Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 

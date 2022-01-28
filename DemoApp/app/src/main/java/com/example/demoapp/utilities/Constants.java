@@ -32,6 +32,14 @@ public class Constants {
     public static final String DOM_COLD_UPDATE = "add_new_dom_cold";
     public static final String DOM_COLD_ADD_NEW = "update_dom_cold";
 
+    public static final String DOM_CY_OBJECT = "object_dom_cy";
+    public static final String DOM_CY_UPDATE = "add_new_dom_cy";
+    public static final String DOM_CY_ADD_NEW = "update_dom_cy";
+
+    public static final String DOM_DOOR_OBJECT = "object_dom_door";
+    public static final String DOM_DOOR_UPDATE = "add_new_dom_door";
+    public static final String DOM_DOOR_ADD_NEW = "update_dom_door";
+
     public  final static String[] ITEMS_MONTH = {"Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7",
             "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"};
 
@@ -40,6 +48,7 @@ public class Constants {
     public  final static String[] ITEMS_CONTINENT = {"Asia", "Europe", "America", "Africa", "Australia"};
 
     public  final static String[] ITEMS_CARGO = {"DG", "NON-DG"};
+    public  final static String[] ITEMS_DOM_CY = {"20FT", "40FT"};
 
     public final static  String[] ITEMS_IMPORTANDEXPORT = {"Nhập Khẩu", "Xuất Khẩu"};
 

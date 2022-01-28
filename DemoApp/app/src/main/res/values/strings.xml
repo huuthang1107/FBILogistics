@@ -217,5 +217,9 @@
     <string name="txt_dom_quantity_carton">SL Carton</string>
     <string name="address_receive">ĐC Lấy Hàng</string>
     <string name="address_delivery">ĐC Giao Hàng</string>
+    <string name="station_go">Ga đi</string>
+    <string name="station_come">Ga đến</string>
+    <string name="etd">ETD</string>
+    <string name="address_receive2">ĐC Đóng Hàng</string>
 
 </resources>

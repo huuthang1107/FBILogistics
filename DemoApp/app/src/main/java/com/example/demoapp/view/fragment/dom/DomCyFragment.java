@@ -2,65 +2,139 @@ package com.example.demoapp.view.fragment.dom;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.CyDomAdapter;
+import com.example.demoapp.databinding.FragmentDomCyBinding;
+import com.example.demoapp.model.DomCy;
+import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.dom_cy.DialogDomCyInsert;
+import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.example.demoapp.viewmodel.DomCyViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DomCyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class DomCyFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentDomCyBinding binding;
+    private DomCyViewModel mDomCyViewModel;
+    private CyDomAdapter mCyDomAdapter;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private List<DomCy> mDomCyList = new ArrayList<>();
 
-    public DomCyFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DomCyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DomCyFragment newInstance(String param1, String param2) {
-        DomCyFragment fragment = new DomCyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private String month = "";
+    private String continent = "";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentDomCyBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
+        mCyDomAdapter = new CyDomAdapter(getContext());
+        mDomCyViewModel = new ViewModelProvider(this).get(DomCyViewModel.class);
+
+        CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
+
+        mCommunicateViewModel.needReloading.observe(getViewLifecycleOwner(), needLoading -> {
+            if (needLoading) {
+                onResume();
+            }
+        });
+
+        getAllData();
+        setAutoComplete();
+        setButtons();
+
+        return view;
+    }
+
+    public void setUpRecyclerView(String m, String c) {
+        if (!m.isEmpty() && !c.isEmpty()) {
+            mCyDomAdapter.setDomCy(filterData(m, c));
+            binding.rcvDomCy.setAdapter(mCyDomAdapter);
+            binding.rcvDomCy.setLayoutManager(new LinearLayoutManager(getContext()));
         }
     }
 
+    public List<DomCy> filterData(String m, String c) {
+        List<DomCy> subList = new ArrayList<>();
+        try {
+            for (DomCy domCy : mDomCyList) {
+                if (domCy.getMonth().equalsIgnoreCase(m) && domCy.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(domCy);
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+    public List<DomCy> filterDataResume(String m, String c, List<DomCy> list) {
+        List<DomCy> subList = new ArrayList<>();
+        try {
+            for (DomCy domCy : list) {
+                if (domCy.getMonth().equalsIgnoreCase(m) && domCy.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(domCy);
+                }
+            }
+        } catch (NullPointerException nullPointerException) {
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+        return subList;
+    }
+
+    public void setAutoComplete() {
+        ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
+        ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
+
+        binding.autoDomMonth.setAdapter(adapterItemsMonth);
+        binding.autoDomContinent.setAdapter(adapterItemsContinent);
+
+        binding.autoDomMonth.setOnItemClickListener((adapterView, view, i, l) -> {
+            month = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent);
+        });
+
+        binding.autoDomContinent.setOnItemClickListener((adapterView, view, i, l) -> {
+            continent = adapterView.getItemAtPosition(i).toString();
+            setUpRecyclerView(month, continent);
+        });
+    }
+
+    public void getAllData() {
+        this.mDomCyList = new ArrayList<>();
+
+        mDomCyViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> this.mDomCyList = domCy);
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dom_cy, container, false);
+    public void onResume() {
+        super.onResume();
+
+        mDomCyViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> mCyDomAdapter.setDomCy(filterDataResume(month, continent, domCy)));
+
+        binding.rcvDomCy.setAdapter(mCyDomAdapter);
+    }
+
+    public void setButtons() {
+        binding.domCyFab.setOnClickListener(view -> {
+            DialogFragment dialogFragment = DialogDomCyInsert.getInstance();
+            dialogFragment.show(getChildFragmentManager(), "Cy Insert");
+        });
     }
 }

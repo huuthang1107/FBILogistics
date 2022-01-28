@@ -73,8 +73,12 @@ public class UpdateFclDialog extends DialogFragment implements View.OnClickListe
         bundle = getArguments();
         setInfo();
 
+
         initView();
         showDatePicker();
+
+        initView();
+
 
         return view;
     }

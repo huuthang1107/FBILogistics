@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.dialog.air.ImportAndExportFragment"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="16dp"
+    android:minHeight="260dp"
+    android:minWidth="260dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:background="@drawable/dialog_air_blue_conner_top_left_16"
+        android:text="@string/title_dialog_air"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#E3DFDF"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_import_air"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:backgroundTintMode="screen"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/btn_color"
+            android:text="@string/btn_import_air"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_export_air"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:backgroundTintMode="screen"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/btn_color"
+            android:text="@string/btn_export_air" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/dialog_air_blue_conner_bottom"
+
+        />
+
+</LinearLayout>

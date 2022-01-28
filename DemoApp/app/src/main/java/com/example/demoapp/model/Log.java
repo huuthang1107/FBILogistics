@@ -13,13 +13,14 @@ public class Log implements Serializable {
     private String loaihang;
     private String soluongcuthe;
     private String yeucaudacbiet;
-    private String valid;
+    private String price;
     private String month;
     private String importorexport;
+    private String type;
 
     public Log(String stt, String tenhang, String hscode, String congdung, String hinhanh,
                String cangdi, String cangden, String loaihang, String soluongcuthe,
-               String yeucaudacbiet, String valid, String month, String importorexport) {
+               String yeucaudacbiet, String price, String month, String importorexport, String type) {
         this.stt = stt;
         this.tenhang = tenhang;
         this.hscode = hscode;
@@ -30,43 +31,10 @@ public class Log implements Serializable {
         this.loaihang = loaihang;
         this.soluongcuthe = soluongcuthe;
         this.yeucaudacbiet = yeucaudacbiet;
-        this.valid = valid;
+        this.price = price;
         this.month = month;
         this.importorexport = importorexport;
-    }
-
-
-
-    public String getValid() {
-        return valid;
-    }
-
-    public void setValid(String valid) {
-        this.valid = valid;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public String getImportorexport() {
-        return importorexport;
-    }
-
-    public void setImportAndExport(String importAndExport) {
-        this.importorexport = importAndExport;
-    }
-
-    public String getCongdung() {
-        return congdung;
-    }
-
-    public void setCongdung(String congdung) {
-        this.congdung = congdung;
+        this.type = type;
     }
 
     public String getStt() {
@@ -91,6 +59,14 @@ public class Log implements Serializable {
 
     public void setHscode(String hscode) {
         this.hscode = hscode;
+    }
+
+    public String getCongdung() {
+        return congdung;
+    }
+
+    public void setCongdung(String congdung) {
+        this.congdung = congdung;
     }
 
     public String getHinhanh() {
@@ -139,5 +115,37 @@ public class Log implements Serializable {
 
     public void setYeucaudacbiet(String yeucaudacbiet) {
         this.yeucaudacbiet = yeucaudacbiet;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getImportorexport() {
+        return importorexport;
+    }
+
+    public void setImportorexport(String importorexport) {
+        this.importorexport = importorexport;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

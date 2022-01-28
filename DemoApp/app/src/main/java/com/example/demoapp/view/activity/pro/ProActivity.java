@@ -3,6 +3,7 @@ package com.example.demoapp.view.activity.pro;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,10 +16,19 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.demoapp.R;
+
 import com.example.demoapp.view.activity.imp.ProImportActivity;
+
+import com.example.demoapp.adapter.PriceListAIRAdapter;
+
 import com.example.demoapp.view.fragment.fcl.FCLFragment;
 import com.example.demoapp.view.fragment.home.HomeFragment;
+
 import com.example.demoapp.view.fragment.air.LCLFragment;
+
+import com.example.demoapp.view.fragment.imp.ImportFragment;
+import com.example.demoapp.view.fragment.air.AirExportFragment;
+
 import com.example.demoapp.view.fragment.log.LogFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,6 +45,8 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
 
     private DrawerLayout mDrawerLayout;
     Toolbar toolbar;
+    private SearchView searchView;
+    private PriceListAIRAdapter mAirAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +111,7 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
 
         }else if (id == R.id.nav_lcl) {
             if (mCurrentFragment != FRAGMENT_LCL) {
-                replaceFragment(new LCLFragment());
+                replaceFragment(new AirExportFragment());
                 mCurrentFragment = FRAGMENT_LCL;
                 toolbar.setTitle("AIR PAGE");
             }
@@ -142,4 +154,6 @@ public class ProActivity extends AppCompatActivity implements NavigationView.OnN
         transaction.replace(R.id.content_frame,fragment);
         transaction.commit();
     }
+
+
 }

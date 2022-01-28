@@ -49,9 +49,18 @@ public class LogRepository {
 
     public Call<Log> insertLog(String tenhang, String hscode, String hinhanh, String congdung,
                                String cangdi, String cangden, String loaihang, String soluongcuthe,
-                               String yeucaudacbiet, String valid,String month, String importorExport) {
+                               String yeucaudacbiet, String price,String month, String importorExport,
+                               String type) {
        return mLogService.addData(tenhang, hscode, hinhanh, congdung, cangdi, cangden, loaihang, soluongcuthe,
-                yeucaudacbiet, valid, month, importorExport);
+                yeucaudacbiet, price, month, importorExport, type);
+    }
+
+    public Call<Log> updateLog(String stt, String tenhang, String hscode, String hinhanh, String congdung,
+                               String cangdi, String cangden, String loaihang, String soluongcuthe,
+                               String yeucaudacbiet, String price,String month, String importorExport,
+                               String type) {
+        return mLogService.updateData(stt, tenhang, hscode, hinhanh, congdung, cangdi, cangden, loaihang, soluongcuthe,
+                yeucaudacbiet, price, month, importorExport, type);
     }
 
 }

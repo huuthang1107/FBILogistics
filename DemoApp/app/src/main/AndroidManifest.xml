@@ -13,6 +13,7 @@
         android:theme="@style/Theme.DemoApp"
         android:usesCleartextTraffic="true">
         <activity
+
             android:name=".view.activity.imp.ProImportActivity"
             android:exported="false"
             android:label="@string/title_activity_dom"
@@ -21,6 +22,19 @@
             android:name=".view.activity.pro.ProActivity"
             android:exported="false"
             android:label="@string/title_activity_pro_import" />
+
+            android:name=".view.activity.sale.AirImportSaleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.sale.RetailGoodsExportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.log.LogProActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity.air.AirActivity"
+            android:exported="true" />
+
         <activity
             android:name=".view.activity.sale.ImportActivity"
             android:exported="false" />
@@ -32,13 +46,20 @@
             android:exported="false" />
         <activity
             android:name=".view.activity.sale.SaleActivity"
-            android:exported="false" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".view.activity.sale.TablePriceAirActivity"
             android:exported="true" />
         <activity
+
             android:name=".view.activity.dom.DomActivity"
             android:exported="true">
+
+            android:name=".view.activity.LoginActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

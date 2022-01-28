@@ -1,20 +1,18 @@
 package com.example.demoapp.view.activity.sale;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.PriceListLogAdapter;
+import com.example.demoapp.adapter.sale.PriceListLogSaleAdapter;
 import com.example.demoapp.databinding.ActivityLogBinding;
-import com.example.demoapp.model.Fcl;
 import com.example.demoapp.model.Log;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.log.InsertLogFragment;
@@ -30,7 +28,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     private String month = "";
     private String importAndExport = "";
 
-    private PriceListLogAdapter mListLogAdapter;
+    private PriceListLogSaleAdapter mListLogAdapter;
     private LogViewModel mLogViewModel;
 
     private List<Log> mlistLog = new ArrayList<>();
@@ -43,7 +41,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
         mLogBinding = ActivityLogBinding.inflate(getLayoutInflater());
         View view = mLogBinding.getRoot();
-        mListLogAdapter = new PriceListLogAdapter(this);
+        mListLogAdapter = new PriceListLogSaleAdapter(this);
         mLogViewModel = new ViewModelProvider(this).get(LogViewModel.class);
         // Xử lý cập nhập insert
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
@@ -56,7 +54,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
         getDataLog();
         setAdapterItems();
-        setUpButtons();
+//        setUpButtons();
         setContentView(view);
     }
 

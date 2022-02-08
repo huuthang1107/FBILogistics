@@ -35,9 +35,9 @@ public class ImportLclSaleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityImportLclSaleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-
         priceListAdapter = new PriceListImportLclSaleAdapter(this);
         mImportViewModel = new ViewModelProvider(this).get(ImportLclViewModel.class);
+
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
 
         mCommunicateViewModel.needReloading.observe(this, needLoading -> {
@@ -50,6 +50,7 @@ public class ImportLclSaleActivity extends AppCompatActivity {
         getAllData();
         setContentView(view);
     }
+
     public void setAdapterItems() {
         ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
         ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getApplicationContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
@@ -78,7 +79,7 @@ public class ImportLclSaleActivity extends AppCompatActivity {
     public void setDataForRecyclerView(String m, String c) {
         if (!m.isEmpty() && !c.isEmpty()) {
             priceListAdapter.setImports(prepareDataForRecyclerView(month, continent));
-            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            binding.priceListRcv.setLayoutManager(new LinearLayoutManager(this));
             binding.priceListRcv.setAdapter(priceListAdapter);
         }
     }
@@ -137,7 +138,7 @@ public class ImportLclSaleActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        priceListAdapter = new PriceListImportLclSaleAdapter(getApplicationContext());
+        priceListAdapter = new PriceListImportLclSaleAdapter(this);
         mImportViewModel.getImportList().observe(this, imp ->
                 priceListAdapter.setImports(prepareDataForResume(month, continent, imp)));
 

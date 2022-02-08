@@ -124,5 +124,4 @@ public class PriceListImportLclSaleAdapter extends RecyclerView.Adapter<PriceLis
 
         }
     }
-
 }

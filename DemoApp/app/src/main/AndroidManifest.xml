@@ -13,25 +13,23 @@
         android:theme="@style/Theme.DemoApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.activity.sale.DomImportSaleActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.sale.ImportLclSaleActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".view.activity.sale.DomImportSaleActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.imp.ProImportActivity"
             android:exported="true"
             android:label="@string/title_activity_dom"
-            android:theme="@style/Theme.DemoApp.NoActionBar"></activity>
+            android:theme="@style/Theme.DemoApp.NoActionBar" />
         <activity
             android:name=".view.activity.pro.ProActivity"
             android:exported="true"
-            android:label="@string/title_activity_pro_import" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/title_activity_pro_import">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".view.activity.sale.AirImportSaleActivity"
@@ -44,7 +42,9 @@
             android:exported="true" />
         <activity
             android:name=".view.activity.air.AirActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".view.activity.sale.ImportActivity"
             android:exported="false" />
@@ -57,14 +57,20 @@
         <activity
             android:name=".view.activity.sale.SaleActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".view.activity.sale.TablePriceAirActivity"
             android:exported="true" />
         <activity
             android:name=".view.activity.dom.DomActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".view.activity.LoginActivity"
             android:exported="true">

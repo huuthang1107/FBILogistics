@@ -18,35 +18,35 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAIRAdapter;
-import com.example.demoapp.databinding.FragmentLclBinding;
-import com.example.demoapp.model.Air;
+import com.example.demoapp.databinding.FragmentAirExportBinding;
+import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.air.InsertAirDialog;
-import com.example.demoapp.viewmodel.AirViewModel;
+import com.example.demoapp.view.dialog.air.air_export.InsertAirExportDialog;
+import com.example.demoapp.viewmodel.AirExportViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LCLFragment extends Fragment implements View.OnClickListener {
-    FragmentLclBinding lclBinding;
+public class AirExportFragment extends Fragment implements View.OnClickListener {
+    FragmentAirExportBinding mAirBinding;
 
     private String month = "";
     private String continent = "";
     PriceListAIRAdapter priceListAdapter;
 
-    private AirViewModel mAirViewModel;
+    private AirExportViewModel mAirViewModel;
 
-    private List<Air> airList = new ArrayList<>();
+    private List<AirExport> airList = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        lclBinding = FragmentLclBinding.inflate(inflater, container, false);
-        View view = lclBinding.getRoot();
+        mAirBinding = FragmentAirExportBinding.inflate(inflater, container, false);
+        View view = mAirBinding.getRoot();
 
         priceListAdapter = new PriceListAIRAdapter(getContext());
-        mAirViewModel = new ViewModelProvider(this).get(AirViewModel.class);
+        mAirViewModel = new ViewModelProvider(this).get(AirExportViewModel.class);
 
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
@@ -67,23 +67,31 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
     private void getDataAIR() {
         airList = new ArrayList<>();
         mAirViewModel.getLclList().observe(getViewLifecycleOwner(), detailsPojoAir -> {
-            this.airList = detailsPojoAir;
+            this.airList = sortAirExport(detailsPojoAir);
         });
 
     }
 
+    public List<AirExport> sortAirExport(List<AirExport> list){
+        List<AirExport> result = new ArrayList<>();
+        for (int i = list.size()-1; i >=0; i--){
+            result.add(list.get(i));
+        }
+        return  result;
+    }
+
     private void setUpButtons() {
-        lclBinding.fragmentAirFab.setOnClickListener(this);
+        mAirBinding.fragmentAirFab.setOnClickListener(this);
     }
 
     public void setAdapterItems() {
         ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
         ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
-        lclBinding.autoCompleteMonth.setAdapter(adapterItemsMonth);
-        lclBinding.autoCompleteContinent.setAdapter(adapterItemsContinent);
+        mAirBinding.autoCompleteMonth.setAdapter(adapterItemsMonth);
+        mAirBinding.autoCompleteContinent.setAdapter(adapterItemsContinent);
 
-        lclBinding.autoCompleteMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAirBinding.autoCompleteMonth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 month = adapterView.getItemAtPosition(i).toString();
@@ -91,7 +99,7 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        lclBinding.autoCompleteContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAirBinding.autoCompleteContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 continent = adapterView.getItemAtPosition(i).toString();
@@ -111,16 +119,16 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
         if (!m.isEmpty() && !c.isEmpty()) {
 
             priceListAdapter.setDataAir(prepareDataForRecyclerView(m, c));
-            lclBinding.priceListRcv.setAdapter(priceListAdapter);
-            lclBinding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
+            mAirBinding.priceListRcv.setAdapter(priceListAdapter);
+            mAirBinding.priceListRcv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         }
     }
 
-    private List<Air> prepareDataForRecyclerView(String m, String c) {
-        List<Air> list = new ArrayList<>();
+    private List<AirExport> prepareDataForRecyclerView(String m, String c) {
+        List<AirExport> list = new ArrayList<>();
         try {
-            for (Air a : airList) {
+            for (AirExport a : airList) {
                 if (a.getMonth().equalsIgnoreCase(m) && a.getContinent().equalsIgnoreCase(c)) {
                     list.add(a);
                 }
@@ -131,11 +139,11 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
         return list;
     }
 
-    public List<Air> prepareDataForResume(String m, String c, List<Air> list) {
+    public List<AirExport> prepareDataForResume(String m, String c, List<AirExport> list) {
         // reset a list when user choose different
-        List<Air> subList = new ArrayList<>();
+        List<AirExport> subList = new ArrayList<>();
         try {
-            for (Air air : list) {
+            for (AirExport air : list) {
                 if (air.getMonth().equalsIgnoreCase(m) && air.getContinent().equalsIgnoreCase(c)) {
                     subList.add(air);
                 }
@@ -159,14 +167,14 @@ public class LCLFragment extends Fragment implements View.OnClickListener {
         mAirViewModel.getLclList().observe(getViewLifecycleOwner(), airs -> {
             priceListAdapter.setDataAir(prepareDataForResume(month, continent, airs));
         });
-        lclBinding.priceListRcv.setAdapter(priceListAdapter);
+        mAirBinding.priceListRcv.setAdapter(priceListAdapter);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_air_fab:
-                DialogFragment dialogFragment = InsertAirDialog.insertDiaLogAIR();
+                DialogFragment dialogFragment = InsertAirExportDialog.insertDiaLogAIR();
                 dialogFragment.show(getParentFragmentManager(), "Insert Dialog");
 
                 break;

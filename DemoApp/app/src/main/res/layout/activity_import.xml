@@ -6,7 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_air"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/purple_700"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            app:title="@string/company_name"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <LinearLayout
+        android:layout_below="@id/top_air"
         android:id="@+id/auto_complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:buttonTint="@color/btn_color"
-            android:text="@string/fr" />
+            android:text="@string/hq" />
 
         <RadioButton
             android:id="@+id/radio_rf"
@@ -95,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:buttonTint="@color/btn_color"
-            android:text="@string/ot" />
+            android:text="@string/fr" />
 
         <RadioButton
             android:id="@+id/radio_hq"
@@ -103,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:buttonTint="@color/btn_color"
-            android:text="@string/hq" />
+            android:text="@string/ot" />
         <RadioButton
             android:id="@+id/radio_tk"
             android:layout_width="wrap_content"
@@ -114,6 +133,7 @@
     </RadioGroup>
 
     <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_radio_button">
@@ -134,6 +154,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
         android:gravity="end"
         android:orientation="horizontal">
 
@@ -146,8 +167,5 @@
             android:contentDescription="@string/des_fab_add"
             android:src="@drawable/ic_add"
             app:tint="@color/white" />
-
     </LinearLayout>
-
-
 </RelativeLayout>

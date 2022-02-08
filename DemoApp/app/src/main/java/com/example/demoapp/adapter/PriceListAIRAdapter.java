@@ -16,18 +16,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.model.Air;
+import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.air.FragmentAirDetail;
+import com.example.demoapp.view.dialog.air.air_export.FragmentAirDetail;
 
 import java.util.List;
 
 public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapter.PriceAirViewHolder> {
     private Context context;
-    private List<Air> listAIRS;
+    private List<AirExport> listAIRS;
+    private List<AirExport> mlistAirOld;
 
     public PriceListAIRAdapter(Context context) {
         this.context = context;
+        this.mlistAirOld = listAIRS;
     }
 
     @NonNull
@@ -40,7 +42,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PriceAirViewHolder holder, int position) {
-            Air priceAir = listAIRS.get(position);
+            AirExport priceAir = listAIRS.get(position);
         if ( listAIRS.size() > 0) {
 
             holder.tvstt.setText(priceAir.getStt());
@@ -70,7 +72,7 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
     });
     }
 
-    private void goToDetail(Air air) {
+    private void goToDetail(AirExport air) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
         DialogFragment dialogFragment = FragmentAirDetail.getInstance();
@@ -90,10 +92,12 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setDataAir(List<Air> mListDetailAir) {
+    public void setDataAir(List<AirExport> mListDetailAir) {
         this.listAIRS = mListDetailAir;
         notifyDataSetChanged();
     }
+
+
 
 
     public class PriceAirViewHolder extends RecyclerView.ViewHolder {
@@ -120,4 +124,5 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         }
 
     }
+
 }

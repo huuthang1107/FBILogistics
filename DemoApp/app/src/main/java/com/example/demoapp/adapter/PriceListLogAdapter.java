@@ -53,7 +53,7 @@ public class PriceListLogAdapter extends RecyclerView.Adapter<PriceListLogAdapte
             holder.tvLoaihang.setText(pricelog.getLoaihang());
             holder.tvSoluongcuthe.setText(pricelog.getSoluongcuthe());
             holder.tvYeucaudacbiet.setText(pricelog.getYeucaudacbiet());
-            holder.tvValid.setText(pricelog.getValid());
+            holder.tvPrice.setText(pricelog.getPrice());
 
         }else{
             return;
@@ -93,7 +93,7 @@ public class PriceListLogAdapter extends RecyclerView.Adapter<PriceListLogAdapte
 
     public class LogViewHolder extends RecyclerView.ViewHolder{
         private TextView tvStt, tvTenHang, tvHScode, tvCongdung, tvHinhanh, tvCangdi, tvCangden,
-        tvLoaihang, tvSoluongcuthe, tvYeucaudacbiet, tvValid;
+        tvLoaihang, tvSoluongcuthe, tvYeucaudacbiet, tvPrice;
         ConstraintLayout logCardView;
 
         public LogViewHolder(@NonNull View itemView) {
@@ -109,7 +109,7 @@ public class PriceListLogAdapter extends RecyclerView.Adapter<PriceListLogAdapte
             tvLoaihang = itemView.findViewById(R.id.tv_row_price_log_loaihang);
             tvSoluongcuthe = itemView.findViewById(R.id.tv_row_price_log_soluongcuthe);
             tvYeucaudacbiet = itemView.findViewById(R.id.tv_row_price_log_yeucaudacbiet);
-            tvValid = itemView.findViewById(R.id.tv_row_price_log_valid);
+            tvPrice = itemView.findViewById(R.id.tv_row_price_log_valid);
 
 
         }

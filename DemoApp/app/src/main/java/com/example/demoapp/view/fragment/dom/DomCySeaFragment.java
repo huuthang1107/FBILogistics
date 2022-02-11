@@ -14,24 +14,24 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.CyDomAdapter;
-import com.example.demoapp.databinding.FragmentDomCyBinding;
-import com.example.demoapp.model.DomCy;
+import com.example.demoapp.adapter.CySeaDomAdapter;
+import com.example.demoapp.databinding.FragmentDomCySeaBinding;
+import com.example.demoapp.model.DomCySea;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.dom.dom_cy.DialogDomCyInsert;
+import com.example.demoapp.view.dialog.dom.dom_cy_sea.DialogDomCySeaInsert;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
-import com.example.demoapp.viewmodel.DomCyViewModel;
+import com.example.demoapp.viewmodel.DomCySeaViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DomCySeaFragment extends Fragment {
 
-    private FragmentDomCyBinding binding;
-    private DomCyViewModel mDomCyViewModel;
-    private CyDomAdapter mCyDomAdapter;
+    private FragmentDomCySeaBinding binding;
+    private DomCySeaViewModel mDomCySeaViewModel;
+    private CySeaDomAdapter mCySeaDomAdapter;
 
-    private List<DomCy> mDomCyList = new ArrayList<>();
+    private List<DomCySea> mDomCySeaList = new ArrayList<>();
 
     private String month = "";
     private String continent = "";
@@ -40,11 +40,11 @@ public class DomCySeaFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentDomCyBinding.inflate(inflater, container, false);
+        binding = FragmentDomCySeaBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        mCyDomAdapter = new CyDomAdapter(getContext());
-        mDomCyViewModel = new ViewModelProvider(this).get(DomCyViewModel.class);
+        mCySeaDomAdapter = new CySeaDomAdapter(getContext());
+        mDomCySeaViewModel = new ViewModelProvider(this).get(DomCySeaViewModel.class);
 
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(requireActivity()).get(CommunicateViewModel.class);
 
@@ -63,18 +63,18 @@ public class DomCySeaFragment extends Fragment {
 
     public void setUpRecyclerView(String m, String c) {
         if (!m.isEmpty() && !c.isEmpty()) {
-            mCyDomAdapter.setDomCy(filterData(m, c));
-            binding.rcvDomCy.setAdapter(mCyDomAdapter);
-            binding.rcvDomCy.setLayoutManager(new LinearLayoutManager(getContext()));
+            mCySeaDomAdapter.setDomCySea(filterData(m, c));
+            binding.rcvDomCySea.setAdapter(mCySeaDomAdapter);
+            binding.rcvDomCySea.setLayoutManager(new LinearLayoutManager(getContext()));
         }
     }
 
-    public List<DomCy> filterData(String m, String c) {
-        List<DomCy> subList = new ArrayList<>();
+    public List<DomCySea> filterData(String m, String c) {
+        List<DomCySea> subList = new ArrayList<>();
         try {
-            for (DomCy domCy : mDomCyList) {
-                if (domCy.getMonth().equalsIgnoreCase(m) && domCy.getContinent().equalsIgnoreCase(c)) {
-                    subList.add(domCy);
+            for (DomCySea domCySea : mDomCySeaList) {
+                if (domCySea.getMonth().equalsIgnoreCase(m) && domCySea.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(domCySea);
                 }
             }
         } catch (NullPointerException nullPointerException) {
@@ -83,12 +83,12 @@ public class DomCySeaFragment extends Fragment {
         return subList;
     }
 
-    public List<DomCy> filterDataResume(String m, String c, List<DomCy> list) {
-        List<DomCy> subList = new ArrayList<>();
+    public List<DomCySea> filterDataResume(String m, String c, List<DomCySea> list) {
+        List<DomCySea> subList = new ArrayList<>();
         try {
-            for (DomCy domCy : list) {
-                if (domCy.getMonth().equalsIgnoreCase(m) && domCy.getContinent().equalsIgnoreCase(c)) {
-                    subList.add(domCy);
+            for (DomCySea domCySea : list) {
+                if (domCySea.getMonth().equalsIgnoreCase(m) && domCySea.getContinent().equalsIgnoreCase(c)) {
+                    subList.add(domCySea);
                 }
             }
         } catch (NullPointerException nullPointerException) {
@@ -116,24 +116,24 @@ public class DomCySeaFragment extends Fragment {
     }
 
     public void getAllData() {
-        this.mDomCyList = new ArrayList<>();
+        this.mDomCySeaList = new ArrayList<>();
 
-        mDomCyViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> this.mDomCyList = domCy);
+        mDomCySeaViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> this.mDomCySeaList = domCy);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        mDomCyViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> mCyDomAdapter.setDomCy(filterDataResume(month, continent, domCy)));
+        mDomCySeaViewModel.getAllData().observe(getViewLifecycleOwner(), domCySeas -> mCySeaDomAdapter.setDomCySea(filterDataResume(month, continent, domCySeas)));
 
-        binding.rcvDomCy.setAdapter(mCyDomAdapter);
+        binding.rcvDomCySea.setAdapter(mCySeaDomAdapter);
     }
 
     public void setButtons() {
-        binding.domCyFab.setOnClickListener(view -> {
-            DialogFragment dialogFragment = DialogDomCyInsert.getInstance();
-            dialogFragment.show(getChildFragmentManager(), "Cy Insert");
+        binding.domCySeaFab.setOnClickListener(view -> {
+            DialogFragment dialogFragment = DialogDomCySeaInsert.getInstance();
+            dialogFragment.show(getChildFragmentManager(), "Cy Sea Insert");
         });
     }
 }

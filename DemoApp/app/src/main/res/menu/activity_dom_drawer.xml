@@ -35,5 +35,14 @@
             android:icon="@drawable/ic_baseline_baohiem_24"
             android:title="@string/nav_dom_door" />
 
+        <item
+            android:id="@+id/nav_dom_cy_sea"
+            android:icon="@drawable/ic_baseline_baohiem_24"
+            android:title="@string/nav_dom_cy_sea" />
+        <item
+            android:id="@+id/nav_dom_door_sea"
+            android:icon="@drawable/ic_baseline_baohiem_24"
+            android:title="@string/nav_dom_door_sea" />
+
     </group>
 </menu>

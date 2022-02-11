@@ -42,4 +42,14 @@
         android:name="com.example.demoapp.view.fragment.dom.DomDoorFragment"
         android:label="@string/nav_dom_door"
         tools:layout="@layout/fragment_dom_door" />
+    <fragment
+        android:id="@+id/nav_dom_cy_sea"
+        android:name="com.example.demoapp.view.fragment.dom.DomCySeaFragment"
+        android:label="@string/nav_dom_cy_sea" />
+    <fragment
+        android:id="@+id/nav_dom_door_sea"
+        android:name="com.example.demoapp.view.fragment.dom.DomDoorSeaFragment"
+        android:label="@string/nav_dom_door_sea" />
+
+
 </navigation>

@@ -39,7 +39,8 @@ public class DomActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_dom_export, R.id.nav_dom_import, R.id.nav_dom_dry, R.id.nav_dom_cold, R.id.nav_dom_cy, R.id.nav_dom_door)
+                R.id.nav_home, R.id.nav_dom_export, R.id.nav_dom_import, R.id.nav_dom_dry, R.id.nav_dom_cold, R.id.nav_dom_cy, R.id.nav_dom_door,
+                R.id.nav_dom_cy_sea, R.id.nav_dom_door_sea)
                 .setOpenableLayout(drawer)
                 .build();
 

@@ -243,6 +243,8 @@
     <string name="title_home">Home</string>
     <string name="title_log">Log</string>
     <string name="label_fcl">FCL</string>
+    <string name="port_go">Cảng đi</string>
+    <string name="port_come">Cảng đến</string>
 
 
 </resources>

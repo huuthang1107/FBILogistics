@@ -162,7 +162,7 @@ public class DialogDomDoorInsert extends DialogFragment implements View.OnClickL
         communicateViewModel.makeChanges();
 
         mDomDoorViewModel.insertData(stationGo, stationCome, addressReceive, addressDelivery, name, weight, quantity, etd,
-                "20FT", listStr[1], listStr[2], getCreatedDate()).enqueue(new Callback<DomDoor>() {
+                listStr[0], listStr[1], listStr[2], getCreatedDate()).enqueue(new Callback<DomDoor>() {
             @Override
             public void onResponse(@NonNull Call<DomDoor> call, @NonNull Response<DomDoor> response) {
                 if (response.isSuccessful()) {

@@ -38,9 +38,17 @@ public class Constants {
     public static final String DOM_CY_UPDATE = "add_new_dom_cy";
     public static final String DOM_CY_ADD_NEW = "update_dom_cy";
 
+    public static final String DOM_CY_SEA_OBJECT = "object_dom_cy_sea";
+    public static final String DOM_CY_SEA_UPDATE = "add_new_dom_cy_sea";
+    public static final String DOM_CY_SEA_ADD_NEW = "update_dom_cy_sea";
+
     public static final String DOM_DOOR_OBJECT = "object_dom_door";
     public static final String DOM_DOOR_UPDATE = "add_new_dom_door";
     public static final String DOM_DOOR_ADD_NEW = "update_dom_door";
+
+    public static final String DOM_DOOR_SEA_OBJECT = "object_dom_door_sea";
+    public static final String DOM_DOOR_SEA_UPDATE = "add_new_dom_door_sea";
+    public static final String DOM_DOOR_SEA_ADD_NEW = "update_dom_door_sea";
 
     public static final String RETAIL_GOODS = "object_retail_goods" ;
     public static final String RETAIL_GOODS_UPDATE = "object_retail_goods_update";
@@ -63,6 +71,8 @@ public class Constants {
     public  final static String[] ITEMS_FCL = {"GP", "FR", "RF", "OT", "HC"};
 
     public  final static String[] ITEMS_DOM = {"FT", "RF", "OT", "FR", "ISO"};
+
+    public  final static String[] ITEMS_DOM_SEA = {"FT", "RF"};
 
 
     public final static String[] ITEMS_IMPORT = {"GP", "HQ", "RF", "FR", "OT", "TK"};

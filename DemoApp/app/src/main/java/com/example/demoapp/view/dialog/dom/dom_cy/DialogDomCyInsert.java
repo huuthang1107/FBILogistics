@@ -159,7 +159,7 @@ public class DialogDomCyInsert extends DialogFragment implements View.OnClickLis
         communicateViewModel.makeChanges();
 
         mDomCyViewModel.insertData(stationGo, stationCome, name, weight, quantity, etd,
-              "20FT", listStr[1], listStr[2], getCreatedDate()).enqueue(new Callback<DomCy>() {
+              listStr[0], listStr[1], listStr[2], getCreatedDate()).enqueue(new Callback<DomCy>() {
             @Override
             public void onResponse(@NonNull Call<DomCy> call, @NonNull Response<DomCy> response) {
                 if (response.isSuccessful()) {

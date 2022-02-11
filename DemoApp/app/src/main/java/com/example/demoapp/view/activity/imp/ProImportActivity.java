@@ -1,16 +1,15 @@
 package com.example.demoapp.view.activity.imp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.example.demoapp.R;
+import com.example.demoapp.adapter.ViewPagerAdapterImport;
 import com.example.demoapp.databinding.ActivityProImportBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.demoapp.transformer.ZoomOutPageTransformer;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager2.widget.ViewPager2;
 
 public class ProImportActivity extends AppCompatActivity {
 
@@ -23,16 +22,54 @@ public class ProImportActivity extends AppCompatActivity {
         binding = ActivityProImportBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_import, R.id.navigation_import_lcl)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_pro_import);
-       // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        bottomMenu();
+        setupViewPager();
 
+    }
+
+    private void setupViewPager() {
+        ViewPagerAdapterImport viewPagerAdapterImport = new ViewPagerAdapterImport(this);
+        binding.viewPagerImport.setAdapter(viewPagerAdapterImport);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private void bottomMenu() {
+        binding.bottomNavImport.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    binding.viewPagerImport.setCurrentItem(0);
+                    break;
+                case R.id.navigation_import:
+                    binding.viewPagerImport.setCurrentItem(1);
+                    break;
+                case R.id.navigation_import_lcl:
+                    binding.viewPagerImport.setCurrentItem(2);
+                    break;
+            }
+            return true;
+        });
+        binding.viewPagerImport.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                switch (position) {
+
+                    case 0:
+                        binding.bottomNavImport.getMenu().findItem(R.id.navigation_home).setChecked(true);
+                        binding.viewPagerImport.setPageTransformer(new ZoomOutPageTransformer());
+                        break;
+
+                    case 1:
+                        binding.bottomNavImport.getMenu().findItem(R.id.navigation_import).setChecked(true);
+                        binding.viewPagerImport.setPageTransformer(new ZoomOutPageTransformer());
+                        break;
+                    case 2:
+                        binding.bottomNavImport.getMenu().findItem(R.id.navigation_import_lcl).setChecked(true);
+                        binding.viewPagerImport.setPageTransformer(new ZoomOutPageTransformer());
+                        break;
+                }
+            }
+        });
     }
 
 }

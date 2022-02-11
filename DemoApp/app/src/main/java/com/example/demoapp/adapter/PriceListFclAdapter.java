@@ -3,9 +3,12 @@ package com.example.demoapp.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,22 +17,24 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.demoapp.R;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.fcl.FragmentFclDetail;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapter.ViewHolder> {
+public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapter.ViewHolder>  {
 
     private final Context context;
     private List<Fcl> mListDetailFcl;
 
     public PriceListFclAdapter(Context context) {
         this.context = context;
-    }
 
+    }
 
     @NonNull
     @Override
@@ -38,7 +43,6 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
 
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull PriceListFclAdapter.ViewHolder holder, int position) {
@@ -66,9 +70,10 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
 
     /**
      * Start detail dialog
+     *
      * @param fcl model
      */
-    public void goToDetail(Fcl fcl){
+    public void goToDetail(Fcl fcl) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
         DialogFragment dialogFragment = FragmentFclDetail.getInstance();
@@ -78,13 +83,13 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
         bundle.putSerializable(Constants.FCL_OBJECT, fcl);
 
         dialogFragment.setArguments(bundle);
-        dialogFragment.show( fm,"DetailFcl");
+        dialogFragment.show(fm, "DetailFcl");
     }
 
     @Override
     public int getItemCount() {
         if (mListDetailFcl != null) {
-                return mListDetailFcl.size();
+            return mListDetailFcl.size();
         }
         return 0;
     }
@@ -95,11 +100,11 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
         notifyDataSetChanged();
     }
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView stt, pol, pod, of20, of40, of45, su20, su40, line, notes1, valid, notes2, changeOf20;
         ConstraintLayout fclCardView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             fclCardView = itemView.findViewById(R.id.row_cv_fcl);

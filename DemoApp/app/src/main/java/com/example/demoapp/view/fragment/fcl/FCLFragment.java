@@ -3,6 +3,9 @@ package com.example.demoapp.view.fragment.fcl;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -10,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -76,16 +80,11 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
     /**
      * this method will listen a event of auto complete (month, continent)
      */
     public void setAdapterItems() {
+
         ArrayAdapter<String> adapterItemsMonth = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_MONTH);
         ArrayAdapter<String> adapterItemsContinent = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, Constants.ITEMS_CONTINENT);
 
@@ -188,8 +187,12 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
      */
     public List<Fcl> sortArray(List<Fcl> list) {
         List<Fcl> result = new ArrayList<>();
-        for (int i = list.size() - 1; i >= 0; i--) {
-            result.add(list.get(i));
+        try{
+            for (int i = list.size() - 1; i >= 0; i--) {
+                result.add(list.get(i));
+            }
+        }catch (NullPointerException e){
+            Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
         return result;
     }

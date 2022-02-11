@@ -24,11 +24,18 @@
             android:name=".view.activity.imp.ProImportActivity"
             android:exported="true"
             android:label="@string/title_activity_dom"
-            android:theme="@style/Theme.DemoApp.NoActionBar" />
+            android:theme="@style/Theme.DemoApp.NoActionBar"/>
         <activity
             android:name=".view.activity.dom.DomActivity"
-            android:exported="false"
-            android:label="@string/title_activity_pro_import" />
+            android:exported="true"
+            android:label="@string/title_activity_dom">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".view.activity.pro.ProActivity"
             android:exported="true"
@@ -59,27 +66,15 @@
             android:name=".view.activity.sale.ContainerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activity.sale.SaleActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".view.activity.fcl.FclActivity"
+            android:exported="true"
+            android:theme="@style/Theme.DemoApp.NoActionBar"></activity>
         <activity
             android:name=".view.activity.sale.TablePriceAirActivity"
             android:exported="true" />
         <activity
-            android:name=".view.activity.pro.ProActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
             android:name=".view.activity.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

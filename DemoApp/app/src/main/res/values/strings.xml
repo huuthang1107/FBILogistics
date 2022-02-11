@@ -60,8 +60,8 @@
 
     <!--Table columns name -->
     <string name="col1">STT</string>
-    <string name="col2">AOL</string>
-    <string name="col3">AOD</string>
+    <string name="col2">POL</string>
+    <string name="col3">POD</string>
 
 
     <string name="col_of2">O/F 20</string>
@@ -209,8 +209,12 @@
     <string name="nav_dom_import">Hàng nhập</string>
     <string name="nav_dom_dry">Xe tải khô</string>
     <string name="nav_dom_cold">Xe tải lạnh</string>
-    <string name="nav_dom_cy">CY-CY</string>
-    <string name="nav_dom_door">Door to Door</string>
+    <string name="nav_dom_cy">Đường sắt - CY-CY</string>
+    <string name="nav_dom_door">Đường sắt - Door to Door</string>
+
+    <string name="nav_dom_cy_sea">Đường biển - CY-CY</string>
+    <string name="nav_dom_door_sea">Đường biển - Door to Door</string>
+
     <string name="created_date_case">Ngày Tạo</string>
     <string name="port_receive">Cảng lấy hàng</string>
     <string name="txt_dom_port_receive">Cảng nhận hàng</string>
@@ -238,6 +242,7 @@
     <string name="title_activity_log_pro">LogProActivity</string>
     <string name="title_home">Home</string>
     <string name="title_log">Log</string>
+    <string name="label_fcl">FCL</string>
 
 
 </resources>

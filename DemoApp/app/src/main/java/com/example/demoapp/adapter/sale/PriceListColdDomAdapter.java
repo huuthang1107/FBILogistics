@@ -1,5 +1,4 @@
-package com.example.demoapp.adapter;
-
+package com.example.demoapp.adapter.sale;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.databinding.RowDomColdBinding;
 import com.example.demoapp.model.DomCold;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.dom.dom_cold.DialogDomColdDetail;
+import com.example.demoapp.view.dialog.dom.dom_cold.sale.DialogDomColdSaleDetail;
 
 import java.util.List;
 
-public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdViewHolder> {
+public class PriceListColdDomAdapter extends RecyclerView.Adapter<PriceListColdDomAdapter.ColdViewHolder> {
     private final Context context;
     private List<DomCold> listCold;
 
@@ -43,7 +42,7 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
     public void goToDetail(DomCold domCold) {
         FragmentActivity activity = (FragmentActivity) context;
         FragmentManager fm = activity.getSupportFragmentManager();
-        DialogFragment dialogFragment = DialogDomColdDetail.getInstance();
+        DialogFragment dialogFragment = DialogDomColdSaleDetail.getInstance();
 
         Bundle bundle = new Bundle();
 
@@ -53,7 +52,7 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
         dialogFragment.show(fm, "Detail Dom Cold");
     }
 
-    public ColdDomAdapter(Context context) {
+    public PriceListColdDomAdapter(Context context) {
         this.context = context;
     }
 

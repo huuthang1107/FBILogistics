@@ -238,6 +238,12 @@
     <string name="title_activity_log_pro">LogProActivity</string>
     <string name="title_home">Home</string>
     <string name="title_log">Log</string>
+    <string name="nav_cy_cy">Cy</string>
+    <string name="title_door_to_door">Door</string>
+    <string name="nav_truck_cold">Cold</string>
+    <string name="title_truck_dry">Dry</string>
+    <string name="nav_container_import">Import</string>
+    <string name="title_container_export">Export</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.demoapp.view.activity.sale;
+package com.example.demoapp.view.activity.sale.air;
 
 import android.os.Bundle;
 import android.util.Log;

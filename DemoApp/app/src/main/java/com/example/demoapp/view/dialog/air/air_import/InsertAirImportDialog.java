@@ -1,16 +1,15 @@
 package com.example.demoapp.view.dialog.air.air_import;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentInsertAirImportDialogBinding;
@@ -43,6 +42,8 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
     private AirImportViewModel mAirViewModel;
     private List<AirImport> airList = new ArrayList<>();
     private CommunicateViewModel mCommunicateViewModel;
+    private Bundle bundle;
+    private AirImport mAirImport;
     Calendar calendar;
     public static InsertAirImportDialog insertDiaLogAIRImport(){
         return new InsertAirImportDialog();
@@ -55,11 +56,36 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
         mAirViewModel = new ViewModelProvider(this).get(AirImportViewModel.class);
         mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
+        bundle = getArguments();
+        insertInformationImport();
 
         initView();
         eventOnclick();
         showDatePicker();
         return view;
+    }
+
+    private void insertInformationImport() {
+        if(bundle != null){
+            mAirImport = (AirImport) bundle.getSerializable(Constants.AIR_IMPORT_UPDATE);
+
+            mInsertAirImportDialogBinding.insertAutoMonth.setText(mAirImport.getMonth());
+            mInsertAirImportDialogBinding.insertAutoContinent.setText(mAirImport.getContinent());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfPolAirImport.getEditText()).setText(mAirImport.getAol());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfPodAirImport.getEditText()).setText(mAirImport.getAod());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfDimAirImport.getEditText()).setText(mAirImport.getDim());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfGrossAirImport.getEditText()).setText(mAirImport.getGrossweight());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfTypeofcargoAirImport.getEditText()).setText(mAirImport.getTypeofcargo());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfAirfreightAirImport.getEditText()).setText(mAirImport.getAirfreight());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfSurchargeAirImport.getEditText()).setText(mAirImport.getSurcharge());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfAirlinesAirImport.getEditText()).setText(mAirImport.getAirlines());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfScheduleAirImport.getEditText()).setText(mAirImport.getSchedule());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfTfTransitTimeAirImport.getEditText()).setText(mAirImport.getTransittime());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfValidAirImport.getEditText()).setText(mAirImport.getValid());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfNotesAirImport.getEditText()).setText(mAirImport.getNote());
+
+
+        }
     }
 
     private void eventOnclick() {

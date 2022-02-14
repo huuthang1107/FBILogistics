@@ -2,7 +2,7 @@ package com.example.demoapp.utilities;
 
 public class Constants {
 
-    public static final String URL_API = "http://192.168.1.4/database/";
+    public static final String URL_API = "http://192.168.1.43/database/";
 
     public static final String FCL_UPDATE = "update_fcl";
 
@@ -74,6 +74,7 @@ public class Constants {
     public static final String AIR_OBJECT = "object_air";
     public static final String AIR_IMPORT = "object_import_air";
     public static final String AIR_IMPORT_UPDATE = "object_import_air_update";
+    public static final String AIR_IMPORT_INSERT = "object_import_air_insert";
     public static final String AIR_UPDATE = "update_air";
 
     public final  static String[] ITEMS_TYPE = {"Xuất kinh doanh", "Xuất gia công", "Xuất SXXK", "Xuất PMD Cty", "Xuất PMD CN",

@@ -57,6 +57,7 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
     private void setUpButtons() {
         mLogBinding.btnFunctionAddLog.setOnClickListener(this);
         mLogBinding.btnFunctionUpdateLog.setOnClickListener(this);
+        mLogBinding.btnFunctionCancelLog.setOnClickListener(this);
     }
 
     private void unit() {
@@ -126,6 +127,9 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
                 break;
             case R.id.btn_function_update_log:
                 updateLog();
+                dismiss();
+                break;
+            case R.id.btn_function_cancel_log:
                 dismiss();
                 break;
         }

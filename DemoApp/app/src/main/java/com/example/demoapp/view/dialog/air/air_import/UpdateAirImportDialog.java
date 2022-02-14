@@ -109,6 +109,7 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
     private void setUpButtons() {
         mAirImportDialogBinding.btnFunctionAddAirImport.setOnClickListener(this);
         mAirImportDialogBinding.btnFunctionUpdateAirImport.setOnClickListener(this);
+        mAirImportDialogBinding.btnFunctionCancelAirImport.setOnClickListener(this);
     }
 
     @Override
@@ -120,6 +121,9 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
                 break;
             case R.id.btn_function_add_air_import:
                 insertAirImport();
+                dismiss();
+                break;
+            case R.id.btn_function_cancel_air_import:
                 dismiss();
                 break;
         }

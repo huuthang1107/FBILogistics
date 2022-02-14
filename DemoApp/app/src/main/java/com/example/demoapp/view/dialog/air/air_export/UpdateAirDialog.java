@@ -57,6 +57,7 @@ public class UpdateAirDialog extends DialogFragment implements View.OnClickListe
     private void buttonEvent() {
         mUpdateAir.btnFunctionInsertExport.setOnClickListener(this);
         mUpdateAir.btnFunctionUpdateExport.setOnClickListener(this);
+        mUpdateAir.btnFunctionCancelExport.setOnClickListener(this);
     }
 
     private void unit() {
@@ -185,6 +186,9 @@ public class UpdateAirDialog extends DialogFragment implements View.OnClickListe
                 break;
             case R.id.btn_function_insert_export:
                 insertAirExport();
+                dismiss();
+                break;
+            case R.id.btn_function_cancel_export:
                 dismiss();
                 break;
         }

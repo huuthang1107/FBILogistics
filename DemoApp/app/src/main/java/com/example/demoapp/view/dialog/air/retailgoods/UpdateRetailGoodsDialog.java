@@ -57,6 +57,7 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
     private void setUpButtons() {
         mRetailGoodsDialogBinding.btnFunctionUpdateRetailGoods.setOnClickListener(this);
         mRetailGoodsDialogBinding.btnFunctionInsertRetailGoods.setOnClickListener(this);
+        mRetailGoodsDialogBinding.btnFunctionCancelRetailGoods.setOnClickListener(this);
     }
 
     private void unit() {
@@ -120,6 +121,9 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
                 break;
             case  R.id.btn_function_insert_retail_goods:
                 insertRetailGoods();
+                dismiss();
+                break;
+            case R.id.btn_function_cancel_retail_goods:
                 dismiss();
                 break;
         }

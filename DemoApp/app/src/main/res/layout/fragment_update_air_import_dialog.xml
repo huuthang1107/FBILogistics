@@ -247,15 +247,22 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_margin="10dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_function_cancel_air_import"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/btn_color"
+                android:text="@string/btn_cancel_txt" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_function_add_air_import"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="10dp"
-                app:backgroundTintMode="screen"
-                android:background="@drawable/selector_button"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/btn_color"
                 android:text="@string/btn_add_txt" />
 
             <com.google.android.material.button.MaterialButton
@@ -265,8 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                app:backgroundTintMode="screen"
-                android:background="@drawable/selector_button"
+                android:backgroundTint="@color/btn_color"
                 android:text="@string/btn_update_txt" />
         </LinearLayout>
     </LinearLayout>

@@ -3,13 +3,13 @@ package com.example.demoapp.view.activity.imp;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import com.example.demoapp.R;
-import com.example.demoapp.adapter.ViewPagerAdapterImport;
-import com.example.demoapp.databinding.ActivityProImportBinding;
-import com.example.demoapp.transformer.ZoomOutPageTransformer;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.demoapp.R;
+import com.example.demoapp.adapter.viewPager.ViewPagerAdapterImport;
+import com.example.demoapp.databinding.ActivityProImportBinding;
+import com.example.demoapp.transformer.ZoomOutPageTransformer;
 
 public class ProImportActivity extends AppCompatActivity {
 

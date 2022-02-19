@@ -80,6 +80,7 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
         }
 
         public void bind(DomExport export) {
+            binding.tvDomExportProductStt.setText(export.getStt());
             binding.tvDomExportProductName.setText(export.getName());
             binding.tvDomExportWeight.setText(export.getWeight());
             binding.tvDomExportQuantity.setText(export.getQuantity());

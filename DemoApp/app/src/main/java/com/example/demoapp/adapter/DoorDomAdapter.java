@@ -80,6 +80,7 @@ public class DoorDomAdapter extends RecyclerView.Adapter<DoorDomAdapter.DoorView
         }
 
         public void bind(DomDoor domDoor) {
+            binding.tvDomDoorStationStt.setText(domDoor.getStt());
             binding.tvDomDoorStationGo.setText(domDoor.getStationGo());
             binding.tvDomDoorStationCome.setText(domDoor.getStationCome());
             binding.tvDomDoorAddressReceive.setText(domDoor.getAddressReceive());

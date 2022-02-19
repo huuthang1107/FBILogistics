@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class AirImport implements Serializable {
 
     private String stt, aol, aod, dim, grossweight, typeofcargo, airfreight, surcharge, airlines,
-            schedule, transittime, valid, note, month, continent;
+            schedule, transittime, valid, note, month, continent, date_created;
 
     public AirImport(String stt, String aol, String aod, String dim, String grossweight,
                      String typeofcargo, String airfreight, String surcharge, String airlines,
                      String schedule, String transittime, String valid, String note, String month,
-                     String continent) {
+                     String continent, String date_created) {
         this.stt = stt;
         this.aol = aol;
         this.aod = aod;
@@ -26,6 +26,15 @@ public class AirImport implements Serializable {
         this.note = note;
         this.month = month;
         this.continent = continent;
+        this.date_created = date_created;
+    }
+
+    public String getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(String date_created) {
+        this.date_created = date_created;
     }
 
     public String getStt() {

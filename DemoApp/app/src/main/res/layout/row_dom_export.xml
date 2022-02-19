@@ -23,12 +23,33 @@
                 android:id="@+id/tv_dom_export_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/product_name"
-                android:textSize="17sp"
+                android:text="@string/col1"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_dom_export_product_stt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/product_name"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_dom_export_product_stt" />
 
             <TextView
                 android:id="@+id/tv_dom_export_product_name"
@@ -39,15 +60,16 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tv_dom_export_product_stt" />
+
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/tv_dom_export_weight"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_product_name" />
@@ -68,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/txt_dom_quantity"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_weight" />
@@ -90,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/temp"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_quantity" />
@@ -112,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/address"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_temp" />
@@ -134,8 +156,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/seaport"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_address" />
@@ -156,8 +178,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/length"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_seaport" />
@@ -178,8 +200,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/width"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_dom_export_length" />
@@ -200,8 +222,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/height"
-                android:textSize="17sp"
                 android:textColor="@color/black"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_row_dom_export_width" />
@@ -216,6 +238,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@id/tv_row_dom_export_width" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/created_date_case"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_dom_export_height" />
+
+            <TextView
+                android:id="@+id/tv_row_dom_export_created"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/tv_row_dom_export_height" />
 
 
 

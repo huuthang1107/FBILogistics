@@ -62,6 +62,7 @@ public class DialogDomDoorSeaDetail extends DialogFragment {
             bundle.putSerializable(Constants.DOM_DOOR_SEA_UPDATE, mDomDoorSea);
             bundle.putString(Constants.DOM_DOOR_SEA_ADD_NEW, "YES");
 
+            binding.tvDomDoorSeaPortStt.setText(mDomDoorSea.getStt());
             binding.tvDomDoorSeaPortGo.setText(mDomDoorSea.getPortGo());
             binding.tvDomDoorSeaPortCome.setText(mDomDoorSea.getPortCome());
             binding.tvDomDoorSeaAddressReceive.setText(mDomDoorSea.getAddressReceive());

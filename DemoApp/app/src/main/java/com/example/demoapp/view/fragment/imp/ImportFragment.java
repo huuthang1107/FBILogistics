@@ -167,10 +167,19 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
 
         try {
             mImportViewModel.getImportList().observe(getViewLifecycleOwner(), detailsPojoImports ->
-                    this.listPriceList = detailsPojoImports);
+                    this.listPriceList = sortImport(detailsPojoImports));
+
         } catch (NullPointerException exception) {
             Toast.makeText(getContext(), exception.toString(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    public List<Import> sortImport(List<Import> list){
+        List<Import> result = new ArrayList<>();
+        for (int i = list.size()-1; i>=0 ; i--){
+            result.add(list.get(i));
+        }
+        return result;
     }
 
     @Override

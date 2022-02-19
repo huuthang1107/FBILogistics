@@ -51,6 +51,8 @@ public class FragmentRetailGoodsDetail extends DialogFragment implements View.On
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsTransittime.setText(retailGoods.getTransittime());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsValid.setText(retailGoods.getValid());
         mRetailGoodsDetailBinding.tvRowPriceRetailGoodsNote.setText(retailGoods.getNote());
+        mRetailGoodsDetailBinding.tvRowPriceRetailGoodsDateCreated.setText(retailGoods.getDate_created());
+
 
 
     }

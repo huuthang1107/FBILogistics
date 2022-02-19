@@ -49,6 +49,7 @@ public class FragmentAirImportDetail extends DialogFragment implements View.OnCl
         mAirImportDetailBinding.tvRowPriceAirTransittimeImport.setText(air.getTransittime());
         mAirImportDetailBinding.tvRowPriceAirValidImport.setText(air.getValid());
         mAirImportDetailBinding.tvRowPriceAirNoteImport.setText(air.getNote());
+        mAirImportDetailBinding.tvRowPriceAirDateCreated.setText(air.getDate_created());
 
 
     }

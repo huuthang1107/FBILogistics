@@ -14,11 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.databinding.RowDomDryBinding;
-
 import com.example.demoapp.model.DomDry;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.dom.dom_dry.DialogDomDryDetail;
-import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportDetail;
 
 import java.util.List;
 
@@ -82,6 +80,7 @@ public class DryDomAdapter extends RecyclerView.Adapter<DryDomAdapter.DryViewHol
         }
 
         public void bind(DomDry domDry) {
+            binding.tvDomDryProductStt.setText(domDry.getStt());
             binding.tvDomDryProductName.setText(domDry.getName());
             binding.tvDomDryWeight.setText(domDry.getWeight());
             binding.tvDomDryQuantityPallet.setText(domDry.getQuantityPallet());

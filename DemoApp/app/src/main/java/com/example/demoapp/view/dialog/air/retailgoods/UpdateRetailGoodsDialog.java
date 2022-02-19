@@ -17,8 +17,16 @@ import com.example.demoapp.model.RetailGoods;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.RetailGoodsViewModel;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +57,7 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
         mBundle = getArguments();
         updateInformationRetailGoods();
         unit();
+        showDatePicker();
         setUpButtons();
 
         return view;
@@ -112,6 +121,36 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
         }
     }
 
+    public void showDatePicker() {
+
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select date");
+
+        final MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        mRetailGoodsDialogBinding.edtValid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+
+                        TimeZone timeZoneUTC = TimeZone.getDefault();
+                        // It will be negative, so that's the -1
+                        int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
+                        // Create a date format, then a date object with our offset
+                        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                        Date date = new Date(selection + offsetFromUTC);
+
+                        Objects.requireNonNull(mRetailGoodsDialogBinding.tfValidRetailGoods.getEditText()).setText(simpleFormat.format(date));
+                    }
+                });
+            }
+        });
+
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -146,7 +185,7 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
         mCommunicateViewModel.makeChanges();
         Call<RetailGoods> call = mRetailGoodsViewModel.insertRetailGoodsExport(strPol, strPod, strDim, strGross, strType,
                 strOceanFreight, strLocalCharge, strCarrier, strSchedule, strTransittime, strValid, strNotes,
-                listPriceRetailGoods[0], listPriceRetailGoods[1]);
+                listPriceRetailGoods[0], listPriceRetailGoods[1], getCreatedDate());
         call.enqueue(new Callback<RetailGoods>() {
             @Override
             public void onResponse(Call<RetailGoods> call, Response<RetailGoods> response) {
@@ -160,6 +199,9 @@ public class UpdateRetailGoodsDialog extends DialogFragment implements View.OnCl
 
             }
         });
+    }
+    private String getCreatedDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
     }
 
     private void updateRetailGoods() {

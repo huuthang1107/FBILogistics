@@ -219,6 +219,9 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_valid"
+                android:clickable="true"
+                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col12" />

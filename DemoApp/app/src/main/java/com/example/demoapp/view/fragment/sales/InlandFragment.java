@@ -12,6 +12,7 @@ import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentInlandBinding;
 import com.example.demoapp.view.activity.sale.rail.RailSaleActivity;
 import com.example.demoapp.view.activity.sale.road.RoadSaleActivity;
+import com.example.demoapp.view.activity.sale.waterway.WaterWayActivity;
 
 
 public class InlandFragment extends Fragment implements View.OnClickListener {
@@ -29,6 +30,7 @@ public class InlandFragment extends Fragment implements View.OnClickListener {
     private void setEventClick() {
         binding.cvRail.setOnClickListener(this);
         binding.cvRoad.setOnClickListener(this);
+        binding.cvWaterway.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +43,11 @@ public class InlandFragment extends Fragment implements View.OnClickListener {
             case R.id.cv_road:
                 Intent intent1 = new Intent(getContext(), RoadSaleActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.cv_waterway:
+                Intent intent2 = new Intent(getContext(), WaterWayActivity.class);
+                startActivity(intent2);
+                break;
         }
     }
 }

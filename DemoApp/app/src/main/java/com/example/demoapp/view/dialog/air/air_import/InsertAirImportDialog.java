@@ -1,6 +1,7 @@
 package com.example.demoapp.view.dialog.air.air_import;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,8 +74,8 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
             mInsertAirImportDialogBinding.insertAutoMonth.setText(mAirImport.getMonth());
             mInsertAirImportDialogBinding.insertAutoContinent.setText(mAirImport.getContinent());
-            Objects.requireNonNull(mInsertAirImportDialogBinding.tfPolAirImport.getEditText()).setText(mAirImport.getAol());
-            Objects.requireNonNull(mInsertAirImportDialogBinding.tfPodAirImport.getEditText()).setText(mAirImport.getAod());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfAolAirImport.getEditText()).setText(mAirImport.getAol());
+            Objects.requireNonNull(mInsertAirImportDialogBinding.tfAodAirImport.getEditText()).setText(mAirImport.getAod());
             Objects.requireNonNull(mInsertAirImportDialogBinding.tfDimAirImport.getEditText()).setText(mAirImport.getDim());
             Objects.requireNonNull(mInsertAirImportDialogBinding.tfGrossAirImport.getEditText()).setText(mAirImport.getGrossweight());
             Objects.requireNonNull(mInsertAirImportDialogBinding.tfTypeofcargoAirImport.getEditText()).setText(mAirImport.getTypeofcargo());
@@ -87,6 +90,10 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
         }
     }
+    private String getCreatedDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+    }
+
 
     private void eventOnclick() {
         mInsertAirImportDialogBinding.btnFunctionAddAirImport.setOnClickListener(this);
@@ -123,8 +130,12 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_function_add_air_import:
-                insertAirImport();
-                dismiss();
+                if(isFilled()) {
+                    insertAirImport();
+                    dismiss();
+                }else{
+                    Toast.makeText(getContext(), Constants.INSERT_FAILED, Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.btn_function_cancel_air_import:
                 dismiss();
@@ -139,7 +150,7 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
         final MaterialDatePicker<Long> materialDatePicker = builder.build();
 
-        mInsertAirImportDialogBinding.tfValidAirImport.setOnClickListener(new View.OnClickListener() {
+        mInsertAirImportDialogBinding.edtValid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
@@ -162,9 +173,40 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
     }
 
+    public boolean isFilled() {
+        boolean result = true;
+
+        if (TextUtils.isEmpty(mInsertAirImportDialogBinding.insertAutoContinent.getText())) {
+            result = false;
+            mInsertAirImportDialogBinding.insertAutoContinent.setError(Constants.ERROR_AUTO_COMPLETE_CONTINENT);
+        }
+
+        if (TextUtils.isEmpty(mInsertAirImportDialogBinding.insertAutoMonth.getText())) {
+            result = false;
+            mInsertAirImportDialogBinding.insertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
+        }
+
+
+        if (TextUtils.isEmpty(Objects.requireNonNull(mInsertAirImportDialogBinding.tfAolAirImport.getEditText()).getText().toString())) {
+            result = false;
+            mInsertAirImportDialogBinding.tfAolAirImport.setError(Constants.ERROR_POL);
+        }
+        if (TextUtils.isEmpty(Objects.requireNonNull(mInsertAirImportDialogBinding.tfAodAirImport.getEditText()).getText().toString())) {
+            result = false;
+            mInsertAirImportDialogBinding.tfAodAirImport.setError(Constants.ERROR_POD);
+        }
+
+        if (TextUtils.isEmpty(Objects.requireNonNull(mInsertAirImportDialogBinding.tfValidAirImport.getEditText()).getText().toString())) {
+            result = false;
+            mInsertAirImportDialogBinding.tfValidAirImport.setError(Constants.ERROR_VALID);
+        }
+
+        return result;
+    }
+
     private void insertAirImport() {
-        String stPol = mInsertAirImportDialogBinding.tfPolAirImport.getEditText().getText().toString();
-        String stPod = mInsertAirImportDialogBinding.tfPodAirImport.getEditText().getText().toString();
+        String stPol = mInsertAirImportDialogBinding.tfAolAirImport.getEditText().getText().toString();
+        String stPod = mInsertAirImportDialogBinding.tfAodAirImport.getEditText().getText().toString();
         String stDim = mInsertAirImportDialogBinding.tfDimAirImport.getEditText().getText().toString();
         String stGross = mInsertAirImportDialogBinding.tfGrossAirImport.getEditText().getText().toString();
         String stType = mInsertAirImportDialogBinding.tfTypeofcargoAirImport.getEditText().getText().toString();
@@ -179,7 +221,7 @@ public class InsertAirImportDialog extends DialogFragment implements View.OnClic
 
         mCommunicateViewModel.makeChanges();
         Call<AirImport> call = mAirViewModel.insertAir(stPol,stPod, stDim, stGross, stType, stFreight,
-                stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1]);
+                stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1], getCreatedDate());
         call.enqueue(new Callback<AirImport>() {
             @Override
             public void onResponse(Call<AirImport> call, Response<AirImport> response) {

@@ -35,8 +35,6 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/menu_air"
-        app:itemBackground="@color/btn_color"
-        app:itemIconTint="@color/custom_color_bottom_nav"
-        app:itemTextColor="@color/custom_color_bottom_nav"/>
+      />
 
 </RelativeLayout>

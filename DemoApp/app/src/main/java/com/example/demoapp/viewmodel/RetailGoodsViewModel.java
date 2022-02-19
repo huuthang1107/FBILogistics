@@ -29,9 +29,9 @@ public class RetailGoodsViewModel extends AndroidViewModel {
 
     public Call<RetailGoods> insertRetailGoodsExport(String pol, String pod, String dim, String grossweight, String typeofcargo, String oceanfreight,
                                                      String localcharge, String carrier, String schedule, String transittime, String valid, String note
-            , String month , String continent) {
+            , String month , String continent, String date_careated) {
         return  mRetailGoodsRepository.insertRetailGoods(pol, pod, dim, grossweight,typeofcargo, oceanfreight, localcharge, carrier,
-                schedule, transittime, valid, note, month, continent);
+                schedule, transittime, valid, note, month, continent, date_careated);
     }
 
     public Call<RetailGoods> updateRetailGoods(String stt, String pol, String pod, String dim, String grossweight, String typeofcargo, String oceanfreight,

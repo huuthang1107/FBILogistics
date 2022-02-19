@@ -1,14 +1,13 @@
 package com.example.demoapp.view.activity.fcl;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.ViewPagerAdapterFcl;
+import com.example.demoapp.adapter.viewPager.ViewPagerAdapterFcl;
 import com.example.demoapp.databinding.ActivityFclBinding;
 import com.example.demoapp.transformer.ZoomOutPageTransformer;
 

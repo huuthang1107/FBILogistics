@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.ViewPagerAdapterRail;
+import com.example.demoapp.adapter.viewPager.ViewPagerAdapterRail;
 import com.example.demoapp.databinding.ActivityRailSaleBinding;
 import com.example.demoapp.transformer.ZoomOutPageTransformer;
 import com.google.android.material.navigation.NavigationBarView;

@@ -20,7 +20,7 @@ public interface AIRExportService {
                                      @Field("airlines") String airlines, @Field("schedule") String schedule,
                                      @Field("transittime") String transittime, @Field("valid") String valid,
                                      @Field("note") String note, @Field("month") String month,
-                                     @Field("continent") String continent) ;
+                                     @Field("continent") String continent, @Field("date_created") String date_created) ;
 
     @FormUrlEncoded
     @POST("UpdateDataAir.php")

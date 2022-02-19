@@ -2,11 +2,11 @@ package com.example.demoapp.view.dialog.air.air_export;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentAirDialogBinding;
@@ -47,6 +47,7 @@ public class FragmentAirDetail extends DialogFragment implements View.OnClickLis
         mAirDialogBinding.tvRowPriceAsiaAirTransittime.setText(air.getTransittime());
         mAirDialogBinding.tvRowPriceAsiaAirValid.setText(air.getValid());
         mAirDialogBinding.tvRowPriceAsiaAirNote.setText(air.getNote());
+        mAirDialogBinding.tvRowPriceAsiaAirCreateDate.setText(air.getDate_created());
     }
     public static FragmentAirDetail getInstance(){
 

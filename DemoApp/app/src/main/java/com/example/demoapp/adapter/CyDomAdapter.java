@@ -14,12 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.databinding.RowDomCyBinding;
-import com.example.demoapp.databinding.RowDomDryBinding;
 import com.example.demoapp.model.DomCy;
-import com.example.demoapp.model.DomDry;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.dom.dom_cy.DialogDomCyDetail;
-import com.example.demoapp.view.dialog.dom.dom_dry.DialogDomDryDetail;
 
 import java.util.List;
 
@@ -83,6 +80,7 @@ public class CyDomAdapter extends RecyclerView.Adapter<CyDomAdapter.CyViewHolder
         }
 
         public void bind(DomCy domCy) {
+            binding.tvDomCyStationStt.setText(domCy.getStt());
             binding.tvDomCyStationGo.setText(domCy.getStationGo());
             binding.tvDomCyStationCome.setText(domCy.getStationCome());
             binding.tvDomCyName.setText(domCy.getName());

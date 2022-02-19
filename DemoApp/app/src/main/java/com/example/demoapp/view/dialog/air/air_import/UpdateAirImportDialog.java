@@ -17,8 +17,16 @@ import com.example.demoapp.model.AirImport;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.AirImportViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,9 +56,40 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
         mBundle = getArguments();
         updateInformationImport();
         unit();
+        showDatePicker();
         setUpButtons();
 
         return view;
+    }
+
+    public void showDatePicker() {
+
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select date");
+
+        final MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        mAirImportDialogBinding.edtValid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+
+                        TimeZone timeZoneUTC = TimeZone.getDefault();
+                        // It will be negative, so that's the -1
+                        int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
+                        // Create a date format, then a date object with our offset
+                        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                        Date date = new Date(selection + offsetFromUTC);
+
+                        Objects.requireNonNull(mAirImportDialogBinding.tfValidAirImport.getEditText()).setText(simpleFormat.format(date));
+                    }
+                });
+            }
+        });
+
     }
 
     private void updateInformationImport() {
@@ -71,6 +110,7 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
             Objects.requireNonNull(mAirImportDialogBinding.tfTfTransitTimeAirImport.getEditText()).setText(mAirImport.getTransittime());
             Objects.requireNonNull(mAirImportDialogBinding.tfValidAirImport.getEditText()).setText(mAirImport.getValid());
             Objects.requireNonNull(mAirImportDialogBinding.tfNotesAirImport.getEditText()).setText(mAirImport.getNote());
+
 
 
         }
@@ -129,6 +169,11 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
         }
     }
 
+    private String getCreatedDate() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+    }
+
+
     private void insertAirImport() {
         String strAol = Objects.requireNonNull(mAirImportDialogBinding.tfPolAirImport.getEditText()).getText().toString();
         String strAod = Objects.requireNonNull(mAirImportDialogBinding.tfPodAirImport.getEditText()).getText().toString();
@@ -146,7 +191,7 @@ public class UpdateAirImportDialog extends DialogFragment implements View.OnClic
         mCommunicateViewModel.makeChanges();
         Call<AirImport> call = mAirImportViewModel.insertAir(strAol, strAod, strDim, strGross, strType,
                 strFreight, strSurcharge, strLine, strSchedule, strTransittime, strValid, strNotes,
-                listPriceAirImport[0], listPriceAirImport[1]);
+                listPriceAirImport[0], listPriceAirImport[1], getCreatedDate());
         call.enqueue(new Callback<AirImport>() {
             @Override
             public void onResponse(Call<AirImport> call, Response<AirImport> response) {

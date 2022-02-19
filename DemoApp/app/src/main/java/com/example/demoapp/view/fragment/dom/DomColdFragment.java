@@ -1,18 +1,17 @@
 package com.example.demoapp.view.fragment.dom;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.ColdDomAdapter;
@@ -118,9 +117,22 @@ public class DomColdFragment extends Fragment {
     }
 
     public void getAllData() {
-        this.mDomColdList = new ArrayList<>();
+        try {
+            this.mDomColdList = new ArrayList<>();
 
-        mDomColdViewModel.getAllData().observe(getViewLifecycleOwner(), domColds -> this.mDomColdList = domColds);
+            mDomColdViewModel.getAllData().observe(getViewLifecycleOwner(), domColds -> this.mDomColdList = domColds);
+        }catch (NullPointerException nullPointerException){
+            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public List<DomCold> sortDomCy(List<DomCold> list){
+        List<DomCold> result = new ArrayList<>();
+        for(int i = list.size()-1; i>=0; i--){
+            result.add(list.get(i));
+        }
+        return result;
     }
 
     @Override

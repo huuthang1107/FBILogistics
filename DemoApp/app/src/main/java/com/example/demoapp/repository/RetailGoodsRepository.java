@@ -3,9 +3,7 @@ package com.example.demoapp.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.demoapp.model.AirImport;
 import com.example.demoapp.model.RetailGoods;
-import com.example.demoapp.services.AIRImportService;
 import com.example.demoapp.services.RetailGoodsService;
 import com.example.demoapp.utilities.APIClient;
 
@@ -51,9 +49,9 @@ public class RetailGoodsRepository {
 
     public Call<RetailGoods> insertRetailGoods(String pol, String pod, String dim, String grossweight, String typeofcargo, String oceanfreight,
                                      String localcharge, String carrier, String schedule, String transittime, String valid, String note
-            , String month , String continent) {
+            , String month , String continent, String date_created) {
         return mRetailGoodsService.addRetailGoodsData(pol, pod, dim, grossweight,typeofcargo, oceanfreight, localcharge, carrier,
-                schedule, transittime, valid, note, month, continent);
+                schedule, transittime, valid, note, month, continent, date_created);
     }
 
     public Call<RetailGoods> updateRetailGoods(String stt, String pol, String pod, String dim, String grossweight, String typeofcargo, String oceanfreight,

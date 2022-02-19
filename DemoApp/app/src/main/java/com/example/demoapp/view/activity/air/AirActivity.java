@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.demoapp.R;
-import com.example.demoapp.adapter.ViewPagerAdapterAir;
+import com.example.demoapp.adapter.viewPager.ViewPagerAdapterAir;
 import com.example.demoapp.databinding.ActivityAirBinding;
 import com.example.demoapp.transformer.ZoomOutPageTransformer;
 import com.google.android.material.navigation.NavigationBarView;

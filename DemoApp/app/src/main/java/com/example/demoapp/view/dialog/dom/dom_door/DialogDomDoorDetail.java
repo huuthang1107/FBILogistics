@@ -63,6 +63,7 @@ public class DialogDomDoorDetail extends DialogFragment {
             bundle.putSerializable(Constants.DOM_DOOR_UPDATE, mDomDoor);
             bundle.putString(Constants.DOM_DOOR_ADD_NEW, "YES");
 
+            binding.tvDomDoorStationStt.setText(mDomDoor.getStt());
             binding.tvDomDoorStationGo.setText(mDomDoor.getStationGo());
             binding.tvDomDoorStationCome.setText(mDomDoor.getStationCome());
             binding.tvDomDoorAddressReceive.setText(mDomDoor.getAddressReceive());

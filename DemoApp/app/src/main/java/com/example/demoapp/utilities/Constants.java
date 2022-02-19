@@ -3,7 +3,7 @@ package com.example.demoapp.utilities;
 public class Constants {
 
 
-    public static final String URL_API = "http://192.168.1.43/database/";
+    public static final String URL_API = "http://192.168.1.44/database/";
 
 
     public static final String FCL_UPDATE = "update_fcl";
@@ -97,6 +97,8 @@ public class Constants {
 
     public static final String ERROR_AUTO_COMPLETE_MONTH = "Bạn chưa chọn tháng !!!";
     public static final String ERROR_AUTO_COMPLETE_CONTINENT = "Bạn chưa chọn châu !!!";
+    public static final String ERROR_AUTO_COMPLETE_SHIPPING_TYPE = "Bạn chưa chọn loại vận chuyển!!!";
+    public static final String ERROR_AUTO_COMPLETE_TYPE_LOG = "Bạn chưa chọn loại vận chuyển!!!";
     public static final String ERROR_AUTO_COMPLETE_TYPE = "Bạn chưa chọn loại cont !!!";
 
     public static final String ERROR_POL = "Bạn chưa nhập điểm đi!!";

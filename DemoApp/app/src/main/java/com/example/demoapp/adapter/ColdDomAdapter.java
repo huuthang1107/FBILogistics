@@ -80,6 +80,7 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
         }
 
         public void bind(DomCold domCold) {
+            binding.tvDomColdProductStt.setText(domCold.getStt());
             binding.tvDomColdProductName.setText(domCold.getName());
             binding.tvDomColdWeight.setText(domCold.getWeight());
             binding.tvDomColdQuantityPallet.setText(domCold.getQuantityPallet());

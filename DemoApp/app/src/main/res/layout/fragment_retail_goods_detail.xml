@@ -315,6 +315,28 @@
             app:layout_constraintStart_toStartOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/tv_row_price_retail_goods_valid"/>
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/created_date"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_retail_goods_note" />
+
+        <TextView
+            android:id="@+id/tv_row_price_retail_goods_date_created"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/created_date"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_retail_goods_note"/>
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
@@ -337,7 +359,7 @@
             android:textSize="17sp"
             app:backgroundTint="#fff"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_row_price_retail_goods_note" />
+            app:layout_constraintTop_toBottomOf="@id/tv_row_price_retail_goods_date_created" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:layout_width="match_parent"

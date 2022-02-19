@@ -1,6 +1,5 @@
 package com.example.demoapp.services;
 
-import com.example.demoapp.model.AirImport;
 import com.example.demoapp.model.RetailGoods;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public interface RetailGoodsService {
                                      @Field("carrier") String carrier, @Field("schedule") String schedule,
                                      @Field("transittime") String transittime, @Field("valid") String valid,
                                      @Field("note") String note, @Field("month") String month,
-                                     @Field("continent") String continent) ;
+                                     @Field("continent") String continent, @Field("date_created") String date_created) ;
 
     @FormUrlEncoded
     @POST("UpdateRetailGoodsExport.php")

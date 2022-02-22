@@ -255,6 +255,17 @@
     <string name="title_truck_dry">Dry</string>
     <string name="nav_container_import">Import</string>
     <string name="title_container_export">Export</string>
+    <string name="title_activity_air_page">AirPageActivity</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_fbi">FBI Logistics</string>
+    <string name="name">Nguyễn Văn A</string>
+    <string name="gmail">NguyenVanA@fbilogistics.vn</string>
+    <string name="nav_account">Account</string>
+    <string name="Mesenger">Mesenger</string>
+    <string name="nav_my_profile">Tài khoản</string>
 
 
 </resources>

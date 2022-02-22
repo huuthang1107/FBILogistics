@@ -13,6 +13,15 @@
         android:theme="@style/Theme.DemoApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.activity.air.AirPageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.activity.sale.waterway.WaterWayActivity"
             android:exported="true">
 
@@ -88,20 +97,14 @@
         <activity
             android:name=".view.activity.sale.SaleActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".view.activity.sale.TablePriceAirActivity"
             android:exported="true" />
         <activity
             android:name=".view.activity.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

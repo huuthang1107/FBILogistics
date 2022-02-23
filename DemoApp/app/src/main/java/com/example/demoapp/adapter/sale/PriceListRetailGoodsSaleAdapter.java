@@ -91,11 +91,6 @@ public class PriceListRetailGoodsSaleAdapter extends  RecyclerView.Adapter<Price
         notifyDataSetChanged();
     }
 
-    public void filterList(List<RetailGoods> filteredList) {
-        listRetailGoods = filteredList;
-        notifyDataSetChanged();
-    }
-
     public class PriceRetialGoodsViewHolder extends RecyclerView.ViewHolder{
         TextView tvStt, tvPol, tvPod, tvDim, tvGross, tvType, tvOceanFreight, tvLocalcharge, tvCarrier,
                 tvSchedule, tvTransittime, tvValid, tvNote;

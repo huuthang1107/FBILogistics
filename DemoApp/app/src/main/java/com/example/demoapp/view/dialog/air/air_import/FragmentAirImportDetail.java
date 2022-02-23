@@ -28,7 +28,6 @@ public class FragmentAirImportDetail extends DialogFragment implements View.OnCl
         if(mBundle != null){
             AirImport airImport = (AirImport) mBundle.getSerializable(Constants.AIR_IMPORT);
             mBundle.putSerializable(Constants.AIR_IMPORT_UPDATE, airImport);
-            mBundle.putSerializable(Constants.AIR_IMPORT_INSERT, airImport);
             setDataAirImport(airImport);
         }
         mAirImportDetailBinding.btnUpdateAirImport.setOnClickListener(this);
@@ -49,7 +48,6 @@ public class FragmentAirImportDetail extends DialogFragment implements View.OnCl
         mAirImportDetailBinding.tvRowPriceAirTransittimeImport.setText(air.getTransittime());
         mAirImportDetailBinding.tvRowPriceAirValidImport.setText(air.getValid());
         mAirImportDetailBinding.tvRowPriceAirNoteImport.setText(air.getNote());
-        mAirImportDetailBinding.tvRowPriceAirDateCreated.setText(air.getDate_created());
 
 
     }
@@ -67,12 +65,6 @@ public class FragmentAirImportDetail extends DialogFragment implements View.OnCl
                 fragment.setArguments(mBundle);
                 fragment.show(getParentFragmentManager(),"Update");
                 break;
-//            case R.id.btn_insert_air_import:
-//                DialogFragment fragment1 = InsertAirImportDialog.insertDiaLogAIRImport();
-//                fragment1.setArguments(mBundle);
-//                fragment1.show(getParentFragmentManager(), "insert");
-//                break;
-
         }
     }
 }

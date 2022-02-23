@@ -3,9 +3,6 @@ package com.example.demoapp.view.fragment.air;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,7 +36,6 @@ public class AirExportFragment extends Fragment implements View.OnClickListener 
     PriceListAIRAdapter priceListAdapter;
 
     private AirExportViewModel mAirViewModel;
-    private SearchView searchView;
 
     private List<AirExport> airList = new ArrayList<>();
 
@@ -65,7 +60,6 @@ public class AirExportFragment extends Fragment implements View.OnClickListener 
         getDataAIR();
         setAdapterItems();
         setUpButtons();
-        setHasOptionsMenu(true);
 
         return view;
     }
@@ -184,44 +178,6 @@ public class AirExportFragment extends Fragment implements View.OnClickListener 
                 dialogFragment.show(getParentFragmentManager(), "Insert Dialog");
 
                 break;
-        }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.search, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-//                priceListAirImportAdapter.getFilter().filter(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-//                priceListAirImportAdapter.setDataAir(prepareDataForRecyclerView(month,continent));
-                filter(s);
-                return false;
-            }
-        });
-
-    }
-    private void filter(String text){
-        List<AirExport> filteredList = new ArrayList<>();
-        for( AirExport airExport: prepareDataForRecyclerView(month, continent)){
-            if(airExport.getAol().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(airExport);
-            }
-        }
-        if(filteredList.isEmpty()){
-            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
-        }else {
-            priceListAdapter.filterList(filteredList);
         }
     }
 

@@ -14,16 +14,13 @@ public class Log implements Serializable {
     private String soluongcuthe;
     private String yeucaudacbiet;
     private String price;
-    private String valid;
     private String month;
     private String importorexport;
     private String type;
-    private String date_created;
 
     public Log(String stt, String tenhang, String hscode, String congdung, String hinhanh,
                String cangdi, String cangden, String loaihang, String soluongcuthe,
-               String yeucaudacbiet, String price, String valid, String month, String importorexport,
-               String type, String date_created) {
+               String yeucaudacbiet, String price, String month, String importorexport, String type) {
         this.stt = stt;
         this.tenhang = tenhang;
         this.hscode = hscode;
@@ -35,27 +32,9 @@ public class Log implements Serializable {
         this.soluongcuthe = soluongcuthe;
         this.yeucaudacbiet = yeucaudacbiet;
         this.price = price;
-        this.valid = valid;
         this.month = month;
         this.importorexport = importorexport;
         this.type = type;
-        this.date_created = date_created;
-    }
-
-    public String getValid() {
-        return valid;
-    }
-
-    public void setValid(String valid) {
-        this.valid = valid;
-    }
-
-    public String getDate_created() {
-        return date_created;
-    }
-
-    public void setDate_created(String date_created) {
-        this.date_created = date_created;
     }
 
     public String getStt() {

@@ -39,10 +39,10 @@ public class LogViewModel extends AndroidViewModel {
 
     public Call<Log> insertLog(String tenhang, String hscode, String congdung, String hinhanh,
                                String cangdi, String cangden, String loaihang, String soluongcuthe,
-                               String yeucaudacbiet, String price, String month, String importOrExport,
-                               String type, String date_create){
+                               String yeucaudacbiet, String price ,String month, String importOrExport,
+                               String type){
         return mLogRepo.insertLog(tenhang, hscode, congdung, hinhanh, cangdi, cangden, loaihang,
-                soluongcuthe, yeucaudacbiet, price, month, importOrExport, type, date_create);
+                soluongcuthe, yeucaudacbiet, price,month, importOrExport, type);
     }
 
     public Call<Log> updateDataLog(String stt,String tenhang, String hscode, String congdung, String hinhanh,

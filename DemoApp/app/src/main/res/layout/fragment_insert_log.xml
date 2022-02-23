@@ -39,7 +39,7 @@
             app:startIconDrawable="@drawable/baseline_travel_explore_black_24">
 
             <AutoCompleteTextView
-                android:id="@+id/insert_auto_shipping_type"
+                android:id="@+id/insert_auto_continent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -214,8 +214,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/tf_valid"
             android:layout_width="match_parent"
-            android:id="@+id/tf_price"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
@@ -227,7 +227,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/collog_10" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->
@@ -271,9 +270,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/btn_color"
+                app:backgroundTintMode="screen"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:text="@string/btn_cancel_txt"
-               />
+                android:background="@drawable/selector_button"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_function_add"
@@ -281,7 +282,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:backgroundTintMode="screen"
+                android:background="@drawable/selector_button"
                 android:text="@string/btn_add_txt" />
         </LinearLayout>
     </LinearLayout>

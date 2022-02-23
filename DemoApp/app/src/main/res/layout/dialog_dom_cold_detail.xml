@@ -18,7 +18,7 @@
                 android:id="@+id/tv_dom_cold_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/col1"
+                android:text="@string/product_name"
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_dom_cold_stt"
+                android:id="@+id/tv_dom_cold_product_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -36,38 +36,16 @@
                 app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tv_dom_export_weight"
-            android:textSize="17sp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_dom_cold_product_name" />
-
-        <TextView
-            android:id="@+id/tv_dom_cold_product_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/tv_dom_cold_stt" />
-
-        <TextView
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/product_name"
+                android:text="@string/tv_dom_export_weight"
                 android:textSize="17sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_dom_cold_stt" />
+                app:layout_constraintTop_toBottomOf="@id/tv_dom_cold_product_name" />
 
             <TextView
                 android:id="@+id/tv_dom_cold_weight"

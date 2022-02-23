@@ -1,12 +1,13 @@
 package com.example.demoapp.view.dialog.dom.dom_export;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.demoapp.databinding.FragmentDialogDomExportDetailBinding;
 import com.example.demoapp.model.DomExport;
@@ -63,7 +64,6 @@ public class DialogDomExportDetail extends DialogFragment {
             bundle.putSerializable(Constants.DOM_EXPORT_UPDATE, domExport);
             bundle.putString(Constants.DOM_EXPORT_ADD_NEW, "YES");
 
-            binding.tvDomExportProductStt.setText(domExport.getStt());
             binding.tvDomExportProductName.setText(domExport.getName());
             binding.tvDomExportWeight.setText(domExport.getWeight());
             binding.tvDomExportQuantity.setText(domExport.getQuantity());

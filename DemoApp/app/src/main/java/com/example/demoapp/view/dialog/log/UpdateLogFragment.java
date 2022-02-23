@@ -1,7 +1,6 @@
 package com.example.demoapp.view.dialog.log;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.LogViewModel;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -60,30 +57,6 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
     private void setUpButtons() {
         mLogBinding.btnFunctionAddLog.setOnClickListener(this);
         mLogBinding.btnFunctionUpdateLog.setOnClickListener(this);
-        mLogBinding.btnFunctionCancelLog.setOnClickListener(this);
-    }
-    private String getCreatedDate() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-    }
-
-    public boolean isFilled() {
-        boolean result = true;
-
-
-        if (TextUtils.isEmpty(mLogBinding.insertAutoImportorexport.getText())) {
-            result = false;
-            mLogBinding.insertAutoImportorexport.setError(Constants.ERROR_AUTO_COMPLETE_SHIPPING_TYPE);
-        }
-        if (TextUtils.isEmpty(mLogBinding.insertAutoLoaihinh.getText())) {
-            result = false;
-            mLogBinding.insertAutoLoaihinh.setError(Constants.ERROR_AUTO_COMPLETE_TYPE_LOG);
-        }
-        if (TextUtils.isEmpty(mLogBinding.insertAutoMonth.getText())) {
-            result = false;
-            mLogBinding.insertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
-        }
-
-        return result;
     }
 
     private void unit() {
@@ -139,9 +112,7 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
             Objects.requireNonNull(mLogBinding.tfLoaihang.getEditText()).setText(mLog.getLoaihang());
             Objects.requireNonNull(mLogBinding.tfSoluongcuthe.getEditText()).setText(mLog.getSoluongcuthe());
             Objects.requireNonNull(mLogBinding.tfYeucaudacbiet.getEditText()).setText(mLog.getYeucaudacbiet());
-            Objects.requireNonNull(mLogBinding.tfPrice.getEditText()).setText(mLog.getPrice());
-
-
+            Objects.requireNonNull(mLogBinding.tfValid.getEditText()).setText(mLog.getPrice());
 
         }
     }
@@ -157,9 +128,6 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
                 updateLog();
                 dismiss();
                 break;
-            case R.id.btn_function_cancel_log:
-                dismiss();
-                break;
         }
     }
 
@@ -173,7 +141,7 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
         String strLoaiHang = Objects.requireNonNull(mLogBinding.tfLoaihang.getEditText()).getText().toString();
         String strSoLuongCuThe = Objects.requireNonNull(mLogBinding.tfSoluongcuthe.getEditText()).getText().toString();
         String strYeuCauDacBiet = Objects.requireNonNull(mLogBinding.tfYeucaudacbiet.getEditText()).getText().toString();
-        String strPrice = Objects.requireNonNull(mLogBinding.tfPrice.getEditText()).getText().toString();
+        String strPrice = Objects.requireNonNull(mLogBinding.tfValid.getEditText()).getText().toString();
 
         mCommunicateViewModel.makeChanges();
         Call<Log> call = mLogViewModel.updateDataLog(mLog.getStt(), strTenHang, strHSCode, strCondung, strHinhAnh, strCangDi, strHSCangDen, strLoaiHang, strSoLuongCuThe, strYeuCauDacBiet,
@@ -203,12 +171,11 @@ public class UpdateLogFragment extends DialogFragment implements View.OnClickLis
         String strLoaiHang = mLogBinding.tfLoaihang.getEditText().getText().toString();
         String strSoLuongCuThe = mLogBinding.tfSoluongcuthe.getEditText().getText().toString();
         String strYeuCauDacBiet = mLogBinding.tfYeucaudacbiet.getEditText().getText().toString();
-        String strPrice = mLogBinding.tfPrice.getEditText().getText().toString();
-
+        String strPrice = mLogBinding.tfValid.getEditText().getText().toString();
 
         mCommunicateViewModel.makeChanges();
         Call<Log> call = mLogViewModel.insertLog(strTenHang, strHSCode, strCondung, strHinhAnh, strCangDi, strHSCangDen, strLoaiHang, strSoLuongCuThe, strYeuCauDacBiet,
-                strPrice, listPriceLog[0], listPriceLog[1], listPriceLog[2], getCreatedDate());
+                strPrice, listPriceLog[0], listPriceLog[1], listPriceLog[2]);
         call.enqueue(new Callback<Log>() {
             @Override
             public void onResponse(Call<Log> call, Response<Log> response) {

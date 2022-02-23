@@ -214,7 +214,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/tf_price"
+            android:id="@+id/tf_valid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -227,8 +227,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/collog_10" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
         <!--        <LinearLayout-->
         <!--            android:layout_width="match_parent"-->
@@ -265,29 +263,18 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_function_cancel_log"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="@string/btn_cancel_txt"
-                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_function_add_log"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
+                android:layout_marginEnd="10dp"
+                app:backgroundTintMode="screen"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:text="@string/btn_add_txt"
-                />
+                android:background="@drawable/selector_button"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_function_update_log"
@@ -297,7 +284,8 @@
                 android:layout_marginStart="10dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:backgroundTint="@color/btn_color"
+                app:backgroundTintMode="screen"
+                android:background="@drawable/selector_button"
                 android:text="@string/btn_update_txt" />
         </LinearLayout>
     </LinearLayout>

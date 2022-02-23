@@ -1,17 +1,13 @@
-package com.example.demoapp.view.activity.sale.air;
+package com.example.demoapp.view.activity.sale;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -34,7 +30,6 @@ public class AirImportSaleActivity extends AppCompatActivity {
     private PriceListAIRSaleImportAdapter priceListAirImportAdapter;
     private AirImportViewModel mAirImportViewModel;
     private List<AirImport> airImportList = new ArrayList<>();
-    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +37,6 @@ public class AirImportSaleActivity extends AppCompatActivity {
         mAirImportSaleBinding = ActivityAirImportSaleBinding.inflate(getLayoutInflater());
         View view = mAirImportSaleBinding.getRoot();
 
-        setSupportActionBar(mAirImportSaleBinding.toolbar);
         priceListAirImportAdapter = new PriceListAIRSaleImportAdapter(this);
         mAirImportViewModel = new ViewModelProvider(this).get(AirImportViewModel.class);
 
@@ -144,50 +138,5 @@ public class AirImportSaleActivity extends AppCompatActivity {
             result.add(list.get(i));
         }
         return result;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filter(newText);
-                return false;
-            }
-        });
-        return  true;
-    }
-
-    private void filter(String text){
-        List<AirImport> filteredList = new ArrayList<>();
-        for( AirImport airImport: prepareDataForRecyclerView(month, continent)){
-            if(airImport.getAol().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(airImport);
-            }
-        }
-        if(filteredList.isEmpty()){
-            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
-        }else {
-            priceListAirImportAdapter.filterList(filteredList);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(!searchView.isIconified()){
-            searchView.setIconified(true);
-            return;
-        }
-        super.onBackPressed();
-
     }
 }

@@ -135,7 +135,6 @@
     <string name="bottom_imp">Hàng nhập</string>
     <string name="bottom_ex">Hàng xuất</string>
     <string name="created_date">CREATED DATE</string>
-    <string name="created_date1">Created date</string>
     <string name="btn_update">Update</string>
     <string name="btn_add_new">Insert</string>
     <string name="favorite">Favorite</string>
@@ -164,8 +163,7 @@
     <string name="collog_8">Số lượng cụ thể</string>
     <string name="collog_9">Yêu cầu đặc biệt</string>
     <string name="collog_9a">Yêu cầu đặc biệt</string>
-    <string name="collog_10">Price</string>
-    <string name="collog_11">Valid</string>
+    <string name="collog_10">Valid</string>
     <string name="btn_dinhkem">Đính kèm ảnh</string>
     <string name="select_ExportAndImport">Loại Vận Chuyển</string>
     <string name="txt_dom_name">Tên Hàng</string>
@@ -244,28 +242,9 @@
     <string name="title_activity_log_pro">LogProActivity</string>
     <string name="title_home">Home</string>
     <string name="title_log">Log</string>
-
     <string name="label_fcl">FCL</string>
     <string name="port_go">Cảng đi</string>
     <string name="port_come">Cảng đến</string>
-
-    <string name="nav_cy_cy">Cy</string>
-    <string name="title_door_to_door">Door</string>
-    <string name="nav_truck_cold">Cold</string>
-    <string name="title_truck_dry">Dry</string>
-    <string name="nav_container_import">Import</string>
-    <string name="title_container_export">Export</string>
-    <string name="title_activity_air_page">AirPageActivity</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="title_fbi">FBI Logistics</string>
-    <string name="name">Nguyễn Văn A</string>
-    <string name="gmail">NguyenVanA@fbilogistics.vn</string>
-    <string name="nav_account">Account</string>
-    <string name="Mesenger">Mesenger</string>
-    <string name="nav_my_profile">Tài khoản</string>
 
 
 </resources>

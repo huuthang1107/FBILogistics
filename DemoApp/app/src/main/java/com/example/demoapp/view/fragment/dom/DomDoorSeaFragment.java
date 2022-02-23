@@ -117,23 +117,9 @@ public class DomDoorSeaFragment extends Fragment {
     }
 
     public void getAllData() {
-        try {
-            this.mDomDoorSeaList = new ArrayList<>();
+        this.mDomDoorSeaList = new ArrayList<>();
 
-            mDomDoorSeaViewModel.getAllData().observe(getViewLifecycleOwner(), domDoorSeas ->
-                    this.mDomDoorSeaList = sortDomDoorSea(domDoorSeas));
-        }catch (NullPointerException nullPointerException){
-            Toast.makeText(getContext(), nullPointerException.toString(), Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-    public List<DomDoorSea> sortDomDoorSea(List<DomDoorSea> list){
-        List<DomDoorSea> result = new ArrayList<>();
-        for(int i = list.size()-1; i>=0; i--){
-            result.add(list.get(i));
-        }
-        return result;
+        mDomDoorSeaViewModel.getAllData().observe(getViewLifecycleOwner(), domDoorSeas -> this.mDomDoorSeaList = domDoorSeas);
     }
 
     @Override

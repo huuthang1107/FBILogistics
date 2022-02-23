@@ -1,17 +1,17 @@
 package com.example.demoapp.view.fragment.dom;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.DryDomAdapter;
@@ -117,22 +117,9 @@ public class DomDryFragment extends Fragment {
     }
 
     public void getAllData() {
-        try {
-            this.mDomDryList = new ArrayList<>();
-            mDomDryViewModel.getAllData().observe(getViewLifecycleOwner(), domDries ->
-                    this.mDomDryList = sortDomDry(domDries));
-        } catch (NullPointerException nullPointerException){
-            Toast.makeText(getContext(),nullPointerException.toString(), Toast.LENGTH_LONG).show();
-        }
+        this.mDomDryList = new ArrayList<>();
 
-    }
-
-    public List<DomDry> sortDomDry(List<DomDry> list){
-        List<DomDry> result = new ArrayList<>();
-        for (int i = list.size()-1; i>=0 ; i--){
-            result.add(list.get(i));
-        }
-        return result;
+        mDomDryViewModel.getAllData().observe(getViewLifecycleOwner(), domDries -> this.mDomDryList = domDries);
     }
 
     @Override

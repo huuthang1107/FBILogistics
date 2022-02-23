@@ -65,11 +65,6 @@ public class PriceListRetailGoddsAdapter extends  RecyclerView.Adapter<PriceList
         });
 
     }
-    public void filterList(List<RetailGoods> filterList){
-        listRetailGoods = filterList;
-        notifyDataSetChanged();
-    }
-
 
     private void goToDetail(RetailGoods retailGoods){
         FragmentActivity activity = (FragmentActivity) context;

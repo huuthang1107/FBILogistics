@@ -3,16 +3,16 @@ package com.example.demoapp.view.activity.dom;
 import android.os.Bundle;
 import android.view.Menu;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
+import com.example.demoapp.R;
+import com.example.demoapp.databinding.ActivityDomBinding;
+import com.google.android.material.navigation.NavigationView;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.example.demoapp.R;
-import com.example.demoapp.databinding.ActivityDomBinding;
-import com.google.android.material.navigation.NavigationView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class DomActivity extends AppCompatActivity {
@@ -26,6 +26,7 @@ public class DomActivity extends AppCompatActivity {
 
         binding = ActivityDomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         initView();
     }
 

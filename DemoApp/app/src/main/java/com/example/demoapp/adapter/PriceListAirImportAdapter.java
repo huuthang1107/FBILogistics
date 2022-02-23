@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,23 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.R;
 import com.example.demoapp.model.AirImport;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.air.air_export.FragmentAirDetail;
 import com.example.demoapp.view.dialog.air.air_import.FragmentAirImportDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class
-
-
-PriceListAirImportAdapter extends RecyclerView.Adapter<PriceListAirImportAdapter.PriceAirImportViewHolder> implements Filterable {
+public class PriceListAirImportAdapter extends RecyclerView.Adapter<PriceListAirImportAdapter.PriceAirImportViewHolder>{
     private Context context;
     private List<AirImport> listAIRS;
-    private List<AirImport> mlistAIRsOld;
 
 
     public PriceListAirImportAdapter(Context context) {
         this.context = context;
-        this.mlistAIRsOld = listAIRS;
+
     }
 
     @NonNull
@@ -102,42 +96,6 @@ PriceListAirImportAdapter extends RecyclerView.Adapter<PriceListAirImportAdapter
     public void setDataAir(List<AirImport> mListDetailAir) {
         this.listAIRS = mListDetailAir;
         notifyDataSetChanged();
-    }
-
-    public void filterList(List<AirImport> filterList){
-        listAIRS = filterList;
-        notifyDataSetChanged();
-    }
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String strSearch = charSequence.toString();
-                if(strSearch.isEmpty()){
-                    listAIRS = mlistAIRsOld;
-                }else{
-                    List<AirImport> list = new ArrayList<>();
-                    for( AirImport airImport : mlistAIRsOld){
-                        if (airImport.getAod().toLowerCase().contains(strSearch.toLowerCase())){
-                            list.add(airImport);
-                        }
-                    }
-                    listAIRS = list;
-                }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = listAIRS;
-
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                listAIRS = (List<AirImport>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
     }
 
 

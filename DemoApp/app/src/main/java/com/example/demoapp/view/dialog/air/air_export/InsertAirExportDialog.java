@@ -1,7 +1,12 @@
 package com.example.demoapp.view.dialog.air.air_export;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +14,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentDialogInsertAirBinding;
 import com.example.demoapp.model.AirExport;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.AirExportViewModel;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
-import com.google.android.material.datepicker.MaterialDatePicker;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,67 +56,9 @@ public class InsertAirExportDialog extends DialogFragment implements  View.OnCli
         mCommunicateViewModel = new ViewModelProvider(getActivity()).get(CommunicateViewModel.class);
 
         initView();
-        showDatePicker();
 
         return view;
 
-    }
-
-    private String getCreatedDate() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-    }
-
-    private void showDatePicker() {
-        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("Select date");
-
-        final MaterialDatePicker<Long> materialDatePicker = builder.build();
-
-        insertAirBinding.edtValid.setOnClickListener(view -> {
-            materialDatePicker.show(getParentFragmentManager(), "Date_Picker");
-            materialDatePicker.addOnPositiveButtonClickListener(selection -> {
-
-                TimeZone timeZoneUTC = TimeZone.getDefault();
-                // It will be negative, so that's the -1
-                int offsetFromUTC = timeZoneUTC.getOffset(new Date().getTime()) * -1;
-                // Create a date format, then a date object with our offset
-                SimpleDateFormat simpleFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-                Date date = new Date(selection + offsetFromUTC);
-
-                Objects.requireNonNull(insertAirBinding.tfValid.getEditText()).setText(simpleFormat.format(date));
-            });
-        });
-    }
-
-    public boolean isFilled() {
-        boolean result = true;
-
-        if (TextUtils.isEmpty(insertAirBinding.insertAutoContinent.getText())) {
-            result = false;
-            insertAirBinding.insertAutoContinent.setError(Constants.ERROR_AUTO_COMPLETE_CONTINENT);
-        }
-
-        if (TextUtils.isEmpty(insertAirBinding.insertAutoMonth.getText())) {
-            result = false;
-            insertAirBinding.insertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
-        }
-
-
-        if (TextUtils.isEmpty(Objects.requireNonNull(insertAirBinding.tfAol.getEditText()).getText().toString())) {
-            result = false;
-            insertAirBinding.tfAol.setError(Constants.ERROR_POL);
-        }
-        if (TextUtils.isEmpty(Objects.requireNonNull(insertAirBinding.tfAod.getEditText()).getText().toString())) {
-            result = false;
-            insertAirBinding.tfAol.setError(Constants.ERROR_POD);
-        }
-
-        if (TextUtils.isEmpty(Objects.requireNonNull(insertAirBinding.tfAod.getEditText()).getText().toString())) {
-            result = false;
-            insertAirBinding.tfValid.setError(Constants.ERROR_VALID);
-        }
-
-        return result;
     }
 
     private void initView() {
@@ -159,12 +93,8 @@ public class InsertAirExportDialog extends DialogFragment implements  View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_function_add:
-                if(isFilled()) {
-                    insertAIR();
-                    dismiss();
-                }else{
-                    Toast.makeText(getContext(), Constants.INSERT_FAILED, Toast.LENGTH_LONG).show();
-                }
+                insertAIR();
+                dismiss();
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -189,7 +119,7 @@ public class InsertAirExportDialog extends DialogFragment implements  View.OnCli
 
         mCommunicateViewModel.makeChanges();
         Call<AirExport> call = mAirViewModel.insertAir(stAol,stAod, stDim, stGross, stType, stFreight,
-                stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1], getCreatedDate());
+                stSurcharge, stLines, stSchedule, stTransittime, stValid, stNote, listStr[0], listStr[1]);
         call.enqueue(new Callback<AirExport>() {
             @Override
             public void onResponse(Call<AirExport> call, Response<AirExport> response) {

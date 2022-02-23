@@ -17,6 +17,7 @@ import com.example.demoapp.databinding.RowDomColdBinding;
 import com.example.demoapp.model.DomCold;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.dom.dom_cold.DialogDomColdDetail;
+import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportDetail;
 
 import java.util.List;
 
@@ -71,11 +72,6 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
         return 0;
     }
 
-    public void filterList(List<DomCold> filteredList) {
-        listCold = filteredList;
-        notifyDataSetChanged();
-    }
-
     public static class ColdViewHolder extends RecyclerView.ViewHolder {
         private final RowDomColdBinding binding;
 
@@ -85,7 +81,6 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
         }
 
         public void bind(DomCold domCold) {
-            binding.tvDomColdProductStt.setText(domCold.getStt());
             binding.tvDomColdProductName.setText(domCold.getName());
             binding.tvDomColdWeight.setText(domCold.getWeight());
             binding.tvDomColdQuantityPallet.setText(domCold.getQuantityPallet());

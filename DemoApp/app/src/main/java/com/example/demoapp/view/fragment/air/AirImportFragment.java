@@ -1,23 +1,19 @@
 package com.example.demoapp.view.fragment.air;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListAirImportAdapter;
@@ -38,7 +34,6 @@ public class AirImportFragment extends Fragment implements View.OnClickListener 
 
     private String month = "";
     private String continent = "";
-    private SearchView searchView;
     private PriceListAirImportAdapter priceListAirImportAdapter;
     private AirImportViewModel mAirImportViewModel;
     private List<AirImport> airImportList = new ArrayList<>();
@@ -59,7 +54,6 @@ public class AirImportFragment extends Fragment implements View.OnClickListener 
                 onResume();
             }
         });
-        setHasOptionsMenu(true);
 
         getDataAirImport();
         setAdapterItems();
@@ -79,7 +73,7 @@ public class AirImportFragment extends Fragment implements View.OnClickListener 
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 month = adapterView.getItemAtPosition(i).toString();
                 setDataForRecyclerView(month, continent);
-        }
+            }
         });
 
         mAirImportBinding.autoCompleteContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -166,44 +160,6 @@ public class AirImportFragment extends Fragment implements View.OnClickListener 
                 dialogFragment.show(getParentFragmentManager(), "Insert Dialog");
 
                 break;
-        }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        inflater.inflate(R.menu.search, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-//                priceListAirImportAdapter.getFilter().filter(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-//                priceListAirImportAdapter.setDataAir(prepareDataForRecyclerView(month,continent));
-                filter(s);
-                return false;
-            }
-        });
-
-    }
-    private void filter(String text){
-        List<AirImport> filteredList = new ArrayList<>();
-        for( AirImport airImport: prepareDataForRecyclerView(month, continent)){
-            if(airImport.getAol().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(airImport);
-            }
-        }
-        if(filteredList.isEmpty()){
-            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
-        }else {
-            priceListAirImportAdapter.filterList(filteredList);
         }
     }
 }

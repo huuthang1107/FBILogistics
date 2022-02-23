@@ -116,23 +116,9 @@ public class DomCySeaFragment extends Fragment {
     }
 
     public void getAllData() {
-        try {
-            this.mDomCySeaList = new ArrayList<>();
+        this.mDomCySeaList = new ArrayList<>();
 
-            mDomCySeaViewModel.getAllData().observe(getViewLifecycleOwner(), domCy ->
-                    this.mDomCySeaList = sortDomCySea(domCy));
-        }catch (NullPointerException nullPointerException){
-            Toast.makeText(getContext(), nullPointerException.toString(),Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-    public List<DomCySea> sortDomCySea(List<DomCySea> list){
-        List<DomCySea> result = new ArrayList<>();
-        for(int i = list.size()-1; i>=0; i--){
-            result.add(list.get(i));
-        }
-        return result;
+        mDomCySeaViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> this.mDomCySeaList = domCy);
     }
 
     @Override

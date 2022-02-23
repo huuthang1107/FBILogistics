@@ -23,7 +23,6 @@ import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.FclViewModel;
 import com.google.android.material.datepicker.MaterialDatePicker;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

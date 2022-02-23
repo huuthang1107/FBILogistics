@@ -1,5 +1,6 @@
 package com.example.demoapp.services;
 
+import com.example.demoapp.model.AirExport;
 import com.example.demoapp.model.AirImport;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public interface AIRImportService {
                                      @Field("airlines") String airlines, @Field("schedule") String schedule,
                                      @Field("transittime") String transittime, @Field("valid") String valid,
                                      @Field("note") String note, @Field("month") String month,
-                                     @Field("continent") String continent, @Field("date_created") String date_created) ;
+                                     @Field("continent") String continent) ;
 
     @FormUrlEncoded
     @POST("UpdateAirImport.php")

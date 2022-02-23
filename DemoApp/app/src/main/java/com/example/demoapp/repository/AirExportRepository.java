@@ -57,9 +57,9 @@ public class AirExportRepository {
 
     public Call<AirExport> insertAir(String aol, String aod, String dim, String grossweight, String typeofcargo, String airfreight,
                                      String surcharge, String airlines, String schedule, String transittime, String valid, String note
-                               , String month , String continent, String date_created) {
+                               , String month , String continent) {
         return mAirService.addAirExportData(aol, aod, dim, grossweight,typeofcargo, airfreight, surcharge, airlines,
-                schedule, transittime, valid, note, month, continent, date_created);
+                schedule, transittime, valid, note, month, continent);
     }
 
     public Call<AirExport> updateAir(String stt, String aol, String aod, String dim, String grossweight, String typeofcargo, String airfreight,

@@ -2,7 +2,6 @@ package com.example.demoapp.view.dialog.log;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +21,6 @@ import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.LogViewModel;
 
 import java.io.ByteArrayOutputStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,7 +91,7 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
         adapterItemsType = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Constants.ITEMS_TYPE);
 
         logBinding.insertAutoMonth.setAdapter(adapterItemsMonth);
-        logBinding.insertAutoShippingType.setAdapter(adapterItemsImportAndExport);
+        logBinding.insertAutoContinent.setAdapter(adapterItemsImportAndExport);
         logBinding.insertAutoLoaihinh.setAdapter(adapterItemsType);
 
         logBinding.btnFunctionAdd.setOnClickListener(this);
@@ -108,7 +105,7 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
             }
         });
 
-        logBinding.insertAutoShippingType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        logBinding.insertAutoContinent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listStr[1] = adapterView.getItemAtPosition(i).toString();
@@ -130,12 +127,9 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_function_add:
-                if(isFilled()) {
-                    insertLog();
-                    dismiss();
-                }else{
-                    Toast.makeText(getContext(), Constants.INSERT_FAILED, Toast.LENGTH_LONG).show();
-                }
+                insertLog();
+                dismiss();
+
                 break;
             case R.id.btn_function_cancel:
                 dismiss();
@@ -177,30 +171,6 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
 //        mActivityResultLauncher.launch(Intent.createChooser(intent,"Select Picture"));
 //    }
 
-    private String getCreatedDate() {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-    }
-
-    public boolean isFilled() {
-        boolean result = true;
-
-
-        if (TextUtils.isEmpty(logBinding.insertAutoShippingType.getText())) {
-            result = false;
-            logBinding.insertAutoShippingType.setError(Constants.ERROR_AUTO_COMPLETE_SHIPPING_TYPE);
-        }
-        if (TextUtils.isEmpty(logBinding.insertAutoLoaihinh.getText())) {
-            result = false;
-            logBinding.insertAutoLoaihinh.setError(Constants.ERROR_AUTO_COMPLETE_TYPE_LOG);
-        }
-        if (TextUtils.isEmpty(logBinding.insertAutoMonth.getText())) {
-            result = false;
-            logBinding.insertAutoMonth.setError(Constants.ERROR_AUTO_COMPLETE_MONTH);
-        }
-
-        return result;
-    }
-
 
     private void insertLog() {
         String strTenHang = logBinding.tfTenhang.getEditText().getText().toString();
@@ -212,12 +182,12 @@ public class InsertLogFragment extends DialogFragment implements View.OnClickLis
         String strloaihang = logBinding.tfLoaihang.getEditText().getText().toString();
         String strsoluongcuthe = logBinding.tfSoluongcuthe.getEditText().getText().toString();
         String stryeucaudacbiet = logBinding.tfYeucaudacbiet.getEditText().getText().toString();
-        String strPrice = logBinding.tfPrice.getEditText().getText().toString();
+        String strValid = logBinding.tfValid.getEditText().getText().toString();
 
         mCommunicateViewModel.makeChanges();
         Call<Log> call = mLogViewModel.insertLog(strTenHang, strhscode, strcongdung, strhinhanh,
-                strcangdi, strcangden, strloaihang, strsoluongcuthe, stryeucaudacbiet, strPrice,
-                listStr[0], listStr[1], listStr[2], getCreatedDate());
+                strcangdi, strcangden, strloaihang, strsoluongcuthe, stryeucaudacbiet, strValid,
+                listStr[0], listStr[1], listStr[2]);
         call.enqueue(new Callback<Log>() {
             @Override
             public void onResponse(Call<Log> call, Response<Log> response) {

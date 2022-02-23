@@ -2,11 +2,6 @@ package com.example.demoapp.view.fragment.imp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +10,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListImportLclAdapter;
 import com.example.demoapp.databinding.FragmentImportLclBinding;
 import com.example.demoapp.model.ImportLcl;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.imp.InsertImportDialog;
 import com.example.demoapp.view.dialog.imp.InsertImportLclDialog;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.ImportLclViewModel;
@@ -154,18 +156,10 @@ public class ImportLclFragment extends Fragment implements View.OnClickListener 
 
         try {
             mImportViewModel.getImportList().observe(getViewLifecycleOwner(), detailsPojoImports ->
-                    this.listPriceList = sortImportLcl(detailsPojoImports));
+                    this.listPriceList = detailsPojoImports);
         } catch (NullPointerException exception) {
             Toast.makeText(getContext(), exception.toString(), Toast.LENGTH_LONG).show();
         }
-    }
-
-    public List<ImportLcl> sortImportLcl(List<ImportLcl> list){
-        List<ImportLcl> result = new ArrayList<>();
-        for(int i=list.size()-1; i>=0 ; i--){
-            result.add(list.get(i));
-        }
-        return result;
     }
 
     @Override

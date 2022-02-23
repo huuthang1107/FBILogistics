@@ -2,9 +2,7 @@ package com.example.demoapp.utilities;
 
 public class Constants {
 
-
     public static final String URL_API = "http://192.168.1.44/database/";
-
 
     public static final String FCL_UPDATE = "update_fcl";
 
@@ -86,7 +84,6 @@ public class Constants {
     public static final String AIR_OBJECT = "object_air";
     public static final String AIR_IMPORT = "object_import_air";
     public static final String AIR_IMPORT_UPDATE = "object_import_air_update";
-    public static final String AIR_IMPORT_INSERT = "object_import_air_insert";
     public static final String AIR_UPDATE = "update_air";
 
     public final  static String[] ITEMS_TYPE = {"Xuất kinh doanh", "Xuất gia công", "Xuất SXXK", "Xuất PMD Cty", "Xuất PMD CN",
@@ -97,8 +94,6 @@ public class Constants {
 
     public static final String ERROR_AUTO_COMPLETE_MONTH = "Bạn chưa chọn tháng !!!";
     public static final String ERROR_AUTO_COMPLETE_CONTINENT = "Bạn chưa chọn châu !!!";
-    public static final String ERROR_AUTO_COMPLETE_SHIPPING_TYPE = "Bạn chưa chọn loại vận chuyển!!!";
-    public static final String ERROR_AUTO_COMPLETE_TYPE_LOG = "Bạn chưa chọn loại vận chuyển!!!";
     public static final String ERROR_AUTO_COMPLETE_TYPE = "Bạn chưa chọn loại cont !!!";
 
     public static final String ERROR_POL = "Bạn chưa nhập điểm đi!!";

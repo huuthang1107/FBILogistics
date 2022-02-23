@@ -48,9 +48,8 @@ public class FragmentLogDetail extends DialogFragment implements View.OnClickLis
         mDetailBinding.tvRowPriceLogLoaihang.setText(log.getLoaihang());
         mDetailBinding.tvRowPriceLogSoluongcuthe.setText(log.getSoluongcuthe());
         mDetailBinding.tvRowPriceLogYeucaudacbiet.setText(log.getYeucaudacbiet());
-        mDetailBinding.tvRowPriceLogPrice.setText(log.getPrice());
+        mDetailBinding.tvRowPriceLogValid.setText(log.getPrice());
         mDetailBinding.tvRowPriceLogType.setText(log.getType());
-        mDetailBinding.tvRowPriceLogDateCreated.setText(log.getDate_created());
     }
 
     @Override

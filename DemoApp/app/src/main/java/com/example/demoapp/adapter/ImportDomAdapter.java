@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.demoapp.databinding.RowDomImportBinding;
 import com.example.demoapp.model.DomImport;
 import com.example.demoapp.utilities.Constants;
+import com.example.demoapp.view.dialog.dom.dom_export.DialogDomExportDetail;
 import com.example.demoapp.view.dialog.dom.dom_import.DialogDomImportDetail;
 
 import java.util.List;
@@ -80,7 +81,6 @@ public class ImportDomAdapter extends RecyclerView.Adapter<ImportDomAdapter.Impo
         }
 
         public void bind(DomImport domImport) {
-            binding.tvDomImportStt.setText(domImport.getStt());
             binding.tvDomImportProductName.setText(domImport.getName());
             binding.tvDomImportWeight.setText(domImport.getWeight());
             binding.tvDomImportQuantity.setText(domImport.getQuantity());

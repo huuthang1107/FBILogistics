@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.demoapp.R;
 import com.example.demoapp.databinding.FragmentAirlinesBinding;
+import com.example.demoapp.view.activity.sale.AirImportSaleActivity;
 import com.example.demoapp.view.activity.sale.TablePriceAirActivity;
-import com.example.demoapp.view.activity.sale.air.AirImportSaleActivity;
 
 public class AirlinesSaleFragment extends Fragment implements  View.OnClickListener{
 

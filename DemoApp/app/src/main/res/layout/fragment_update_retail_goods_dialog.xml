@@ -218,9 +218,6 @@
             app:startIconDrawable="@drawable/baseline_flight_takeoff_black_24">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_valid"
-                android:clickable="true"
-                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/colAIR_col12" />
@@ -250,23 +247,14 @@
             android:orientation="horizontal"
             android:layout_margin="10dp">
 
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_function_cancel_retail_goods"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
-                android:text="@string/btn_cancel_txt" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_function_insert_retail_goods"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
+                android:layout_marginEnd="10dp"
+                app:backgroundTintMode="screen"
+                android:background="@drawable/selector_button"
                 android:text="@string/btn_add_txt" />
 
             <com.google.android.material.button.MaterialButton
@@ -276,7 +264,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:backgroundTint="@color/btn_color"
+                app:backgroundTintMode="screen"
+                android:background="@drawable/selector_button"
                 android:text="@string/btn_update_txt" />
         </LinearLayout>
     </LinearLayout>

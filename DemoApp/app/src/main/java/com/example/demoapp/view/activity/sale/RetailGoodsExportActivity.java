@@ -1,17 +1,13 @@
 package com.example.demoapp.view.activity.sale;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -35,14 +31,12 @@ public class RetailGoodsExportActivity extends AppCompatActivity {
     private PriceListRetailGoodsSaleAdapter mPriceListRetailGoddsAdapter;
     private RetailGoodsViewModel mRetailGoodsViewModel;
     private List<RetailGoods> retailGoodsList = new ArrayList<>();
-    private SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityRetailGoodsExportBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
 
-        setSupportActionBar(mBinding.toolbar);
         mPriceListRetailGoddsAdapter = new PriceListRetailGoodsSaleAdapter(this);
         mRetailGoodsViewModel = new ViewModelProvider(this).get(RetailGoodsViewModel.class);
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);
@@ -142,49 +136,5 @@ public class RetailGoodsExportActivity extends AppCompatActivity {
             mPriceListRetailGoddsAdapter.setDataRetailGoods(preparedataForResume(month,continent, retailGoods));
         });
         mBinding.priceListRcvRetail.setAdapter(mPriceListRetailGoddsAdapter);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filter(newText);
-                return false;
-            }
-        });
-        return  true;
-    }
-
-    private void filter(String text){
-        List<RetailGoods> filteredList = new ArrayList<>();
-        for( RetailGoods retailGoods: prepareDataForRecycleView(month, continent)){
-            if(retailGoods.getPol().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(retailGoods);
-            }
-        }
-        if(filteredList.isEmpty()){
-            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
-        }else {
-            mPriceListRetailGoddsAdapter.filterList(filteredList);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(!searchView.isIconified()){
-            searchView.setIconified(true);
-            return;
-        }
-        super.onBackPressed();
-
     }
 }

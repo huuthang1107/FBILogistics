@@ -71,10 +71,6 @@ public class PriceListAIRAdapter extends RecyclerView.Adapter<PriceListAIRAdapte
         }
     });
     }
-    public void filterList(List<AirExport> filterList){
-        listAIRS = filterList;
-        notifyDataSetChanged();
-    }
 
     private void goToDetail(AirExport air) {
         FragmentActivity activity = (FragmentActivity) context;

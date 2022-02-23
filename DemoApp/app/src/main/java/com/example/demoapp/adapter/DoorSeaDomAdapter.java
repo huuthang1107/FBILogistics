@@ -79,7 +79,7 @@ public class DoorSeaDomAdapter extends RecyclerView.Adapter<DoorSeaDomAdapter.Do
         }
 
         public void bind(DomDoorSea domDoorSea) {
-            binding.tvDomDoorSeaStt.setText(domDoorSea.getStt());
+
             binding.tvDomDoorSeaPortGo.setText(domDoorSea.getPortGo());
             binding.tvDomDoorSeaPortCome.setText(domDoorSea.getPortCome());
             binding.tvDomDoorSeaAddressReceive.setText(domDoorSea.getAddressReceive());

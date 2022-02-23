@@ -41,6 +41,7 @@ public class ContainerActivity extends AppCompatActivity implements View.OnClick
         mContainerBinding = ActivityContainerBinding.inflate(getLayoutInflater());
         View view = mContainerBinding.getRoot();
 
+        setSupportActionBar(mContainerBinding.toolbar);
         priceListFclAdapter = new PriceListFclSaleAdapter(this);
         mFclViewModel = new ViewModelProvider(this).get(FclViewModel.class);
         CommunicateViewModel mCommunicateViewModel = new ViewModelProvider(this).get(CommunicateViewModel.class);

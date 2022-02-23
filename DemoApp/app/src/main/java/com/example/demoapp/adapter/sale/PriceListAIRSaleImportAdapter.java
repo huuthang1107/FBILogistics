@@ -97,6 +97,11 @@ public class PriceListAIRSaleImportAdapter extends RecyclerView.Adapter<PriceLis
         notifyDataSetChanged();
     }
 
+    public void filterList(List<AirImport> filteredList) {
+        listAIRS = filteredList;
+        notifyDataSetChanged();
+    }
+
 
     public class PriceAirImportViewHolder extends RecyclerView.ViewHolder {
         TextView tvStt, tvPol, tvPod, tvDim, tvGross, tvType, tvAirFreight, tvSurcharge, tvAirlines,

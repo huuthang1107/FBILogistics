@@ -83,6 +83,11 @@ public class PriceListAIRSaleAdapter extends RecyclerView.Adapter<PriceListAIRSa
         dialogFragment.show( fm,"DetailAir");
     }
 
+    public void filterList(List<AirExport> filterList){
+        listAIRS = filterList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         if (listAIRS != null) {

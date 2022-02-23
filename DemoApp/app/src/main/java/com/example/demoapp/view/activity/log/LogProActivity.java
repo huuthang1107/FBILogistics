@@ -2,7 +2,6 @@ package com.example.demoapp.view.activity.log;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +23,7 @@ public class LogProActivity extends AppCompatActivity {
 
         binding = ActivityLogProBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
         bottomMenu();
         setupViewPager();
 
@@ -50,11 +50,9 @@ public class LogProActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.navigation_home:
                         binding.viewPagerLog.setCurrentItem(0);
-                        Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_log:
                         binding.viewPagerLog.setCurrentItem(1);
-                        Toast.makeText(getApplicationContext(), "Page Log", Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -82,5 +80,6 @@ public class LogProActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

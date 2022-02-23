@@ -3,12 +3,9 @@ package com.example.demoapp.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +20,6 @@ import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.view.dialog.fcl.FragmentFclDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapter.ViewHolder>  {
@@ -97,6 +93,11 @@ public class PriceListFclAdapter extends RecyclerView.Adapter<PriceListFclAdapte
     @SuppressLint("NotifyDataSetChanged")
     public void setDataFcl(List<Fcl> list) {
         this.mListDetailFcl = list;
+        notifyDataSetChanged();
+    }
+
+    public void filterList(List<Fcl> filteredList) {
+        mListDetailFcl = filteredList;
         notifyDataSetChanged();
     }
 

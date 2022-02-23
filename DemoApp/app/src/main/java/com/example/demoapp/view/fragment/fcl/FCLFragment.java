@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.PriceListFclAdapter;
-
 import com.example.demoapp.databinding.FragmentFclBinding;
 import com.example.demoapp.model.Fcl;
 import com.example.demoapp.utilities.Constants;
@@ -39,6 +38,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
     private String month = "";
     private String continent = "";
     private String radioItem = "All";
+    private SearchView searchView;
 
     private List<Fcl> listPriceList = new ArrayList<>();
     private PriceListFclAdapter priceListFclAdapter;
@@ -73,6 +73,7 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        setHasOptionsMenu(true);
         getAllData();
         setAdapterItems();
         setUpButtons();
@@ -272,6 +273,43 @@ public class FCLFragment extends Fragment implements View.OnClickListener {
                 radioItem = binding.radioOt.getText().toString();
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return false;
+            }
+        });
+
+    }
+    private void filter(String text){
+        List<Fcl> filteredList = new ArrayList<>();
+        for( Fcl fcl: prepareDataForRecyclerView(month, continent, radioItem)){
+            if(fcl.getPol().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(fcl);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        }else {
+            priceListFclAdapter.filterList(filteredList);
         }
     }
 }

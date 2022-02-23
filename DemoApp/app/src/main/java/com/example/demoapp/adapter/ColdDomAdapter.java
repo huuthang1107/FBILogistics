@@ -71,6 +71,11 @@ public class ColdDomAdapter extends RecyclerView.Adapter<ColdDomAdapter.ColdView
         return 0;
     }
 
+    public void filterList(List<DomCold> filteredList) {
+        listCold = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ColdViewHolder extends RecyclerView.ViewHolder {
         private final RowDomColdBinding binding;
 

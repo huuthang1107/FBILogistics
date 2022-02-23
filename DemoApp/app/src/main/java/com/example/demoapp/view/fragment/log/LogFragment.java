@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -37,7 +40,7 @@ public class LogFragment extends Fragment implements View.OnClickListener {
     private ArrayAdapter<String> adapterItemsMonth, adapterItemsImportAndExport;
     private String month = "";
     private String importAndExport = "";
-
+    private SearchView searchView;
     private PriceListLogAdapter mListLogAdapter;
     private LogViewModel mLogViewModel;
 
@@ -60,6 +63,7 @@ public class LogFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        setHasOptionsMenu(true);
         getDataLog();
         setAdapterItems();
         setUpButtons();
@@ -73,11 +77,6 @@ public class LogFragment extends Fragment implements View.OnClickListener {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        
-    }
 
     private void setUpButtons() {
         logBinding.fragmentLogFab.setOnClickListener(this);
@@ -169,6 +168,43 @@ public class LogFragment extends Fragment implements View.OnClickListener {
                 DialogFragment dialogFragment = InsertLogFragment.insertDiaLogLog();
                 dialogFragment.show(getParentFragmentManager(),"Insert dialog Log");
                 break;
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return false;
+            }
+        });
+
+    }
+    private void filter(String text){
+        List<Log> filteredList = new ArrayList<>();
+        for( Log log: prepareDataForRecyclerView(month, importAndExport)){
+            if(log.getCangdi().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(log);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        }else {
+            mListLogAdapter.filterList(filteredList);
         }
     }
 }

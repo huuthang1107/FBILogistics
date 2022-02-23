@@ -72,15 +72,18 @@
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_import_lcl.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_import_lcl_sale.xml" value="0.13072916666666667" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_log.xml" value="0.21944444444444444" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_log_pro.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_login.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_price_list.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_price_list_air.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_pro_import.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_professional_main.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_rail_sale.xml" value="0.1" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_retail_goods_export.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_road_sale.xml" value="0.12773722627737227" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_sale.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_sea_dom.xml" value="0.27717391304347827" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_table_price_air.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_tableprice_container.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_truck_dom.xml" value="0.27717391304347827" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/activity_water_way.xml" value="0.25416666666666665" />
@@ -117,6 +120,8 @@
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/dialog_insert_dom_export.xml" value="0.28442028985507245" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/dropdown_item.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_air_dialog.xml" value="0.4" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_air_export.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_air_import.xml" value="0.1962962962962963" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_air_import_detail.xml" value="0.24074074074074073" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_container_export.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/FBI LOGISTICS/Documents/GitHub/FBILogistics/DemoApp/app/src/main/res/layout/fragment_container_import.xml" value="0.25416666666666665" />

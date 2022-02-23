@@ -22,6 +22,7 @@ public class FclActivity extends AppCompatActivity {
         binding = ActivityFclBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbar);
         bottomMenu();
         setupViewPager();
     }
@@ -63,5 +64,6 @@ public class FclActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

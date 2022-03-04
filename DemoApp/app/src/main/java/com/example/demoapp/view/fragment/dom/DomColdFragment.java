@@ -185,7 +185,7 @@ public class DomColdFragment extends Fragment {
     private void filter(String text){
         List<DomCold> filteredList = new ArrayList<>();
         for( DomCold domCold: filterData(month, continent)){
-            if(domCold.getAddressDelivery().toLowerCase().contains(text.toLowerCase())){
+            if(domCold.getAddressReceive().toLowerCase().contains(text.toLowerCase())){
                 filteredList.add(domCold);
             }
         }

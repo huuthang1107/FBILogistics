@@ -36,24 +36,24 @@ public class DialogDomColdDetail extends DialogFragment {
         View root = binding.getRoot();
 
         setData();
-//        setListenerForButtons();
+        setListenerForButtons();
 
         return root;
     }
 
-//    public void setListenerForButtons() {
-//        binding.btnUpdateDomCold.setOnClickListener(view -> {
-//            DialogFragment fragment = DialogDomColdUpdate.getInstance();
-//            fragment.setArguments(bundle);
-//            fragment.show(getParentFragmentManager(), "UpdateDomCold");
-//        });
-//
-//        binding.btnAddNewDomCold.setOnClickListener(view -> {
-//            DialogFragment fragment2 = DialogDomColdInsert.getInstance();
-//            fragment2.setArguments(bundle);
-//            fragment2.show(getParentFragmentManager(), "AddNewDomCold");
-//        });
-//    }
+    public void setListenerForButtons() {
+        binding.btnUpdateDomCold.setOnClickListener(view -> {
+            DialogFragment fragment = DialogDomColdUpdate.getInstance();
+            fragment.setArguments(bundle);
+            fragment.show(getParentFragmentManager(), "UpdateDomCold");
+        });
+
+        binding.btnAddNewDomCold.setOnClickListener(view -> {
+            DialogFragment fragment2 = DialogDomColdInsert.getInstance();
+            fragment2.setArguments(bundle);
+            fragment2.show(getParentFragmentManager(), "AddNewDomCold");
+        });
+    }
 
     public void setData() {
         bundle = getArguments();

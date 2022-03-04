@@ -98,6 +98,11 @@ public class PriceListImportSaleAdapter extends RecyclerView.Adapter<PriceListIm
         return 0;
     }
 
+    public void filterList(List<Import> filteredList) {
+        listPriceList = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView stt, pol, pod, of20, of40, of45, sur20, sur40, sur45, total, carrier, schedule,

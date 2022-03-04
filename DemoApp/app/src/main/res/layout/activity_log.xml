@@ -6,25 +6,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.log.LogFragment">
 
+
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/top_air"
+        android:id="@+id/top_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            app:title="@string/title_fbi"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple_700"
-            app:popupTheme="@style/Theme.AppCompat.Light"
-            app:title="@string/company_name"
-            />
-
+            android:background="@color/btn_color"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:layout_below="@id/top_air"
+        android:layout_below="@id/top_log"
         android:id="@+id/auto_complete_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

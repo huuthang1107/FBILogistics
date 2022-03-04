@@ -71,6 +71,11 @@ public class CyDomAdapter extends RecyclerView.Adapter<CyDomAdapter.CyViewHolder
         return 0;
     }
 
+    public void filterList(List<DomCy> filteredList) {
+        listDry = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class CyViewHolder extends RecyclerView.ViewHolder {
         private final RowDomCyBinding binding;
 

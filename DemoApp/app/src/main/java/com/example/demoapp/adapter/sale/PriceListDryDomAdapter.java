@@ -70,6 +70,11 @@ public class PriceListDryDomAdapter extends RecyclerView.Adapter<PriceListDryDom
         return 0;
     }
 
+    public void filterList(List<DomDry> filteredList) {
+        listDry = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class DryViewHolder extends RecyclerView.ViewHolder {
         private final RowDomDryBinding binding;
 
@@ -79,6 +84,7 @@ public class PriceListDryDomAdapter extends RecyclerView.Adapter<PriceListDryDom
         }
 
         public void bind(DomDry domDry) {
+            binding.tvDomDryProductStt.setText(domDry.getStt());
             binding.tvDomDryProductName.setText(domDry.getName());
             binding.tvDomDryWeight.setText(domDry.getWeight());
             binding.tvDomDryQuantityPallet.setText(domDry.getQuantityPallet());

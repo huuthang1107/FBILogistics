@@ -71,6 +71,11 @@ public class DoorDomAdapter extends RecyclerView.Adapter<DoorDomAdapter.DoorView
         return 0;
     }
 
+    public void filterList(List<DomDoor> filteredList) {
+        listDoor = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class DoorViewHolder extends RecyclerView.ViewHolder {
         private final RowDomDoorBinding binding;
 

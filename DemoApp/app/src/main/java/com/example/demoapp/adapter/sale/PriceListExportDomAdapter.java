@@ -70,6 +70,11 @@ public class PriceListExportDomAdapter extends RecyclerView.Adapter<PriceListExp
         return 0;
     }
 
+    public void filterList(List<DomExport> filteredList) {
+        listExport = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ExportViewHolder extends RecyclerView.ViewHolder {
         private final RowDomExportBinding binding;
 
@@ -79,6 +84,7 @@ public class PriceListExportDomAdapter extends RecyclerView.Adapter<PriceListExp
         }
 
         public void bind(DomExport export) {
+            binding.tvDomExportProductStt.setText(export.getStt());
             binding.tvDomExportProductName.setText(export.getName());
             binding.tvDomExportWeight.setText(export.getWeight());
             binding.tvDomExportQuantity.setText(export.getQuantity());

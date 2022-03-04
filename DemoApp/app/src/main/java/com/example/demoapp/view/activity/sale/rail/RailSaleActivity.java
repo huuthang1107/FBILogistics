@@ -26,6 +26,7 @@ public class RailSaleActivity extends AppCompatActivity {
         binding = ActivityRailSaleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
+        setSupportActionBar(binding.toolbar);
         bottomMenu();
         setupViewPager();
         setContentView(view);

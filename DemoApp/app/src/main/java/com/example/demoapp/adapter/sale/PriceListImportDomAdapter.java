@@ -70,6 +70,11 @@ public class PriceListImportDomAdapter extends RecyclerView.Adapter<PriceListImp
         return 0;
     }
 
+    public void filterList(List<DomImport> filteredList) {
+        listImport = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ImportViewHolder extends RecyclerView.ViewHolder {
         private final RowDomImportBinding binding;
 
@@ -79,6 +84,7 @@ public class PriceListImportDomAdapter extends RecyclerView.Adapter<PriceListImp
         }
 
         public void bind(DomImport domImport) {
+            binding.tvDomImportStt.setText(domImport.getStt());
             binding.tvDomImportProductName.setText(domImport.getName());
             binding.tvDomImportWeight.setText(domImport.getWeight());
             binding.tvDomImportQuantity.setText(domImport.getQuantity());

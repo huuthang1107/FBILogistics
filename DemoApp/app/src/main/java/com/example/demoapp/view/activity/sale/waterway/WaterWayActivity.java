@@ -3,7 +3,6 @@ package com.example.demoapp.view.activity.sale.waterway;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +22,7 @@ public class WaterWayActivity extends AppCompatActivity {
         binding = ActivityWaterWayBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
+        setSupportActionBar(binding.toolbar);
         bottomMenu();
         setupViewPager();
         setContentView(view);
@@ -39,11 +39,9 @@ public class WaterWayActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.tab_cy_waterway:
                         binding.viewPagerWaterway.setCurrentItem(0);
-                        Toast.makeText(getApplicationContext(), "Cy_Cy", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.tab_door_waterway:
                         binding.viewPagerWaterway.setCurrentItem(1);
-                        Toast.makeText(getApplicationContext(), "Door_To_Door", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return true;
@@ -69,4 +67,5 @@ public class WaterWayActivity extends AppCompatActivity {
             }
         });
     }
+
 }

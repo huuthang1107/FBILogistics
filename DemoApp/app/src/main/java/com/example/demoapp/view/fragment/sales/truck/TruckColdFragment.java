@@ -2,11 +2,16 @@ package com.example.demoapp.view.fragment.sales.truck;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +31,7 @@ public class TruckColdFragment extends Fragment {
 
     private DomColdViewModel mDomColdViewModel;
     private PriceListColdDomAdapter mColdDomAdapter;
+    private SearchView searchView;
 
     private List<DomCold> mDomColdList = new ArrayList<>();
 
@@ -52,6 +58,7 @@ public class TruckColdFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
         getAllData();
         setAutoComplete();
         return view;
@@ -126,5 +133,41 @@ public class TruckColdFragment extends Fragment {
         binding.rcvDomCold.setAdapter(mColdDomAdapter);
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return false;
+            }
+        });
+
+    }
+    private void filter(String text) {
+        List<DomCold> filteredList = new ArrayList<>();
+        for (DomCold domCold : filterData(month, continent)) {
+            if (domCold.getAddressReceive().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(domCold);
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            mColdDomAdapter.filterList(filteredList);
+        }
+    }
 
 }

@@ -71,6 +71,11 @@ public class DryDomAdapter extends RecyclerView.Adapter<DryDomAdapter.DryViewHol
         return 0;
     }
 
+    public void filterList(List<DomDry> filteredList) {
+        listDry = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class DryViewHolder extends RecyclerView.ViewHolder {
         private final RowDomDryBinding binding;
 

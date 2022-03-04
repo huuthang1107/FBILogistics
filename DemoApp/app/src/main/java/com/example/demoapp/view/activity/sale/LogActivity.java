@@ -1,11 +1,16 @@
 package com.example.demoapp.view.activity.sale;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +32,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     private ArrayAdapter<String> adapterItemsMonth, adapterItemsImportAndExport;
     private String month = "";
     private String importAndExport = "";
+    private SearchView searchView;
 
     private PriceListLogSaleAdapter mListLogAdapter;
     private LogViewModel mLogViewModel;
@@ -52,6 +58,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+        setSupportActionBar(mLogBinding.toolbar);
         getDataLog();
         setAdapterItems();
 //        setUpButtons();
@@ -145,5 +152,51 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
                 dialogFragment.show(getSupportFragmentManager(),"Insert dialog Log");
                 break;
         }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { ;
+        getMenuInflater().inflate(R.menu.search, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+        return  true;
+    }
+
+    private void filter(String text){
+        List<Log> filteredList = new ArrayList<>();
+        for( Log log: prepareDataForRecyclerView(month, importAndExport)){
+            if(log.getCangdi().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(log);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        }else {
+            mListLogAdapter.filterList(filteredList);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!searchView.isIconified()){
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+
     }
 }

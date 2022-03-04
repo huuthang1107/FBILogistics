@@ -37,6 +37,7 @@ public class DialogDomExportSaleDetail extends DialogFragment {
             bundle.putSerializable(Constants.DOM_EXPORT_UPDATE, domExport);
             bundle.putString(Constants.DOM_EXPORT_ADD_NEW, "YES");
 
+
             binding.tvDomExportProductName.setText(domExport.getName());
             binding.tvDomExportWeight.setText(domExport.getWeight());
             binding.tvDomExportQuantity.setText(domExport.getQuantity());

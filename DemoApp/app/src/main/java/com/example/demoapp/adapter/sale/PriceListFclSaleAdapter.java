@@ -96,6 +96,11 @@ public class PriceListFclSaleAdapter extends RecyclerView.Adapter<PriceListFclSa
         notifyDataSetChanged();
     }
 
+    public void filterList(List<Fcl> filteredList) {
+        mListDetailFcl = filteredList;
+        notifyDataSetChanged();
+    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

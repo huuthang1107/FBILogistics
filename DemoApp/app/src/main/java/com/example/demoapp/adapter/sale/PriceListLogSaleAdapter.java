@@ -90,6 +90,11 @@ public class PriceListLogSaleAdapter extends RecyclerView.Adapter<PriceListLogSa
         notifyDataSetChanged();
     }
 
+    public void filterList(List<Log> filteredList) {
+        mPriceListLog = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class LogViewHolder extends RecyclerView.ViewHolder{
         private TextView tvStt, tvTenHang, tvHScode, tvCongdung, tvHinhanh, tvCangdi, tvCangden,
                 tvLoaihang, tvSoluongcuthe, tvYeucaudacbiet, tvPrice;

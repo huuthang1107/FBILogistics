@@ -71,6 +71,11 @@ public class ImportDomAdapter extends RecyclerView.Adapter<ImportDomAdapter.Impo
         return 0;
     }
 
+    public void filterList(List<DomImport> filteredList) {
+        listImport = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ImportViewHolder extends RecyclerView.ViewHolder {
         private final RowDomImportBinding binding;
 

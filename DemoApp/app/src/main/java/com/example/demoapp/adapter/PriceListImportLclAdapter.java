@@ -15,10 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demoapp.R;
-import com.example.demoapp.model.Import;
 import com.example.demoapp.model.ImportLcl;
 import com.example.demoapp.utilities.Constants;
-import com.example.demoapp.view.dialog.imp.FragmentImportDetail;
 import com.example.demoapp.view.dialog.imp.FragmentImportLclDetail;
 
 import java.util.List;
@@ -97,6 +95,11 @@ public class PriceListImportLclAdapter extends RecyclerView.Adapter<PriceListImp
             return listPriceList.size();
         }
         return 0;
+    }
+
+    public void filterList(List<ImportLcl> filteredList) {
+        listPriceList = filteredList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

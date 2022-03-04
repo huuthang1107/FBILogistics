@@ -22,6 +22,7 @@ public class ProImportActivity extends AppCompatActivity {
         binding = ActivityProImportBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbar);
         bottomMenu();
         setupViewPager();
 

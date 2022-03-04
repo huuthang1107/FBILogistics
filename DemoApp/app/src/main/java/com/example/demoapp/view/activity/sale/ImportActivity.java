@@ -1,19 +1,23 @@
 package com.example.demoapp.view.activity.sale;
 
 import android.annotation.SuppressLint;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.demoapp.R;
 import com.example.demoapp.adapter.sale.PriceListImportSaleAdapter;
-
 import com.example.demoapp.databinding.ActivityImportBinding;
 import com.example.demoapp.model.Import;
 import com.example.demoapp.utilities.Constants;
@@ -34,12 +38,15 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     private PriceListImportSaleAdapter priceListAdapter;
     private ImportViewModel mImportViewModel;
     private ActivityImportBinding mImportBinding;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mImportBinding = ActivityImportBinding.inflate(getLayoutInflater());
         View view = mImportBinding.getRoot();
+
+        setSupportActionBar(mImportBinding.toolbar);
         priceListAdapter = new PriceListImportSaleAdapter(this);
         mImportViewModel = new ViewModelProvider(this).get(ImportViewModel.class);
 
@@ -231,5 +238,50 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { ;
+        getMenuInflater().inflate(R.menu.search, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+        return  true;
+    }
+
+    private void filter(String text){
+        List<Import> filteredList = new ArrayList<>();
+        for( Import container: prepareDataForRecyclerView(month, continent, radioItem)){
+            if(container.getPol().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(container);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        }else {
+            priceListAdapter.filterList(filteredList);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!searchView.isIconified()){
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+
     }
 }

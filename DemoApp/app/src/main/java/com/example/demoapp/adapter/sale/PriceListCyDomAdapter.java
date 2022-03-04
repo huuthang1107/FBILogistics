@@ -70,6 +70,11 @@ public class PriceListCyDomAdapter extends RecyclerView.Adapter<PriceListCyDomAd
         return 0;
     }
 
+    public void filterList(List<DomCy> filteredList) {
+        listDry = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class CyViewHolder extends RecyclerView.ViewHolder {
         private final RowDomCyBinding binding;
 
@@ -79,6 +84,7 @@ public class PriceListCyDomAdapter extends RecyclerView.Adapter<PriceListCyDomAd
         }
 
         public void bind(DomCy domCy) {
+            binding.tvDomCyStationStt.setText(domCy.getStt());
             binding.tvDomCyStationGo.setText(domCy.getStationGo());
             binding.tvDomCyStationCome.setText(domCy.getStationCome());
             binding.tvDomCyName.setText(domCy.getName());

@@ -71,6 +71,11 @@ public class ExportDomAdapter extends RecyclerView.Adapter<ExportDomAdapter.Expo
         return 0;
     }
 
+    public void filterList(List<DomExport> filteredList) {
+        listExport = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ExportViewHolder extends RecyclerView.ViewHolder {
         private final RowDomExportBinding binding;
 

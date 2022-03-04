@@ -69,6 +69,11 @@ public class CySeaDomAdapter extends RecyclerView.Adapter<CySeaDomAdapter.CySeaV
         return 0;
     }
 
+    public void filterList(List<DomCySea> filteredList) {
+        listCySea = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class CySeaViewHolder extends RecyclerView.ViewHolder {
         private final RowDomCySeaBinding binding;
 

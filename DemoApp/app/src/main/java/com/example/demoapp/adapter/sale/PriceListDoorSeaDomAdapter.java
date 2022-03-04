@@ -70,6 +70,11 @@ public class PriceListDoorSeaDomAdapter extends RecyclerView.Adapter<PriceListDo
         return 0;
     }
 
+    public void filterList(List<DomDoorSea> filteredList){
+        listDoorSea = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class DoorSeaViewHolder extends RecyclerView.ViewHolder {
         private final RowDomDoorSeaBinding binding;
 

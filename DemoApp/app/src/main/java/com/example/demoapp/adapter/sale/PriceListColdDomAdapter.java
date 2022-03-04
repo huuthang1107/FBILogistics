@@ -70,6 +70,11 @@ public class PriceListColdDomAdapter extends RecyclerView.Adapter<PriceListColdD
         return 0;
     }
 
+    public void filterList(List<DomCold> filteredList) {
+        listCold = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class ColdViewHolder extends RecyclerView.ViewHolder {
         private final RowDomColdBinding binding;
 
@@ -79,6 +84,7 @@ public class PriceListColdDomAdapter extends RecyclerView.Adapter<PriceListColdD
         }
 
         public void bind(DomCold domCold) {
+            binding.tvDomColdProductStt.setText(domCold.getStt());
             binding.tvDomColdProductName.setText(domCold.getName());
             binding.tvDomColdWeight.setText(domCold.getWeight());
             binding.tvDomColdQuantityPallet.setText(domCold.getQuantityPallet());

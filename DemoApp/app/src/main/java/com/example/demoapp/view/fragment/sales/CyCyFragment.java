@@ -2,11 +2,16 @@ package com.example.demoapp.view.fragment.sales;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +33,7 @@ public class CyCyFragment extends Fragment {
     private FragmentCyCyBinding binding;
     private DomCyViewModel mDomCyViewModel;
     private PriceListCyDomAdapter mCyDomAdapter;
+    private SearchView searchView;
 
     private List<DomCy> mDomCyList = new ArrayList<>();
 
@@ -51,6 +57,7 @@ public class CyCyFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
         getAllData();
         setAutoComplete();
 
@@ -124,6 +131,44 @@ public class CyCyFragment extends Fragment {
         mDomCyViewModel.getAllData().observe(getViewLifecycleOwner(), domCy -> mCyDomAdapter.setDomCy(filterDataResume(month, continent, domCy)));
 
         binding.rcvDomCy.setAdapter(mCyDomAdapter);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s);
+                return false;
+            }
+        });
+
+    }
+    private void filter(String text) {
+        List<DomCy> filteredList = new ArrayList<>();
+        for (DomCy domCy : filterData(month, continent)) {
+            if (domCy.getStationGo().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(domCy);
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            mCyDomAdapter.filterList(filteredList);
+        }
     }
 
 

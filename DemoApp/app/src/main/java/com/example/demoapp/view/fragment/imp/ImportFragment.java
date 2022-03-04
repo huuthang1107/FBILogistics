@@ -3,6 +3,9 @@ package com.example.demoapp.view.fragment.imp;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -10,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,6 +38,7 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
     private String month = "";
     private String continent = "";
     private String radioItem = "All";
+    private SearchView searchView;
 
     List<Import> listPriceList = new ArrayList<>();
     private PriceListImportAdapter priceListAdapter;
@@ -65,6 +70,7 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        setHasOptionsMenu(true);
         setAdapterItems();
         setUpButtons();
         getAllData();
@@ -260,6 +266,44 @@ public class ImportFragment extends Fragment implements View.OnClickListener {
                 radioItem = binding.radioTk.getText().toString();
                 setDataForRecyclerView(month, continent, radioItem);
                 break;
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.search, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+//                priceListAirImportAdapter.getFilter().filter(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+//                priceListAirImportAdapter.setDataAir(prepareDataForRecyclerView(month,continent));
+                filter(s);
+                return false;
+            }
+        });
+
+    }
+    private void filter(String text){
+        List<Import> filteredList = new ArrayList<>();
+        for( Import importPro: prepareDataForRecyclerView(month, continent, radioItem)){
+            if(importPro.getPol().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(importPro);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        }else {
+            priceListAdapter.filterList(filteredList);
         }
     }
 }

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -98,6 +97,11 @@ public class PriceListImportAdapter extends RecyclerView.Adapter<PriceListImport
             return listPriceList.size();
         }
         return 0;
+    }
+
+    public void filterList(List<Import> filteredList) {
+        listPriceList = filteredList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

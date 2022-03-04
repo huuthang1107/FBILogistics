@@ -25,6 +25,7 @@ public class RoadSaleActivity extends AppCompatActivity {
         binding = ActivityRoadSaleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
+        setSupportActionBar(binding.toolbar);
         bottomMenu();
         setupViewPager();
         setContentView(view);

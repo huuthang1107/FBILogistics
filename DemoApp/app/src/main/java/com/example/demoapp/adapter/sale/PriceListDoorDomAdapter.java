@@ -70,6 +70,11 @@ public class PriceListDoorDomAdapter extends RecyclerView.Adapter<PriceListDoorD
         return 0;
     }
 
+    public void filterList(List<DomDoor> filteredList) {
+        listDoor = filteredList;
+        notifyDataSetChanged();
+    }
+
     public static class DoorViewHolder extends RecyclerView.ViewHolder {
         private final RowDomDoorBinding binding;
 
@@ -79,6 +84,7 @@ public class PriceListDoorDomAdapter extends RecyclerView.Adapter<PriceListDoorD
         }
 
         public void bind(DomDoor domDoor) {
+            binding.tvDomDoorStationStt.setText(domDoor.getStt());
             binding.tvDomDoorStationGo.setText(domDoor.getStationGo());
             binding.tvDomDoorStationCome.setText(domDoor.getStationCome());
             binding.tvDomDoorAddressReceive.setText(domDoor.getAddressReceive());

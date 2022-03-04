@@ -1,11 +1,15 @@
 package com.example.demoapp.view.activity.sale;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -13,6 +17,7 @@ import com.example.demoapp.R;
 import com.example.demoapp.adapter.sale.PriceListImportLclSaleAdapter;
 import com.example.demoapp.databinding.ActivityImportLclSaleBinding;
 import com.example.demoapp.model.ImportLcl;
+import com.example.demoapp.model.Log;
 import com.example.demoapp.utilities.Constants;
 import com.example.demoapp.viewmodel.CommunicateViewModel;
 import com.example.demoapp.viewmodel.ImportLclViewModel;
@@ -26,6 +31,7 @@ public class ImportLclSaleActivity extends AppCompatActivity {
     private String month = "";
     private String continent = "";
 
+    private SearchView searchView;
     List<ImportLcl> listPriceList = new ArrayList<>();
     private PriceListImportLclSaleAdapter priceListAdapter;
     private ImportLclViewModel mImportViewModel;
@@ -46,6 +52,7 @@ public class ImportLclSaleActivity extends AppCompatActivity {
             }
         });
 
+        setSupportActionBar(binding.toolbar);
         setAdapterItems();
         getAllData();
         setContentView(view);
@@ -145,5 +152,50 @@ public class ImportLclSaleActivity extends AppCompatActivity {
         binding.priceListRcv.setAdapter(priceListAdapter);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { ;
+        getMenuInflater().inflate(R.menu.search, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+        return  true;
+    }
+
+    private void filter(String text){
+        List<ImportLcl> filteredList = new ArrayList<>();
+        for( ImportLcl importLcl: prepareDataForRecyclerView(month, continent)){
+            if(importLcl.getPol().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(importLcl);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        }else {
+            priceListAdapter.filterList(filteredList);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!searchView.isIconified()){
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+
+    }
 
 }

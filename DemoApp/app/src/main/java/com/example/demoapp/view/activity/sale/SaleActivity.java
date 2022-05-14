@@ -14,12 +14,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.demoapp.R;
+import com.example.demoapp.view.activity.LoginActivity;
+import com.example.demoapp.view.activity.chat.DashboardActivity;
 import com.example.demoapp.view.fragment.sales.AirlinesSaleFragment;
 import com.example.demoapp.view.fragment.sales.HomeSaleFragment;
 import com.example.demoapp.view.fragment.sales.InlandFragment;
 import com.example.demoapp.view.fragment.sales.RoadFragment;
 import com.example.demoapp.view.fragment.sales.SeawayFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SaleActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int FRAGMENT_HOME = 0;
@@ -38,6 +42,7 @@ public class SaleActivity extends AppCompatActivity implements NavigationView.On
 
     DrawerLayout mDrawerLayout;
     Toolbar toolbar;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class SaleActivity extends AppCompatActivity implements NavigationView.On
 
         anhxa();
         Actionbar();
+
+        mAuth = FirebaseAuth.getInstance();
 
 
     }
@@ -104,9 +111,24 @@ public class SaleActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this, LogActivity.class);
                 startActivity(intent);
             }
+        }else if(id == R.id.nav_logout){
+            mAuth.signOut();
+            checkUserStatus();
+        }else if(id == R.id.nav_message){
+            startActivity(new Intent(this, DashboardActivity.class));
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void checkUserStatus() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+
+        } else {
+            startActivity(new Intent(SaleActivity.this, LoginActivity.class));
+            finish();
+        }
     }
 
     @Override

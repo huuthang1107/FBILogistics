@@ -266,6 +266,13 @@
     <string name="nav_account">Account</string>
     <string name="Mesenger">Mesenger</string>
     <string name="nav_my_profile">Tài khoản</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="sigin">Sigin</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="booking">Booking</string>
+    <string name="nav_chat">Chat</string>
 
 
 </resources>

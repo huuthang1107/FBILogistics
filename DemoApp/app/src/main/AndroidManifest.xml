@@ -13,18 +13,20 @@
         android:theme="@style/Theme.DemoApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.activity.chat.PostDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GroupChatFinal"/>
+        <activity
             android:name=".view.activity.chat.DetailProfileActivity"
             android:exported="true"
-            android:theme="@style/Theme.GroupChatFinal">
-        </activity>
+            android:theme="@style/Theme.GroupChatFinal"></activity>
         <activity
             android:name=".view.activity.chat.ChatActivity"
-            android:exported="false"
-           />
+            android:exported="false" />
         <activity
             android:name=".view.activity.chat.AddPostActivity"
             android:exported="false"
-            android:theme="@style/Theme.GroupChatFinal"/>
+            android:theme="@style/Theme.GroupChatFinal" />
         <activity
             android:name=".view.activity.chat.DashboardActivity"
             android:exported="true"
@@ -34,12 +36,10 @@
         <activity
             android:name=".view.activity.loginAndRegister.RegisterActivity"
             android:exported="true"
-            android:theme="@style/Theme.GroupChatFinal"/>
+            android:theme="@style/Theme.GroupChatFinal" />
         <activity
             android:name=".view.activity.air.AirPageActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".view.activity.sale.waterway.WaterWayActivity"
             android:exported="true" />
@@ -111,9 +111,7 @@
         <activity
             android:name=".view.activity.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.GroupChatFinal">
-
-        </activity>
+            android:theme="@style/Theme.GroupChatFinal"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
